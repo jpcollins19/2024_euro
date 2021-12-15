@@ -11,6 +11,7 @@ const LOAD_TEAMS = "LOAD_TEAMS";
 const SELECT_TEAM = "SELECT_TEAM";
 const LOAD_PLAYERS = "LOAD_PLAYERS";
 const DELETE_PLAYER = "DELETE_PLAYER";
+const CREATE_PLAYER = "CREATE_PLAYER";
 
 //////////////////////////////////// ACTION CREATORS below:
 
@@ -32,6 +33,10 @@ export const _selectTeam = (id) => {
 
 export const _loadPlayers = (players) => {
   return { type: LOAD_PLAYERS, players };
+};
+
+export const _createPlayer = (player) => {
+  return { type: CREATE_PLAYER, player };
 };
 
 //////////////////////////////////// THUNKS below:
@@ -72,6 +77,15 @@ export const deletePlayer = (player) => {
   return async (dispatch) => {
     await axios.delete(`/api/players/${player.id}`);
     const teams = (await axios.get("/api/teams")).data;
+    dispatch(_loadTeams(teams));
+  };
+};
+
+export const createPlayer = (name, teamId) => {
+  return async (dispatch) => {
+    const player = (await axios.post(`/api/players/`, { name, teamId })).data;
+    const teams = (await axios.get("/api/teams")).data;
+    dispatch(_createPlayer(player));
     dispatch(_loadTeams(teams));
   };
 };
@@ -126,12 +140,22 @@ const players = (state = [], action) => {
   }
 };
 
+const newPlayer = (state = "", action) => {
+  switch (action.type) {
+    case CREATE_PLAYER:
+      return [...state, action.player];
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   leagues,
   selectedLeague,
   teams,
   selectedTeam,
   players,
+  newPlayer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));

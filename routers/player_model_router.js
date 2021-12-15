@@ -5,9 +5,7 @@ const {
 
 app.post(`/api/players`, async (req, res, next) => {
   try {
-    console.log(req.body);
     const player = await { ...req.body };
-
     res.status(201).send(await Player.create(player));
   } catch (err) {
     next(err);
