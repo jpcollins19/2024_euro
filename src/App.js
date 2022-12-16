@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { HashRouter as Router } from "react-router-dom";
+import { loadUsers, loadTeams, loadUpdated } from "./store";
+import Header from "./components/header/Header";
 import Routes from "./Routes";
-import { loadUsers } from "./store";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadUsers());
+    dispatch(loadTeams());
+    dispatch(loadUpdated());
   }, []);
 
   return (
     <Router>
-      <Routes />
+      <Header />
+      <div className="body-cont">
+        <Routes />
+      </div>
     </Router>
   );
 };

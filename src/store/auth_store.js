@@ -15,6 +15,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
+
     return dispatch(setAuth(response.data));
   }
 };
@@ -34,7 +35,18 @@ export const authenticate = (email, password) => async (dispatch) => {
   }
 };
 
-export const logout = () => {
+export const sendForgotPW = (message, history) => {
+  return async (dispatch) => {
+    const data = await axios.post("/api/send-email", message);
+
+    console.log("data in thunk", data);
+
+    history.push("/forgot_pw_confirmation");
+  };
+};
+
+export const logout = (history) => {
+  history.push("/sign_in");
   window.localStorage.removeItem(TOKEN);
   return {
     type: SET_AUTH,

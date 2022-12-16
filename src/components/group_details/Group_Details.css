@@ -1,0 +1,120 @@
+.group-details-page {
+  background-image: url("https://pbs.twimg.com/media/FVd9nlxXEAElxR6?format=jpg&name=4096x4096");
+  width: 100vw;
+  height: 84vh;
+  background-size: cover;
+  overflow: auto;
+}
+
+.group-details-container {
+  padding-top: 6%;
+}
+
+.group-details-full-table-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 99vw;
+  height: 75vh;
+}
+
+.single-group-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0rem 2rem 1rem 2rem;
+  margin: 1rem 0.5rem 1rem 0.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(159, 159, 147) 0%,
+    rgb(222, 222, 212) 25%,
+    rgb(203, 203, 192) 50%,
+    rgb(222, 222, 212) 75%,
+    rgb(159, 159, 147) 100%
+  );
+  border-radius: 4rem;
+  width: 35rem;
+  height: 18rem;
+}
+
+.group-header {
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border-bottom: solid 2px rgb(175, 170, 170);
+}
+
+.text-header {
+  display: flex;
+}
+
+.text-header > div {
+  margin: 0rem 0.2rem 0rem 0.2rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.team {
+  display: flex;
+  flex: 1;
+}
+
+.team-row-cont {
+  border-bottom: solid 2px rgb(175, 170, 170);
+}
+
+.single-group-cont-text {
+  display: flex;
+  align-items: center;
+}
+
+.single-group-cont-text > div {
+  font-size: 1.5rem;
+}
+
+.flag-gd {
+  height: 25px;
+  min-width: 45px;
+  max-width: 45px;
+}
+
+.name-gd {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  min-width: 39.5%;
+  max-width: 39.5%;
+}
+
+.MP-gd {
+  margin-right: 1.1rem;
+  margin-left: 1.2rem;
+}
+
+.W-gd {
+  margin-right: 1.1rem;
+}
+
+.D-gd {
+  margin-right: 1rem;
+}
+
+.L-gd {
+  margin-right: 1.1rem;
+}
+
+.GF-gd {
+  margin-right: 1rem;
+}
+
+.GA-gd {
+  margin-right: 0.5rem;
+}
+
+.GD-gd {
+  display: flex;
+  justify-content: center;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+}

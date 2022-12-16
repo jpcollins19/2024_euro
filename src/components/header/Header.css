@@ -1,0 +1,104 @@
+.body-cont {
+  overflow: auto;
+  height: 84vh;
+  width: 100vw;
+  cursor: default;
+}
+
+.header-cont {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100vw;
+  height: 15vh;
+}
+
+.payout {
+  margin-top: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+  position: absolute;
+  top: -50;
+  left: 150;
+}
+
+.payout-cont-f {
+  position: absolute;
+  top: 25;
+  left: -16;
+}
+
+.payout-text-cont {
+  border: solid 2px black;
+  display: flex;
+  text-align: center;
+  width: 140%;
+}
+
+.place-col-cont {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.place-col-cont > div {
+  border: solid 1px black;
+}
+
+.dollar-col-cont {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+}
+
+.dollar-col-cont > div {
+  border: solid 1px black;
+}
+
+.login-row {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  height: 3rem;
+}
+
+.last-updated-cont {
+  padding: 0.9rem 0rem 0rem 1rem;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.last-updated-cont > div > input {
+  font-size: 1rem;
+  width: 20rem;
+}
+
+.last-updated-button {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.submitted-picks {
+  font-size: 1rem;
+  padding: 0.5rem 0rem 0rem 6rem;
+  z-index: 10;
+}
+
+.last-updated-cont-NU {
+  padding: 0.5rem 0rem 0rem 1rem;
+  flex-grow: 1;
+}
+
+.login-cont {
+  padding: 0.5rem 3rem 0rem 0rem;
+  font-size: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.user-dropdown {
+  cursor: pointer;
+}

@@ -1,0 +1,312 @@
+/*///////////////////////*/
+/*/ ///////Sign In////////*/
+/*///////////////////////*/
+
+.login-page {
+  background-color: rgb(224, 218, 218);
+}
+
+.login-cont-outside {
+  border-radius: 1rem;
+  padding: 1rem;
+  background: black;
+  height: 34rem;
+  width: 30rem;
+  margin-top: 6rem;
+}
+
+.login-cont-inside {
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 32rem;
+  background: linear-gradient(
+    to right,
+    blue 0%,
+    blue 15%,
+    white 30%,
+    white 70%,
+    red 85%,
+    red 100%
+  );
+}
+
+.view-pw {
+  margin: 10px 0px 0px 0px;
+  font-size: 1rem;
+  text-align: center;
+  text-shadow: none;
+  cursor: pointer;
+}
+
+.option-cont {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.option-cont > a > h4 {
+  margin: 0;
+}
+
+/*/ //////////////////////*/
+/*/////Create Account/////*/
+/*/ //////////////////////*/
+
+.create-account-page {
+  padding: 0;
+  justify-content: start;
+  background-color: rgb(224, 218, 218);
+  cursor: default;
+  overflow: auto;
+}
+
+.toaster-error {
+  background-color: #f0c5c5;
+  color: red;
+  text-align: center;
+  margin-top: 12rem;
+  min-width: 20rem;
+  min-height: 4rem;
+}
+
+.create-account-cont-outside {
+  margin-top: 4.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: black;
+  height: 38rem;
+  width: 32rem;
+}
+
+.create-account-cont-inside {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  height: 36rem;
+  width: 30rem;
+  background: linear-gradient(
+    to right,
+    blue 0%,
+    blue 15%,
+    white 30%,
+    white 70%,
+    red 85%,
+    red 100%
+  );
+}
+
+.option-cont-create-account {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.option-cont-create-account > div {
+  margin-right: 5px;
+}
+
+.option-cont-create-account > a > h4 {
+  margin: 0;
+}
+
+/*///////////////////////*/
+/*/ ///Action Confirmation////*/
+/*///////////////////////*/
+
+.action-confirm-page {
+  background-color: rgb(224, 218, 218);
+}
+
+.soccer-field-outside {
+  margin-top: 8%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: black;
+  height: 28rem;
+  width: 42rem;
+}
+
+.soccer-field-inside {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Football_field_105x68.PNG/300px-Football_field_105x68.PNG");
+  height: 26rem;
+  width: 41rem;
+  background-size: cover;
+  border-radius: 0.2rem;
+}
+
+.action-confirm-page > h1 {
+  margin-top: 15%;
+}
+
+.email-instructions {
+  margin-top: 1rem;
+  color: white;
+}
+
+.click-to-sign-in {
+  margin-top: 40%;
+}
+
+.click-to-sign-in-f {
+  margin-top: 20%;
+}
+
+.click-to-sign-in > a {
+  color: white;
+}
+
+.click-to-sign-in-f > a {
+  color: white;
+}
+
+/*/ //////////////////////*/
+/*/User Profile Dropdown/*/
+/*///////////////////////*/
+
+.user-details-dropdown {
+  position: absolute;
+  top: 5;
+  right: 20;
+}
+
+.dropdown-elevate {
+  box-shadow: 0 1px 2px rgb(159, 159, 147), 0 2px 4px rgb(159, 159, 147),
+    0 4px 8px rgb(159, 159, 147), 0 -1px 2px rgb(159, 159, 147),
+    0 -2px 4px rgb(159, 159, 147), 0 -4px 8px rgb(159, 159, 147);
+  z-index: 2;
+}
+
+
+
+/*/ //////////////////////*/
+/*/ /////User Profile/////*/
+/*/ //////////////////////*/
+
+.user-profile-page {
+  background-color: rgb(224, 218, 218);
+  display: flex;
+  justify-content: center;
+}
+
+.user-profile-outside {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: black;
+  height: 24rem;
+  width: 30rem;
+}
+
+.user-profile-inside {
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 23rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(65, 65, 59) 0%,
+    rgb(95, 95, 86) 25%,
+    rgb(152, 152, 141) 50%,
+    rgb(95, 95, 86) 75%,
+    rgb(65, 65, 59) 100%
+  );
+}
+
+.user-profile-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.user-profile-options > a {
+  margin-top: 5px;
+}
+
+.input-cont-user-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-cont-user-profile > input {
+  text-align: center;
+  background: transparent;
+  min-width: 20rem;
+  font-size: 2rem;
+  color: white;
+  margin: 0rem 0rem 1rem 0rem;
+  height: 4rem;
+  border: solid 2px rgb(199, 192, 192);
+}
+
+.input-cont-user-profile > input::placeholder {
+  color: white;
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+.toaster-submit-confirmation {
+  text-align: center;
+  padding: 1rem 0rem 1rem 0rem;
+  margin-top: 11rem;
+  min-width: 30rem;
+  font-weight: bold;
+  border: solid 2px black;
+}
+
+/*/ //////////////////////*/
+/*/ //////Forgot PW///////*/
+/*/ //////////////////////*/
+
+.forgot-pw-outside {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: black;
+  height: 26rem;
+  width: 30rem;
+}
+
+.forgot-pw-inside {
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 25rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(65, 65, 59) 0%,
+    rgb(95, 95, 86) 25%,
+    rgb(152, 152, 141) 50%,
+    rgb(95, 95, 86) 75%,
+    rgb(65, 65, 59) 100%
+  );
+}
+
+.back-to-sign-in {
+  display: flex;
+  justify-content: center;
+}
+
+/*/ //////////////////////*/
+/*/ //////Reset PW///////*/
+/*/ //////////////////////*/
+
+.reset-pw-outside {
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: black;
+  height: 35rem;
+  width: 33rem;
+  margin-top: 4rem;
+}
+
+.reset-pw-inside {
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 34rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(65, 65, 59) 0%,
+    rgb(95, 95, 86) 25%,
+    rgb(152, 152, 141) 50%,
+    rgb(95, 95, 86) 75%,
+    rgb(65, 65, 59) 100%
+  );
+}

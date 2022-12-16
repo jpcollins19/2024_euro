@@ -1,0 +1,29 @@
+.pool-picks-page {
+  background-image: url("https://i.ytimg.com/vi/3jKj1_aI1EI/maxresdefault.jpg");
+  width: 100vw;
+  height: 84vh;
+  background-size: cover;
+  overflow: auto;
+}
+
+.stage-1-header {
+  margin-top: 5%;
+}
+
+.pool-picks-header {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0rem 3rem 0rem;
+  padding-top: 2%;
+}
+
+.pool-picks-header > h1 {
+  margin-right: 10px;
+}
+
+.pool-picks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 98vw;
+}
