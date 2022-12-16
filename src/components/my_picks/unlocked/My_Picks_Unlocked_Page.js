@@ -26,8 +26,9 @@ const My_Picks_Unlocked_Page = () => {
   const joe = findJoe(useSelector((state) => state.users));
 
   const [tiebreaker, setTiebreaker] = useState(
-    user && user.tiebreaker ? user.tiebreaker : null
+    user?.tiebreaker ? user.tiebreaker.toString() : null
   );
+
   const [tiebreakerError, setTiebreakerError] = useState(false);
   const [groupAError, setGroupAError] = useState(false);
   const [groupBError, setGroupBError] = useState(false);

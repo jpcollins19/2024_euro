@@ -1,19 +1,20 @@
-//copy doc and start one for the euro pool
-
-//add new pics to each page that are euro related
-//change sign in page to reflect most recent euro winner flag
-
 //////feature (F) & admin (A) work
 
 ////////////F1 - add flags next to the teams name
-//my_picks_group
+//my_picks_group - ON THIS ONE
 //my_picks_ko
 //my_picks_edit_group
 //my_picks_edit_ko
 //pool_picks_group
 //pool_picks_ko
 
+///////bugz
+//my_picks_edit_group - if the user has already submitted picks, the dropdowns do not auto default to the users picks
+//^^same for when you are editing a user in admin
+//once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
+
 //double check euro group/KO setup before you do the below admin work
+//adjust rules page accordingly?
 
 ////////////A1:
 //create a table for matches (Match) - Match should have the following instances: {matchNumber(determines the 1st, 2nd, 3rd etc game of each group - eg: 'A1', 'B5' etc), group, matchUniqueId ('AustraliaFrance'), homeTeamId, homeTeamName, homeTeamFlag, homeTeamGoalsScored, awayTeamId, awayTeamName, awayTeamFlag, awayTeamGoalsScored, matchComplete}
@@ -32,7 +33,7 @@
 //add an 'overrideRank' to the team obj - auto default to false - can only update this via the 'group-OLD' route
 //after a match has been updated, update the team obj to note their rank data, only if overrideRank === false
 //team obj doesnt need (MP, W, L, D, GA, GF, pts) anymore?
-//figure out a tiebreaker func for groups tab - use game info from 2022 world cup - any group that had ties - group H is the group that went down to a tiebreaker of yellowcards
+//figure out a tiebreaker func for groups tab for when 2+ teams are tied on pts - use game info from 2022 world cup - any group that had ties - group H is the group that went down to a tiebreaker of yellowcards
 //on client side: match-OLD page in app - test to make sure you can still udpate the team info manually (really just the groupFinishingPosition)
 //admin > matches --- Auto save group is finished if all matches in group are complete
 //css work on new admin > group matches page
@@ -60,6 +61,10 @@
 ////////////F6 -- new rules/scoring to add - when making group picks - you have to pick the winner before the tournament starts for like 10 points.
 //Then you can double down when the knockout part comes out or hedge.  And if you’re winner doesn’t get out of groups, tough shit.
 //To add to that you also could do name the 4 semi finalists before hand too and give pts for that
+
+/////adjust the date info for when the picks will show on the:
+//leaderboard page
+//pool picks page
 
 /////////////////////////////////
 // Tourney Stage Info //

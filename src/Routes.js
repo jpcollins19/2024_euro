@@ -36,7 +36,9 @@ const Routes = () => {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => dispatch(me()), []);
+  useEffect(() => {
+    dispatch(me());
+  }, []);
 
   setTimeout(() => {
     setLoading(false);

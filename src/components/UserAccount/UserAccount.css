@@ -21,12 +21,10 @@
   height: 32rem;
   background: linear-gradient(
     to right,
-    blue 0%,
-    blue 15%,
-    white 30%,
-    white 70%,
-    red 85%,
-    red 100%
+    #009246 calc(100% / 3),
+    white calc(100% / 3),
+    white calc(100% / 3 * 2),
+    #ce2b37 calc(100% / 3 * 2)
   );
 }
 
@@ -86,12 +84,10 @@
   width: 30rem;
   background: linear-gradient(
     to right,
-    blue 0%,
-    blue 15%,
-    white 30%,
-    white 70%,
-    red 85%,
-    red 100%
+    #009246 calc(100% / 3),
+    white calc(100% / 3),
+    white calc(100% / 3 * 2),
+    #ce2b37 calc(100% / 3 * 2)
   );
 }
 
@@ -176,8 +172,6 @@
     0 -2px 4px rgb(159, 159, 147), 0 -4px 8px rgb(159, 159, 147);
   z-index: 2;
 }
-
-
 
 /*/ //////////////////////*/
 /*/ /////User Profile/////*/

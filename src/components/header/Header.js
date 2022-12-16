@@ -16,7 +16,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  useEffect(() => dispatch(me()), []);
+  useEffect(() => {
+    dispatch(me());
+  }, []);
 
   const user = useSelector((state) => state.auth);
 
@@ -63,7 +65,7 @@ const Header = () => {
               cursor: "default",
             }}
           >
-            Qatar 2022 World Cup
+            2024 Euros
           </Typography>
         </Toolbar>
         <Toolbar className="nav-bar-z-index" sx={{ justifyContent: "center" }}>

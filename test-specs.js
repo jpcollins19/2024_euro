@@ -6,7 +6,6 @@ const {
   knockoutPartTeamPush,
   knockoutPartClassPush,
   currentScoresObj,
-  teamRankSort,
   urlWord,
   addFakeUser,
 } = require("./src/store/funcs");
@@ -2381,7 +2380,7 @@ describe("Cals everthing correctly", () => {
 
     describe("Joe's Scores", () => {
       beforeEach(() => {
-        joe = users.filter((user) => user.name === "Joe")[0];
+        joe = users.find((user) => user.name === "Joe");
       });
 
       it("calculates Joe's group A correctly", () => {
@@ -2546,7 +2545,7 @@ describe("Cals everthing correctly", () => {
 
     describe("E's Scores", () => {
       beforeEach(() => {
-        e = users.filter((user) => user.name === "E")[0];
+        e = users.find((user) => user.name === "E");
       });
 
       it("calculates E's group A correctly", () => {
@@ -2876,7 +2875,7 @@ describe("Cals everthing correctly", () => {
 
     describe("Kelly's Scores", () => {
       beforeEach(() => {
-        kelly = users.filter((user) => user.name === "Kelly")[0];
+        kelly = users.find((user) => user.name === "Kelly");
       });
 
       it("calculates Kelly's group A correctly", () => {
@@ -3040,218 +3039,6 @@ describe("Cals everthing correctly", () => {
     });
   });
 
-  describe("Calcs everyone's KO stage picks", () => {
-    let joe, e, coach, kelly;
-
-    describe("Joe's picks", () => {
-      beforeEach(() => {
-        joe = users.find((user) => user.name === "Joe");
-      });
-
-      it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartTeamPush(joe, "Q1");
-        const Q2 = knockoutPartTeamPush(joe, "Q2");
-        const Q3 = knockoutPartTeamPush(joe, "Q3");
-        const Q4 = knockoutPartTeamPush(joe, "Q4");
-        const Q5 = knockoutPartTeamPush(joe, "Q5");
-        const Q6 = knockoutPartTeamPush(joe, "Q6");
-        const Q7 = knockoutPartTeamPush(joe, "Q7");
-        const Q8 = knockoutPartTeamPush(joe, "Q8");
-
-        expect(Q1).to.equal("Ecuador");
-        expect(Q2).to.equal("Argentina");
-        expect(Q3).to.equal("Canada");
-        expect(Q4).to.equal("Brasil");
-        expect(Q5).to.equal("England");
-        expect(Q6).to.equal("Australia");
-        expect(Q7).to.equal("Belgium");
-        expect(Q8).to.equal("Cameroon");
-      });
-
-      it("calculates semis correctly", () => {
-        const S1 = knockoutPartTeamPush(joe, "S1");
-        const S2 = knockoutPartTeamPush(joe, "S2");
-        const S3 = knockoutPartTeamPush(joe, "S3");
-        const S4 = knockoutPartTeamPush(joe, "S4");
-
-        expect(S1).to.equal("Argentina");
-        expect(S2).to.equal("Brasil");
-        expect(S3).to.equal("Australia");
-        expect(S4).to.equal("Belgium");
-      });
-
-      it("calculates final correctly", () => {
-        const F1 = knockoutPartTeamPush(joe, "F1");
-        const F2 = knockoutPartTeamPush(joe, "F2");
-
-        expect(F1).to.equal("Argentina");
-        expect(F2).to.equal("Australia");
-      });
-
-      it("calculates champ correctly", () => {
-        const champ = knockoutPartTeamPush(joe, "Champ");
-
-        expect(champ).to.equal("Argentina");
-      });
-    });
-
-    describe("E's picks", () => {
-      beforeEach(() => {
-        e = users.find((user) => user.name === "E");
-      });
-
-      it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartTeamPush(e, "Q1");
-        const Q2 = knockoutPartTeamPush(e, "Q2");
-        const Q3 = knockoutPartTeamPush(e, "Q3");
-        const Q4 = knockoutPartTeamPush(e, "Q4");
-        const Q5 = knockoutPartTeamPush(e, "Q5");
-        const Q6 = knockoutPartTeamPush(e, "Q6");
-        const Q7 = knockoutPartTeamPush(e, "Q7");
-        const Q8 = knockoutPartTeamPush(e, "Q8");
-
-        expect(Q1).to.equal("Iran");
-        expect(Q2).to.equal("Argentina");
-        expect(Q3).to.equal("Canada");
-        expect(Q4).to.equal("Brasil");
-        expect(Q5).to.equal("England");
-        expect(Q6).to.equal("Australia");
-        expect(Q7).to.equal("Costa Rica");
-        expect(Q8).to.equal("Cameroon");
-      });
-
-      it("calculates semis correctly", () => {
-        const S1 = knockoutPartTeamPush(e, "S1");
-        const S2 = knockoutPartTeamPush(e, "S2");
-        const S3 = knockoutPartTeamPush(e, "S3");
-        const S4 = knockoutPartTeamPush(e, "S4");
-
-        expect(S1).to.equal("Iran");
-        expect(S2).to.equal("Canada");
-        expect(S3).to.equal("England");
-        expect(S4).to.equal("Costa Rica");
-      });
-
-      it("calculates final correctly", () => {
-        const F1 = knockoutPartTeamPush(e, "F1");
-        const F2 = knockoutPartTeamPush(e, "F2");
-
-        expect(F1).to.equal("Canada");
-        expect(F2).to.equal("Costa Rica");
-      });
-
-      it("calculates champ correctly", () => {
-        const champ = knockoutPartTeamPush(e, "Champ");
-
-        expect(champ).to.equal("Canada");
-      });
-    });
-
-    describe("Coach's picks", () => {
-      beforeEach(() => {
-        coach = users.find((user) => user.name === "Coach Raiff");
-      });
-
-      it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartTeamPush(coach, "Q1");
-        const Q2 = knockoutPartTeamPush(coach, "Q2");
-        const Q3 = knockoutPartTeamPush(coach, "Q3");
-        const Q4 = knockoutPartTeamPush(coach, "Q4");
-        const Q5 = knockoutPartTeamPush(coach, "Q5");
-        const Q6 = knockoutPartTeamPush(coach, "Q6");
-        const Q7 = knockoutPartTeamPush(coach, "Q7");
-        const Q8 = knockoutPartTeamPush(coach, "Q8");
-
-        expect(Q1).to.equal("Ecuador");
-        expect(Q2).to.equal("Argentina");
-        expect(Q3).to.equal("Germany");
-        expect(Q4).to.equal("Brasil");
-        expect(Q5).to.equal("England");
-        expect(Q6).to.equal("Mexico");
-        expect(Q7).to.equal("Belgium");
-        expect(Q8).to.equal("Ghana");
-      });
-
-      it("calculates semis correctly", () => {
-        const S1 = knockoutPartTeamPush(coach, "S1");
-        const S2 = knockoutPartTeamPush(coach, "S2");
-        const S3 = knockoutPartTeamPush(coach, "S3");
-        const S4 = knockoutPartTeamPush(coach, "S4");
-
-        expect(S1).to.equal("Ecuador");
-        expect(S2).to.equal("Brasil");
-        expect(S3).to.equal("Mexico");
-        expect(S4).to.equal("Belgium");
-      });
-
-      it("calculates final correctly", () => {
-        const F1 = knockoutPartTeamPush(coach, "F1");
-        const F2 = knockoutPartTeamPush(coach, "F2");
-
-        expect(F1).to.equal("Brasil");
-        expect(F2).to.equal("Mexico");
-      });
-
-      it("calculates champ correctly", () => {
-        const champ = knockoutPartTeamPush(coach, "Champ");
-
-        expect(champ).to.equal("Brasil");
-      });
-    });
-
-    describe("Kelly's picks", () => {
-      beforeEach(() => {
-        kelly = users.find((user) => user.name === "Kelly");
-      });
-
-      it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartTeamPush(kelly, "Q1");
-        const Q2 = knockoutPartTeamPush(kelly, "Q2");
-        const Q3 = knockoutPartTeamPush(kelly, "Q3");
-        const Q4 = knockoutPartTeamPush(kelly, "Q4");
-        const Q5 = knockoutPartTeamPush(kelly, "Q5");
-        const Q6 = knockoutPartTeamPush(kelly, "Q6");
-        const Q7 = knockoutPartTeamPush(kelly, "Q7");
-        const Q8 = knockoutPartTeamPush(kelly, "Q8");
-
-        expect(Q1).to.equal("Iran");
-        expect(Q2).to.equal("Argentina");
-        expect(Q3).to.equal("Germany");
-        expect(Q4).to.equal("Brasil");
-        expect(Q5).to.equal("England");
-        expect(Q6).to.equal("Australia");
-        expect(Q7).to.equal("Belgium");
-        expect(Q8).to.equal("Ghana");
-      });
-
-      it("calculates semis correctly", () => {
-        const S1 = knockoutPartTeamPush(kelly, "S1");
-        const S2 = knockoutPartTeamPush(kelly, "S2");
-        const S3 = knockoutPartTeamPush(kelly, "S3");
-        const S4 = knockoutPartTeamPush(kelly, "S4");
-
-        expect(S1).to.equal("Iran");
-        expect(S2).to.equal("Germany");
-        expect(S3).to.equal("Australia");
-        expect(S4).to.equal("Ghana");
-      });
-
-      it("calculates final correctly", () => {
-        const F1 = knockoutPartTeamPush(kelly, "F1");
-        const F2 = knockoutPartTeamPush(kelly, "F2");
-
-        expect(F1).to.equal("Germany");
-        expect(F2).to.equal("Ghana");
-      });
-
-      it("calculates champ correctly", () => {
-        const champ = knockoutPartTeamPush(kelly, "Champ");
-
-        expect(champ).to.equal("Germany");
-      });
-    });
-  });
-
   describe("Calcs everyone's overall correct/wrong className info in KO stage", () => {
     let joe, e, coach, kelly;
 
@@ -3278,6 +3065,7 @@ describe("Cals everthing correctly", () => {
         expect(Q7).to.equal("correct");
         expect(Q8).to.equal("correct");
       });
+
       it("calculates semis correctly", () => {
         const S1 = knockoutPartClassPush(joe, teams, "S1");
         const S2 = knockoutPartClassPush(joe, teams, "S2");
@@ -3288,12 +3076,14 @@ describe("Cals everthing correctly", () => {
         expect(S3).to.equal("correct");
         expect(S4).to.equal("correct");
       });
+
       it("calculates final correctly", () => {
         const F1 = knockoutPartClassPush(joe, teams, "F1");
         const F2 = knockoutPartClassPush(joe, teams, "F2");
         expect(F1).to.equal("correct");
         expect(F2).to.equal("correct");
       });
+
       it("calculates champ correctly", () => {
         const champ = knockoutPartClassPush(joe, teams, "Champ");
         expect(champ).to.equal("correct");
@@ -3323,6 +3113,7 @@ describe("Cals everthing correctly", () => {
         expect(Q7).to.equal("wrong");
         expect(Q8).to.equal("correct");
       });
+
       it("calculates semis correctly", () => {
         const S1 = knockoutPartClassPush(e, teams, "S1");
         const S2 = knockoutPartClassPush(e, teams, "S2");
@@ -3333,12 +3124,14 @@ describe("Cals everthing correctly", () => {
         expect(S3).to.equal("wrong");
         expect(S4).to.equal("wrong");
       });
+
       it("calculates final correctly", () => {
         const F1 = knockoutPartClassPush(e, teams, "F1");
         const F2 = knockoutPartClassPush(e, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
+
       it("calculates champ correctly", () => {
         const champ = knockoutPartClassPush(e, teams, "Champ");
         expect(champ).to.equal("wrong");
@@ -3368,6 +3161,7 @@ describe("Cals everthing correctly", () => {
         expect(Q7).to.equal("correct");
         expect(Q8).to.equal("wrong");
       });
+
       it("calculates semis correctly", () => {
         const S1 = knockoutPartClassPush(coach, teams, "S1");
         const S2 = knockoutPartClassPush(coach, teams, "S2");
@@ -3378,12 +3172,14 @@ describe("Cals everthing correctly", () => {
         expect(S3).to.equal("wrong");
         expect(S4).to.equal("correct");
       });
+
       it("calculates final correctly", () => {
         const F1 = knockoutPartClassPush(coach, teams, "F1");
         const F2 = knockoutPartClassPush(coach, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
+
       it("calculates champ correctly", () => {
         const champ = knockoutPartClassPush(coach, teams, "Champ");
         expect(champ).to.equal("wrong");
@@ -3413,6 +3209,7 @@ describe("Cals everthing correctly", () => {
         expect(Q7).to.equal("correct");
         expect(Q8).to.equal("wrong");
       });
+
       it("calculates semis correctly", () => {
         const S1 = knockoutPartClassPush(kelly, teams, "S1");
         const S2 = knockoutPartClassPush(kelly, teams, "S2");
@@ -3423,12 +3220,14 @@ describe("Cals everthing correctly", () => {
         expect(S3).to.equal("correct");
         expect(S4).to.equal("wrong");
       });
+
       it("calculates final correctly", () => {
         const F1 = knockoutPartClassPush(kelly, teams, "F1");
         const F2 = knockoutPartClassPush(kelly, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
+
       it("calculates champ correctly", () => {
         const champ = knockoutPartClassPush(kelly, teams, "Champ");
         expect(champ).to.equal("wrong");

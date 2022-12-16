@@ -10,24 +10,12 @@ const Prediction_Cont_Locked = ({ group, selectedUser }) => {
     <div className="prediction-cont">
       <h5>Prediction</h5>
       <div>
-        {pathname === "/pool_picks"
-          ? selectedUser[`group${group}1`]
-          : user[`group${group}1`]}
-      </div>
-      <div>
-        {pathname === "/pool_picks"
-          ? selectedUser[`group${group}2`]
-          : user[`group${group}2`]}
-      </div>
-      <div>
-        {pathname === "/pool_picks"
-          ? selectedUser[`group${group}3`]
-          : user[`group${group}3`]}
-      </div>
-      <div>
-        {pathname === "/pool_picks"
-          ? selectedUser[`group${group}4`]
-          : user[`group${group}4`]}
+        <div className="pred-locked-flag">FL</div>
+        <div className="pred-locked-team">
+          {pathname === "/pool_picks"
+            ? selectedUser[`group${group}1`]
+            : user[`group${group}1`]}
+        </div>
       </div>
     </div>
   );

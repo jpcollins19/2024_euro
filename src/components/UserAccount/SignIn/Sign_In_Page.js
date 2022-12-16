@@ -105,7 +105,6 @@ const Sign_In_Page = () => {
                       key={input.name}
                       onChange={onChange}
                       sx={{
-                        margin: 1,
                         padding: 0,
                       }}
                       margin="normal"

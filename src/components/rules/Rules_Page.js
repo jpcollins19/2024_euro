@@ -62,6 +62,10 @@ const Rules_Page = () => {
         <h2>Tiebreaker:</h2>
         <ul>
           <li>Total number of goals in the tourney - Price is Right rules.</li>
+          <li>
+            If tiebreaker comes into play and all tiebreakers are over the total
+            goals scored, closest tiebreaker to the total goals scored will win.
+          </li>
         </ul>
 
         <h2>Getting Started:</h2>
