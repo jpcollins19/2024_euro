@@ -1,44 +1,21 @@
-import React, { Component } from "react";
-import store from "./store";
-import { connect } from "react-redux";
-import Leagues from "./leagues/Leagues";
-import Teams from "./teams/Teams";
-import Players from "./players/Players";
-import { loadLeagues, loadTeams, loadPlayers } from "./store";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { HashRouter as Router } from "react-router-dom";
+import Routes from "./Routes";
+import { loadUsers } from "./store";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = store.getState();
-  }
+const App = () => {
+  const dispatch = useDispatch();
 
-  async componentDidMount() {
-    store.dispatch(loadLeagues());
-    store.dispatch(loadTeams());
-    store.dispatch(loadPlayers());
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
 
-    const unsubscribe = store.subscribe(() => {
-      this.setState(store.getState());
-    });
-  }
+  return (
+    <Router>
+      <Routes />
+    </Router>
+  );
+};
 
-  render() {
-    return (
-      <main>
-        <Leagues />
-        <div className="bottom box">
-          <div id="team-names-box" className="left box">
-            <Teams />
-          </div>
-          <div id="player-name-box" className="right box">
-            <Players />
-          </div>
-        </div>
-      </main>
-    );
-  }
-}
-
-const mapStateToProps = (state) => state;
-
-export default connect(mapStateToProps)(App);
+export default App;
