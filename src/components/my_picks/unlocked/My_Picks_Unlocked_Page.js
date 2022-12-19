@@ -65,52 +65,52 @@ const My_Picks_Unlocked_Page = () => {
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
-      1: user && user.groupA1 ? user.groupA1 : null,
-      2: user && user.groupA2 ? user.groupA2 : null,
-      3: user && user.groupA3 ? user.groupA3 : null,
-      4: user && user.groupA4 ? user.groupA4 : null,
+      1: user?.groupA1 ? user.groupA1 : null,
+      2: user?.groupA2 ? user.groupA2 : null,
+      3: user?.groupA3 ? user.groupA3 : null,
+      4: user?.groupA4 ? user.groupA4 : null,
     },
     B: {
-      1: user && user.groupB1 ? user.groupB1 : null,
-      2: user && user.groupB2 ? user.groupB2 : null,
-      3: user && user.groupB3 ? user.groupB3 : null,
-      4: user && user.groupB4 ? user.groupB4 : null,
+      1: user?.groupB1 ? user.groupB1 : null,
+      2: user?.groupB2 ? user.groupB2 : null,
+      3: user?.groupB3 ? user.groupB3 : null,
+      4: user?.groupB4 ? user.groupB4 : null,
     },
     C: {
-      1: user && user.groupC1 ? user.groupC1 : null,
-      2: user && user.groupC2 ? user.groupC2 : null,
-      3: user && user.groupC3 ? user.groupC3 : null,
-      4: user && user.groupC4 ? user.groupC4 : null,
+      1: user?.groupC1 ? user.groupC1 : null,
+      2: user?.groupC2 ? user.groupC2 : null,
+      3: user?.groupC3 ? user.groupC3 : null,
+      4: user?.groupC4 ? user.groupC4 : null,
     },
     D: {
-      1: user && user.groupD1 ? user.groupD1 : null,
-      2: user && user.groupD2 ? user.groupD2 : null,
-      3: user && user.groupD3 ? user.groupD3 : null,
-      4: user && user.groupD4 ? user.groupD4 : null,
+      1: user?.groupD1 ? user.groupD1 : null,
+      2: user?.groupD2 ? user.groupD2 : null,
+      3: user?.groupD3 ? user.groupD3 : null,
+      4: user?.groupD4 ? user.groupD4 : null,
     },
     E: {
-      1: user && user.groupE1 ? user.groupE1 : null,
-      2: user && user.groupE2 ? user.groupE2 : null,
-      3: user && user.groupE3 ? user.groupE3 : null,
-      4: user && user.groupE4 ? user.groupE4 : null,
+      1: user?.groupE1 ? user.groupE1 : null,
+      2: user?.groupE2 ? user.groupE2 : null,
+      3: user?.groupE3 ? user.groupE3 : null,
+      4: user?.groupE4 ? user.groupE4 : null,
     },
     F: {
-      1: user && user.groupF1 ? user.groupF1 : null,
-      2: user && user.groupF2 ? user.groupF2 : null,
-      3: user && user.groupF3 ? user.groupF3 : null,
-      4: user && user.groupF4 ? user.groupF4 : null,
+      1: user?.groupF1 ? user.groupF1 : null,
+      2: user?.groupF2 ? user.groupF2 : null,
+      3: user?.groupF3 ? user.groupF3 : null,
+      4: user?.groupF4 ? user.groupF4 : null,
     },
     G: {
-      1: user && user.groupG1 ? user.groupG1 : null,
-      2: user && user.groupG2 ? user.groupG2 : null,
-      3: user && user.groupG3 ? user.groupG3 : null,
-      4: user && user.groupG4 ? user.groupG4 : null,
+      1: user?.groupG1 ? user.groupG1 : null,
+      2: user?.groupG2 ? user.groupG2 : null,
+      3: user?.groupG3 ? user.groupG3 : null,
+      4: user?.groupG4 ? user.groupG4 : null,
     },
     H: {
-      1: user && user.groupH1 ? user.groupH1 : null,
-      2: user && user.groupH2 ? user.groupH2 : null,
-      3: user && user.groupH3 ? user.groupH3 : null,
-      4: user && user.groupH4 ? user.groupH4 : null,
+      1: user?.groupH1 ? user.groupH1 : null,
+      2: user?.groupH2 ? user.groupH2 : null,
+      3: user?.groupH3 ? user.groupH3 : null,
+      4: user?.groupH4 ? user.groupH4 : null,
     },
   });
 
@@ -161,6 +161,7 @@ const My_Picks_Unlocked_Page = () => {
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
+
     try {
       const userObj = {
         id: user.id,
@@ -185,13 +186,14 @@ const My_Picks_Unlocked_Page = () => {
         });
 
         const validTiebreaker = Number(tiebreaker) % 1 === 0;
-        const tiebreakerAsArray = tiebreaker.split("");
+        const tiebreakerAsArray = tiebreaker?.split("");
 
         if (
           !validTiebreaker ||
           tiebreaker === "" ||
-          tiebreakerAsArray.includes(" ") ||
-          tiebreaker === "0"
+          tiebreakerAsArray?.includes(" ") ||
+          tiebreaker === "0" ||
+          tiebreaker === null
         ) {
           return setTiebreakerError(true);
         }

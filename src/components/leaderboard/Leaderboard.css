@@ -18,12 +18,10 @@
   height: 35rem;
   background: linear-gradient(
     to right,
-    blue 0%,
-    blue 15%,
-    white 30%,
-    white 70%,
-    red 85%,
-    red 100%
+    #009246 calc(100% / 3),
+    white calc(100% / 3),
+    white calc(100% / 3 * 2),
+    #ce2b37 calc(100% / 3 * 2)
   );
 }
 

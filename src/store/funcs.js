@@ -259,118 +259,134 @@ const knockoutPartClassPush = (user, teams, position) => {
   // }
 };
 
-// const createCountObj = (arr, key) => {
-//   return arr.reduce((a, obj) => {
-//     a[obj[key]] ? a[obj[key]]++ : (a[obj[key]] = 1);
-//     return a;
-//   }, {});
-// };
+const createCountObj = (arr, key) => {
+  return arr.reduce((a, obj) => {
+    a[obj[key]] ? a[obj[key]]++ : (a[obj[key]] = 1);
+    return a;
+  }, {});
+};
 
 const audit = (arr, actualGoalsScored) => {
-  // let rank = arr[0].rank;
-  // const tiebreakers = createCountObj(arr, "tiebreaker");
-  // const audit = arr
-  //   .map((userObj) => {
-  //     userObj.numOfTimes = tiebreakers[userObj.tiebreaker];
-  //     userObj.tiebreakerStatus =
-  //       userObj.tiebreaker === actualGoalsScored
-  //         ? "exact"
-  //         : userObj.tiebreaker < actualGoalsScored
-  //         ? "notOver"
-  //         : "over";
-  //     return userObj;
-  //   })
-  //   .map((userObj) => {
-  //     if (userObj.numOfTimes > 1) userObj.tieExists = true;
-  //     return userObj;
-  //   })
-  //   .sort((a, b) => {
-  //     let fa = a.tiebreakerStatus,
-  //       fb = b.tiebreakerStatus;
-  //     return fa < fb ? -1 : fa > fb ? 1 : 0;
-  //   });
-  // const auditObj = {
-  //   exact: [],
-  //   notOver: [],
-  //   over: [],
-  // };
-  // audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
-  // let answer = [];
-  // Object.keys(auditObj).forEach((key) => {
-  //   const keySorted = auditObj[key].sort((a, b) =>
-  //     key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
-  //   );
-  //   answer = [...answer, ...keySorted];
-  // });
-  // return answer.map((userObj) => {
-  //   userObj.rank = rank;
-  //   rank++;
-  //   return userObj;
-  // });
+  let rank = arr[0].rank;
+
+  const tiebreakers = createCountObj(arr, "tiebreaker");
+
+  const audit = arr
+    .map((userObj) => {
+      userObj.numOfTimes = tiebreakers[userObj.tiebreaker];
+      userObj.tiebreakerStatus =
+        userObj.tiebreaker === actualGoalsScored
+          ? "exact"
+          : userObj.tiebreaker < actualGoalsScored
+          ? "notOver"
+          : "over";
+      return userObj;
+    })
+    .map((userObj) => {
+      if (userObj.numOfTimes > 1) userObj.tieExists = true;
+      return userObj;
+    })
+    .sort((a, b) => {
+      let fa = a.tiebreakerStatus,
+        fb = b.tiebreakerStatus;
+      return fa < fb ? -1 : fa > fb ? 1 : 0;
+    });
+
+  const auditObj = {
+    exact: [],
+    notOver: [],
+    over: [],
+  };
+
+  audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
+
+  let answer = [];
+
+  Object.keys(auditObj).forEach((key) => {
+    const keySorted = auditObj[key].sort((a, b) =>
+      key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
+    );
+    answer = [...answer, ...keySorted];
+  });
+
+  return answer.map((userObj) => {
+    userObj.rank = rank;
+    rank++;
+    return userObj;
+  });
 };
 
 const currentScoresObj = (users, teams, actualGoalsScored = null) => {
-  // let rank = 1;
-  // const firstAudit = users
-  //   .reduce((a, user) => {
-  //     const total = totalScoreCalc(
-  //       singleGroupCalc(user, teams, "A"),
-  //       singleGroupCalc(user, teams, "B"),
-  //       singleGroupCalc(user, teams, "C"),
-  //       singleGroupCalc(user, teams, "D"),
-  //       singleGroupCalc(user, teams, "E"),
-  //       singleGroupCalc(user, teams, "F"),
-  //       singleGroupCalc(user, teams, "G"),
-  //       singleGroupCalc(user, teams, "H"),
-  //       knockoutRoundCalc("quarters", user, teams),
-  //       knockoutRoundCalc("semis", user, teams),
-  //       knockoutRoundCalc("finals", user, teams),
-  //       knockoutRoundCalc("champ", user, teams)
-  //     );
-  //     const userObj = {
-  //       name: user.name,
-  //       tiebreaker: user.tiebreaker,
-  //       total,
-  //       tieExists: false,
-  //       paid: user.paid,
-  //     };
-  //     a.push(userObj);
-  //     return a;
-  //   }, [])
-  //   .sort((a, b) => b.total - a.total)
-  //   .map((user) => {
-  //     user.rank = rank;
-  //     rank++;
-  //     return user;
-  //   });
-  // let readyToRun = false;
-  // firstAudit.forEach((user) => {
-  //   if (user.total !== 0) readyToRun = true;
-  // });
-  // if (readyToRun) {
-  //   let dupeScores = [];
-  //   let nonDupeScores = [];
-  //   let newDupeScores = [];
-  //   const scores = createCountObj(firstAudit, "total");
-  //   firstAudit.forEach((user) => {
-  //     scores[user.total] === 1
-  //       ? nonDupeScores.push(user)
-  //       : dupeScores.push(user);
-  //   });
-  //   if (dupeScores.length) {
-  //     const scoreObj = dupeScores.reduce((a, user) => {
-  //       a[user.total] ? a[user.total].push(user) : (a[user.total] = [user]);
-  //       return a;
-  //     }, {});
-  //     Object.keys(scoreObj).forEach((key) => {
-  //       const newRanking = audit(scoreObj[key], actualGoalsScored);
-  //       newDupeScores = [...newDupeScores, ...newRanking];
-  //     });
-  //     return [...newDupeScores, ...nonDupeScores];
-  //   }
-  //   return nonDupeScores;
-  // }
-  // return firstAudit;
+  let rank = 1;
+
+  const firstAudit = users
+    .reduce((a, user) => {
+      const total = totalScoreCalc(
+        singleGroupCalc(user, teams, "A"),
+        singleGroupCalc(user, teams, "B"),
+        singleGroupCalc(user, teams, "C"),
+        singleGroupCalc(user, teams, "D"),
+        singleGroupCalc(user, teams, "E"),
+        singleGroupCalc(user, teams, "F"),
+        singleGroupCalc(user, teams, "G"),
+        singleGroupCalc(user, teams, "H"),
+        knockoutRoundCalc("quarters", user, teams),
+        knockoutRoundCalc("semis", user, teams),
+        knockoutRoundCalc("finals", user, teams),
+        knockoutRoundCalc("champ", user, teams)
+      );
+      const userObj = {
+        name: user.name,
+        tiebreaker: user.tiebreaker,
+        total,
+        tieExists: false,
+        paid: user.paid,
+      };
+      a.push(userObj);
+      return a;
+    }, [])
+    .sort((a, b) => b.total - a.total)
+    .map((user) => {
+      user.rank = rank;
+      rank++;
+      return user;
+    });
+
+  let readyToRun = false;
+
+  firstAudit.forEach((user) => {
+    if (user.total !== 0) readyToRun = true;
+  });
+
+  if (readyToRun) {
+    let dupeScores = [];
+    let nonDupeScores = [];
+    let newDupeScores = [];
+
+    const scores = createCountObj(firstAudit, "total");
+
+    firstAudit.forEach((user) => {
+      scores[user.total] === 1
+        ? nonDupeScores.push(user)
+        : dupeScores.push(user);
+    });
+
+    if (dupeScores.length) {
+      const scoreObj = dupeScores.reduce((a, user) => {
+        a[user.total] ? a[user.total].push(user) : (a[user.total] = [user]);
+        return a;
+      }, {});
+      Object.keys(scoreObj).forEach((key) => {
+        const newRanking = audit(scoreObj[key], actualGoalsScored);
+        newDupeScores = [...newDupeScores, ...newRanking];
+      });
+      return [...newDupeScores, ...nonDupeScores];
+    }
+
+    return nonDupeScores;
+  }
+
+  return firstAudit;
 };
 
 const knockoutR16Push = (teams, finishingPosition) => {
@@ -386,7 +402,7 @@ const teamRankSort = (teams) => {
 };
 
 const dupeValInArr = (arr) => {
-  // return arr.length === new Set(arr).size;
+  return arr.length === new Set(arr).size;
 };
 
 const urlWord = (str) => {
@@ -399,8 +415,19 @@ const urlWord = (str) => {
   }, "");
 };
 
-const findTeam = (obj, letter, rank) => {
-  // return { value: obj, label: obj[`group${letter}${rank}`] };
+const convertTeamDropdown = (team) => {
+  return {
+    value: team,
+    label: (
+      <div className="my-picks-unlocked-dropdown-cont">
+        <div className="pred-locked-flag">
+          <img src={team.flag}></img>
+        </div>
+
+        <div>{team.name}</div>
+      </div>
+    ),
+  };
 };
 
 const formatSelectedUser = (obj) => {
@@ -445,22 +472,22 @@ const formatEmail = (email) => {
 };
 
 const getUserNames = (arr) => {
-  // return arr.map((user) => {
-  //   const name = user.name
-  //     .split("")
-  //     .map((letter) => letter.toLowerCase())
-  //     .join("");
-  //   return name;
-  // });
+  return arr.map((user) => {
+    const name = user.name
+      .split("")
+      .map((letter) => letter.toLowerCase())
+      .join("");
+    return name;
+  });
 };
 
 const addFakeUser = (obj, name) => {
-  // const keys = Object.keys(obj);
-  // const fakeUser = {};
-  // keys.forEach((key) => {
-  //   key === "name" ? (fakeUser.name = name) : (fakeUser[key] = obj[key]);
-  // });
-  // return fakeUser;
+  const keys = Object.keys(obj);
+  const fakeUser = {};
+  keys.forEach((key) => {
+    key === "name" ? (fakeUser.name = name) : (fakeUser[key] = obj[key]);
+  });
+  return fakeUser;
 };
 
 module.exports = {
@@ -476,7 +503,7 @@ module.exports = {
   teamRankSort,
   dupeValInArr,
   urlWord,
-  findTeam,
+  convertTeamDropdown,
   formatSelectedUser,
   capFirstLetter,
   findEntry,

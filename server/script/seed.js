@@ -113,6 +113,7 @@ const users = [
     groupH4: "S. Korea",
 
     tiebreaker: 152,
+    tourneyStage: 3,
   },
   {
     email: "jpatcollins@gmail.com",
@@ -352,7 +353,7 @@ const users = [
     groupH3: "Portugal",
     groupH4: "S. Korea",
 
-    tiebreaker: 152,
+    tiebreaker: 151,
   },
   {
     email: "jseph.collins@toasttab.com",
@@ -399,7 +400,7 @@ const users = [
     groupH3: "Portugal",
     groupH4: "S. Korea",
 
-    tiebreaker: 130,
+    tiebreaker: 131,
   },
   {
     email: "cach@gmail.com",
@@ -446,7 +447,7 @@ const users = [
     groupH3: "Ghana",
     groupH4: "S. Korea",
 
-    tiebreaker: 40,
+    tiebreaker: 47,
   },
   {
     email: "kcr917@gmail.com",
@@ -493,7 +494,7 @@ const users = [
     groupH3: "Portugal",
     groupH4: "S. Korea",
 
-    tiebreaker: 120,
+    tiebreaker: 122,
   },
 ];
 
@@ -620,53 +621,8 @@ const syncAndSeed = async () => {
     )
   );
 
-  const [Joe] = await Promise.all(
-    joeNoPicks.map((obj) =>
-      User.create({
-        email: obj.email,
-        password: obj.password,
-        name: obj.name,
-        admin: obj.admin,
-        paid: obj.paid,
-        groupA1: obj.groupA1,
-        groupA2: obj.groupA2,
-        groupA3: obj.groupA3,
-        groupA4: obj.groupA4,
-        groupB1: obj.groupB1,
-        groupB2: obj.groupB2,
-        groupB3: obj.groupB3,
-        groupB4: obj.groupB4,
-        groupC1: obj.groupC1,
-        groupC2: obj.groupC2,
-        groupC3: obj.groupC3,
-        groupC4: obj.groupC4,
-        groupD1: obj.groupD1,
-        groupD2: obj.groupD2,
-        groupD3: obj.groupD3,
-        groupD4: obj.groupD4,
-        groupE1: obj.groupE1,
-        groupE2: obj.groupE2,
-        groupE3: obj.groupE3,
-        groupE4: obj.groupE4,
-        groupF1: obj.groupF1,
-        groupF2: obj.groupF2,
-        groupF3: obj.groupF3,
-        groupF4: obj.groupF4,
-        groupG1: obj.groupG1,
-        groupG2: obj.groupG2,
-        groupG3: obj.groupG3,
-        groupG4: obj.groupG4,
-        groupH1: obj.groupH1,
-        groupH2: obj.groupH2,
-        groupH3: obj.groupH3,
-        groupH4: obj.groupH4,
-        tiebreaker: obj.tiebreaker,
-      })
-    )
-  );
-  // //////////////////////////////////////////////////
-  // const [Joe, Stan, E, Coach, Kelly, Frank, y, u, i, o] = await Promise.all(
-  //   users.map((obj) =>
+  // const [Joe] = await Promise.all(
+  //   joeUser.map((obj) =>
   //     User.create({
   //       email: obj.email,
   //       password: obj.password,
@@ -710,46 +666,93 @@ const syncAndSeed = async () => {
   //   )
   // );
   // //////////////////////////////////////////////////
-  // Ecuador.groupFinishingPosition = 3;
-  // Netherlands.groupFinishingPosition = 1;
-  // Qatar.groupFinishingPosition = 4;
-  // Senegal.groupFinishingPosition = 2;
-  // England.groupFinishingPosition = 1;
-  // Iran.groupFinishingPosition = 3;
-  // USA.groupFinishingPosition = 2;
-  // Wales.groupFinishingPosition = 4;
-  // Argentina.groupFinishingPosition = 1;
-  // Mexico.groupFinishingPosition = 3;
-  // Poland.groupFinishingPosition = 2;
-  // Saudi_Arabia.groupFinishingPosition = 4;
-  // Australia.groupFinishingPosition = 2;
-  // Denmark.groupFinishingPosition = 4;
-  // France.groupFinishingPosition = 1;
-  // Tunisia.groupFinishingPosition = 3;
+  const [Joe, Stan, E, Coach, Kelly, Frank, y, u, i, o] = await Promise.all(
+    users.map((obj) =>
+      User.create({
+        email: obj.email,
+        password: obj.password,
+        name: obj.name,
+        admin: obj.admin,
+        paid: obj.paid,
+        groupA1: obj.groupA1,
+        groupA2: obj.groupA2,
+        groupA3: obj.groupA3,
+        groupA4: obj.groupA4,
+        groupB1: obj.groupB1,
+        groupB2: obj.groupB2,
+        groupB3: obj.groupB3,
+        groupB4: obj.groupB4,
+        groupC1: obj.groupC1,
+        groupC2: obj.groupC2,
+        groupC3: obj.groupC3,
+        groupC4: obj.groupC4,
+        groupD1: obj.groupD1,
+        groupD2: obj.groupD2,
+        groupD3: obj.groupD3,
+        groupD4: obj.groupD4,
+        groupE1: obj.groupE1,
+        groupE2: obj.groupE2,
+        groupE3: obj.groupE3,
+        groupE4: obj.groupE4,
+        groupF1: obj.groupF1,
+        groupF2: obj.groupF2,
+        groupF3: obj.groupF3,
+        groupF4: obj.groupF4,
+        groupG1: obj.groupG1,
+        groupG2: obj.groupG2,
+        groupG3: obj.groupG3,
+        groupG4: obj.groupG4,
+        groupH1: obj.groupH1,
+        groupH2: obj.groupH2,
+        groupH3: obj.groupH3,
+        groupH4: obj.groupH4,
+        tiebreaker: obj.tiebreaker,
+        tourneyStage: obj.tourneyStage,
+      })
+    )
+  );
+  // //////////////////////////////////////////////////
+  Ecuador.groupFinishingPosition = 3;
+  Netherlands.groupFinishingPosition = 1;
+  Qatar.groupFinishingPosition = 4;
+  Senegal.groupFinishingPosition = 2;
+  England.groupFinishingPosition = 1;
+  Iran.groupFinishingPosition = 3;
+  USA.groupFinishingPosition = 2;
+  Wales.groupFinishingPosition = 4;
+  Argentina.groupFinishingPosition = 1;
+  Mexico.groupFinishingPosition = 3;
+  Poland.groupFinishingPosition = 2;
+  Saudi_Arabia.groupFinishingPosition = 4;
+  Australia.groupFinishingPosition = 2;
+  Denmark.groupFinishingPosition = 4;
+  France.groupFinishingPosition = 1;
+  Tunisia.groupFinishingPosition = 3;
+
+  Germany.groupFinishingPosition = 3;
+  Costa_Rica.groupFinishingPosition = 4;
+  Japan.groupFinishingPosition = 1;
+  Spain.groupFinishingPosition = 2;
   //
-  // Germany.groupFinishingPosition = 3;
-  // Costa_Rica.groupFinishingPosition = 4;
-  // Japan.groupFinishingPosition = 1;
-  // Spain.groupFinishingPosition = 2;
-  // //
-  // Belgium.groupFinishingPosition = 3;
-  // Canada.groupFinishingPosition = 4;
-  // Croatia.groupFinishingPosition = 2;
-  // Morocco.groupFinishingPosition = 1;
-  // //
-  // Brasil.groupFinishingPosition = 1;
-  // Cameroon.groupFinishingPosition = 2;
-  // Serbia.groupFinishingPosition = 3;
-  // Switz.groupFinishingPosition = 4;
-  // //
-  // Ghana.groupFinishingPosition = 1;
-  // S_Korea.groupFinishingPosition = 2;
-  // Portugal.groupFinishingPosition = 3;
-  // Uruguay.groupFinishingPosition = 4;
-  // Ecuador.groupIsFinished = true;
-  // Netherlands.groupIsFinished = true;
-  // Qatar.groupIsFinished = true;
-  // Senegal.groupIsFinished = true;
+  Belgium.groupFinishingPosition = 3;
+  Canada.groupFinishingPosition = 4;
+  Croatia.groupFinishingPosition = 2;
+  Morocco.groupFinishingPosition = 1;
+  //
+  Brasil.groupFinishingPosition = 1;
+  Cameroon.groupFinishingPosition = 2;
+  Serbia.groupFinishingPosition = 3;
+  Switz.groupFinishingPosition = 4;
+  //
+  Ghana.groupFinishingPosition = 1;
+  S_Korea.groupFinishingPosition = 2;
+  Portugal.groupFinishingPosition = 3;
+  Uruguay.groupFinishingPosition = 4;
+  //
+  Ecuador.groupIsFinished = true;
+  Netherlands.groupIsFinished = true;
+  Qatar.groupIsFinished = true;
+  Senegal.groupIsFinished = true;
   // England.groupIsFinished = true;
   // Iran.groupIsFinished = true;
   // USA.groupIsFinished = true;
@@ -888,45 +891,45 @@ const syncAndSeed = async () => {
   // Belgium.outOfTourney = true;
   // Argentina.advanceToChamp = true;
   // Australia.outOfTourney = true;
-  // await Promise.all([
-  //   Ecuador.save(),
-  //   Netherlands.save(),
-  //   Qatar.save(),
-  //   Senegal.save(),
-  //   Argentina.save(),
-  //   Mexico.save(),
-  //   Poland.save(),
-  //   Saudi_Arabia.save(),
-  //   Costa_Rica.save(),
-  //   Germany.save(),
-  //   Japan.save(),
-  //   Spain.save(),
-  //   Brasil.save(),
-  //   Cameroon.save(),
-  //   Serbia.save(),
-  //   Switz.save(),
-  //   England.save(),
-  //   Iran.save(),
-  //   USA.save(),
-  //   Wales.save(),
-  //   Denmark.save(),
-  //   France.save(),
-  //   Australia.save(),
-  //   Tunisia.save(),
-  //   Belgium.save(),
-  //   Canada.save(),
-  //   Croatia.save(),
-  //   Morocco.save(),
-  //   Ghana.save(),
-  //   S_Korea.save(),
-  //   Portugal.save(),
-  //   Uruguay.save(),
-  //   Joe.save(),
-  //   //   Stan.save(),
-  //   //   E.save(),
-  //   //   Coach.save(),
-  //   // Kelly.save(),
-  // ]);
+  await Promise.all([
+    Ecuador.save(),
+    Netherlands.save(),
+    Qatar.save(),
+    Senegal.save(),
+    Argentina.save(),
+    Mexico.save(),
+    Poland.save(),
+    Saudi_Arabia.save(),
+    Costa_Rica.save(),
+    Germany.save(),
+    Japan.save(),
+    Spain.save(),
+    Brasil.save(),
+    Cameroon.save(),
+    Serbia.save(),
+    Switz.save(),
+    England.save(),
+    Iran.save(),
+    USA.save(),
+    Wales.save(),
+    Denmark.save(),
+    France.save(),
+    Australia.save(),
+    Tunisia.save(),
+    Belgium.save(),
+    Canada.save(),
+    Croatia.save(),
+    Morocco.save(),
+    Ghana.save(),
+    S_Korea.save(),
+    Portugal.save(),
+    Uruguay.save(),
+    Joe.save(),
+    //   Stan.save(),
+    //   E.save(),
+    //   Coach.save(),
+    // Kelly.save(),
+  ]);
 };
 
 module.exports = syncAndSeed;

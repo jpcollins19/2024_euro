@@ -1,28 +1,24 @@
 //////feature (F) & admin (A) work
 
 ////////////F1 - add flags next to the teams name
-///stage 1-2
-//my_picks_group
-//my_picks_edit_group - ON THIS ONE
-//pool_picks_group
-
 ///stage 3
-//my_picks_group
-//my_picks_edit_group
-//pool_picks_group
+//my_picks - ON THIS ONE
+//pool_picks
 
-///stage 4-5
-//my_picks_ko
+///stage 4
+//my_picks_ko & group
 //my_picks_edit_ko
-//pool_picks_ko
+//pool_picks_ko & group
+
+///stage 5
+//my_picks_ko & group
+//pool_picks_ko & group
 
 ///////bugz
-//my_picks_edit_group - if the user has already submitted picks, the dropdowns do not auto default to the users picks
-//^^same for when you are editing a user in admin
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
 
 //double check euro group/KO setup before you do the below admin work
-//adjust rules page accordingly?
+//adjust rules page accordingly based on rules that you have learned?
 
 ////////////A1:
 //create a table for matches (Match) - Match should have the following instances: {matchNumber(determines the 1st, 2nd, 3rd etc game of each group - eg: 'A1', 'B5' etc), group, matchUniqueId ('AustraliaFrance'), homeTeamId, homeTeamName, homeTeamFlag, homeTeamGoalsScored, awayTeamId, awayTeamName, awayTeamFlag, awayTeamGoalsScored, matchComplete}
@@ -47,7 +43,7 @@
 //css work on new admin > group matches page
 
 ////group details
-//once the page starts loading, it calls the 'api'matches' and does the work that code has already ben written for.
+//once the page starts loading, it calls the 'api/matches' and does the work that code has already ben written for.
 
 ////////////F2 - group Details page
 //adjust the headers to it is "+/-" instead of GF & GA - look at below first - game plan all of this at the same time

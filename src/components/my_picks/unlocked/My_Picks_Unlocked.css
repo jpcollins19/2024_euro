@@ -55,7 +55,7 @@
 }
 
 .single-group-cont-edit-picks-outside {
-  width: 18rem;
+  width: 20rem;
   margin: 0% 1% 0% 1%;
   padding-bottom: 1%;
 }
@@ -91,6 +91,10 @@
   margin: 0rem;
 }
 
+.prediction-verbiage-unlocked {
+  padding-right: 1.5rem;
+}
+
 .single-group-cont-edit-picks-inside > div > div {
   margin: 0rem 0.17rem 0.5rem 0rem;
   font-size: 1rem;
@@ -104,6 +108,12 @@
   border: solid black 2px;
   width: 2.2rem;
   border-radius: 0.5rem;
+}
+
+.my-picks-unlocked-dropdown-cont {
+  display: flex;
+  align-items: center;
+  height: 2.3rem;
 }
 
 /*/////////////////////////////*/

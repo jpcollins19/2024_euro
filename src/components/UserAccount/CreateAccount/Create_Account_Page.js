@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     border: "solid 2px black",
     borderRadius: "9px",
+    background: "rgb(237, 239, 245)",
   },
 }));
 

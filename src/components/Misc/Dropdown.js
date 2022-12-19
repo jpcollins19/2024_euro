@@ -59,15 +59,15 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
     option: (styles) => {
       return {
         ...styles,
-        background: "white",
+        background: "rgb(242, 242, 234)",
         color: "black",
         borderBottom: "solid lightGrey 2px",
         cursor: "pointer",
-        width: `${optionWidth}rem`,
+        width: `${optionWidth}.01rem`,
         fontSize: "1.2rem",
         textAlign: "center",
         "&:hover": {
-          background: "rgb(242, 242, 234)",
+          background: "rgb(225, 225, 211)",
         },
       };
     },

@@ -71,7 +71,7 @@ const My_Picks_Locked_Page = () => {
             </Link>
           )}
 
-          {joe?.tourneyStage >= 4 && user && user.tiebreaker && (
+          {joe?.tourneyStage >= 4 && user?.tiebreaker && (
             <div className="top box">
               <div className="box left">
                 <div className="predictions-cont">
@@ -84,7 +84,7 @@ const My_Picks_Locked_Page = () => {
             </div>
           )}
 
-          {user && user.tiebreaker && (
+          {user?.tiebreaker && (
             <div className="top box">
               <div className="box left">
                 {joe?.tourneyStage >= 4 && <Point_System_Cont />}

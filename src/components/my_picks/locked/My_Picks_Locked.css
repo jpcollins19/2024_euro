@@ -219,6 +219,7 @@
   max-width: 32px;
   max-height: 20px;
   min-height: 20px;
+  color: rgb(225, 225, 211);
 }
 
 /* .pred-locked-team {
