@@ -1,22 +1,20 @@
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import Team_Row from "./Team_Row";
 
 const Prediction_Cont_Locked = ({ group, selectedUser }) => {
-  const { pathname } = useLocation();
-
-  const user = useSelector((state) => state.auth);
+  const nums = [1, 2, 3, 4];
 
   return (
     <div className="prediction-cont">
       <h5>Prediction</h5>
-      <div>
-        <div className="pred-locked-flag">FL</div>
-        <div className="pred-locked-team">
-          {pathname === "/pool_picks"
-            ? selectedUser[`group${group}1`]
-            : user[`group${group}1`]}
-        </div>
-      </div>
+
+      {nums.map((number) => (
+        <Team_Row
+          key={number}
+          number={number}
+          group={group}
+          selectedUser={selectedUser}
+        />
+      ))}
     </div>
   );
 };

@@ -549,6 +549,16 @@ const joeUser = [
   },
 ];
 
+const joeNoPicks = [
+  {
+    email: "joe@gmail.com",
+    password: "nugget",
+    name: "Joe",
+    admin: true,
+    paid: true,
+  },
+];
+
 const updated = [
   {
     idd: 1,
@@ -609,53 +619,9 @@ const syncAndSeed = async () => {
       })
     )
   );
-  // const [Joe] = await Promise.all(
-  //   joeUser.map((obj) =>
-  //     User.create({
-  //       email: obj.email,
-  //       password: obj.password,
-  //       name: obj.name,
-  //       admin: obj.admin,
-  //       paid: obj.paid,
-  //       groupA1: obj.groupA1,
-  //       groupA2: obj.groupA2,
-  //       groupA3: obj.groupA3,
-  //       groupA4: obj.groupA4,
-  //       groupB1: obj.groupB1,
-  //       groupB2: obj.groupB2,
-  //       groupB3: obj.groupB3,
-  //       groupB4: obj.groupB4,
-  //       groupC1: obj.groupC1,
-  //       groupC2: obj.groupC2,
-  //       groupC3: obj.groupC3,
-  //       groupC4: obj.groupC4,
-  //       groupD1: obj.groupD1,
-  //       groupD2: obj.groupD2,
-  //       groupD3: obj.groupD3,
-  //       groupD4: obj.groupD4,
-  //       groupE1: obj.groupE1,
-  //       groupE2: obj.groupE2,
-  //       groupE3: obj.groupE3,
-  //       groupE4: obj.groupE4,
-  //       groupF1: obj.groupF1,
-  //       groupF2: obj.groupF2,
-  //       groupF3: obj.groupF3,
-  //       groupF4: obj.groupF4,
-  //       groupG1: obj.groupG1,
-  //       groupG2: obj.groupG2,
-  //       groupG3: obj.groupG3,
-  //       groupG4: obj.groupG4,
-  //       groupH1: obj.groupH1,
-  //       groupH2: obj.groupH2,
-  //       groupH3: obj.groupH3,
-  //       groupH4: obj.groupH4,
-  //       tiebreaker: obj.tiebreaker,
-  //     })
-  //   )
-  // );
-  // //////////////////////////////////////////////////
-  const [Joe, Stan, E, Coach, Kelly, Frank, y, u, i, o] = await Promise.all(
-    users.map((obj) =>
+
+  const [Joe] = await Promise.all(
+    joeNoPicks.map((obj) =>
       User.create({
         email: obj.email,
         password: obj.password,
@@ -698,6 +664,51 @@ const syncAndSeed = async () => {
       })
     )
   );
+  // //////////////////////////////////////////////////
+  // const [Joe, Stan, E, Coach, Kelly, Frank, y, u, i, o] = await Promise.all(
+  //   users.map((obj) =>
+  //     User.create({
+  //       email: obj.email,
+  //       password: obj.password,
+  //       name: obj.name,
+  //       admin: obj.admin,
+  //       paid: obj.paid,
+  //       groupA1: obj.groupA1,
+  //       groupA2: obj.groupA2,
+  //       groupA3: obj.groupA3,
+  //       groupA4: obj.groupA4,
+  //       groupB1: obj.groupB1,
+  //       groupB2: obj.groupB2,
+  //       groupB3: obj.groupB3,
+  //       groupB4: obj.groupB4,
+  //       groupC1: obj.groupC1,
+  //       groupC2: obj.groupC2,
+  //       groupC3: obj.groupC3,
+  //       groupC4: obj.groupC4,
+  //       groupD1: obj.groupD1,
+  //       groupD2: obj.groupD2,
+  //       groupD3: obj.groupD3,
+  //       groupD4: obj.groupD4,
+  //       groupE1: obj.groupE1,
+  //       groupE2: obj.groupE2,
+  //       groupE3: obj.groupE3,
+  //       groupE4: obj.groupE4,
+  //       groupF1: obj.groupF1,
+  //       groupF2: obj.groupF2,
+  //       groupF3: obj.groupF3,
+  //       groupF4: obj.groupF4,
+  //       groupG1: obj.groupG1,
+  //       groupG2: obj.groupG2,
+  //       groupG3: obj.groupG3,
+  //       groupG4: obj.groupG4,
+  //       groupH1: obj.groupH1,
+  //       groupH2: obj.groupH2,
+  //       groupH3: obj.groupH3,
+  //       groupH4: obj.groupH4,
+  //       tiebreaker: obj.tiebreaker,
+  //     })
+  //   )
+  // );
   // //////////////////////////////////////////////////
   // Ecuador.groupFinishingPosition = 3;
   // Netherlands.groupFinishingPosition = 1;

@@ -203,17 +203,27 @@
 
 .prediction-cont > div {
   display: flex;
-  justify-content: center;
-  width: 8rem;
+  /* justify-content: center; */
+  width: 9.5rem;
 }
 
 .pred-locked-flag {
-  border: solid 1px red;
+  display: flex;
+  align-items: center;
+  padding: 0 5px 0 10px;
 }
 
-.pred-locked-team {
-  border: solid 1px blue;
+.pred-locked-flag > img {
+  height: 25px;
+  min-width: 32px;
+  max-width: 32px;
+  max-height: 20px;
+  min-height: 20px;
 }
+
+/* .pred-locked-team {
+  border: solid 1px blue;
+} */
 
 .outcome-pos-cont > div {
   width: 8rem;

@@ -1,11 +1,19 @@
 //////feature (F) & admin (A) work
 
 ////////////F1 - add flags next to the teams name
-//my_picks_group - ON THIS ONE
-//my_picks_ko
-//my_picks_edit_group
-//my_picks_edit_ko
+///stage 1-2
+//my_picks_group
+//my_picks_edit_group - ON THIS ONE
 //pool_picks_group
+
+///stage 3
+//my_picks_group
+//my_picks_edit_group
+//pool_picks_group
+
+///stage 4-5
+//my_picks_ko
+//my_picks_edit_ko
 //pool_picks_ko
 
 ///////bugz
