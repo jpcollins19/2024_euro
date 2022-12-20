@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { knockoutR16Push } from "../../../../../store";
+import { findR16Teams } from "../../../../../store";
 
 const R16_Game_L = ({ game }) => {
   const teams = useSelector((state) => state.teams);
@@ -15,10 +15,16 @@ const R16_Game_L = ({ game }) => {
     Q8: ["H1", "G2"],
   };
 
+  const teamsPlayingInMatch = findR16Teams(teams, obj[game]);
+
   return (
     <div className="white-text">
-      <div>{teams.length && knockoutR16Push(teams, obj[game][0])}</div>
-      <div>{teams.length && knockoutR16Push(teams, obj[game][1])}</div>
+      {teamsPlayingInMatch.map((team) => (
+        <div key={team.id} className="team-ko-img-cont">
+          <img className="team-flag-ko" src={team.flag} />
+          <p className="team-name-ko">{team.name}</p>
+        </div>
+      ))}
     </div>
   );
 };

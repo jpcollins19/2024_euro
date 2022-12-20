@@ -3,8 +3,7 @@ const {
   singleGroupCalc,
   totalScoreCalc,
   knockoutRoundCalc,
-  knockoutPartTeamPush,
-  knockoutPartClassPush,
+  knockoutClass,
   currentScoresObj,
   urlWord,
   addFakeUser,
@@ -3048,14 +3047,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartClassPush(joe, teams, "Q1");
-        const Q2 = knockoutPartClassPush(joe, teams, "Q2");
-        const Q3 = knockoutPartClassPush(joe, teams, "Q3");
-        const Q4 = knockoutPartClassPush(joe, teams, "Q4");
-        const Q5 = knockoutPartClassPush(joe, teams, "Q5");
-        const Q6 = knockoutPartClassPush(joe, teams, "Q6");
-        const Q7 = knockoutPartClassPush(joe, teams, "Q7");
-        const Q8 = knockoutPartClassPush(joe, teams, "Q8");
+        const Q1 = knockoutClass(joe, teams, "Q1");
+        const Q2 = knockoutClass(joe, teams, "Q2");
+        const Q3 = knockoutClass(joe, teams, "Q3");
+        const Q4 = knockoutClass(joe, teams, "Q4");
+        const Q5 = knockoutClass(joe, teams, "Q5");
+        const Q6 = knockoutClass(joe, teams, "Q6");
+        const Q7 = knockoutClass(joe, teams, "Q7");
+        const Q8 = knockoutClass(joe, teams, "Q8");
         expect(Q1).to.equal("correct");
         expect(Q2).to.equal("correct");
         expect(Q3).to.equal("correct");
@@ -3067,10 +3066,10 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates semis correctly", () => {
-        const S1 = knockoutPartClassPush(joe, teams, "S1");
-        const S2 = knockoutPartClassPush(joe, teams, "S2");
-        const S3 = knockoutPartClassPush(joe, teams, "S3");
-        const S4 = knockoutPartClassPush(joe, teams, "S4");
+        const S1 = knockoutClass(joe, teams, "S1");
+        const S2 = knockoutClass(joe, teams, "S2");
+        const S3 = knockoutClass(joe, teams, "S3");
+        const S4 = knockoutClass(joe, teams, "S4");
         expect(S1).to.equal("correct");
         expect(S2).to.equal("correct");
         expect(S3).to.equal("correct");
@@ -3078,14 +3077,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates final correctly", () => {
-        const F1 = knockoutPartClassPush(joe, teams, "F1");
-        const F2 = knockoutPartClassPush(joe, teams, "F2");
+        const F1 = knockoutClass(joe, teams, "F1");
+        const F2 = knockoutClass(joe, teams, "F2");
         expect(F1).to.equal("correct");
         expect(F2).to.equal("correct");
       });
 
       it("calculates champ correctly", () => {
-        const champ = knockoutPartClassPush(joe, teams, "Champ");
+        const champ = knockoutClass(joe, teams, "Champ");
         expect(champ).to.equal("correct");
       });
     });
@@ -3096,14 +3095,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartClassPush(e, teams, "Q1");
-        const Q2 = knockoutPartClassPush(e, teams, "Q2");
-        const Q3 = knockoutPartClassPush(e, teams, "Q3");
-        const Q4 = knockoutPartClassPush(e, teams, "Q4");
-        const Q5 = knockoutPartClassPush(e, teams, "Q5");
-        const Q6 = knockoutPartClassPush(e, teams, "Q6");
-        const Q7 = knockoutPartClassPush(e, teams, "Q7");
-        const Q8 = knockoutPartClassPush(e, teams, "Q8");
+        const Q1 = knockoutClass(e, teams, "Q1");
+        const Q2 = knockoutClass(e, teams, "Q2");
+        const Q3 = knockoutClass(e, teams, "Q3");
+        const Q4 = knockoutClass(e, teams, "Q4");
+        const Q5 = knockoutClass(e, teams, "Q5");
+        const Q6 = knockoutClass(e, teams, "Q6");
+        const Q7 = knockoutClass(e, teams, "Q7");
+        const Q8 = knockoutClass(e, teams, "Q8");
         expect(Q1).to.equal("wrong");
         expect(Q2).to.equal("correct");
         expect(Q3).to.equal("correct");
@@ -3115,10 +3114,10 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates semis correctly", () => {
-        const S1 = knockoutPartClassPush(e, teams, "S1");
-        const S2 = knockoutPartClassPush(e, teams, "S2");
-        const S3 = knockoutPartClassPush(e, teams, "S3");
-        const S4 = knockoutPartClassPush(e, teams, "S4");
+        const S1 = knockoutClass(e, teams, "S1");
+        const S2 = knockoutClass(e, teams, "S2");
+        const S3 = knockoutClass(e, teams, "S3");
+        const S4 = knockoutClass(e, teams, "S4");
         expect(S1).to.equal("wrong");
         expect(S2).to.equal("wrong");
         expect(S3).to.equal("wrong");
@@ -3126,14 +3125,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates final correctly", () => {
-        const F1 = knockoutPartClassPush(e, teams, "F1");
-        const F2 = knockoutPartClassPush(e, teams, "F2");
+        const F1 = knockoutClass(e, teams, "F1");
+        const F2 = knockoutClass(e, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
 
       it("calculates champ correctly", () => {
-        const champ = knockoutPartClassPush(e, teams, "Champ");
+        const champ = knockoutClass(e, teams, "Champ");
         expect(champ).to.equal("wrong");
       });
     });
@@ -3144,14 +3143,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartClassPush(coach, teams, "Q1");
-        const Q2 = knockoutPartClassPush(coach, teams, "Q2");
-        const Q3 = knockoutPartClassPush(coach, teams, "Q3");
-        const Q4 = knockoutPartClassPush(coach, teams, "Q4");
-        const Q5 = knockoutPartClassPush(coach, teams, "Q5");
-        const Q6 = knockoutPartClassPush(coach, teams, "Q6");
-        const Q7 = knockoutPartClassPush(coach, teams, "Q7");
-        const Q8 = knockoutPartClassPush(coach, teams, "Q8");
+        const Q1 = knockoutClass(coach, teams, "Q1");
+        const Q2 = knockoutClass(coach, teams, "Q2");
+        const Q3 = knockoutClass(coach, teams, "Q3");
+        const Q4 = knockoutClass(coach, teams, "Q4");
+        const Q5 = knockoutClass(coach, teams, "Q5");
+        const Q6 = knockoutClass(coach, teams, "Q6");
+        const Q7 = knockoutClass(coach, teams, "Q7");
+        const Q8 = knockoutClass(coach, teams, "Q8");
         expect(Q1).to.equal("correct");
         expect(Q2).to.equal("correct");
         expect(Q3).to.equal("wrong");
@@ -3163,10 +3162,10 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates semis correctly", () => {
-        const S1 = knockoutPartClassPush(coach, teams, "S1");
-        const S2 = knockoutPartClassPush(coach, teams, "S2");
-        const S3 = knockoutPartClassPush(coach, teams, "S3");
-        const S4 = knockoutPartClassPush(coach, teams, "S4");
+        const S1 = knockoutClass(coach, teams, "S1");
+        const S2 = knockoutClass(coach, teams, "S2");
+        const S3 = knockoutClass(coach, teams, "S3");
+        const S4 = knockoutClass(coach, teams, "S4");
         expect(S1).to.equal("wrong");
         expect(S2).to.equal("correct");
         expect(S3).to.equal("wrong");
@@ -3174,14 +3173,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates final correctly", () => {
-        const F1 = knockoutPartClassPush(coach, teams, "F1");
-        const F2 = knockoutPartClassPush(coach, teams, "F2");
+        const F1 = knockoutClass(coach, teams, "F1");
+        const F2 = knockoutClass(coach, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
 
       it("calculates champ correctly", () => {
-        const champ = knockoutPartClassPush(coach, teams, "Champ");
+        const champ = knockoutClass(coach, teams, "Champ");
         expect(champ).to.equal("wrong");
       });
     });
@@ -3192,14 +3191,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates quarters correctly", () => {
-        const Q1 = knockoutPartClassPush(kelly, teams, "Q1");
-        const Q2 = knockoutPartClassPush(kelly, teams, "Q2");
-        const Q3 = knockoutPartClassPush(kelly, teams, "Q3");
-        const Q4 = knockoutPartClassPush(kelly, teams, "Q4");
-        const Q5 = knockoutPartClassPush(kelly, teams, "Q5");
-        const Q6 = knockoutPartClassPush(kelly, teams, "Q6");
-        const Q7 = knockoutPartClassPush(kelly, teams, "Q7");
-        const Q8 = knockoutPartClassPush(kelly, teams, "Q8");
+        const Q1 = knockoutClass(kelly, teams, "Q1");
+        const Q2 = knockoutClass(kelly, teams, "Q2");
+        const Q3 = knockoutClass(kelly, teams, "Q3");
+        const Q4 = knockoutClass(kelly, teams, "Q4");
+        const Q5 = knockoutClass(kelly, teams, "Q5");
+        const Q6 = knockoutClass(kelly, teams, "Q6");
+        const Q7 = knockoutClass(kelly, teams, "Q7");
+        const Q8 = knockoutClass(kelly, teams, "Q8");
         expect(Q1).to.equal("wrong");
         expect(Q2).to.equal("correct");
         expect(Q3).to.equal("wrong");
@@ -3211,10 +3210,10 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates semis correctly", () => {
-        const S1 = knockoutPartClassPush(kelly, teams, "S1");
-        const S2 = knockoutPartClassPush(kelly, teams, "S2");
-        const S3 = knockoutPartClassPush(kelly, teams, "S3");
-        const S4 = knockoutPartClassPush(kelly, teams, "S4");
+        const S1 = knockoutClass(kelly, teams, "S1");
+        const S2 = knockoutClass(kelly, teams, "S2");
+        const S3 = knockoutClass(kelly, teams, "S3");
+        const S4 = knockoutClass(kelly, teams, "S4");
         expect(S1).to.equal("wrong");
         expect(S2).to.equal("wrong");
         expect(S3).to.equal("correct");
@@ -3222,14 +3221,14 @@ describe("Cals everthing correctly", () => {
       });
 
       it("calculates final correctly", () => {
-        const F1 = knockoutPartClassPush(kelly, teams, "F1");
-        const F2 = knockoutPartClassPush(kelly, teams, "F2");
+        const F1 = knockoutClass(kelly, teams, "F1");
+        const F2 = knockoutClass(kelly, teams, "F2");
         expect(F1).to.equal("wrong");
         expect(F2).to.equal("wrong");
       });
 
       it("calculates champ correctly", () => {
-        const champ = knockoutPartClassPush(kelly, teams, "Champ");
+        const champ = knockoutClass(kelly, teams, "Champ");
         expect(champ).to.equal("wrong");
       });
     });

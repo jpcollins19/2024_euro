@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {
-  knockoutPartTeamPush,
-  knockoutPartClassPush,
-} from "../../../../../store";
+import { knockoutUsersTeamPick, knockoutClass } from "../../../../../store";
 
 const Q_Game_L = ({ game, gameNum, selectedUser }) => {
   const { pathname } = useLocation();
@@ -11,7 +8,15 @@ const Q_Game_L = ({ game, gameNum, selectedUser }) => {
   const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
 
-  const userAudit = user && user.knockChamp;
+  const authPicksSubmitted = user?.knockChamp ? true : false;
+
+  const userToUse = pathname === "/pool_picks" ? selectedUser : user;
+
+  const usersTeamPick = authPicksSubmitted
+    ? knockoutUsersTeamPick(userToUse, game, teams)
+    : "";
+
+  const usersPickClass = knockoutClass(userToUse, teams, game);
 
   let gameClass;
 
@@ -45,19 +50,12 @@ const Q_Game_L = ({ game, gameNum, selectedUser }) => {
   }
 
   return (
-    <div className={`white-text ${gameClass}`}>
-      <div
-        className={knockoutPartClassPush(
-          pathname === "/pool_picks" ? selectedUser : user,
-          teams,
-          game
-        )}
-      >
-        {userAudit &&
-          knockoutPartTeamPush(
-            pathname === "/pool_picks" ? selectedUser : user,
-            game
-          )}
+    <div className={`white-text ${gameClass} ${usersPickClass}-box`}>
+      <div className="team-ko-img-cont">
+        <img className="team-flag-ko" src={usersTeamPick?.flag} />
+        <p className={`team-name-ko ${usersPickClass}-text`}>
+          {usersTeamPick?.name}
+        </p>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import Q_Game_L from "./games/Q_Game_L";
 
 const Q_L = ({ side, selectedUser }) => {
   const nums = [1, 2, 3, 4];
+
   return (
     <div className="quarters">
       <h2>Quarters</h2>

@@ -174,91 +174,6 @@ const totalScoreCalc = (
   return points.reduce((a, b) => a + b);
 };
 
-const knockoutPartTeamPush = (user, position) => {
-  // return user[`knock${position}`];
-};
-
-const knockoutPartClassPush = (user, teams, position) => {
-  // const userPick = knockoutPartTeamPush(user, position);
-  // const teamAnswer = teams.find((team) => team.name === userPick);
-  // const round = position === "Champ" ? "Champ" : position.split("")[0];
-  // const number = position === "Champ" ? "Champ" : position.split("")[1] * 1;
-  // const placeObj = {
-  //   Q: {
-  //     1: ["A1", "B2"],
-  //     2: ["C1", "D2"],
-  //     3: ["E1", "F2"],
-  //     4: ["G1", "H2"],
-  //     5: ["B1", "A2"],
-  //     6: ["D1", "C2"],
-  //     7: ["F1", "E2"],
-  //     8: ["H1", "G2"],
-  //   },
-  //   S: {
-  //     1: ["A1", "B2", "C1", "D2"],
-  //     2: ["E1", "F2", "G1", "H2"],
-  //     3: ["B1", "A2", "D1", "C2"],
-  //     4: ["F1", "E2", "H1", "G2"],
-  //   },
-  //   F: {
-  //     1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-  //     2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-  //   },
-  // };
-  // let advancingTeam, knockoutPos, team;
-  // if (position !== "Champ") {
-  //   knockoutPos = placeObj[round][number];
-  // }
-  // switch (round) {
-  //   case "Q":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         (team.knockoutPosition === knockoutPos[0] ||
-  //           team.knockoutPosition === knockoutPos[1])
-  //     );
-  //     advancingTeam = team && team.name;
-  //     break;
-  //   case "S":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         (team.knockoutPosition === knockoutPos[0] ||
-  //           team.knockoutPosition === knockoutPos[1] ||
-  //           team.knockoutPosition === knockoutPos[2] ||
-  //           team.knockoutPosition === knockoutPos[3])
-  //     );
-  //     advancingTeam = team && team.name;
-  //     break;
-  //   case "F":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         (team.knockoutPosition === knockoutPos[0] ||
-  //           team.knockoutPosition === knockoutPos[1] ||
-  //           team.knockoutPosition === knockoutPos[2] ||
-  //           team.knockoutPosition === knockoutPos[3] ||
-  //           team.knockoutPosition === knockoutPos[4] ||
-  //           team.knockoutPosition === knockoutPos[5] ||
-  //           team.knockoutPosition === knockoutPos[6] ||
-  //           team.knockoutPosition === knockoutPos[7])
-  //     );
-  //     advancingTeam = team && team.name;
-  //     break;
-  //   case "Champ":
-  //     team = teams.find((team) => team[`advanceTo${round}`]);
-  //     advancingTeam = team && team.name;
-  //     break;
-  //   default:
-  //     throw "error";
-  // }
-  // if (userPick === advancingTeam) {
-  //   return "correct";
-  // } else {
-  //   return teamAnswer && teamAnswer.outOfTourney ? "wrong" : "";
-  // }
-};
-
 const createCountObj = (arr, key) => {
   return arr.reduce((a, obj) => {
     a[obj[key]] ? a[obj[key]]++ : (a[obj[key]] = 1);
@@ -389,10 +304,6 @@ const currentScoresObj = (users, teams, actualGoalsScored = null) => {
   return firstAudit;
 };
 
-const knockoutR16Push = (teams, finishingPosition) => {
-  // return teams.find((team) => team.knockoutPosition === finishingPosition).name;
-};
-
 const teamRankSort = (teams) => {
   // const sorted = teams.sort((a, b) => b.Pts - a.Pts);
   // return sorted.reduce((a, team, idx) => {
@@ -416,18 +327,17 @@ const urlWord = (str) => {
 };
 
 const convertTeamDropdown = (team) => {
-  return {
-    value: team,
-    label: (
-      <div className="my-picks-unlocked-dropdown-cont">
-        <div className="pred-locked-flag">
-          <img src={team.flag}></img>
-        </div>
-
-        <div>{team.name}</div>
-      </div>
-    ),
-  };
+  // return {
+  //   value: team,
+  //   label: (
+  //     <div className="my-picks-unlocked-dropdown-cont">
+  //       <div className="pred-locked-flag">
+  //         <img src={team.flag}></img>
+  //       </div>
+  //       <div>{team.name}</div>
+  //     </div>
+  //   ),
+  // };
 };
 
 const formatSelectedUser = (obj) => {
@@ -490,16 +400,111 @@ const addFakeUser = (obj, name) => {
   return fakeUser;
 };
 
+const findR16Teams = (teams, koPositions) => {
+  return koPositions.map((koPos) =>
+    teams.find((team) => team.knockoutPosition === koPos)
+  );
+};
+
+const knockoutUsersTeamPick = (user, position, teams) => {
+  return teams.find((team) => team.name === user[`knock${position}`]);
+};
+
+const knockoutClass = (user, teams, position) => {
+  const usersTeamPick = knockoutUsersTeamPick(user, position, teams);
+
+  const round = position === "Champ" ? "Champ" : position.split("")[0];
+  const number = position === "Champ" ? "Champ" : position.split("")[1] * 1;
+
+  const placeObj = {
+    Q: {
+      1: ["A1", "B2"],
+      2: ["C1", "D2"],
+      3: ["E1", "F2"],
+      4: ["G1", "H2"],
+      5: ["B1", "A2"],
+      6: ["D1", "C2"],
+      7: ["F1", "E2"],
+      8: ["H1", "G2"],
+    },
+    S: {
+      1: ["A1", "B2", "C1", "D2"],
+      2: ["E1", "F2", "G1", "H2"],
+      3: ["B1", "A2", "D1", "C2"],
+      4: ["F1", "E2", "H1", "G2"],
+    },
+    F: {
+      1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+      2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+    },
+  };
+
+  let advancingTeam, knockoutPos, team;
+
+  if (position !== "Champ") {
+    knockoutPos = placeObj[round][number];
+  }
+
+  switch (round) {
+    case "Q":
+      team = teams.find(
+        (team) =>
+          team[`advanceTo${round}`] &&
+          (team.knockoutPosition === knockoutPos[0] ||
+            team.knockoutPosition === knockoutPos[1])
+      );
+      advancingTeam = team?.name;
+      break;
+    case "S":
+      team = teams.find(
+        (team) =>
+          team[`advanceTo${round}`] &&
+          (team.knockoutPosition === knockoutPos[0] ||
+            team.knockoutPosition === knockoutPos[1] ||
+            team.knockoutPosition === knockoutPos[2] ||
+            team.knockoutPosition === knockoutPos[3])
+      );
+      advancingTeam = team?.name;
+      break;
+    case "F":
+      team = teams.find(
+        (team) =>
+          team[`advanceTo${round}`] &&
+          (team.knockoutPosition === knockoutPos[0] ||
+            team.knockoutPosition === knockoutPos[1] ||
+            team.knockoutPosition === knockoutPos[2] ||
+            team.knockoutPosition === knockoutPos[3] ||
+            team.knockoutPosition === knockoutPos[4] ||
+            team.knockoutPosition === knockoutPos[5] ||
+            team.knockoutPosition === knockoutPos[6] ||
+            team.knockoutPosition === knockoutPos[7])
+      );
+      advancingTeam = team?.name;
+      break;
+    case "Champ":
+      team = teams.find((team) => team[`advanceTo${round}`]);
+      advancingTeam = team?.name;
+      break;
+    default:
+      throw "error";
+  }
+
+  if (usersTeamPick?.name === advancingTeam) {
+    return "correct";
+  } else {
+    return usersTeamPick?.outOfTourney ? "wrong" : "";
+  }
+};
+
 module.exports = {
   findJoe,
   validateEmail,
   singleGroupCalc,
   totalScoreCalc,
   knockoutRoundCalc,
-  knockoutPartTeamPush,
-  knockoutPartClassPush,
+  knockoutUsersTeamPick,
+  knockoutClass,
   currentScoresObj,
-  knockoutR16Push,
   teamRankSort,
   dupeValInArr,
   urlWord,
@@ -510,4 +515,5 @@ module.exports = {
   formatEmail,
   getUserNames,
   addFakeUser,
+  findR16Teams,
 };

@@ -1,5 +1,5 @@
 .my-picks-page {
-  background-image: url("https://editorial.uefa.com/resources/025f-0fc914d8e31c-b147c5f5de0d-1000/david_trezeguet_s_golden_goal_vanquished_italy_in_the_uefa_euro_2000_final_in_rotterdam_as_france_picked_up_their_second_european_title.jpeg");
+  background-image: url("https://e0.365dm.com/16/06/2048x1152/euro-2012-zlatan-ibrahimovic-sweden-france_3488865.jpg");
   background-size: cover;
   overflow: auto;
 }
@@ -214,7 +214,6 @@
 }
 
 .pred-locked-flag > img {
-  height: 25px;
   min-width: 32px;
   max-width: 32px;
   max-height: 20px;
@@ -222,12 +221,25 @@
   color: rgb(225, 225, 211);
 }
 
-/* .pred-locked-team {
-  border: solid 1px blue;
-} */
-
 .outcome-pos-cont > div {
-  width: 8rem;
+  display: flex;
+  justify-content: center;
+  width: 5rem;
+}
+
+.outcome-locked-flag {
+  display: flex;
+  align-items: center;
+  /* padding: 0 5px 0 10px; */
+}
+
+.outcome-locked-flag > img {
+  height: 25px;
+  min-width: 32px;
+  max-width: 32px;
+  max-height: 20px;
+  min-height: 20px;
+  color: rgb(225, 225, 211);
 }
 
 .points-cont > div > h2 {
@@ -309,7 +321,6 @@
 }
 
 .total-points-points-cont > div {
-  /* border: solid 2px black; */
   background: linear-gradient(
     to bottom,
     rgb(159, 159, 147) 0%,
@@ -361,8 +372,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: solid red 2px; */
-
   height: 2.5rem;
   border-radius: 0.5rem;
   background: linear-gradient(
@@ -374,7 +383,6 @@
   font-size: 17px;
   min-width: 8rem;
   max-width: 8rem;
-  /* margin: 0rem 1rem 0rem 1rem; */
 }
 
 .knockout-cont > div > .champ > div > div {
@@ -392,12 +400,80 @@
   margin: 0.5rem 0rem 0.5rem 0rem;
 }
 
-.wrong {
+.team-ko-img-cont {
+  position: relative;
+}
+
+.team-flag-ko {
+  min-width: 40px;
+  max-width: 40px;
+  max-height: 22px;
+  min-height: 22px;
+}
+
+.team-name-ko {
+  position: absolute;
+  top: -10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.team-ko-img-cont:hover .team-name-ko {
+  visibility: visible;
+  opacity: 1;
+}
+
+.team-ko-img-cont:hover .team-flag-ko {
+  opacity: 0.5;
+}
+
+.team-flag-ko-champ {
+  min-width: 80px;
+  max-width: 80px;
+  max-height: 40px;
+  min-height: 40px;
+}
+
+.team-name-ko-champ {
+  position: absolute;
+  top: -3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.team-ko-img-cont:hover .team-name-ko-champ {
+  visibility: visible;
+  opacity: 1;
+}
+
+.wrong-box {
+  border: solid 4px red;
+  min-width: 8.4rem;
+  max-width: 8.4rem;
+  border-radius: 0.7rem;
+}
+
+.correct-box {
+  border: solid 4px rgb(11, 238, 11);
+  min-width: 8.4rem;
+  max-width: 8.4rem;
+  border-radius: 0.7rem;
+}
+
+.wrong-text {
   color: red;
   text-decoration: line-through;
 }
 
-.correct {
+.correct-text {
   color: rgb(11, 238, 11);
 }
 

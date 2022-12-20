@@ -46,12 +46,10 @@ const My_Picks_Locked_Page = () => {
       ) : (
         <div>
           <div className="name-cont">
-            <h1 className="white-text">{user && user.name}</h1>
+            <h1 className="white-text">{user?.name}</h1>
           </div>
 
-          {joe?.tourneyStage === 3 && user && user.tiebreaker && (
-            <Point_System_Cont />
-          )}
+          {joe?.tourneyStage === 3 && user?.tiebreaker && <Point_System_Cont />}
 
           {joe?.tourneyStage === 1 && (
             <Link
@@ -62,7 +60,7 @@ const My_Picks_Locked_Page = () => {
             </Link>
           )}
 
-          {joe?.tourneyStage === 4 && user && user.tiebreaker && (
+          {joe?.tourneyStage === 4 && user?.tiebreaker && (
             <Link
               to="/my_picks_edit_ko"
               style={{ textDecoration: "none", color: "black" }}

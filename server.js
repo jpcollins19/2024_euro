@@ -1,21 +1,22 @@
 //////feature (F) & admin (A) work
 
 ////////////F1 - add flags next to the teams name
-///stage 3
-//my_picks - ON THIS ONE
-//pool_picks
 
 ///stage 4
-//my_picks_ko & group
-//my_picks_edit_ko
-//pool_picks_ko & group
+//my_picks_edit_ko - change curser to the pointing finger?
+//check how everything flows if the user had no KO picks - then adjust the picks and re-submit again
 
 ///stage 5
 //my_picks_ko & group
 //pool_picks_ko & group
 
+////in Points_Cont_Locked - roll through how you can make the singleGroupCalc and all other funcs calc better
+
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
+
+///////css
+//fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?
