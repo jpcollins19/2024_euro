@@ -1,4 +1,31 @@
-//////feature (F) & admin (A) work
+////roll through every file through stage 4 and adjust everything needed:////
+
+////stage 3
+//My_Picks_Locked_Page - Total_Points_Cont - roll through this and make adjustments as needed for group stage scoring
+////////write test specs for 'groupTotal' func////////
+////write above test specs for everyone
+//My_Picks_Locked_Page - Point_System_Cont - adjust this to make it look better via css
+//My_Picks_Locked_Page - unhide all things that deal with tourneyStage >= 3
+//Single_Group_Cont_Locked - unhide all things that deal with tourneyStage >= 3
+//Pool_Picks_Page - unhide all things that deal with tourneyStage === 3
+
+////stage 4
+//fix all admin pages through stage 4
+////users - do full audit
+////groups - verify this still works
+////teams - do full audit
+//My_Picks_Locked_Page - unhide all things that deal with tourneyStage >= 4
+//My_Picks_Unlocked_Page - unhide all things that deal with tourneyStage >= 4
+//Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
+
+////roll through every file through stage 4 and adjust everything needed:////
+
+/////Pool_Picks_Page - bring back in the below:
+{
+  /* {joe?.tourneyStage < 5 && user?.tiebreaker && (
+                <Total_Points_Cont selectedUser={selectedUser?.value} />
+              )} */
+}
 
 ////////////F1 - add flags next to the teams name
 
@@ -11,11 +38,25 @@
 //my_picks_ko & group
 //pool_picks_ko & group
 
+////////////F1 - add flags next to the teams name ------END
+
+////roll through every file through stage 5 and adjust everything needed:////
+
+////stage 5
+//fix all admin pages through stage 5 - might not be needed, but do a full audit
+//Pool_Picks_Page - unhide all things that deal with tourneyStage === 5
+//My_Picks_Locked_Page - Total_Points_Cont - roll through this and make adjustments as needed for group stage scoring
+////////write test specs for all things needed as this stage goes on////////
+////test specs - 'Joe's Knockout Scores' in the 'Calcs everyone's overall scores' describe block
+////test specs - calcs className info in the 'Calcs everyone's overall correct/wrong className info in KO stage' describe block
+
 ////in Points_Cont_Locked - roll through how you can make the singleGroupCalc and all other funcs calc better
+
+/////////do work on Leaderboard_Cont for all 5 stages/////////
+//test specs - do everything in the 'Calcs leaderboard' describe block
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
-//nothing in admin works?
 
 ///////css
 //fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row

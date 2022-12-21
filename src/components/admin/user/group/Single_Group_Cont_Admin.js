@@ -3,7 +3,6 @@ import Prediction_Cont_Admin from "./Prediction_Cont_Admin";
 import Error from "../../../Misc/Error";
 
 const Single_Group_Cont_Admin = ({
-  groupPicks,
   group,
   onChangeSelectionObj,
   groupError,
@@ -23,11 +22,7 @@ const Single_Group_Cont_Admin = ({
       <h4>Group {group}</h4>
       <div className="single-group-cont-edit-picks-inside">
         <Rank_Cont_Admin />
-        <Prediction_Cont_Admin
-          groupPicks={Object.values(groupPicks)}
-          group={group}
-          onChange={onChange}
-        />
+        <Prediction_Cont_Admin group={group} onChange={onChange} />
       </div>
     </div>
   );

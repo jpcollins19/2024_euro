@@ -40,14 +40,13 @@ const User_Admin_Page = () => {
 
       user.label = `${userPickAudit}${user.name}: ${user.email}`;
 
-      user.rank =
-        user.email === "joe@gmail.com"
-          ? -1
-          : user.tiebreaker === null
-          ? idx + 1000
-          : koStageCommenced && user.knockChamp === null
-          ? idx + 500
-          : idx;
+      user.rank = user.admin
+        ? -1
+        : user.tiebreaker === null
+        ? idx + 1000
+        : koStageCommenced && user.knockChamp === null
+        ? idx + 500
+        : idx;
 
       return user;
     })
@@ -179,48 +178,53 @@ const User_Admin_Page = () => {
     setPassword(selectedUser.password);
     setPaid(selectedUser.paid);
     setTourneyStage(selectedUser.tourneyStage);
-    setTiebreaker(selectedUser.tiebreaker);
+
+    setTiebreaker(
+      selectedUser.tiebreaker === undefined
+        ? null
+        : selectedUser.tiebreaker.toString()
+    );
 
     groupLetters.forEach((letter) => {
       const nums = [1, 2, 3, 4];
 
       nums.forEach((num) => {
         const team = selectedUser[`group${letter}${num}`];
-        selectionObj[letter][num] = team;
+        selectionObj[letter][num] = team?.name;
       });
     });
 
-    koLetters.forEach((letter) => {
-      const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-      const Ss = [1, 2, 3, 4];
-      const Fs = [1, 2];
+    // koLetters.forEach((letter) => {
+    //   const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
+    //   const Ss = [1, 2, 3, 4];
+    //   const Fs = [1, 2];
 
-      switch (letter) {
-        case "Q":
-          Qs.forEach((num) => {
-            const setTeam = eval(`set${letter}${num}`);
-            setTeam(selectedUser[`knock${letter}${num}`]);
-          });
-          break;
-        case "S":
-          Ss.forEach((num) => {
-            const setTeam = eval(`set${letter}${num}`);
-            setTeam(selectedUser[`knock${letter}${num}`]);
-          });
-          break;
-        case "F":
-          Fs.forEach((num) => {
-            const setTeam = eval(`set${letter}${num}`);
-            setTeam(selectedUser[`knock${letter}${num}`]);
-          });
-          break;
-        case "champ":
-          setChamp(selectedUser.knockChamp);
-          break;
-        default:
-          break;
-      }
-    });
+    //   switch (letter) {
+    //     case "Q":
+    //       Qs.forEach((num) => {
+    //         const setTeam = eval(`set${letter}${num}`);
+    //         setTeam(selectedUser[`knock${letter}${num}`]);
+    //       });
+    //       break;
+    //     case "S":
+    //       Ss.forEach((num) => {
+    //         const setTeam = eval(`set${letter}${num}`);
+    //         setTeam(selectedUser[`knock${letter}${num}`]);
+    //       });
+    //       break;
+    //     case "F":
+    //       Fs.forEach((num) => {
+    //         const setTeam = eval(`set${letter}${num}`);
+    //         setTeam(selectedUser[`knock${letter}${num}`]);
+    //       });
+    //       break;
+    //     case "champ":
+    //       setChamp(selectedUser.knockChamp);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // });
   }, [selectedUser]);
 
   const togglePaid = () => setPaid((value) => !value);
@@ -270,13 +274,24 @@ const User_Admin_Page = () => {
 
         return dispatch(updateUser(userObj, history, "admin"));
       }
+
       userObj.name = name;
       userObj.password = password;
       userObj.paid = paid;
       userObj.tourneyStage = tourneyStage;
 
-      if (isNaN(tiebreaker) || tiebreaker === 0 || tiebreaker === null)
+      const validTiebreaker = Number(tiebreaker) % 1 === 0;
+      const tiebreakerAsArray = tiebreaker?.split("");
+
+      if (
+        !validTiebreaker ||
+        tiebreaker === "" ||
+        tiebreakerAsArray?.includes(" ") ||
+        tiebreaker === "0" ||
+        tiebreaker === null
+      ) {
         return setTiebreakerError(true);
+      }
 
       userObj.tiebreaker = tiebreaker;
 
@@ -303,57 +318,58 @@ const User_Admin_Page = () => {
       const Ss = [1, 2, 3, 4];
       const Fs = [1, 2];
 
-      joe?.tourneyStage >= 4 &&
-        koLetters.forEach((letter) => {
-          switch (letter) {
-            case "Q":
-              Qs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      // if (joe?.tourneyStage >= 4) {
+      //   koLetters.forEach((letter) => {
+      //     switch (letter) {
+      //       case "Q":
+      //         Qs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "S":
-              Ss.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "S":
+      //         Ss.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "F":
-              Fs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "F":
+      //         Fs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "champ":
-              if (champ.length === 0) {
-                setKoError(true);
-                errorAudit.push(1);
-              } else {
-                userObj.knockChamp = champ;
-              }
-              break;
-            default:
-              break;
-          }
-        });
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "champ":
+      //         if (champ.length === 0) {
+      //           setKoError(true);
+      //           errorAudit.push(1);
+      //         } else {
+      //           userObj.knockChamp = champ;
+      //         }
+      //         break;
+      //       default:
+      //         break;
+      //     }
+      //   });
+      // }
 
       !tiebreakerError &&
         !errorAudit.length &&
@@ -387,6 +403,7 @@ const User_Admin_Page = () => {
             width="40rem"
             set={(option) => setSelectedUser(option.value)}
           />
+
           {Object.keys(selectedUser).length ? (
             <div className="user-details-cont">
               {inputs.map((input) => (
@@ -397,6 +414,7 @@ const User_Admin_Page = () => {
                   set={eval(`set${capFirstLetter(input)}`)}
                 />
               ))}
+
               <div className="paid-cont">
                 <div className="input-cont-admin-user">
                   <div>Paid?</div>
@@ -408,6 +426,7 @@ const User_Admin_Page = () => {
                     checked={paid ? paid : !!paid}
                   ></input>
                 </div>
+
                 <div className="input-cont-admin-user">
                   <div>Only Update Paid Status</div>
                   <input
@@ -431,7 +450,7 @@ const User_Admin_Page = () => {
           )}
         </div>
 
-        {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
+        {/* {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
           <div className="user-admin">
             <div className="error-cont-placeholder">
               {koError && <Error error="Incomplete Picks Below" />}
@@ -489,7 +508,7 @@ const User_Admin_Page = () => {
           </div>
         ) : (
           ""
-        )}
+        )} */}
 
         {Object.values(selectedUser).length > 0 && (
           <div className="user-admin">
@@ -500,7 +519,7 @@ const User_Admin_Page = () => {
                 className="white-text"
                 defaultValue={tiebreaker}
                 onChange={(ev) => {
-                  setTiebreaker(Number(ev.target.value));
+                  setTiebreaker(ev.target.value);
                   setTiebreakerError(false);
                 }}
               ></input>
@@ -511,7 +530,6 @@ const User_Admin_Page = () => {
             </div>
 
             <Group_Cont_Admin
-              selectionObj={selectionObj}
               onChangeSelectionObj={onChangeSelectionObj}
               groupErrorObj={groupErrorObj}
             />

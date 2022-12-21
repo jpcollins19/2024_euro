@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
-  singleGroupCalc,
+  groupCalc,
   knockoutRoundCalc,
   totalScoreCalc,
   loadUsers,
@@ -22,48 +22,48 @@ const Total_Points_Cont = ({ selectedUser }) => {
     dispatch(loadTeams());
   }, []);
 
-  const groupTotal = totalScoreCalc(
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "A"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "B"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "C"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "D"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "E"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "F"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "G"
-    ),
-    singleGroupCalc(
-      pathname === "/pool_picks" ? selectedUser : user,
-      teams,
-      "H"
-    )
-  );
+  // const groupTotal = totalScoreCalc(
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "A"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "B"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "C"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "D"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "E"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "F"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "G"
+  //   ),
+  //   singleGroupCalc(
+  //     pathname === "/pool_picks" ? selectedUser : user,
+  //     teams,
+  //     "H"
+  //   )
+  // );
 
   const inputs = ["Group", "Quarters", "Semis", "Final", "Champion", "Total"];
 
@@ -82,9 +82,10 @@ const Total_Points_Cont = ({ selectedUser }) => {
           </div>
           <div className="total-points-points-cont">
             <h4>Points</h4>
-            <div>{groupTotal}</div>
+            <div>BYAH1</div>
             <div>
-              {
+              BYAH2
+              {/* {
                 Object.values(
                   knockoutRoundCalc(
                     "quarters",
@@ -92,10 +93,11 @@ const Total_Points_Cont = ({ selectedUser }) => {
                     teams
                   )
                 )[0]
-              }
+              } */}
             </div>
             <div>
-              {
+              BYAH3
+              {/* {
                 Object.values(
                   knockoutRoundCalc(
                     "semis",
@@ -103,10 +105,11 @@ const Total_Points_Cont = ({ selectedUser }) => {
                     teams
                   )
                 )[0]
-              }
+              } */}
             </div>
             <div>
-              {
+              BYAH4
+              {/* {
                 Object.values(
                   knockoutRoundCalc(
                     "finals",
@@ -114,10 +117,11 @@ const Total_Points_Cont = ({ selectedUser }) => {
                     teams
                   )
                 )[0]
-              }
+              } */}
             </div>
             <div>
-              {
+              BYAH5
+              {/* {
                 Object.values(
                   knockoutRoundCalc(
                     "champ",
@@ -125,10 +129,10 @@ const Total_Points_Cont = ({ selectedUser }) => {
                     teams
                   )
                 )[0]
-              }
+              } */}
             </div>
             <div className="bold">
-              {totalScoreCalc(
+              {/* {totalScoreCalc(
                 singleGroupCalc(
                   pathname === "/pool_picks" ? selectedUser : user,
                   teams,
@@ -189,14 +193,15 @@ const Total_Points_Cont = ({ selectedUser }) => {
                   pathname === "/pool_picks" ? selectedUser : user,
                   teams
                 )
-              )}
+              )} */}
+              BYAH6
             </div>
           </div>
         </div>
         {
           <h3>
             Tiebreaker:{" "}
-            {selectedUser ? selectedUser.tiebreaker : user.tiebreaker} goals
+            {selectedUser ? selectedUser?.tiebreaker : user?.tiebreaker} goals
           </h3>
         }
       </div>

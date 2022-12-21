@@ -1,10 +1,6 @@
 import Single_Group_Cont_Admin from "./Single_Group_Cont_Admin";
 
-const Group_Cont_Admin = ({
-  selectionObj,
-  onChangeSelectionObj,
-  groupErrorObj,
-}) => {
+const Group_Cont_Admin = ({ onChangeSelectionObj, groupErrorObj }) => {
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
   return (
@@ -16,7 +12,6 @@ const Group_Cont_Admin = ({
         return (
           <Single_Group_Cont_Admin
             key={letter}
-            groupPicks={selectionObj[letter]}
             group={letter}
             onChangeSelectionObj={onChangeSelectionObj}
             groupError={groupError}

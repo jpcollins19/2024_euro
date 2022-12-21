@@ -6,14 +6,10 @@ const Team_Row = ({ number, group, selectedUser }) => {
 
   const user = useSelector((state) => state.auth);
 
-  const teams = useSelector((state) => state.teams);
-
-  const teamName =
+  const team =
     pathname === "/pool_picks"
       ? selectedUser[`group${group}${number}`]
       : user[`group${group}${number}`];
-
-  const team = teams.find((team) => team.name === teamName);
 
   return (
     <div>

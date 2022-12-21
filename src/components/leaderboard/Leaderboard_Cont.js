@@ -18,9 +18,9 @@ const Leaderboard_Cont = () => {
   return (
     user?.tiebreaker && (
       <div>
-        <Rank rankInfo={rankInfo} />
+        {/* <Rank rankInfo={rankInfo} />
         <Name rankInfo={rankInfo} />
-        <Score rankInfo={rankInfo} />
+        <Score rankInfo={rankInfo} /> */}
       </div>
     )
   );

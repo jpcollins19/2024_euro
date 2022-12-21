@@ -8,8 +8,8 @@ const Single_Group_Cont_Unlocked = ({
   groupError,
   setGroupError,
 }) => {
-  const onChange = (answer, group) => {
-    onChangeSelectionObj(group, answer[0], answer[1]);
+  const onChange = (group, rank, team) => {
+    onChangeSelectionObj(group, rank, team);
     setGroupError(false);
   };
 

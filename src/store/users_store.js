@@ -16,9 +16,65 @@ const _deleteUser = (user) => {
   return { type: DELETE_USER, user };
 };
 
+const loadUserData = async () => {
+  let users = (await axios.get("/api/users")).data;
+
+  const teams = (await axios.get("/api/teams")).data;
+
+  const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const groupKeys = [];
+
+  groupLetters.forEach((letter) => {
+    for (let i = 1; i <= 4; i++) {
+      groupKeys.push(`group${letter}${i}`);
+    }
+  });
+
+  const knockRounds = ["Q", "S", "F", "Champ"];
+  const knockKeys = [];
+
+  const knockObj = {
+    Q: 8,
+    S: 4,
+    F: 2,
+    Champ: 1,
+  };
+
+  knockRounds.forEach((round) => {
+    switch (round) {
+      case "Champ":
+        knockKeys.push(`knock${round}`);
+        break;
+      default:
+        for (let i = 1; i <= knockObj[round]; i++) {
+          knockKeys.push(`knock${round}${i}`);
+        }
+    }
+  });
+
+  users = users.map((user) => {
+    groupKeys.forEach((key) => {
+      if (user[key]) {
+        user[key] = teams.find((team) => team.name === user[key]);
+      }
+    });
+
+    knockKeys.forEach((key) => {
+      if (user[key]) {
+        user[key] = teams.find((team) => team.name === user[key]);
+      }
+    });
+
+    return user;
+  });
+
+  return users;
+};
+
 export const loadUsers = () => {
   return async (dispatch) => {
-    const users = (await axios.get("/api/users")).data;
+    const users = await loadUserData();
+
     dispatch(_loadUsers(users));
   };
 };

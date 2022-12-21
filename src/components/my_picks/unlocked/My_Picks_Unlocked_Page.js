@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { updateUser, dupeValInArr, findJoe } from "../../../store";
+import { updateUser, dupeValInArr, findJoe, loadUsers } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
 import Cancel from "../../Misc/Cancel";
@@ -14,6 +14,10 @@ import "./My_Picks_Unlocked.css";
 const My_Picks_Unlocked_Page = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
 
   const [loading, setLoading] = useState(true);
 
@@ -65,52 +69,52 @@ const My_Picks_Unlocked_Page = () => {
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
-      1: user?.groupA1 ? user.groupA1 : null,
-      2: user?.groupA2 ? user.groupA2 : null,
-      3: user?.groupA3 ? user.groupA3 : null,
-      4: user?.groupA4 ? user.groupA4 : null,
+      1: user?.groupA1?.name ? user.groupA1?.name : null,
+      2: user?.groupA2?.name ? user.groupA2?.name : null,
+      3: user?.groupA3?.name ? user.groupA3?.name : null,
+      4: user?.groupA4?.name ? user.groupA4?.name : null,
     },
     B: {
-      1: user?.groupB1 ? user.groupB1 : null,
-      2: user?.groupB2 ? user.groupB2 : null,
-      3: user?.groupB3 ? user.groupB3 : null,
-      4: user?.groupB4 ? user.groupB4 : null,
+      1: user?.groupB1?.name ? user.groupB1?.name : null,
+      2: user?.groupB2?.name ? user.groupB2?.name : null,
+      3: user?.groupB3?.name ? user.groupB3?.name : null,
+      4: user?.groupB4?.name ? user.groupB4?.name : null,
     },
     C: {
-      1: user?.groupC1 ? user.groupC1 : null,
-      2: user?.groupC2 ? user.groupC2 : null,
-      3: user?.groupC3 ? user.groupC3 : null,
-      4: user?.groupC4 ? user.groupC4 : null,
+      1: user?.groupC1?.name ? user.groupC1?.name : null,
+      2: user?.groupC2?.name ? user.groupC2?.name : null,
+      3: user?.groupC3?.name ? user.groupC3?.name : null,
+      4: user?.groupC4?.name ? user.groupC4?.name : null,
     },
     D: {
-      1: user?.groupD1 ? user.groupD1 : null,
-      2: user?.groupD2 ? user.groupD2 : null,
-      3: user?.groupD3 ? user.groupD3 : null,
-      4: user?.groupD4 ? user.groupD4 : null,
+      1: user?.groupD1?.name ? user.groupD1?.name : null,
+      2: user?.groupD2?.name ? user.groupD2?.name : null,
+      3: user?.groupD3?.name ? user.groupD3?.name : null,
+      4: user?.groupD4?.name ? user.groupD4?.name : null,
     },
     E: {
-      1: user?.groupE1 ? user.groupE1 : null,
-      2: user?.groupE2 ? user.groupE2 : null,
-      3: user?.groupE3 ? user.groupE3 : null,
-      4: user?.groupE4 ? user.groupE4 : null,
+      1: user?.groupE1?.name ? user.groupE1?.name : null,
+      2: user?.groupE2?.name ? user.groupE2?.name : null,
+      3: user?.groupE3?.name ? user.groupE3?.name : null,
+      4: user?.groupE4?.name ? user.groupE4?.name : null,
     },
     F: {
-      1: user?.groupF1 ? user.groupF1 : null,
-      2: user?.groupF2 ? user.groupF2 : null,
-      3: user?.groupF3 ? user.groupF3 : null,
-      4: user?.groupF4 ? user.groupF4 : null,
+      1: user?.groupF1?.name ? user.groupF1?.name : null,
+      2: user?.groupF2?.name ? user.groupF2?.name : null,
+      3: user?.groupF3?.name ? user.groupF3?.name : null,
+      4: user?.groupF4?.name ? user.groupF4?.name : null,
     },
     G: {
-      1: user?.groupG1 ? user.groupG1 : null,
-      2: user?.groupG2 ? user.groupG2 : null,
-      3: user?.groupG3 ? user.groupG3 : null,
-      4: user?.groupG4 ? user.groupG4 : null,
+      1: user?.groupG1?.name ? user.groupG1?.name : null,
+      2: user?.groupG2?.name ? user.groupG2?.name : null,
+      3: user?.groupG3?.name ? user.groupG3?.name : null,
+      4: user?.groupG4?.name ? user.groupG4?.name : null,
     },
     H: {
-      1: user?.groupH1 ? user.groupH1 : null,
-      2: user?.groupH2 ? user.groupH2 : null,
-      3: user?.groupH3 ? user.groupH3 : null,
-      4: user?.groupH4 ? user.groupH4 : null,
+      1: user?.groupH1?.name ? user.groupH1?.name : null,
+      2: user?.groupH2?.name ? user.groupH2?.name : null,
+      3: user?.groupH3?.name ? user.groupH3?.name : null,
+      4: user?.groupH4?.name ? user.groupH4?.name : null,
     },
   });
 
@@ -300,8 +304,8 @@ const My_Picks_Unlocked_Page = () => {
           <h3 className="white-text">
             {joe?.tourneyStage === 1 &&
               "Select a country from the dropdowns to rank where you think they will finish in their group"}
-            {joe?.tourneyStage === 4 &&
-              "Click on the country you think will win each game"}
+            {/* {joe?.tourneyStage === 4 &&
+              "Click on the country you think will win each game"} */}
           </h3>
 
           <Button text="Submit Picks" form="update-user" />
@@ -336,7 +340,7 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {joe?.tourneyStage === 4 && user.tiebreaker && (
+            {/* {joe?.tourneyStage === 4 && user.tiebreaker && (
               <Knockout_Cont_Unlocked
                 setTeam={setTeam}
                 setChanged={setChanged}
@@ -386,7 +390,7 @@ const My_Picks_Unlocked_Page = () => {
                 champChanged={champChanged}
                 setChampChanged={setChampChanged}
               />
-            )}
+            )} */}
           </div>
         </form>
       )}
