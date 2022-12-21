@@ -407,8 +407,8 @@
 .team-flag-ko {
   min-width: 40px;
   max-width: 40px;
-  max-height: 22px;
-  min-height: 22px;
+  max-height: 27px;
+  min-height: 27px;
 }
 
 .team-name-ko {
@@ -452,6 +452,10 @@
 .team-ko-img-cont:hover .team-name-ko-champ {
   visibility: visible;
   opacity: 1;
+}
+
+.team-ko-img-cont:hover .team-flag-ko-champ {
+  opacity: 0.5;
 }
 
 .wrong-box {

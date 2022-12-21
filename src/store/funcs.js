@@ -326,6 +326,7 @@ const urlWord = (str) => {
   }, "");
 };
 
+/////need to unhide this for the dropdowns to work in stage 1/////
 const convertTeamDropdown = (team) => {
   // return {
   //   value: team,
@@ -339,6 +340,7 @@ const convertTeamDropdown = (team) => {
   //   ),
   // };
 };
+/////need to unhide this for the dropdowns to work in stage 1/////
 
 const formatSelectedUser = (obj) => {
   return { value: obj, label: obj.name };
@@ -414,7 +416,7 @@ const knockoutClass = (user, teams, position) => {
   const usersTeamPick = knockoutUsersTeamPick(user, position, teams);
 
   const round = position === "Champ" ? "Champ" : position.split("")[0];
-  const number = position === "Champ" ? "Champ" : position.split("")[1] * 1;
+  const number = position === "Champ" ? "Champ" : position.split("")[1];
 
   const placeObj = {
     Q: {
@@ -450,50 +452,43 @@ const knockoutClass = (user, teams, position) => {
       team = teams.find(
         (team) =>
           team[`advanceTo${round}`] &&
-          (team.knockoutPosition === knockoutPos[0] ||
-            team.knockoutPosition === knockoutPos[1])
+          knockoutPos.includes(team.knockoutPosition)
       );
+
       advancingTeam = team?.name;
       break;
     case "S":
       team = teams.find(
         (team) =>
           team[`advanceTo${round}`] &&
-          (team.knockoutPosition === knockoutPos[0] ||
-            team.knockoutPosition === knockoutPos[1] ||
-            team.knockoutPosition === knockoutPos[2] ||
-            team.knockoutPosition === knockoutPos[3])
+          knockoutPos.includes(team.knockoutPosition)
       );
+
       advancingTeam = team?.name;
       break;
     case "F":
       team = teams.find(
         (team) =>
           team[`advanceTo${round}`] &&
-          (team.knockoutPosition === knockoutPos[0] ||
-            team.knockoutPosition === knockoutPos[1] ||
-            team.knockoutPosition === knockoutPos[2] ||
-            team.knockoutPosition === knockoutPos[3] ||
-            team.knockoutPosition === knockoutPos[4] ||
-            team.knockoutPosition === knockoutPos[5] ||
-            team.knockoutPosition === knockoutPos[6] ||
-            team.knockoutPosition === knockoutPos[7])
+          knockoutPos.includes(team.knockoutPosition)
       );
+
       advancingTeam = team?.name;
       break;
     case "Champ":
       team = teams.find((team) => team[`advanceTo${round}`]);
+
       advancingTeam = team?.name;
       break;
     default:
       throw "error";
   }
 
-  if (usersTeamPick?.name === advancingTeam) {
-    return "correct";
-  } else {
-    return usersTeamPick?.outOfTourney ? "wrong" : "";
-  }
+  if (usersTeamPick?.name === advancingTeam) return "correct";
+
+  if (usersTeamPick?.outOfTourney) return "wrong";
+
+  return "";
 };
 
 module.exports = {

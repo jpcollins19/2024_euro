@@ -23,6 +23,7 @@ const R16_UL = ({
   setQ8,
 }) => {
   const teams = useSelector((state) => state.teams);
+
   const nums = [1, 2, 3, 4];
 
   return (

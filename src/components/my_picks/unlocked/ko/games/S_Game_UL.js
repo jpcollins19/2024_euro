@@ -25,8 +25,10 @@ const S_Game_UL = ({
   setF2Changed,
 }) => {
   const user = useSelector((state) => state.auth);
+  const teams = useSelector((state) => state.teams);
 
-  const gameVar = eval(game);
+  const teamName = eval(game);
+
   const nextGameVar = eval(nextGame);
   const setNextGameVar = eval(setNextGame);
 
@@ -51,7 +53,10 @@ const S_Game_UL = ({
     }
   });
 
-  const teamAnswer = gameVar && CurrentQTeams.includes(gameVar) ? gameVar : "";
+  const teamAnswer =
+    teamName.length && CurrentQTeams.includes(teamName) ? teamName : "";
+
+  const teamAnswerObj = teams.find((team) => team.name === teamAnswer);
 
   let gameClass;
 
@@ -72,15 +77,24 @@ const S_Game_UL = ({
 
   return (
     <div className={gameClass}>
-      <input
-        className={`reg-input ${teamAnswer.length > 1 ? "" : "ko-edit-red"}`}
-        readOnly="readonly"
-        defaultValue={teamAnswer && teamAnswer}
-        onClick={(ev) => {
-          setTeam(setNextGameVar, ev.target.value);
+      <div
+        className={`team-ko-img-cont reg-input ${
+          teamAnswerObj?.name.length > 1 ? "" : "ko-edit-red"
+        }`}
+        onClick={() => {
+          setTeam(setNextGameVar, teamAnswerObj?.name);
           setKoError(false);
         }}
-      ></input>
+      >
+        {teamAnswer.length ? (
+          <div>
+            <img className="team-flag-ko" src={teamAnswerObj.flag} />
+            <p className="team-name-ko-edit">{teamAnswerObj.name}</p>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

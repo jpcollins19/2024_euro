@@ -35,8 +35,10 @@ const Q_Game_UL = ({
   setS4Changed,
 }) => {
   const user = useSelector((state) => state.auth);
+  const teams = useSelector((state) => state.teams);
 
-  const gameVar = eval(game);
+  const gameVarTeamObj = teams.find((team) => team.name === eval(game));
+
   const nextGameVar = eval(nextGame);
   const setNextGameVar = eval(setNextGame);
 
@@ -108,15 +110,18 @@ const Q_Game_UL = ({
 
   return (
     <div className={gameClass}>
-      <input
-        className={`reg-input ${gameVar.length > 1 ? "" : "ko-edit-red"}`}
-        readOnly="readonly"
-        defaultValue={gameVar && gameVar}
-        onClick={(ev) => {
-          setTeam(setNextGameVar, ev.target.value);
-          setKoError(false);
-        }}
-      ></input>
+      {gameVarTeamObj !== undefined && (
+        <div
+          className="team-ko-img-cont reg-input"
+          onClick={() => {
+            setTeam(setNextGameVar, gameVarTeamObj?.name);
+            setKoError(false);
+          }}
+        >
+          <img className="team-flag-ko" src={gameVarTeamObj.flag} />
+          <p className="team-name-ko-edit">{gameVarTeamObj.name}</p>
+        </div>
+      )}
     </div>
   );
 };

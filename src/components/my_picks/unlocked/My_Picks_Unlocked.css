@@ -144,9 +144,10 @@
   margin-top: 0.2rem;
 }
 
-.knockout-cont-edit > div > div > div > input {
+.knockout-cont-edit > div > div > div > div {
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 0.5rem;
   background: linear-gradient(
     to bottom,
@@ -162,6 +163,22 @@
   margin: 0.5rem 0rem 0.5rem 0rem;
   min-width: 9rem;
   max-width: 9rem;
+}
+
+.team-name-ko-edit {
+  position: absolute;
+  top: -6;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.team-ko-img-cont:hover .team-name-ko-edit {
+  visibility: visible;
+  opacity: 1;
 }
 
 .R16-game {

@@ -3,7 +3,8 @@
 ////////////F1 - add flags next to the teams name
 
 ///stage 4
-//my_picks_edit_ko - change curser to the pointing finger?
+//my_picks_ko - add correct team on hover over the wrong team name
+//my_picks_edit_ko - ON THIS ONE NEXT
 //check how everything flows if the user had no KO picks - then adjust the picks and re-submit again
 
 ///stage 5
@@ -14,6 +15,7 @@
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
+//nothing in admin works?
 
 ///////css
 //fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row

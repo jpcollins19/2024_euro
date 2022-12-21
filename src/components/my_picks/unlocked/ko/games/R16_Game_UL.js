@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { knockoutR16Push } from "../../../../../store";
+import { findR16Teams } from "../../../../../store";
 
 const R16_Game_UL = ({
   setTeam,
@@ -26,6 +26,42 @@ const R16_Game_UL = ({
   const teams = useSelector((state) => state.teams);
   const user = useSelector((state) => state.auth);
 
+  const setGame = eval(`set${game}`);
+  const gameVar = eval(game);
+
+  const twoTeams = [1, 1];
+
+  useEffect(() => {
+    switch (game) {
+      case "Q1":
+        gameVar?.length < 1 && user?.knockQ1 && setTeam(setGame, user?.knockQ1);
+        break;
+      case "Q2":
+        gameVar?.length < 1 && user?.knockQ2 && setTeam(setGame, user?.knockQ2);
+        break;
+      case "Q3":
+        gameVar?.length < 1 && user?.knockQ3 && setTeam(setGame, user?.knockQ3);
+        break;
+      case "Q4":
+        gameVar?.length < 1 && user?.knockQ4 && setTeam(setGame, user?.knockQ4);
+        break;
+      case "Q5":
+        gameVar?.length < 1 && user?.knockQ5 && setTeam(setGame, user?.knockQ5);
+        break;
+      case "Q6":
+        gameVar?.length < 1 && user?.knockQ6 && setTeam(setGame, user?.knockQ6);
+        break;
+      case "Q7":
+        gameVar?.length < 1 && user?.knockQ7 && setTeam(setGame, user?.knockQ7);
+        break;
+      case "Q8":
+        gameVar?.length < 1 && user?.knockQ8 && setTeam(setGame, user?.knockQ8);
+        break;
+      default:
+        break;
+    }
+  });
+
   const obj = {
     Q1: ["A1", "B2"],
     Q2: ["C1", "D2"],
@@ -37,55 +73,22 @@ const R16_Game_UL = ({
     Q8: ["H1", "G2"],
   };
 
-  const setGame = eval(`set${game}`);
-  const gameVar = eval(game);
-
-  const twoTeams = [1, 1];
-
-  useEffect(() => {
-    switch (game) {
-      case "Q1":
-        gameVar.length < 1 && user.knockQ1 && setTeam(setGame, user.knockQ1);
-        break;
-      case "Q2":
-        gameVar.length < 1 && user.knockQ2 && setTeam(setGame, user.knockQ2);
-        break;
-      case "Q3":
-        gameVar.length < 1 && user.knockQ3 && setTeam(setGame, user.knockQ3);
-        break;
-      case "Q4":
-        gameVar.length < 1 && user.knockQ4 && setTeam(setGame, user.knockQ4);
-        break;
-      case "Q5":
-        gameVar.length < 1 && user.knockQ5 && setTeam(setGame, user.knockQ5);
-        break;
-      case "Q6":
-        gameVar.length < 1 && user.knockQ6 && setTeam(setGame, user.knockQ6);
-        break;
-      case "Q7":
-        gameVar.length < 1 && user.knockQ7 && setTeam(setGame, user.knockQ7);
-        break;
-      case "Q8":
-        gameVar.length < 1 && user.knockQ8 && setTeam(setGame, user.knockQ8);
-        break;
-      default:
-        break;
-    }
-  });
+  const teamsPlayingInMatch = findR16Teams(teams, obj[game]);
 
   return (
     <div className="R16-game white-text">
-      {twoTeams.map((team, idx) => (
-        <input
-          key={idx}
-          readOnly="readonly"
-          className="reg-input"
-          defaultValue={knockoutR16Push(teams, obj[game][idx])}
+      {teamsPlayingInMatch.map((team) => (
+        <div
+          key={team.id}
+          className="team-ko-img-cont reg-input"
           onClick={(ev) => {
-            setTeam(setGame, ev.target.value);
+            setTeam(setGame, team.name);
             setKoError(false);
           }}
-        ></input>
+        >
+          <img className="team-flag-ko" src={team.flag} />
+          <p className="team-name-ko-edit">{team.name}</p>
+        </div>
       ))}
     </div>
   );
