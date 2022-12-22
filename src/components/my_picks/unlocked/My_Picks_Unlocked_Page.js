@@ -301,7 +301,7 @@ const My_Picks_Unlocked_Page = () => {
           id="update-user"
           className="my-picks-container-ul"
         >
-          <h3 className="white-text">
+          <h3 className="black-text">
             {joe?.tourneyStage === 1 &&
               "Select a country from the dropdowns to rank where you think they will finish in their group"}
             {/* {joe?.tourneyStage === 4 &&
@@ -310,14 +310,13 @@ const My_Picks_Unlocked_Page = () => {
 
           <Button text="Submit Picks" form="update-user" />
 
-          <Cancel link="my_picks" />
+          <Cancel link="my_picks" color="black" bold={true} />
 
           {joe?.tourneyStage === 1 && (
-            <div className="tiebreaker-cont-edit-picks white-text">
+            <div className="tiebreaker-cont-edit-picks black-text">
               <h3>Tiebreaker - total number of goals scored:</h3>
 
               <input
-                className="white-text"
                 defaultValue={tiebreaker}
                 onChange={(ev) => {
                   setTiebreaker(ev.target.value);
@@ -327,9 +326,14 @@ const My_Picks_Unlocked_Page = () => {
             </div>
           )}
 
-          <div className="error-cont-placeholder">
+          {joe?.tourneyStage === 4 && (
+            <div className="error-cont-placeholder">
+              {koError && <Error error="Incomplete Picks Below" />}
+            </div>
+          )}
+
+          <div className="error-cont-placeholder-tiebreaker">
             {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
-            {koError && <Error error="Incomplete Picks Below" />}
           </div>
 
           <div className="edit-group-picks">

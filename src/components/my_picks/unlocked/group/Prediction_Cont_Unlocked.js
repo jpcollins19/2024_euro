@@ -10,7 +10,7 @@ const Prediction_Cont_Unlocked = ({ group, onChange }) => {
           <div className="pred-locked-flag">
             <img src={team.flag}></img>
           </div>
-          <div>{team.name}</div>
+          <div className="team-name-in-dropdown">{team.name}</div>
         </div>
       ),
     };

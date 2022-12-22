@@ -16,58 +16,65 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
       return {
         ...styles,
         zIndex: 9999,
+        background: "#485563",
       };
     },
 
     placeholder: (styles) => {
       return {
         ...styles,
-        color: "black",
+        color: "white",
       };
     },
     dropdownIndicator: (styles) => {
       return {
         ...styles,
-        color: "black",
+        color: "white",
         "&:hover": {
-          color: "black",
+          color: "white",
         },
       };
     },
     indicatorSeparator: (styles) => {
       return {
         ...styles,
-        background: "black",
+        background: "white",
+      };
+    },
+    singleValue: (styles) => {
+      return {
+        ...styles,
+        color: "white",
       };
     },
     control: (styles) => {
       return {
         ...styles,
         background: "none",
-        color: "black",
-        border: "solid black 2px",
+        color: "white",
+        border: "solid white 2px",
         cursor: "pointer",
         width,
         borderRadius: "0.5rem",
         fontSize: "1.2rem",
         textAlign: "center",
         "&:hover": {
-          border: "solid black 2px",
+          border: "solid white 2px",
         },
       };
     },
     option: (styles) => {
       return {
         ...styles,
-        background: "rgb(242, 242, 234)",
-        color: "black",
+        background: "#485563", //when dropdown options are not highlited
+        color: "white",
         borderBottom: "solid lightGrey 2px",
         cursor: "pointer",
         width: `${optionWidth}.01rem`,
         fontSize: "1.2rem",
         textAlign: "center",
         "&:hover": {
-          background: "rgb(225, 225, 211)",
+          background: "#5a6d81", //when dropdown option is highlited
         },
       };
     },

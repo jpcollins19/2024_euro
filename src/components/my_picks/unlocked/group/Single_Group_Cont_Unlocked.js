@@ -19,7 +19,7 @@ const Single_Group_Cont_Unlocked = ({
         {groupError && <Error error="Invalid picks in group below" />}
       </div>
 
-      <h4>Group {group}</h4>
+      <h4 className="black-text">Group {group}</h4>
       <div className="single-group-cont-edit-picks-inside">
         <Rank_Cont_Unlocked />
         <Prediction_Cont_Unlocked group={group} onChange={onChange} />

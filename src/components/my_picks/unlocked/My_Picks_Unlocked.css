@@ -1,11 +1,11 @@
 .my-picks-unlocked-page {
   background: linear-gradient(
-    to bottom,
-    rgb(6, 41, 241) 0%,
-    rgb(21, 50, 178) 25%,
-    rgb(14, 35, 130) 50%,
-    rgb(7, 20, 77) 75%,
-    rgb(2, 8, 35) 100%
+    to bottom right,
+    rgb(159, 159, 147) 0%,
+    rgb(222, 222, 212) 25%,
+    rgb(203, 203, 192) 50%,
+    rgb(222, 222, 212) 75%,
+    rgb(159, 159, 147) 100%
   );
   width: 100vw;
   height: 84vh;
@@ -13,9 +13,22 @@
   overflow: auto;
 }
 
+.black-text {
+  margin: 0;
+  text-align: center;
+  text-shadow: 2px 2px white;
+  color: #29323c;
+}
+
 .my-picks-container-ul {
   margin-top: 5%;
   width: 90vw;
+}
+
+.error-cont-placeholder-tiebreaker {
+  margin-top: -3.5rem;
+  margin-right: -45rem;
+  min-height: 5.2rem;
 }
 
 .error-cont-placeholder {
@@ -35,10 +48,12 @@
 
 .tiebreaker-cont-edit-picks > input {
   background: transparent;
-  border: solid 1px white;
+  border: solid 2px #29323c;
   max-width: 4rem;
   height: 2rem;
   font-size: 1.5rem;
+  text-align: center;
+  color: #29323c;
 }
 
 .edit-group-picks {
@@ -61,10 +76,7 @@
 }
 
 .single-group-cont-edit-picks-outside > h4 {
-  text-shadow: 2px 2px black;
-  color: white;
-  text-align: center;
-  margin: 0rem 0rem 0.3rem 0rem;
+  margin: -1rem 0rem 0.3rem 0rem;
   font-size: 1.5rem;
 }
 
@@ -74,21 +86,14 @@
   text-align: center;
   font-size: 1rem;
   border-radius: 1rem;
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+  padding: 0.9rem 0rem 0.9rem 0rem;
   min-height: 12rem;
+  color: white;
 }
 
 .single-group-cont-edit-picks-inside > div > h5 {
-  margin: 0rem;
+  margin: 0 0 5px 0;
 }
 
 .prediction-verbiage-unlocked {
@@ -105,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid black 2px;
+  border: solid white 2px;
   width: 2.2rem;
   border-radius: 0.5rem;
 }
@@ -114,6 +119,10 @@
   display: flex;
   align-items: center;
   height: 2.3rem;
+}
+
+.team-name-in-dropdown {
+  color: white;
 }
 
 /*/////////////////////////////*/

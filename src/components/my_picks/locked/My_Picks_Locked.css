@@ -14,10 +14,38 @@
 
 .point-system-table-cont {
   display: flex;
-  padding: 1rem 0rem 0rem 1rem;
+  flex-direction: column;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+  color: white;
+  border-radius: 1rem;
+  border: solid 3px white;
 }
 
-.point-system-table-text {
+.point-system-table-cont > div {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.ps-top {
+  padding-top: 10px;
+}
+
+.ps-bottom {
+  padding-bottom: 10px;
+}
+
+.color-cont {
+  display: flex;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  margin: 0 5px 0 5px;
+}
+
+/* .point-system-table-text {
   display: flex;
 }
 
@@ -30,16 +58,11 @@
     rgb(222, 222, 212) 75%,
     rgb(159, 159, 147) 100%
   );
-}
+} */
 
-.color-cont {
-  width: 1rem;
-}
+/*  */
 
-.blue-PS {
-  background-color: rgb(12, 218, 233);
-  color: rgb(12, 218, 233);
-}
+/* 
 
 .yellow-PS {
   background-color: yellow;
@@ -54,13 +77,13 @@
 .orange-PS {
   background-color: orange;
   color: orange;
-}
+} */
 
-.notes-cont {
+/* .notes-cont {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   min-width: 31rem;
-}
+} */
 
 .name-cont {
   display: flex;
@@ -145,18 +168,10 @@
   text-align: center;
   font-size: 1rem;
   border-radius: 1rem;
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   padding: 0.4rem 0rem 0.4rem 0rem;
-  box-shadow: 0 1px 2px rgb(159, 159, 147), 0 2px 4px rgb(159, 159, 147),
-    0 4px 8px rgb(159, 159, 147), 0 -1px 2px rgb(159, 159, 147),
-    0 -2px 4px rgb(159, 159, 147), 0 -4px 8px rgb(159, 159, 147);
+  border: solid 3px white;
+  color: white;
 }
 
 .single-group-cont-picks > div {
@@ -165,18 +180,18 @@
   text-align: center;
   font-size: 1rem;
   border-radius: 1rem;
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   padding: 0.4rem 0rem 0.4rem 0rem;
-  box-shadow: 0 1px 2px rgb(159, 159, 147), 0 2px 4px rgb(159, 159, 147),
-    0 4px 8px rgb(159, 159, 147), 0 -1px 2px rgb(159, 159, 147),
-    0 -2px 4px rgb(159, 159, 147), 0 -4px 8px rgb(159, 159, 147);
+  border: solid 3px white;
+  color: white;
+}
+
+.single-group-cont-picks > div > div {
+  padding: 8px 0 8px 0;
+}
+
+.single-group-cont-picks-pre-ko > div > div {
+  padding: 8px 0 8px 0;
 }
 
 .single-group-cont-picks-pre-ko > div > div > h5 {
@@ -189,7 +204,7 @@
 
 .single-group-cont-picks-pre-ko > div > div > div {
   margin: 0.1rem;
-  border: solid black 1px;
+  border: solid white 1px;
   min-height: 1.66rem;
   border-radius: 0.2rem;
 }
@@ -247,19 +262,19 @@
 }
 
 .blue {
-  background-color: rgb(12, 218, 233);
+  background-color: rgb(45, 75, 224);
 }
 
-.yellow {
-  background-color: yellow;
+.purple {
+  background-color: rgb(121, 21, 103);
 }
 
 .green {
-  background-color: rgb(8, 233, 8);
+  background-color: rgb(28, 179, 28);
 }
 
 .orange {
-  background-color: orange;
+  background-color: rgb(211, 150, 36);
 }
 
 .total-points-cont {
@@ -299,17 +314,11 @@
 }
 
 .total-points-text-cont > div {
-  /* border: solid 2px black; */
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
+  border: solid 2px white;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   margin: 0.5rem 0.3rem 0.5rem 0rem;
   border-radius: 0.2rem;
+  color: white;
 }
 
 .bold {
@@ -321,16 +330,11 @@
 }
 
 .total-points-points-cont > div {
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
+  border: solid 2px white;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   margin: 0.5rem 0.2rem 0.5rem 0rem;
   border-radius: 0.2rem;
+  color: white;
 }
 
 /*/////////////////////////////*/

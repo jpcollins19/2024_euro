@@ -1,13 +1,9 @@
-////roll through every file through stage 4 and adjust everything needed:////
+////////////Test specs section notes////////////
+//write test specs for 'groupTotal' func - then write test specs for every users groupTotals
+//once test specs are written, update the Total_Points_Cont file accordingly
+////////////Test specs section notes////////////
 
-////stage 3
-//My_Picks_Locked_Page - Total_Points_Cont - roll through this and make adjustments as needed for group stage scoring
-////////write test specs for 'groupTotal' func////////
-////write above test specs for everyone
-//My_Picks_Locked_Page - Point_System_Cont - adjust this to make it look better via css
-//My_Picks_Locked_Page - unhide all things that deal with tourneyStage >= 3
-//Single_Group_Cont_Locked - unhide all things that deal with tourneyStage >= 3
-//Pool_Picks_Page - unhide all things that deal with tourneyStage === 3
+////roll through every file through stage 4 and adjust everything needed:////
 
 ////stage 4
 //fix all admin pages through stage 4
@@ -19,13 +15,6 @@
 //Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
 
 ////roll through every file through stage 4 and adjust everything needed:////
-
-/////Pool_Picks_Page - bring back in the below:
-{
-  /* {joe?.tourneyStage < 5 && user?.tiebreaker && (
-                <Total_Points_Cont selectedUser={selectedUser?.value} />
-              )} */
-}
 
 ////////////F1 - add flags next to the teams name
 
@@ -47,19 +36,20 @@
 //Pool_Picks_Page - unhide all things that deal with tourneyStage === 5
 //My_Picks_Locked_Page - Total_Points_Cont - roll through this and make adjustments as needed for group stage scoring
 ////////write test specs for all things needed as this stage goes on////////
-////test specs - 'Joe's Knockout Scores' in the 'Calcs everyone's overall scores' describe block
+////test specs - 'Joe's Knockout Scores' in the 'Calcs everyone's overall scores' describe block - write a 'koCalc' func
 ////test specs - calcs className info in the 'Calcs everyone's overall correct/wrong className info in KO stage' describe block
 
-////in Points_Cont_Locked - roll through how you can make the singleGroupCalc and all other funcs calc better
+///test specs - write specs for the 'Calcs leaderboard' describe block.  add diff phases for diff 'it' blocks - 2 groups complete, 6 others are still active, ko round in diff stages, etc
 
 /////////do work on Leaderboard_Cont for all 5 stages/////////
-//test specs - do everything in the 'Calcs leaderboard' describe block
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
 
 ///////css
 //fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row
+
+//add toaster to the leaderboard not signed in page instead of the default error message - if you like this, add it to masters
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?

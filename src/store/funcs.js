@@ -23,7 +23,7 @@ const groupCalc = (user, group) => {
           break;
         case 2:
           points = 2;
-          className = "yellow";
+          className = "purple";
           break;
         default:
           points = 1;

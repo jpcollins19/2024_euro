@@ -9043,7 +9043,7 @@ describe("Cals everthing correctly", () => {
           ],
           B: [
             { points: 3, className: "blue" },
-            { points: 2, className: "yellow" },
+            { points: 2, className: "purple" },
             { points: 0, className: "" },
             { points: 0, className: "" },
           ],
@@ -9061,19 +9061,19 @@ describe("Cals everthing correctly", () => {
           ],
           E: [
             { points: 0, className: "" },
-            { points: 2, className: "yellow" },
+            { points: 2, className: "purple" },
             { points: 0, className: "" },
             { points: 1, className: "green" },
           ],
           F: [
             { points: 0, className: "" },
-            { points: 2, className: "yellow" },
+            { points: 2, className: "purple" },
             { points: 0, className: "" },
             { points: 1, className: "green" },
           ],
           G: [
             { points: 3, className: "blue" },
-            { points: 2, className: "yellow" },
+            { points: 2, className: "purple" },
             { points: 0, className: "" },
             { points: 0, className: "" },
           ],
@@ -9099,7 +9099,7 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     B: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9117,19 +9117,19 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     E: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 1, className: "green" },
       //     ],
       //     F: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 1, className: "green" },
       //     ],
       //     G: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9149,13 +9149,13 @@ describe("Cals everthing correctly", () => {
       //   groups: {
       //     A: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 1, className: "green" },
       //       { points: 1, className: "green" },
       //     ],
       //     B: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9179,13 +9179,13 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     F: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
       //     G: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9205,7 +9205,7 @@ describe("Cals everthing correctly", () => {
       //   groups: {
       //     A: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9217,7 +9217,7 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     C: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9235,7 +9235,7 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     F: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 1, className: "green" },
       //     ],
@@ -9267,7 +9267,7 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     B: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9317,13 +9317,13 @@ describe("Cals everthing correctly", () => {
       //   groups: {
       //     A: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 1, className: "green" },
       //       { points: 1, className: "green" },
       //     ],
       //     B: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 0, className: "" },
       //     ],
@@ -9347,13 +9347,13 @@ describe("Cals everthing correctly", () => {
       //     ],
       //     F: [
       //       { points: 0, className: "" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 0, className: "" },
       //       { points: 1, className: "green" },
       //     ],
       //     G: [
       //       { points: 3, className: "blue" },
-      //       { points: 2, className: "yellow" },
+      //       { points: 2, className: "purple" },
       //       { points: 1, className: "green" },
       //       { points: 1, className: "green" },
       //     ],

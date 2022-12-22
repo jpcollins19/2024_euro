@@ -78,8 +78,8 @@ const Pool_Picks_Page = () => {
             </div>
           )}
 
-          {/* {(joe?.tourneyStage === 3 || joe?.tourneyStage === 4) &&
-            user?.tiebreaker && <Point_System_Cont />} */}
+          {(joe?.tourneyStage === 3 || joe?.tourneyStage === 4) &&
+            user?.tiebreaker && <Point_System_Cont />}
 
           {/* {joe?.tourneyStage === 5 && user?.tiebreaker && (
             <div className="top box">
@@ -110,9 +110,9 @@ const Pool_Picks_Page = () => {
               </div>
             </div>
             <div className="box right">
-              {/* {joe?.tourneyStage < 5 && user?.tiebreaker && (
+              {joe?.tourneyStage < 5 && user?.tiebreaker && (
                 <Total_Points_Cont selectedUser={selectedUser?.value} />
-              )} */}
+              )}
             </div>
           </div>
         </div>
