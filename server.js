@@ -1,27 +1,49 @@
 ////////////Test specs section notes////////////
-//write test specs for 'groupTotal' func - then write test specs for every users groupTotals
-//once test specs are written, update the Total_Points_Cont file accordingly
+//write code 'groupTotal' func - then write test specs for every users groupTotals
+//once test specs are written for 'groupTotal', update the Total_Points_Cont file accordingly
+
+//write test specs for joe's className for each ko pick
+//re-write code for 'knockoutClass' func to make it cleaner
+//once the 'knockoutClass' func is cleaned up, write test specs for every users className
+//write test specs for joe's ko ppicks for each ko round - func = 'koRoundTotal'
+//write code for 'koRoundTotal'
+//once the 'koRoundTotal' func is written, write test specs for every users koRoundtotal
+//once all koRoundTotal stuff above is complete, update the Total_Points_Cont file accordingly
 ////////////Test specs section notes////////////
 
 ////roll through every file through stage 4 and adjust everything needed:////
 
-////stage 4
-//fix all admin pages through stage 4
-////users - do full audit
-////groups - verify this still works
-////teams - do full audit
-//My_Picks_Locked_Page - unhide all things that deal with tourneyStage >= 4
-//My_Picks_Unlocked_Page - unhide all things that deal with tourneyStage >= 4
-//Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
+///////*****/////////**//** */ */ *////////*****/////////**//** */ */ *////**//** */ */ */
+//////stage 4
+//step// go through lifecycle for a user with no picks
+//unlock the other files in the Knockout_Cont_Locked file - mimic the format in the Q_Game_L file
+
+//step// go through lifecycle for a user with completed picks
+//need to make more notes here as you go through it
+
+////My_Picks_Unlocked_Page - unhide all things that deal with tourneyStage >= 4
+//finish off the work from BYAHBYAH!! below, then:
+//step// go through lifecycle for a user with no picks
+//step// go through lifecycle for a user with completed picks
+
+////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
+//step// go through lifecycle for a user with no picks
+//step// go through lifecycle for a user with completed picks
+
+/////admin - users - do full audit
+/////admin - groups - verify this still works
+/////admin - teams - do full audit
 
 ////roll through every file through stage 4 and adjust everything needed:////
 
 ////////////F1 - add flags next to the teams name
 
-///stage 4
-//my_picks_ko - add correct team on hover over the wrong team name
+///stage 4 ---- BYAHBYAH!!
+//my_picks_ko - add correct team on hover over the wrong teams ko cont
+//fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
 //my_picks_edit_ko - ON THIS ONE NEXT
 //check how everything flows if the user had no KO picks - then adjust the picks and re-submit again
+///stage 4 ---- BYAHBYAH!!
 
 ///stage 5
 //my_picks_ko & group

@@ -687,11 +687,11 @@ const syncAndSeed = async () => {
   Cameroon.groupFinishingPosition = 3;
   Serbia.groupFinishingPosition = 4;
   //
-  // Portugal.groupFinishingPosition = 1;
-  // S_Korea.groupFinishingPosition = 2;
-  // Uruguay.groupFinishingPosition = 3;
-  // Ghana.groupFinishingPosition = 4;
-  // //
+  Portugal.groupFinishingPosition = 1;
+  S_Korea.groupFinishingPosition = 2;
+  Uruguay.groupFinishingPosition = 3;
+  Ghana.groupFinishingPosition = 4;
+  //
   Ecuador.groupIsFinished = true;
   Netherlands.groupIsFinished = true;
   Qatar.groupIsFinished = true;

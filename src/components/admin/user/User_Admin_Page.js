@@ -318,58 +318,58 @@ const User_Admin_Page = () => {
       const Ss = [1, 2, 3, 4];
       const Fs = [1, 2];
 
-      // if (joe?.tourneyStage >= 4) {
-      //   koLetters.forEach((letter) => {
-      //     switch (letter) {
-      //       case "Q":
-      //         Qs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+      if (joe?.tourneyStage >= 4) {
+        koLetters.forEach((letter) => {
+          switch (letter) {
+            case "Q":
+              Qs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "S":
-      //         Ss.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "S":
+              Ss.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "F":
-      //         Fs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "F":
+              Fs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "champ":
-      //         if (champ.length === 0) {
-      //           setKoError(true);
-      //           errorAudit.push(1);
-      //         } else {
-      //           userObj.knockChamp = champ;
-      //         }
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   });
-      // }
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "champ":
+              if (champ.length === 0) {
+                setKoError(true);
+                errorAudit.push(1);
+              } else {
+                userObj.knockChamp = champ;
+              }
+              break;
+            default:
+              break;
+          }
+        });
+      }
 
       !tiebreakerError &&
         !errorAudit.length &&
