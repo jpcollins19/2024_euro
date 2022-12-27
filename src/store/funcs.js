@@ -45,7 +45,23 @@ const groupCalc = (user, group) => {
 };
 
 const groupTotalCalc = (user) => {
-  return 4;
+  return ["A", "B", "C", "D", "E", "F", "G", "H"]
+    .reduce((a, letter) => {
+      if (user[`group${letter}1`].groupIsFinished) {
+        a.push(letter);
+      }
+
+      return a;
+    }, [])
+    .reduce((a, letter) => {
+      groupCalc(user, letter)
+        .map((obj) => obj.points)
+        .forEach((point) => {
+          a += point;
+        });
+
+      return a;
+    }, 0);
 };
 
 const knockoutRoundCalc = (round, userObj, teams) => {
@@ -373,12 +389,8 @@ const findR16Teams = (teams, koPositions) => {
   );
 };
 
-const knockoutClass = (user, teams, position) => {
-  const usersTeamPick = user[`knock${position}`];
-  const round = position === "Champ" ? "Champ" : position.split("")[0];
-  const number = position === "Champ" ? "Champ" : position.split("")[1];
-
-  const placeObj = {
+const koGameCalc = (user, game, teams) => {
+  const roundInfoObj = {
     Q: {
       1: ["A1", "B2"],
       2: ["C1", "D2"],
@@ -388,68 +400,152 @@ const knockoutClass = (user, teams, position) => {
       6: ["D1", "C2"],
       7: ["F1", "E2"],
       8: ["H1", "G2"],
+      points: 2,
     },
     S: {
       1: ["A1", "B2", "C1", "D2"],
       2: ["E1", "F2", "G1", "H2"],
       3: ["B1", "A2", "D1", "C2"],
       4: ["F1", "E2", "H1", "G2"],
+      points: 4,
     },
     F: {
       1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
       2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+      points: 6,
     },
   };
 
-  let advancingTeam, knockoutPos, team;
+  const round = game.split("")[0];
+  const number = game.split("")[1];
 
-  if (position !== "Champ") {
-    knockoutPos = placeObj[round][number];
+  const usersPick = user[`knock${game}`];
+
+  let teamThatAdvanced, points;
+
+  if (game === "Champ") {
+    teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
+  } else {
+    teamThatAdvanced =
+      teams.find(
+        (team) =>
+          roundInfoObj[round][number].includes(team.knockoutPosition) &&
+          team[`advanceTo${round}`]
+      ) ?? null;
   }
 
-  switch (round) {
-    case "Q":
-      team = teams.find(
-        (team) =>
-          team[`advanceTo${round}`] &&
-          knockoutPos.includes(team.knockoutPosition)
-      );
-      advancingTeam = team?.name;
-      break;
-    case "S":
-      team = teams.find(
-        (team) =>
-          team[`advanceTo${round}`] &&
-          knockoutPos.includes(team.knockoutPosition)
-      );
-      advancingTeam = team?.name;
-      break;
-    case "F":
-      team = teams.find(
-        (team) =>
-          team[`advanceTo${round}`] &&
-          knockoutPos.includes(team.knockoutPosition)
-      );
-      advancingTeam = team?.name;
-      break;
-    case "Champ":
-      team = teams.find((team) => team[`advanceTo${round}`]);
-      advancingTeam = team?.name;
-      break;
-    default:
-      throw "error";
+  let usersPickClass = "";
+
+  const gameIsFinished = teamThatAdvanced?.name ? true : false;
+
+  if (gameIsFinished) {
+    usersPickClass =
+      usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
   }
 
-  if (usersTeamPick?.name === advancingTeam) return "correct";
+  if (game === "Champ") {
+    points = usersPickClass === "correct" ? 10 : 0;
+  } else {
+    points = usersPickClass === "correct" ? roundInfoObj[round].points : 0;
+  }
 
-  if (usersTeamPick?.outOfTourney) return "wrong";
+  return {
+    usersPick,
+    teamThatAdvanced,
+    usersPickClass,
+    points,
+  };
+};
 
-  return "";
+const koRoundCalc = (user, round, teams) => {
+  const koRoundGames = {
+    quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+    semis: ["S1", "S2", "S3", "S4"],
+    final: ["F1", "F2"],
+    champion: ["Champ"],
+  };
+
+  return koRoundGames[round].reduce((a, game) => {
+    const result = koGameCalc(user, game, teams);
+
+    a += result.points;
+
+    return a;
+  }, 0);
+};
+
+const knockoutClass = (user, teams, position) => {
+  // const usersTeamPick = user[`knock${position}`];
+  // const round = position === "Champ" ? "Champ" : position.split("")[0];
+  // const number = position === "Champ" ? "Champ" : position.split("")[1];
+  // const placeObj = {
+  //   Q: {
+  //     1: ["A1", "B2"],
+  //     2: ["C1", "D2"],
+  //     3: ["E1", "F2"],
+  //     4: ["G1", "H2"],
+  //     5: ["B1", "A2"],
+  //     6: ["D1", "C2"],
+  //     7: ["F1", "E2"],
+  //     8: ["H1", "G2"],
+  //   },
+  //   S: {
+  //     1: ["A1", "B2", "C1", "D2"],
+  //     2: ["E1", "F2", "G1", "H2"],
+  //     3: ["B1", "A2", "D1", "C2"],
+  //     4: ["F1", "E2", "H1", "G2"],
+  //   },
+  //   F: {
+  //     1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+  //     2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+  //   },
+  // };
+  // let advancingTeam, knockoutPos, team;
+  // if (position !== "Champ") {
+  //   knockoutPos = placeObj[round][number];
+  // }
+  // switch (round) {
+  //   case "Q":
+  //     team = teams.find(
+  //       (team) =>
+  //         team[`advanceTo${round}`] &&
+  //         knockoutPos.includes(team.knockoutPosition)
+  //     );
+  //     advancingTeam = team?.name;
+  //     break;
+  //   case "S":
+  //     team = teams.find(
+  //       (team) =>
+  //         team[`advanceTo${round}`] &&
+  //         knockoutPos.includes(team.knockoutPosition)
+  //     );
+  //     advancingTeam = team?.name;
+  //     break;
+  //   case "F":
+  //     team = teams.find(
+  //       (team) =>
+  //         team[`advanceTo${round}`] &&
+  //         knockoutPos.includes(team.knockoutPosition)
+  //     );
+  //     advancingTeam = team?.name;
+  //     break;
+  //   case "Champ":
+  //     team = teams.find((team) => team[`advanceTo${round}`]);
+  //     advancingTeam = team?.name;
+  //     break;
+  //   default:
+  //     throw "error";
+  // }
+  // if (usersTeamPick?.name === advancingTeam) return "correct";
+  // if (usersTeamPick?.outOfTourney) return "wrong";
+  // return "";
 };
 
 module.exports = {
   findJoe,
   validateEmail,
+  koGameCalc,
+  koRoundCalc,
   groupCalc,
   groupTotalCalc,
   totalScoreCalc,

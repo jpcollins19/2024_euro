@@ -1,14 +1,21 @@
 ////////////Test specs section notes////////////
-//write code 'groupTotal' func - then write test specs for every users groupTotals
-//once test specs are written for 'groupTotal', update the Total_Points_Cont file accordingly
+//---DONE --- write test specs for joe's ko quarters picks for each round's game - func = 'koGameCalc'
+//---DONE ---incorporate a func to calc the total for the quarters for joe - func = 'koRoundCalc'
+//---DONE ---once above is complete, write test specs for for the quarters round as if it hasnt finished yet
+//---DONE ---write specs for the semis, final and champ too
+//once 'koGameCalc' work is complete, write test specs for all other users
+//once 'koGameCalc' work is complete, update the Q_Game_L file, and all other files too?
 
-//write test specs for joe's className for each ko pick
-//re-write code for 'knockoutClass' func to make it cleaner
-//once the 'knockoutClass' func is cleaned up, write test specs for every users className
-//write test specs for joe's ko ppicks for each ko round - func = 'koRoundTotal'
-//write code for 'koRoundTotal'
-//once the 'koRoundTotal' func is written, write test specs for every users koRoundtotal
 //once all koRoundTotal stuff above is complete, update the Total_Points_Cont file accordingly
+
+////pause here and take a break from test specs////
+
+//write test specs for joe's overallTotal - func = 'userTotalPoints'
+//in test specs, make it so the ko round is halfway through quarters, semis, final, etc
+//write code for 'userTotalPoints'
+//once the 'userTotalPoints' func is written, write test specs for every users overallTotal
+//once all overallTotal stuff above is complete, update the Total_Points_Cont file accordingly
+
 ////////////Test specs section notes////////////
 
 ////roll through every file through stage 4 and adjust everything needed:////

@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
-  groupCalc,
-  knockoutRoundCalc,
-  totalScoreCalc,
+  capFirstLetter,
+  groupTotalCalc,
+  // knockoutRoundCalc,
+  // totalScoreCalc,
   loadUsers,
-  loadTeams,
 } from "../../../store";
 
 const Total_Points_Cont = ({ selectedUser }) => {
@@ -15,57 +15,13 @@ const Total_Points_Cont = ({ selectedUser }) => {
   const { pathname } = useLocation();
 
   const user = useSelector((state) => state.auth);
-  const teams = useSelector((state) => state.teams);
+  const userToUse = pathname === "/pool_picks" ? selectedUser : user;
 
   useEffect(() => {
     dispatch(loadUsers());
-    dispatch(loadTeams());
   }, []);
 
-  // const groupTotal = totalScoreCalc(
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "A"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "B"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "C"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "D"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "E"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "F"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "G"
-  //   ),
-  //   singleGroupCalc(
-  //     pathname === "/pool_picks" ? selectedUser : user,
-  //     teams,
-  //     "H"
-  //   )
-  // );
-
-  const inputs = ["Group", "Quarters", "Semis", "Final", "Champion", "Total"];
+  const inputs = ["group", "quarters", "semis", "final", "champion", "total"];
 
   return (
     <div>
@@ -76,13 +32,13 @@ const Total_Points_Cont = ({ selectedUser }) => {
             <h4>Stage</h4>
             {inputs.map((input) => (
               <div key={input} className={input === "Total" ? "bold" : ""}>
-                {input}
+                {capFirstLetter(input)}
               </div>
             ))}
           </div>
           <div className="total-points-points-cont">
             <h4>Points</h4>
-            <div>BYAH1</div>
+            <div>{groupTotalCalc(userToUse)}</div>
             <div>
               BYAH2
               {/* {

@@ -1,5 +1,11 @@
 const { expect } = require("chai");
-const { groupCalc, groupTotalCalc, urlWord } = require("./src/store/funcs");
+const {
+  groupCalc,
+  groupTotalCalc,
+  urlWord,
+  koGameCalc,
+  koRoundCalc,
+} = require("./src/store/funcs");
 
 describe("Cals everthing correctly", () => {
   let teams, users;
@@ -9030,7 +9036,7 @@ describe("Cals everthing correctly", () => {
   });
 
   describe("Calcs everyone's overall scores", () => {
-    let user;
+    let user, gameAnswer, koNonCompletedGames, koRoundTotal;
 
     const usersObj = {
       Joe: {
@@ -9087,6 +9093,120 @@ describe("Cals everthing correctly", () => {
         midStage3: 1,
         midStage3Total: 4,
         groupsFinishedTotal: 31,
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "Netherlands" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q7: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q8: {
+              usersPick: { name: "Switz" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            F2: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 6,
+            },
+          },
+
+          champion: {
+            Champ: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+        },
+        midStage5_Q: 1,
+        midStage5Total_Q: 2,
+        koRoundFinishedTotal_Q: 10,
+
+        midStage5_S: 1,
+        midStage5Total_S: 4,
+        koRoundFinishedTotal_S: 8,
+
+        midStage5_F: 1,
+        midStage5Total_F: 0,
+        koRoundFinishedTotal_F: 6,
+
+        koRoundFinishedTotal_C: 0,
       },
 
       // Stanley: {
@@ -9141,7 +9261,7 @@ describe("Cals everthing correctly", () => {
       //     ],
       //   },
       //   midStage3: 2,
-      //   midStage3Total: 4,
+      //   midStage3Total: 9,
       //   groupsFinishedTotal: 31,
       // },
 
@@ -9197,8 +9317,8 @@ describe("Cals everthing correctly", () => {
       //     ],
       //   },
       //   midStage3: 4,
-      //   midStage3Total: 4,
-      //   groupsFinishedTotal: 31,
+      //   midStage3Total: 19,
+      //   groupsFinishedTotal: 28,
       // },
 
       // Kevin: {
@@ -9253,8 +9373,8 @@ describe("Cals everthing correctly", () => {
       //     ],
       //   },
       //   midStage3: 5,
-      //   midStage3Total: 4,
-      //   groupsFinishedTotal: 31,
+      //   midStage3Total: 11,
+      //   groupsFinishedTotal: 21,
       // },
 
       // Sarah: {
@@ -9309,8 +9429,8 @@ describe("Cals everthing correctly", () => {
       //     ],
       //   },
       //   midStage3: 6,
-      //   midStage3Total: 4,
-      //   groupsFinishedTotal: 31,
+      //   midStage3Total: 9,
+      //   groupsFinishedTotal: 14,
       // },
 
       // Anthony: {
@@ -9365,184 +9485,237 @@ describe("Cals everthing correctly", () => {
       //     ],
       //   },
       //   midStage3: 7,
-      //   midStage3Total: 4,
-      //   groupsFinishedTotal: 31,
+      //   midStage3Total: 32,
+      //   groupsFinishedTotal: 36,
       // },
     };
 
-    Object.keys(usersObj).map((userName) => {
+    Object.keys(usersObj).forEach((userName) => {
       describe(`${userName}'s Scores`, () => {
         beforeEach(() => {
           user = users.find((userr) => userr.name === userName);
         });
 
-        Object.keys(usersObj[userName].groups).map((group) => {
-          it(`calcs ${userName}'s group ${group} correctly`, () => {
-            const groupResults = groupCalc(user, group);
+        describe(`${userName}'s Group Stage`, () => {
+          Object.keys(usersObj[userName].groups).forEach((group) => {
+            it(`calcs ${userName}'s group ${group} total & className correctly`, () => {
+              const groupResults = groupCalc(user, group);
 
-            for (let i = 0; i < groupResults.length; i++) {
-              const expectedPoints = usersObj[userName].groups[group][i].points;
-              const expectedClassName =
-                usersObj[userName].groups[group][i].className;
+              for (let i = 0; i < groupResults.length; i++) {
+                const expectedPoints =
+                  usersObj[userName].groups[group][i].points;
+                const expectedClassName =
+                  usersObj[userName].groups[group][i].className;
 
-              expect(groupResults[i].points).to.equal(expectedPoints);
-              expect(groupResults[i].className).to.equal(expectedClassName);
-            }
+                expect(groupResults[i].points).to.equal(expectedPoints);
+                expect(groupResults[i].className).to.equal(expectedClassName);
+              }
+            });
+          });
+
+          it(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
+            let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
+              usersObj[userName].midStage3
+            );
+
+            const groupKeys = [];
+
+            letters.forEach((letter) => {
+              for (let i = 1; i <= 4; i++) {
+                groupKeys.push(`group${letter}${i}`);
+              }
+            });
+
+            groupKeys.forEach((key) => {
+              user[key].groupIsFinished = false;
+            });
+
+            const groupTotal = groupTotalCalc(user);
+
+            expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
+          });
+
+          it(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
+            const groupTotal = groupTotalCalc(user);
+
+            expect(groupTotal).to.equal(usersObj[userName].groupsFinishedTotal);
           });
         });
 
-        it(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
-          let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
-            usersObj[userName].midStage3
-          );
+        describe(`${userName}'s Knockout rounds`, () => {
+          Object.keys(usersObj[userName].koRounds).forEach((round) => {
+            describe(`${round}`, () => {
+              const letter = round.toUpperCase().split("")[0];
 
-          const groupKeys = [];
+              describe(`when ${round} is finished`, () => {
+                Object.keys(usersObj[userName].koRounds[round]).forEach(
+                  (game) => {
+                    describe(`game: ${game}`, () => {
+                      beforeEach(() => {
+                        gameAnswer = koGameCalc(user, game, teams);
+                      });
 
-          letters.forEach((letter) => {
-            for (let i = 1; i <= 4; i++) {
-              groupKeys.push(`group${letter}${i}`);
-            }
+                      it(`pulls in users prediction correctly`, () => {
+                        expect(gameAnswer.usersPick.name).to.equal(
+                          usersObj[userName].koRounds[round][game].usersPick
+                            .name
+                        );
+                      });
+
+                      it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+                        expect(gameAnswer.teamThatAdvanced.name).to.equal(
+                          usersObj[userName].koRounds[round][game]
+                            .teamThatAdvanced.name
+                        );
+                      });
+
+                      it(`game: ${game} - pulls in the users className correctly`, () => {
+                        expect(gameAnswer.usersPickClass).to.equal(
+                          usersObj[userName].koRounds[round][game]
+                            .usersPickClass
+                        );
+                      });
+
+                      it(`game: ${game} - calcs users points correctly`, () => {
+                        expect(gameAnswer.points).to.equal(
+                          usersObj[userName].koRounds[round][game].points
+                        );
+                      });
+                    });
+                  }
+                );
+
+                it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+                  koRoundTotal = koRoundCalc(user, round, teams);
+
+                  expect(koRoundTotal).to.equal(
+                    usersObj[userName][`koRoundFinishedTotal_${letter}`]
+                  );
+                });
+              });
+
+              if (round !== "champion") {
+                describe(`when ${round} only has ${
+                  usersObj[userName][`midStage5_${letter}`]
+                } game(s) completed`, () => {
+                  beforeEach(() => {
+                    const koRoundGames = {
+                      Q: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+                      S: ["S1", "S2", "S3", "S4"],
+                      F: ["F1", "F2"],
+                    };
+
+                    koNonCompletedGames = koRoundGames[letter].slice(
+                      usersObj[userName][`midStage5_${letter}`]
+                    );
+
+                    koNonCompletedGames.forEach((game) => {
+                      usersObj[userName].koRounds[round][
+                        game
+                      ].teamThatAdvanced = null;
+
+                      usersObj[userName].koRounds[round][game].usersPickClass =
+                        "";
+
+                      usersObj[userName].koRounds[round][game].points = 0;
+                    });
+
+                    const koRoundGamePositions = {
+                      Q: {
+                        1: ["A1", "B2"],
+                        2: ["C1", "D2"],
+                        3: ["E1", "F2"],
+                        4: ["G1", "H2"],
+                        5: ["B1", "A2"],
+                        6: ["D1", "C2"],
+                        7: ["F1", "E2"],
+                        8: ["H1", "G2"],
+                      },
+                      S: {
+                        1: ["A1", "B2", "C1", "D2"],
+                        2: ["E1", "F2", "G1", "H2"],
+                        3: ["B1", "A2", "D1", "C2"],
+                        4: ["F1", "E2", "H1", "G2"],
+                      },
+                      F: {
+                        1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+                        2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+                      },
+                    };
+
+                    koNonCompletedGames.forEach((game) => {
+                      const letter = game.split("")[0];
+                      const number = game.split("")[1];
+
+                      koRoundGamePositions[letter][number].forEach(
+                        (finishingPosition) => {
+                          teams.forEach((team) => {
+                            if (team.knockoutPosition === finishingPosition) {
+                              team[`advanceTo${letter}`] = false;
+                              team.outOfTourney = false;
+                            }
+                          });
+                        }
+                      );
+                    });
+                  });
+
+                  Object.keys(usersObj[userName].koRounds[round]).forEach(
+                    (game) => {
+                      describe(`game: ${game}`, () => {
+                        beforeEach(() => {
+                          gameAnswer = koGameCalc(user, game, teams);
+                        });
+
+                        it(`pulls in users prediction correctly`, () => {
+                          expect(gameAnswer.usersPick.name).to.equal(
+                            usersObj[userName].koRounds[round][game].usersPick
+                              .name
+                          );
+                        });
+
+                        it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+                          if (koNonCompletedGames.includes(game)) {
+                            expect(gameAnswer.teamThatAdvanced).to.equal(
+                              usersObj[userName].koRounds[round][game]
+                                .teamThatAdvanced
+                            );
+                          } else {
+                            expect(gameAnswer.teamThatAdvanced.name).to.equal(
+                              usersObj[userName].koRounds[round][game]
+                                .teamThatAdvanced.name
+                            );
+                          }
+                        });
+
+                        it(`game: ${game} - pulls in the users className correctly`, () => {
+                          expect(gameAnswer.usersPickClass).to.equal(
+                            usersObj[userName].koRounds[round][game]
+                              .usersPickClass
+                          );
+                        });
+
+                        it(`game: ${game} - calcs users points correctly`, () => {
+                          expect(gameAnswer.points).to.equal(
+                            usersObj[userName].koRounds[round][game].points
+                          );
+                        });
+                      });
+                    }
+                  );
+
+                  it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+                    koRoundTotal = koRoundCalc(user, round, teams);
+
+                    expect(koRoundTotal).to.equal(
+                      usersObj[userName][`midStage5Total_${letter}`]
+                    );
+                  });
+                });
+              }
+            });
           });
-
-          groupKeys.forEach((key) => {
-            user[key].groupIsFinished = false;
-          });
-
-          const groupTotal = groupTotalCalc(user);
-
-          expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
         });
-
-        it(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
-          const groupTotal = groupTotalCalc(user);
-
-          expect(groupTotal).to.equal(usersObj[userName].groupsFinishedTotal);
-        });
-
-        //   // describe("Joe's Knockout Scores", () => {
-        //   //   it("calculates Joe's quarters correctly", () => {
-        //   //     total = totalScoreCalc(
-        //   //       singleGroupCalc(joe, teams, "A"),
-        //   //       singleGroupCalc(joe, teams, "B"),
-        //   //       singleGroupCalc(joe, teams, "C"),
-        //   //       singleGroupCalc(joe, teams, "D"),
-        //   //       singleGroupCalc(joe, teams, "E"),
-        //   //       singleGroupCalc(joe, teams, "F"),
-        //   //       singleGroupCalc(joe, teams, "G"),
-        //   //       singleGroupCalc(joe, teams, "H"),
-        //   //       knockoutRoundCalc("quarters", joe, teams)
-        //   //     );
-
-        //   //     expect(total).to.equal(54);
-        //   //   });
-
-        //   //   it("calculates Joe's semis correctly", () => {
-        //   //     total = totalScoreCalc(
-        //   //       singleGroupCalc(joe, teams, "A"),
-        //   //       singleGroupCalc(joe, teams, "B"),
-        //   //       singleGroupCalc(joe, teams, "C"),
-        //   //       singleGroupCalc(joe, teams, "D"),
-        //   //       singleGroupCalc(joe, teams, "E"),
-        //   //       singleGroupCalc(joe, teams, "F"),
-        //   //       singleGroupCalc(joe, teams, "G"),
-        //   //       singleGroupCalc(joe, teams, "H"),
-        //   //       knockoutRoundCalc("quarters", joe, teams),
-        //   //       knockoutRoundCalc("semis", joe, teams)
-        //   //     );
-
-        //   //     expect(total).to.equal(70);
-        //   //   });
-
-        //   //   it("calculates Joe's finals correctly", () => {
-        //   //     total = totalScoreCalc(
-        //   //       singleGroupCalc(joe, teams, "A"),
-        //   //       singleGroupCalc(joe, teams, "B"),
-        //   //       singleGroupCalc(joe, teams, "C"),
-        //   //       singleGroupCalc(joe, teams, "D"),
-        //   //       singleGroupCalc(joe, teams, "E"),
-        //   //       singleGroupCalc(joe, teams, "F"),
-        //   //       singleGroupCalc(joe, teams, "G"),
-        //   //       singleGroupCalc(joe, teams, "H"),
-        //   //       knockoutRoundCalc("quarters", joe, teams),
-        //   //       knockoutRoundCalc("semis", joe, teams),
-        //   //       knockoutRoundCalc("finals", joe, teams)
-        //   //     );
-
-        //   //     expect(total).to.equal(82);
-        //   //   });
-
-        //   //   it("calculates Joe's overall total correctly", () => {
-        //   //     total = totalScoreCalc(
-        //   //       singleGroupCalc(joe, teams, "A"),
-        //   //       singleGroupCalc(joe, teams, "B"),
-        //   //       singleGroupCalc(joe, teams, "C"),
-        //   //       singleGroupCalc(joe, teams, "D"),
-        //   //       singleGroupCalc(joe, teams, "E"),
-        //   //       singleGroupCalc(joe, teams, "F"),
-        //   //       singleGroupCalc(joe, teams, "G"),
-        //   //       singleGroupCalc(joe, teams, "H"),
-        //   //       knockoutRoundCalc("quarters", joe, teams),
-        //   //       knockoutRoundCalc("semis", joe, teams),
-        //   //       knockoutRoundCalc("finals", joe, teams),
-        //   //       knockoutRoundCalc("champ", joe, teams)
-        //   //     );
-
-        //   //     expect(total).to.equal(92);
-        //   //   });
-        //   // });
-        // });
-      });
-    });
-
-    describe("Calcs everyone's overall correct/wrong className info in KO stage", () => {
-      let joe, e, coach, kelly;
-
-      describe("Joe's picks", () => {
-        beforeEach(() => {
-          joe = users.find((user) => user.name === "Joe");
-        });
-
-        // it("calculates quarters correctly", () => {
-        //   const Q1 = knockoutClass(joe, teams, "Q1");
-        //   const Q2 = knockoutClass(joe, teams, "Q2");
-        //   const Q3 = knockoutClass(joe, teams, "Q3");
-        //   const Q4 = knockoutClass(joe, teams, "Q4");
-        //   const Q5 = knockoutClass(joe, teams, "Q5");
-        //   const Q6 = knockoutClass(joe, teams, "Q6");
-        //   const Q7 = knockoutClass(joe, teams, "Q7");
-        //   const Q8 = knockoutClass(joe, teams, "Q8");
-        //   expect(Q1).to.equal("correct");
-        //   expect(Q2).to.equal("correct");
-        //   expect(Q3).to.equal("correct");
-        //   expect(Q4).to.equal("correct");
-        //   expect(Q5).to.equal("correct");
-        //   expect(Q6).to.equal("correct");
-        //   expect(Q7).to.equal("correct");
-        //   expect(Q8).to.equal("correct");
-        // });
-
-        // it("calculates semis correctly", () => {
-        //   const S1 = knockoutClass(joe, teams, "S1");
-        //   const S2 = knockoutClass(joe, teams, "S2");
-        //   const S3 = knockoutClass(joe, teams, "S3");
-        //   const S4 = knockoutClass(joe, teams, "S4");
-        //   expect(S1).to.equal("correct");
-        //   expect(S2).to.equal("correct");
-        //   expect(S3).to.equal("correct");
-        //   expect(S4).to.equal("correct");
-        // });
-
-        // it("calculates final correctly", () => {
-        //   const F1 = knockoutClass(joe, teams, "F1");
-        //   const F2 = knockoutClass(joe, teams, "F2");
-        //   expect(F1).to.equal("correct");
-        //   expect(F2).to.equal("correct");
-        // });
-
-        // it("calculates champ correctly", () => {
-        //   const champ = knockoutClass(joe, teams, "Champ");
-        //   expect(champ).to.equal("correct");
-        // });
       });
     });
   });

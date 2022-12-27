@@ -10,8 +10,14 @@ const Q_Game_L = ({ game, gameNum, selectedUser }) => {
 
   const userToUse = pathname === "/pool_picks" ? selectedUser : user;
 
-  const usersTeamPick = userToUse[`knock${game}`];
-  const usersPickClass = knockoutClass(userToUse, teams, game);
+  const gameInfo = {
+    usersPick: userToUse[`knock${game}`],
+    teamThatAdvanced: userToUse[`knock${game}`],
+    usersPickClass: knockoutClass(userToUse, teams, game),
+    points: 7,
+  };
+
+  console.log("gameInfo", gameInfo);
 
   let gameClass;
 
@@ -47,16 +53,16 @@ const Q_Game_L = ({ game, gameNum, selectedUser }) => {
   return (
     <div
       className={`white-text ${gameClass} ${
-        usersTeamPick?.name ? `${usersPickClass}-box` : ""
+        gameInfo.usersPick?.name ? `${gameInfo.usersPickClass}-box` : ""
       }`}
     >
       <div className="team-ko-img-cont">
-        {usersTeamPick?.name && (
-          <img className="team-flag-ko" src={usersTeamPick?.flag} />
+        {gameInfo.usersPick?.name && (
+          <img className="team-flag-ko" src={gameInfo.usersPick?.flag} />
         )}
 
-        <p className={`team-name-ko ${usersPickClass}-text`}>
-          {usersTeamPick?.name}
+        <p className={`team-name-ko ${gameInfo.usersPickClass}-text`}>
+          {gameInfo.usersPick?.name}
         </p>
       </div>
     </div>
