@@ -5,6 +5,7 @@ const {
   urlWord,
   koGameCalc,
   koRoundCalc,
+  userTotalPoints,
 } = require("./src/store/funcs");
 
 describe("Cals everthing correctly", () => {
@@ -9036,7 +9037,12 @@ describe("Cals everthing correctly", () => {
   });
 
   describe("Calcs everyone's overall scores", () => {
-    let user, gameAnswer, koNonCompletedGames, koRoundTotal;
+    let user,
+      groupTotal,
+      userOverallTotal,
+      gameAnswer,
+      koNonCompletedGames,
+      koRoundTotal;
 
     const usersObj = {
       Joe: {
@@ -9093,6 +9099,7 @@ describe("Cals everthing correctly", () => {
         midStage3: 1,
         midStage3Total: 4,
         groupsFinishedTotal: 31,
+
         koRounds: {
           quarters: {
             Q1: {
@@ -9197,306 +9204,946 @@ describe("Cals everthing correctly", () => {
         midStage5_Q: 1,
         midStage5Total_Q: 2,
         koRoundFinishedTotal_Q: 10,
+        koRoundFinished_Q_overallTotal: 41,
+        midStage5_Q_overallTotal: 33,
 
         midStage5_S: 1,
         midStage5Total_S: 4,
         koRoundFinishedTotal_S: 8,
+        koRoundFinished_S_overallTotal: 49,
+        midStage5_S_overallTotal: 45,
 
         midStage5_F: 1,
         midStage5Total_F: 0,
         koRoundFinishedTotal_F: 6,
+        koRoundFinished_F_overallTotal: 55,
+        midStage5_F_overallTotal: 49,
 
         koRoundFinishedTotal_C: 0,
+        koRoundFinished_C_overallTotal: 55,
       },
 
-      // Stanley: {
-      //   groups: {
-      //     A: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     B: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     C: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     D: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     E: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     F: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     G: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     H: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //       { points: 0, className: "" },
-      //     ],
-      //   },
-      //   midStage3: 2,
-      //   midStage3Total: 9,
-      //   groupsFinishedTotal: 31,
-      // },
+      Stanley: {
+        groups: {
+          A: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          B: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          C: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          D: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          E: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          F: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          G: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          H: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+            { points: 0, className: "" },
+          ],
+        },
+        midStage3: 2,
+        midStage3Total: 9,
+        groupsFinishedTotal: 31,
 
-      // Pat: {
-      //   groups: {
-      //     A: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 1, className: "green" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     B: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     C: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     D: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     E: [
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     F: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     G: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     H: [
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //   },
-      //   midStage3: 4,
-      //   midStage3Total: 19,
-      //   groupsFinishedTotal: 28,
-      // },
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "Netherlands" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q7: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q8: {
+              usersPick: { name: "Switz" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 6,
+            },
+            F2: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 6,
+            },
+          },
 
-      // Kevin: {
-      //   groups: {
-      //     A: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     B: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     C: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     D: [
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     E: [
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     F: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     G: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     H: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //   },
-      //   midStage3: 5,
-      //   midStage3Total: 11,
-      //   groupsFinishedTotal: 21,
-      // },
+          champion: {
+            Champ: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 10,
+            },
+          },
+        },
+        midStage5_Q: 2,
+        midStage5Total_Q: 4,
+        koRoundFinishedTotal_Q: 10,
+        koRoundFinished_Q_overallTotal: 41,
+        midStage5_Q_overallTotal: 35,
 
-      // Sarah: {
-      //   groups: {
-      //     A: [
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     B: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     C: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     D: [
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "orange" },
-      //       { points: 1, className: "green" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     E: [
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     F: [
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     G: [
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     H: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //       { points: 0, className: "" },
-      //     ],
-      //   },
-      //   midStage3: 6,
-      //   midStage3Total: 9,
-      //   groupsFinishedTotal: 14,
-      // },
+        midStage5_S: 2,
+        midStage5Total_S: 4,
+        koRoundFinishedTotal_S: 8,
+        koRoundFinished_S_overallTotal: 49,
+        midStage5_S_overallTotal: 45,
 
-      // Anthony: {
-      //   groups: {
-      //     A: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 1, className: "green" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     B: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     C: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     D: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //       { points: 0, className: "" },
-      //     ],
-      //     E: [
-      //       { points: 1, className: "orange" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     F: [
-      //       { points: 0, className: "" },
-      //       { points: 2, className: "purple" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     G: [
-      //       { points: 3, className: "blue" },
-      //       { points: 2, className: "purple" },
-      //       { points: 1, className: "green" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //     H: [
-      //       { points: 3, className: "blue" },
-      //       { points: 0, className: "" },
-      //       { points: 0, className: "" },
-      //       { points: 1, className: "green" },
-      //     ],
-      //   },
-      //   midStage3: 7,
-      //   midStage3Total: 32,
-      //   groupsFinishedTotal: 36,
-      // },
+        midStage5_F: 2,
+        midStage5Total_F: 12,
+        koRoundFinishedTotal_F: 12,
+        koRoundFinished_F_overallTotal: 61,
+        midStage5_F_overallTotal: 61,
+
+        koRoundFinishedTotal_C: 10,
+        koRoundFinished_C_overallTotal: 71,
+      },
+
+      Pat: {
+        groups: {
+          A: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 1, className: "green" },
+            { points: 1, className: "green" },
+          ],
+          B: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          C: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          D: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          E: [
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          F: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          G: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          H: [
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+        },
+        midStage3: 4,
+        midStage3Total: 19,
+        groupsFinishedTotal: 28,
+
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "USA" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Croatia" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q7: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q8: {
+              usersPick: { name: "Portugal" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            F2: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+
+          champion: {
+            Champ: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+        },
+        midStage5_Q: 3,
+        midStage5Total_Q: 4,
+        koRoundFinishedTotal_Q: 12,
+        koRoundFinished_Q_overallTotal: 40,
+        midStage5_Q_overallTotal: 32,
+
+        midStage5_S: 3,
+        midStage5Total_S: 4,
+        koRoundFinishedTotal_S: 4,
+        koRoundFinished_S_overallTotal: 44,
+        midStage5_S_overallTotal: 44,
+
+        midStage5_F: 2,
+        midStage5Total_F: 0,
+        koRoundFinishedTotal_F: 0,
+        koRoundFinished_F_overallTotal: 44,
+        midStage5_F_overallTotal: 44,
+
+        koRoundFinishedTotal_C: 0,
+        koRoundFinished_C_overallTotal: 44,
+      },
+
+      Kevin: {
+        groups: {
+          A: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          B: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          C: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          D: [
+            { points: 0, className: "" },
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          E: [
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+            { points: 0, className: "" },
+          ],
+          F: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          G: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          H: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+        },
+        midStage3: 5,
+        midStage3Total: 11,
+        groupsFinishedTotal: 21,
+
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "USA" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "Poland" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q7: {
+              usersPick: { name: "Morocco" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q8: {
+              usersPick: { name: "Switz" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "Poland" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S4: {
+              usersPick: { name: "Morocco" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            F2: {
+              usersPick: { name: "Morocco" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+
+          champion: {
+            Champ: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+        },
+        midStage5_Q: 4,
+        midStage5Total_Q: 4,
+        koRoundFinishedTotal_Q: 8,
+        koRoundFinished_Q_overallTotal: 29,
+        midStage5_Q_overallTotal: 25,
+
+        midStage5_S: 4,
+        midStage5Total_S: 8,
+        koRoundFinishedTotal_S: 8,
+        koRoundFinished_S_overallTotal: 37,
+        midStage5_S_overallTotal: 37,
+
+        midStage5_F: 1,
+        midStage5Total_F: 0,
+        koRoundFinishedTotal_F: 0,
+        koRoundFinished_F_overallTotal: 37,
+        midStage5_F_overallTotal: 37,
+
+        koRoundFinishedTotal_C: 0,
+        koRoundFinished_C_overallTotal: 37,
+      },
+
+      Sarah: {
+        groups: {
+          A: [
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          B: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          C: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          D: [
+            { points: 0, className: "" },
+            { points: 1, className: "orange" },
+            { points: 1, className: "green" },
+            { points: 0, className: "" },
+          ],
+          E: [
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          F: [
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          G: [
+            { points: 0, className: "" },
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          H: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+            { points: 0, className: "" },
+          ],
+        },
+        midStage3: 6,
+        midStage3Total: 9,
+        groupsFinishedTotal: 14,
+
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "USA" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "Poland" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q7: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q8: {
+              usersPick: { name: "Switz" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            F2: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+
+          champion: {
+            Champ: {
+              usersPick: { name: "Japan" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+        },
+        midStage5_Q: 6,
+        midStage5Total_Q: 6,
+        koRoundFinishedTotal_Q: 6,
+        koRoundFinished_Q_overallTotal: 20,
+        midStage5_Q_overallTotal: 20,
+
+        midStage5_S: 2,
+        midStage5Total_S: 4,
+        koRoundFinishedTotal_S: 4,
+        koRoundFinished_S_overallTotal: 24,
+        midStage5_S_overallTotal: 24,
+
+        midStage5_F: 2,
+        midStage5Total_F: 0,
+        koRoundFinishedTotal_F: 0,
+        koRoundFinished_F_overallTotal: 24,
+        midStage5_F_overallTotal: 24,
+
+        koRoundFinishedTotal_C: 0,
+        koRoundFinished_C_overallTotal: 24,
+      },
+
+      Anthony: {
+        groups: {
+          A: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 1, className: "green" },
+            { points: 1, className: "green" },
+          ],
+          B: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+          ],
+          C: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          D: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+            { points: 0, className: "" },
+          ],
+          E: [
+            { points: 1, className: "orange" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          F: [
+            { points: 0, className: "" },
+            { points: 2, className: "purple" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+          G: [
+            { points: 3, className: "blue" },
+            { points: 2, className: "purple" },
+            { points: 1, className: "green" },
+            { points: 1, className: "green" },
+          ],
+          H: [
+            { points: 3, className: "blue" },
+            { points: 0, className: "" },
+            { points: 0, className: "" },
+            { points: 1, className: "green" },
+          ],
+        },
+        midStage3: 7,
+        midStage3Total: 32,
+        groupsFinishedTotal: 36,
+
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "USA" },
+              teamThatAdvanced: { name: "Netherlands" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q2: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Croatia" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q4: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Brasil" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q7: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q8: {
+              usersPick: { name: "Portugal" },
+              teamThatAdvanced: { name: "Portugal" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+          },
+          semis: {
+            S1: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 4,
+            },
+            S2: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Croatia" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S3: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            S4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Morocco" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+          final: {
+            F1: {
+              usersPick: { name: "Brasil" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            F2: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+
+          champion: {
+            Champ: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+          },
+        },
+        midStage5_Q: 7,
+        midStage5Total_Q: 10,
+        koRoundFinishedTotal_Q: 12,
+        koRoundFinished_Q_overallTotal: 48,
+        midStage5_Q_overallTotal: 46,
+
+        midStage5_S: 3,
+        midStage5Total_S: 4,
+        koRoundFinishedTotal_S: 4,
+        koRoundFinished_S_overallTotal: 52,
+        midStage5_S_overallTotal: 52,
+
+        midStage5_F: 2,
+        midStage5Total_F: 0,
+        koRoundFinishedTotal_F: 0,
+        koRoundFinished_F_overallTotal: 52,
+        midStage5_F_overallTotal: 52,
+
+        koRoundFinishedTotal_C: 0,
+        koRoundFinished_C_overallTotal: 52,
+      },
     };
 
     Object.keys(usersObj).forEach((userName) => {
       describe(`${userName}'s Scores`, () => {
         beforeEach(() => {
           user = users.find((userr) => userr.name === userName);
+
+          const tina = teams.find((team) => team.name === "Argentina");
+
+          if (user.name === "Stanley") {
+            user.knockF1 = tina;
+            user.knockChamp = tina;
+          }
         });
 
         describe(`${userName}'s Group Stage`, () => {
+          beforeEach(() => {
+            teams.forEach((team) => {
+              const inputs = [
+                "advanceToQ",
+                "advanceToS",
+                "advanceToF",
+                "advanceToChamp",
+                "outOfTourney",
+              ];
+
+              inputs.forEach((input) => {
+                team[input] = false;
+              });
+            });
+          });
+
           Object.keys(usersObj[userName].groups).forEach((group) => {
             it(`calcs ${userName}'s group ${group} total & className correctly`, () => {
               const groupResults = groupCalc(user, group);
@@ -9513,39 +10160,86 @@ describe("Cals everthing correctly", () => {
             });
           });
 
-          it(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
-            let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
-              usersObj[userName].midStage3
-            );
+          describe(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
+            beforeEach(() => {
+              let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
+                usersObj[userName].midStage3
+              );
 
-            const groupKeys = [];
+              const groupKeys = [];
 
-            letters.forEach((letter) => {
-              for (let i = 1; i <= 4; i++) {
-                groupKeys.push(`group${letter}${i}`);
-              }
+              letters.forEach((letter) => {
+                for (let i = 1; i <= 4; i++) {
+                  groupKeys.push(`group${letter}${i}`);
+                }
+              });
+
+              groupKeys.forEach((key) => {
+                user[key].groupIsFinished = false;
+              });
             });
 
-            groupKeys.forEach((key) => {
-              user[key].groupIsFinished = false;
+            it(`groupTotalCalc func`, () => {
+              groupTotal = groupTotalCalc(user);
+
+              expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
             });
 
-            const groupTotal = groupTotalCalc(user);
+            it(`userTotalPoints func`, () => {
+              userOverallTotal = userTotalPoints(user, teams);
 
-            expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
+              expect(userOverallTotal).to.equal(
+                usersObj[userName].midStage3Total
+              );
+            });
           });
 
-          it(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
-            const groupTotal = groupTotalCalc(user);
+          describe(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
+            it(`groupTotalCalc func`, () => {
+              groupTotal = groupTotalCalc(user);
 
-            expect(groupTotal).to.equal(usersObj[userName].groupsFinishedTotal);
+              expect(groupTotal).to.equal(
+                usersObj[userName].groupsFinishedTotal
+              );
+            });
+
+            it(`userTotalPoints func`, () => {
+              userOverallTotal = userTotalPoints(user, teams);
+
+              expect(userOverallTotal).to.equal(
+                usersObj[userName].groupsFinishedTotal
+              );
+            });
           });
         });
 
         describe(`${userName}'s Knockout rounds`, () => {
           Object.keys(usersObj[userName].koRounds).forEach((round) => {
-            describe(`${round}`, () => {
+            describe(`${userName}: ${round}`, () => {
               const letter = round.toUpperCase().split("")[0];
+
+              beforeEach(() => {
+                switch (round) {
+                  case "quarters":
+                    teams.forEach((team) => {
+                      team.advanceToS = false;
+                      team.advanceToF = false;
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                  case "semis":
+                    teams.forEach((team) => {
+                      team.advanceToF = false;
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                  case "final":
+                    teams.forEach((team) => {
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                }
+              });
 
               describe(`when ${round} is finished`, () => {
                 Object.keys(usersObj[userName].koRounds[round]).forEach(
@@ -9590,6 +10284,14 @@ describe("Cals everthing correctly", () => {
 
                   expect(koRoundTotal).to.equal(
                     usersObj[userName][`koRoundFinishedTotal_${letter}`]
+                  );
+                });
+
+                it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+                  userOverallTotal = userTotalPoints(user, teams);
+
+                  expect(userOverallTotal).to.equal(
+                    usersObj[userName][`koRoundFinished_${letter}_overallTotal`]
                   );
                 });
               });
@@ -9709,6 +10411,14 @@ describe("Cals everthing correctly", () => {
 
                     expect(koRoundTotal).to.equal(
                       usersObj[userName][`midStage5Total_${letter}`]
+                    );
+                  });
+
+                  it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+                    userOverallTotal = userTotalPoints(user, teams);
+
+                    expect(userOverallTotal).to.equal(
+                      usersObj[userName][`midStage5_${letter}_overallTotal`]
                     );
                   });
                 });

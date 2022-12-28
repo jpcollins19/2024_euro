@@ -2,68 +2,6 @@ const findJoe = (arr) => {
   return arr.find((user) => user.admin);
 };
 
-const groupCalc = (user, group) => {
-  let userGroupTeamRanks = [];
-
-  for (let i = 1; i <= 4; i++) {
-    userGroupTeamRanks.push(user[`group${group}${i}`]);
-  }
-
-  return userGroupTeamRanks.map((team, idx) => {
-    const finishingPosition = team.groupFinishingPosition;
-
-    let points = 0;
-    let className = "";
-
-    if (finishingPosition === idx + 1) {
-      switch (idx + 1) {
-        case 1:
-          points = 3;
-          className = "blue";
-          break;
-        case 2:
-          points = 2;
-          className = "purple";
-          break;
-        default:
-          points = 1;
-          className = "green";
-      }
-    }
-
-    const reversedGroupAdvansers =
-      (finishingPosition === 1 && idx + 1 === 2) ||
-      (finishingPosition === 2 && idx + 1 === 1);
-
-    if (reversedGroupAdvansers) {
-      points = 1;
-      className = "orange";
-    }
-
-    return { points, className };
-  });
-};
-
-const groupTotalCalc = (user) => {
-  return ["A", "B", "C", "D", "E", "F", "G", "H"]
-    .reduce((a, letter) => {
-      if (user[`group${letter}1`].groupIsFinished) {
-        a.push(letter);
-      }
-
-      return a;
-    }, [])
-    .reduce((a, letter) => {
-      groupCalc(user, letter)
-        .map((obj) => obj.points)
-        .forEach((point) => {
-          a += point;
-        });
-
-      return a;
-    }, 0);
-};
-
 const knockoutRoundCalc = (round, userObj, teams) => {
   // let advancingTeams, userPicks;
   // switch (round) {
@@ -389,6 +327,68 @@ const findR16Teams = (teams, koPositions) => {
   );
 };
 
+const groupCalc = (user, group) => {
+  let userGroupTeamRanks = [];
+
+  for (let i = 1; i <= 4; i++) {
+    userGroupTeamRanks.push(user[`group${group}${i}`]);
+  }
+
+  return userGroupTeamRanks.map((team, idx) => {
+    const finishingPosition = team.groupFinishingPosition;
+
+    let points = 0;
+    let className = "";
+
+    if (finishingPosition === idx + 1) {
+      switch (idx + 1) {
+        case 1:
+          points = 3;
+          className = "blue";
+          break;
+        case 2:
+          points = 2;
+          className = "purple";
+          break;
+        default:
+          points = 1;
+          className = "green";
+      }
+    }
+
+    const reversedGroupAdvansers =
+      (finishingPosition === 1 && idx + 1 === 2) ||
+      (finishingPosition === 2 && idx + 1 === 1);
+
+    if (reversedGroupAdvansers) {
+      points = 1;
+      className = "orange";
+    }
+
+    return { points, className };
+  });
+};
+
+const groupTotalCalc = (user) => {
+  return ["A", "B", "C", "D", "E", "F", "G", "H"]
+    .reduce((a, letter) => {
+      if (user[`group${letter}1`].groupIsFinished) {
+        a.push(letter);
+      }
+
+      return a;
+    }, [])
+    .reduce((a, letter) => {
+      groupCalc(user, letter)
+        .map((obj) => obj.points)
+        .forEach((point) => {
+          a += point;
+        });
+
+      return a;
+    }, 0);
+};
+
 const koGameCalc = (user, game, teams) => {
   const roundInfoObj = {
     Q: {
@@ -474,6 +474,22 @@ const koRoundCalc = (user, round, teams) => {
   }, 0);
 };
 
+const userTotalPoints = (user, teams) => {
+  const groupTotal = groupTotalCalc(user);
+
+  const koRounds = ["quarters", "semis", "final", "champion"];
+
+  const koTotals = koRounds.reduce((a, round) => {
+    const roundTotal = koRoundCalc(user, round, teams);
+
+    a += roundTotal;
+
+    return a;
+  }, 0);
+
+  return groupTotal + koTotals;
+};
+
 const knockoutClass = (user, teams, position) => {
   // const usersTeamPick = user[`knock${position}`];
   // const round = position === "Champ" ? "Champ" : position.split("")[0];
@@ -548,6 +564,7 @@ module.exports = {
   koRoundCalc,
   groupCalc,
   groupTotalCalc,
+  userTotalPoints,
   totalScoreCalc,
   knockoutRoundCalc,
   knockoutClass,

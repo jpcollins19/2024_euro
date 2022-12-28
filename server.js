@@ -1,32 +1,16 @@
 ////////////Test specs section notes////////////
-//---DONE --- write test specs for joe's ko quarters picks for each round's game - func = 'koGameCalc'
-//---DONE ---incorporate a func to calc the total for the quarters for joe - func = 'koRoundCalc'
-//---DONE ---once above is complete, write test specs for for the quarters round as if it hasnt finished yet
-//---DONE ---write specs for the semis, final and champ too
-//once 'koGameCalc' work is complete, write test specs for all other users
-//once 'koGameCalc' work is complete, update the Q_Game_L file, and all other files too?
-
-//once all koRoundTotal stuff above is complete, update the Total_Points_Cont file accordingly
-
-////pause here and take a break from test specs////
-
-//write test specs for joe's overallTotal - func = 'userTotalPoints'
-//in test specs, make it so the ko round is halfway through quarters, semis, final, etc
-//write code for 'userTotalPoints'
-//once the 'userTotalPoints' func is written, write test specs for every users overallTotal
-//once all overallTotal stuff above is complete, update the Total_Points_Cont file accordingly
-
 ////////////Test specs section notes////////////
 
 ////roll through every file through stage 4 and adjust everything needed:////
 
-///////*****/////////**//** */ */ *////////*****/////////**//** */ */ *////**//** */ */ */
 //////stage 4
 //step// go through lifecycle for a user with no picks
 //unlock the other files in the Knockout_Cont_Locked file - mimic the format in the Q_Game_L file
 
 //step// go through lifecycle for a user with completed picks
 //need to make more notes here as you go through it
+
+///fix css for my_picks_locked during stage 4///
 
 ////My_Picks_Unlocked_Page - unhide all things that deal with tourneyStage >= 4
 //finish off the work from BYAHBYAH!! below, then:

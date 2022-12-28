@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { knockoutClass } from "../../../../../store";
+import { koGameCalc } from "../../../../../store";
 
 const Q_Game_L = ({ game, gameNum, selectedUser }) => {
   const { pathname } = useLocation();
@@ -10,14 +10,7 @@ const Q_Game_L = ({ game, gameNum, selectedUser }) => {
 
   const userToUse = pathname === "/pool_picks" ? selectedUser : user;
 
-  const gameInfo = {
-    usersPick: userToUse[`knock${game}`],
-    teamThatAdvanced: userToUse[`knock${game}`],
-    usersPickClass: knockoutClass(userToUse, teams, game),
-    points: 7,
-  };
-
-  console.log("gameInfo", gameInfo);
+  const gameInfo = koGameCalc(userToUse, game, teams);
 
   let gameClass;
 
