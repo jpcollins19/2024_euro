@@ -1,15 +1,8 @@
-////////////Test specs section notes////////////
-////////////Test specs section notes////////////
-
 ////roll through every file through stage 4 and adjust everything needed:////
 
 //////stage 4
 
-////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
-//step// go through lifecycle for a user with no picks
-//step// go through lifecycle for a user with completed picks
-
-/////admin - users - do full audit
+/////admin - users - only do the ko stage info
 /////admin - groups - verify this still works
 /////admin - teams - do full audit
 
@@ -23,6 +16,8 @@
 //fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
 
 //pool_picks_ko & group
+////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
+//step// go through lifecycle for a user with completed picks
 
 ////////////F1 - add flags next to the teams name ------END
 
@@ -36,9 +31,18 @@
 ////test specs - 'Joe's Knockout Scores' in the 'Calcs everyone's overall scores' describe block - write a 'koCalc' func
 ////test specs - calcs className info in the 'Calcs everyone's overall correct/wrong className info in KO stage' describe block
 
+////roll through every file through stage 5 and adjust everything needed:////
+
+////////take pics of fam render tournament website for each users group and ko scores - leaderboard too
+
+//put app away and focus on masters
+
 ///test specs - write specs for the 'Calcs leaderboard' describe block.  add diff phases for diff 'it' blocks - 2 groups complete, 6 others are still active, ko round in diff stages, etc
 
 /////////do work on Leaderboard_Cont for all 5 stages/////////
+
+////re-do the file for users > admin:
+//start with stage 1 and test for all stages for updates when they are applicable - do not need to update stages 4 or 5, you already did this in initial re-factoring in late Dec 22
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
@@ -46,7 +50,7 @@
 ///////css
 //fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row
 
-//add toaster to the leaderboard not signed in page instead of the default error message - if you like this, add it to masters
+//add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?

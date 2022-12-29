@@ -318,58 +318,58 @@ const User_Admin_Page = () => {
       const Ss = [1, 2, 3, 4];
       const Fs = [1, 2];
 
-      if (joe?.tourneyStage >= 4) {
-        koLetters.forEach((letter) => {
-          switch (letter) {
-            case "Q":
-              Qs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      // if (joe?.tourneyStage >= 4) {
+      //   koLetters.forEach((letter) => {
+      //     switch (letter) {
+      //       case "Q":
+      //         Qs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "S":
-              Ss.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "S":
+      //         Ss.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "F":
-              Fs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "F":
+      //         Fs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
-              });
-              break;
-            case "champ":
-              if (champ.length === 0) {
-                setKoError(true);
-                errorAudit.push(1);
-              } else {
-                userObj.knockChamp = champ;
-              }
-              break;
-            default:
-              break;
-          }
-        });
-      }
+      //           if (team.length === 0) {
+      //             setKoError(true);
+      //             errorAudit.push(1);
+      //           } else {
+      //             userObj[`knock${letter}${num}`] = team;
+      //           }
+      //         });
+      //         break;
+      //       case "champ":
+      //         if (champ.length === 0) {
+      //           setKoError(true);
+      //           errorAudit.push(1);
+      //         } else {
+      //           userObj.knockChamp = champ;
+      //         }
+      //         break;
+      //       default:
+      //         break;
+      //     }
+      //   });
+      // }
 
       !tiebreakerError &&
         !errorAudit.length &&
@@ -450,11 +450,12 @@ const User_Admin_Page = () => {
           )}
         </div>
 
-        {/* {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
+        {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
           <div className="user-admin">
             <div className="error-cont-placeholder">
               {koError && <Error error="Incomplete Picks Below" />}
             </div>
+
             <Knockout_Cont_Unlocked
               selectedUser={selectedUser}
               setTeam={setTeam}
@@ -508,7 +509,7 @@ const User_Admin_Page = () => {
           </div>
         ) : (
           ""
-        )} */}
+        )}
 
         {Object.values(selectedUser).length > 0 && (
           <div className="user-admin">
@@ -516,7 +517,6 @@ const User_Admin_Page = () => {
               <h3>Tiebreaker - total number of goals scored:</h3>
 
               <input
-                className="white-text"
                 defaultValue={tiebreaker}
                 onChange={(ev) => {
                   setTiebreaker(ev.target.value);
