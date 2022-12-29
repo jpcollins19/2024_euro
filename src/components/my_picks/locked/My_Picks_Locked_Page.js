@@ -27,8 +27,6 @@ const My_Picks_Locked_Page = () => {
 
   const user = useSelector((state) => state.auth);
 
-  const users = useSelector((state) => state.users);
-
   const joe = findJoe(useSelector((state) => state.users));
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
@@ -75,7 +73,7 @@ const My_Picks_Locked_Page = () => {
             <div className="top box">
               <div className="box left">
                 <div className="predictions-cont">
-                  <Knockout_Cont_Locked />
+                  <Knockout_Cont_Locked user={user} />
                 </div>
               </div>
               <div className="box right">

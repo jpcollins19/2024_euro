@@ -278,7 +278,7 @@ const capFirstLetter = (str) => {
 };
 
 const findEntry = (str) => {
-  // return str.split("advanceTo")[1];
+  return str.split("advanceTo")[1];
 };
 
 const validateEmail = (inputText) => {

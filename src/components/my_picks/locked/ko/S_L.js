@@ -1,6 +1,6 @@
 import S_Game_L from "./games/S_Game_L";
 
-const S_L = ({ side, selectedUser }) => {
+const S_L = ({ side, selectedUser, user }) => {
   const nums = [1, 2];
 
   return (
@@ -12,6 +12,7 @@ const S_L = ({ side, selectedUser }) => {
         return (
           <S_Game_L
             key={idx}
+            user={user}
             game={`S${gameNum}`}
             gameNum={gameNum}
             selectedUser={selectedUser}

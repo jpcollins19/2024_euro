@@ -1,10 +1,10 @@
 import Champ_Game_L from "./games/Champ_Game_L";
 
-const Champ_L = ({ selectedUser }) => {
+const Champ_L = ({ selectedUser, user }) => {
   return (
     <div className="champ">
       <h2>Champion</h2>
-      <Champ_Game_L selectedUser={selectedUser} />
+      <Champ_Game_L selectedUser={selectedUser} user={user} />
       <div className="trophy"></div>
     </div>
   );

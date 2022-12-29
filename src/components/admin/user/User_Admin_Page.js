@@ -14,7 +14,7 @@ import Dropdown from "../../Misc/Dropdown";
 import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Group_Cont_Admin from "./group/Group_Cont_Admin";
-import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
+import Knockout_Cont_Unlocked_Admin from "./ko/Knockout_Cont_Unlocked_Admin";
 import Box from "@mui/material/Box";
 import "./User_Admin.css";
 
@@ -133,19 +133,12 @@ const User_Admin_Page = () => {
   const [Q7, setQ7] = useState("");
   const [Q8, setQ8] = useState("");
   const [S1, setS1] = useState("");
-  const [S1Changed, setS1Changed] = useState(false);
   const [S2, setS2] = useState("");
-  const [S2Changed, setS2Changed] = useState(false);
   const [S3, setS3] = useState("");
-  const [S3Changed, setS3Changed] = useState(false);
   const [S4, setS4] = useState("");
-  const [S4Changed, setS4Changed] = useState(false);
   const [F1, setF1] = useState("");
-  const [F1Changed, setF1Changed] = useState(false);
   const [F2, setF2] = useState("");
-  const [F2Changed, setF2Changed] = useState(false);
   const [champ, setChamp] = useState("");
-  const [champChanged, setChampChanged] = useState(false);
 
   const groupErrorObj = {
     groupAError: groupAError,
@@ -172,6 +165,9 @@ const User_Admin_Page = () => {
 
   const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const koLetters = ["Q", "S", "F", "champ"];
+  const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
+  const Ss = [1, 2, 3, 4];
+  const Fs = [1, 2];
 
   useEffect(() => {
     setName(selectedUser.name);
@@ -194,37 +190,34 @@ const User_Admin_Page = () => {
       });
     });
 
-    // koLetters.forEach((letter) => {
-    //   const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-    //   const Ss = [1, 2, 3, 4];
-    //   const Fs = [1, 2];
-
-    //   switch (letter) {
-    //     case "Q":
-    //       Qs.forEach((num) => {
-    //         const setTeam = eval(`set${letter}${num}`);
-    //         setTeam(selectedUser[`knock${letter}${num}`]);
-    //       });
-    //       break;
-    //     case "S":
-    //       Ss.forEach((num) => {
-    //         const setTeam = eval(`set${letter}${num}`);
-    //         setTeam(selectedUser[`knock${letter}${num}`]);
-    //       });
-    //       break;
-    //     case "F":
-    //       Fs.forEach((num) => {
-    //         const setTeam = eval(`set${letter}${num}`);
-    //         setTeam(selectedUser[`knock${letter}${num}`]);
-    //       });
-    //       break;
-    //     case "champ":
-    //       setChamp(selectedUser.knockChamp);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // });
+    Object.keys(selectedUser).length &&
+      koLetters.forEach((letter) => {
+        switch (letter) {
+          case "Q":
+            Qs.forEach((num) => {
+              const setTeam = eval(`set${letter}${num}`);
+              setTeam(selectedUser[`knock${letter}${num}`].name);
+            });
+            break;
+          case "S":
+            Ss.forEach((num) => {
+              const setTeam = eval(`set${letter}${num}`);
+              setTeam(selectedUser[`knock${letter}${num}`].name);
+            });
+            break;
+          case "F":
+            Fs.forEach((num) => {
+              const setTeam = eval(`set${letter}${num}`);
+              setTeam(selectedUser[`knock${letter}${num}`].name);
+            });
+            break;
+          case "champ":
+            setChamp(selectedUser.knockChamp.name);
+            break;
+          default:
+            break;
+        }
+      });
   }, [selectedUser]);
 
   const togglePaid = () => setPaid((value) => !value);
@@ -314,62 +307,58 @@ const User_Admin_Page = () => {
         });
       });
 
-      const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-      const Ss = [1, 2, 3, 4];
-      const Fs = [1, 2];
+      if (joe?.tourneyStage >= 4) {
+        koLetters.forEach((letter) => {
+          switch (letter) {
+            case "Q":
+              Qs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      // if (joe?.tourneyStage >= 4) {
-      //   koLetters.forEach((letter) => {
-      //     switch (letter) {
-      //       case "Q":
-      //         Qs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "S":
+              Ss.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "S":
-      //         Ss.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "F":
+              Fs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "F":
-      //         Fs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
-
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "champ":
-      //         if (champ.length === 0) {
-      //           setKoError(true);
-      //           errorAudit.push(1);
-      //         } else {
-      //           userObj.knockChamp = champ;
-      //         }
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   });
-      // }
+                if (team.length === 0) {
+                  setKoError(true);
+                  errorAudit.push(1);
+                } else {
+                  userObj[`knock${letter}${num}`] = team;
+                }
+              });
+              break;
+            case "champ":
+              if (champ.length === 0) {
+                setKoError(true);
+                errorAudit.push(1);
+              } else {
+                userObj.knockChamp = champ;
+              }
+              break;
+            default:
+              break;
+          }
+        });
+      }
 
       !tiebreakerError &&
         !errorAudit.length &&
@@ -456,55 +445,39 @@ const User_Admin_Page = () => {
               {koError && <Error error="Incomplete Picks Below" />}
             </div>
 
-            <Knockout_Cont_Unlocked
-              selectedUser={selectedUser}
+            <Knockout_Cont_Unlocked_Admin
               setTeam={setTeam}
-              setChanged={setChanged}
               setKoError={setKoError}
               Q1={Q1}
-              setQ1={setQ1}
               Q2={Q2}
-              setQ2={setQ2}
               Q3={Q3}
-              setQ3={setQ3}
               Q4={Q4}
-              setQ4={setQ4}
               Q5={Q5}
-              setQ5={setQ5}
               Q6={Q6}
-              setQ6={setQ6}
               Q7={Q7}
-              setQ7={setQ7}
               Q8={Q8}
+              setQ1={setQ1}
+              setQ2={setQ2}
+              setQ3={setQ3}
+              setQ4={setQ4}
+              setQ5={setQ5}
+              setQ6={setQ6}
+              setQ7={setQ7}
               setQ8={setQ8}
               S1={S1}
-              setS1={setS1}
-              S1Changed={S1Changed}
-              setS1Changed={setS1Changed}
               S2={S2}
-              setS2={setS2}
-              S2Changed={S2Changed}
-              setS2Changed={setS2Changed}
               S3={S3}
-              setS3={setS3}
-              S3Changed={S3Changed}
-              setS3Changed={setS3Changed}
               S4={S4}
+              setS1={setS1}
+              setS2={setS2}
+              setS3={setS3}
               setS4={setS4}
-              S4Changed={S4Changed}
-              setS4Changed={setS4Changed}
               F1={F1}
-              setF1={setF1}
-              F1Changed={F1Changed}
-              setF1Changed={setF1Changed}
               F2={F2}
+              setF1={setF1}
               setF2={setF2}
-              F2Changed={F2Changed}
-              setF2Changed={setF2Changed}
               champ={champ}
               setChamp={setChamp}
-              champChanged={champChanged}
-              setChampChanged={setChampChanged}
             />
           </div>
         ) : (

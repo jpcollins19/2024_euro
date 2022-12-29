@@ -1,10 +1,8 @@
-import S_Game_UL from "./games/S_Game_UL";
+import S_Game_UL_A from "./games/S_Game_UL_A";
 
-const S_UL = ({
+const S_UL_A = ({
   side,
-  selectedUser,
   setTeam,
-  setChanged,
   setKoError,
   Q1,
   Q2,
@@ -22,14 +20,8 @@ const S_UL = ({
   setS2,
   setS3,
   setS4,
-  F1,
-  F2,
   setF1,
   setF2,
-  F1Changed,
-  F2Changed,
-  setF1Changed,
-  setF2Changed,
 }) => {
   const nums = [1, 2];
 
@@ -59,13 +51,11 @@ const S_UL = ({
         const team2Q = eval(`Q${QGames[gameNum][1]}`);
 
         return (
-          <S_Game_UL
+          <S_Game_UL_A
             key={idx}
-            gameNum={gameNum}
-            selectedUser={selectedUser}
             setTeam={setTeam}
-            setChanged={setChanged}
             setKoError={setKoError}
+            gameNum={gameNum}
             game={`S${num}`}
             S1={game}
             S2={game}
@@ -73,16 +63,9 @@ const S_UL = ({
             S4={game}
             currentSemiTeamSet={currentSemiTeamSet}
             CurrentQTeams={[team1Q, team2Q]}
-            nextGame={`F${finals[gameNum]}`}
             setNextGame={`setF${finals[gameNum]}`}
             setF1={setF1}
             setF2={setF2}
-            F1={F1}
-            F2={F2}
-            F1Changed={F1Changed}
-            F2Changed={F2Changed}
-            setF1Changed={setF1Changed}
-            setF2Changed={setF2Changed}
           />
         );
       })}
@@ -90,4 +73,4 @@ const S_UL = ({
   );
 };
 
-export default S_UL;
+export default S_UL_A;

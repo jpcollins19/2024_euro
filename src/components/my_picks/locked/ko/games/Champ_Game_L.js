@@ -2,10 +2,9 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { koGameCalc } from "../../../../../store";
 
-const Champ_Game_L = ({ selectedUser }) => {
+const Champ_Game_L = ({ selectedUser, user }) => {
   const { pathname } = useLocation();
 
-  const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
 
   const userToUse = pathname === "/pool_picks" ? selectedUser : user;

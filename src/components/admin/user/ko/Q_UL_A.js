@@ -1,10 +1,8 @@
-import Q_Game_UL from "./games/Q_Game_UL";
+import Q_Game_UL_A from "./games/Q_Game_UL_A";
 
-const Q_UL = ({
+const Q_UL_A = ({
   side,
-  selectedUser,
   setTeam,
-  setChanged,
   setKoError,
   Q1,
   Q2,
@@ -18,18 +16,6 @@ const Q_UL = ({
   setS2,
   setS3,
   setS4,
-  S1,
-  S2,
-  S3,
-  S4,
-  S1Changed,
-  S2Changed,
-  S3Changed,
-  S4Changed,
-  setS1Changed,
-  setS2Changed,
-  setS3Changed,
-  setS4Changed,
 }) => {
   const nums = [1, 2, 3, 4];
 
@@ -52,12 +38,10 @@ const Q_UL = ({
         };
 
         return (
-          <Q_Game_UL
+          <Q_Game_UL_A
             key={idx}
             gameNum={gameNum}
-            selectedUser={selectedUser}
             setTeam={setTeam}
-            setChanged={setChanged}
             setKoError={setKoError}
             game={`Q${num}`}
             Q1={game}
@@ -68,24 +52,11 @@ const Q_UL = ({
             Q6={game}
             Q7={game}
             Q8={game}
-            nextGame={`S${semiGames[gameNum]}`}
             setNextGame={`setS${semiGames[gameNum]}`}
             setS1={setS1}
             setS2={setS2}
             setS3={setS3}
             setS4={setS4}
-            S1={S1}
-            S2={S2}
-            S3={S3}
-            S4={S4}
-            S1Changed={S1Changed}
-            S2Changed={S2Changed}
-            S3Changed={S3Changed}
-            S4Changed={S4Changed}
-            setS1Changed={setS1Changed}
-            setS2Changed={setS2Changed}
-            setS3Changed={setS3Changed}
-            setS4Changed={setS4Changed}
           />
         );
       })}
@@ -93,4 +64,4 @@ const Q_UL = ({
   );
 };
 
-export default Q_UL;
+export default Q_UL_A;

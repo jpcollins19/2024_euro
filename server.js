@@ -1,13 +1,3 @@
-////roll through every file through stage 4 and adjust everything needed:////
-
-//////stage 4
-
-/////admin - users - only do the ko stage info
-/////admin - groups - verify this still works
-/////admin - teams - do full audit
-
-////roll through every file through stage 4 and adjust everything needed:////
-
 ////////////F1 - add flags next to the teams name
 
 ///stage 5
@@ -16,7 +6,7 @@
 //fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
 
 //pool_picks_ko & group
-////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
+////Pool_Picks_Page - unhide all things that deal with tourneyStage === 5
 //step// go through lifecycle for a user with completed picks
 
 ////////////F1 - add flags next to the teams name ------END

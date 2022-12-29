@@ -8,11 +8,10 @@ import "./Team_Admin.css";
 const Team_Admin_Page = () => {
   const [team, setTeam] = useState(null);
 
+  const places = [1, 2];
+
   const teams = useSelector((state) => state.teams)
-    .filter(
-      (team) =>
-        team.groupFinishingPosition === 1 || team.groupFinishingPosition === 2
-    )
+    .filter((team) => places.includes(team.groupFinishingPosition))
     .sort((a, b) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;

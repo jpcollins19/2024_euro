@@ -51,6 +51,8 @@ const Team_Cont = ({ team }) => {
         return a;
       }, {});
 
+      console.log("obj", obj);
+
       dispatch(updateTeam(obj, history, "pool_picks"));
     } catch (err) {
       console.log(err);
