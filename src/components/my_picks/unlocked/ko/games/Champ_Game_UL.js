@@ -1,7 +1,17 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Champ_Game_UL = ({ champ, setChamp, CurrentFTeams }) => {
-  const teamAnswer = champ && CurrentFTeams.includes(champ) ? champ : "";
+  const teams = useSelector((state) => state.teams);
+
+  const gameVarTeamObj = teams.find((team) => team.name === champ);
+
+  const teamAnswer =
+    gameVarTeamObj?.name && CurrentFTeams.includes(gameVarTeamObj?.name)
+      ? gameVarTeamObj?.name
+      : "";
+
+  const teamAnswerObj = teams.find((team) => team.name === teamAnswer);
 
   useEffect(() => {
     teamAnswer === "" && setChamp("");
@@ -9,11 +19,20 @@ const Champ_Game_UL = ({ champ, setChamp, CurrentFTeams }) => {
 
   return (
     <div className="white-text">
-      <input
-        className={`champ-input ${champ.length > 1 ? "" : "ko-edit-red"}`}
-        readOnly="readonly"
-        defaultValue={champ && champ}
-      ></input>
+      <div
+        className={`team-ko-img-cont champ-input ko-edit${
+          gameVarTeamObj == undefined ? "-red" : ""
+        }`}
+      >
+        {teamAnswer.length ? (
+          <div>
+            <img className="team-flag-ko-champ-edit" src={teamAnswerObj.flag} />
+            <p className="team-name-ko-edit-champ">{teamAnswerObj.name}</p>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

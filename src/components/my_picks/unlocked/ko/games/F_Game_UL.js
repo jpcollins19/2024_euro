@@ -3,46 +3,62 @@ import { useSelector } from "react-redux";
 
 const F_Game_UL = ({
   setTeam,
-  setChanged,
+  // setChanged,
   setKoError,
   game,
   F1,
   F2,
   currentFinalTeamSet,
   CurrentSTeams,
-  champ,
+  // champ,
   setChamp,
-  champChanged,
-  setChampChanged,
+  // champChanged,
+  // setChampChanged,
 }) => {
-  const user = useSelector((state) => state.auth);
+  // const user = useSelector((state) => state.auth);
+  const teams = useSelector((state) => state.teams);
 
-  const gameVar = eval(game);
-  const teamAnswer = gameVar && CurrentSTeams.includes(gameVar) ? gameVar : "";
+  const gameVarTeamObj = teams.find((team) => team.name === eval(game));
+
+  const teamAnswer =
+    gameVarTeamObj?.name && CurrentSTeams.includes(gameVarTeamObj?.name)
+      ? gameVarTeamObj?.name
+      : "";
+
+  const teamAnswerObj = teams.find((team) => team.name === teamAnswer);
 
   useEffect(() => {
     teamAnswer === "" && setTeam(currentFinalTeamSet, "");
   }, [teamAnswer]);
 
-  useEffect(() => {
-    champ.length < 1 &&
-      !champChanged &&
-      user.knockChamp &&
-      setTeam(setChamp, user.knockChamp);
-    setChanged(setChampChanged);
-  });
+  // useEffect(() => {
+  //   champ.length < 1 &&
+  //     !champChanged &&
+  //     user.knockChamp &&
+  //     setTeam(setChamp, user.knockChamp);
+  //   setChanged(setChampChanged);
+  // });
 
   return (
     <div className="FUL">
-      <input
-        className={`reg-input ${teamAnswer.length > 1 ? "" : "ko-edit-red"}`}
-        readOnly="readonly"
-        defaultValue={teamAnswer && teamAnswer}
-        onClick={(ev) => {
-          setTeam(setChamp, ev.target.value);
+      <div
+        className={`team-ko-img-cont reg-input ko-edit${
+          gameVarTeamObj == undefined ? "-red" : ""
+        }`}
+        onClick={() => {
+          setTeam(setChamp, teamAnswerObj?.name);
           setKoError(false);
         }}
-      ></input>
+      >
+        {teamAnswer.length ? (
+          <div>
+            <img className="team-flag-ko" src={teamAnswerObj.flag} />
+            <p className="team-name-ko-edit">{teamAnswerObj.name}</p>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

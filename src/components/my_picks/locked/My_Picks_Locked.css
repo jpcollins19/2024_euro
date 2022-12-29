@@ -346,6 +346,7 @@
   justify-content: space-around;
   flex-direction: column;
   width: 100%;
+  padding-bottom: 5rem;
 }
 
 .knockout-cont > div {
@@ -391,7 +392,7 @@
 }
 
 .knockout-cont > div > .champ > div > div {
-  height: 4rem;
+  height: 6rem;
   font-weight: bold;
   font-size: 20px;
   width: 8rem;
@@ -410,15 +411,15 @@
 }
 
 .team-flag-ko {
-  min-width: 40px;
-  max-width: 40px;
+  min-width: 45px;
+  max-width: 45px;
   max-height: 27px;
   min-height: 27px;
 }
 
 .team-name-ko {
   position: absolute;
-  top: -10;
+  top: -12;
   bottom: 0;
   left: 0;
   right: 0;
@@ -437,15 +438,15 @@
 }
 
 .team-flag-ko-champ {
-  min-width: 80px;
-  max-width: 80px;
-  max-height: 40px;
-  min-height: 40px;
+  min-width: 90px;
+  max-width: 90px;
+  max-height: 54px;
+  min-height: 54px;
 }
 
 .team-name-ko-champ {
   position: absolute;
-  top: -3;
+  top: 12;
   bottom: 0;
   left: 0;
   right: 0;

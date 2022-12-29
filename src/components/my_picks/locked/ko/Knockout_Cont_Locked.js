@@ -10,11 +10,11 @@ const Knockout_Cont_Locked = ({ selectedUser }) => {
       <div>
         <R16_L side={"left"} />
         <Q_L side={"left"} selectedUser={selectedUser && selectedUser} />
-        {/* <S_L side={"left"} selectedUser={selectedUser} />
+        <S_L side={"left"} selectedUser={selectedUser} />
         <F_L side={"left"} selectedUser={selectedUser} />
         <Champ_L selectedUser={selectedUser} />
         <F_L side={"right"} selectedUser={selectedUser} />
-        <S_L side={"right"} selectedUser={selectedUser} /> */}
+        <S_L side={"right"} selectedUser={selectedUser} />
         <Q_L side={"right"} selectedUser={selectedUser} />
         <R16_L side={"right"} />
       </div>

@@ -4,18 +4,10 @@
 ////roll through every file through stage 4 and adjust everything needed:////
 
 //////stage 4
-//step// go through lifecycle for a user with no picks
-//unlock the other files in the Knockout_Cont_Locked file - mimic the format in the Q_Game_L file
-
+////My_Picks_Unlocked_Page
 //step// go through lifecycle for a user with completed picks
-//need to make more notes here as you go through it
-
-///fix css for my_picks_locked during stage 4///
-
-////My_Picks_Unlocked_Page - unhide all things that deal with tourneyStage >= 4
-//finish off the work from BYAHBYAH!! below, then:
-//step// go through lifecycle for a user with no picks
-//step// go through lifecycle for a user with completed picks
+////roll through each game file in ko stage unlocked and comment out stuff as needed, remove the info from the Knockout_Cont_Unlocked last
+//^^ on the S_Game_UL file next
 
 ////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
 //step// go through lifecycle for a user with no picks
@@ -29,15 +21,11 @@
 
 ////////////F1 - add flags next to the teams name
 
-///stage 4 ---- BYAHBYAH!!
-//my_picks_ko - add correct team on hover over the wrong teams ko cont
-//fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
-//my_picks_edit_ko - ON THIS ONE NEXT
-//check how everything flows if the user had no KO picks - then adjust the picks and re-submit again
-///stage 4 ---- BYAHBYAH!!
-
 ///stage 5
 //my_picks_ko & group
+//my_picks_ko - add correct team on hover over the wrong teams ko cont
+//fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
+
 //pool_picks_ko & group
 
 ////////////F1 - add flags next to the teams name ------END

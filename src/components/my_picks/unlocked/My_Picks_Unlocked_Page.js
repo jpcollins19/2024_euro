@@ -44,27 +44,29 @@ const My_Picks_Unlocked_Page = () => {
   const [groupHError, setGroupHError] = useState(false);
   //
   const [koError, setKoError] = useState(false);
-  const [Q1, setQ1] = useState("");
-  const [Q2, setQ2] = useState("");
-  const [Q3, setQ3] = useState("");
-  const [Q4, setQ4] = useState("");
-  const [Q5, setQ5] = useState("");
-  const [Q6, setQ6] = useState("");
-  const [Q7, setQ7] = useState("");
-  const [Q8, setQ8] = useState("");
-  const [S1, setS1] = useState("");
+  const [Q1, setQ1] = useState(user?.knockQ1?.name ? user?.knockQ1?.name : "");
+  const [Q2, setQ2] = useState(user?.knockQ1?.name ? user?.knockQ2?.name : "");
+  const [Q3, setQ3] = useState(user?.knockQ1?.name ? user?.knockQ3?.name : "");
+  const [Q4, setQ4] = useState(user?.knockQ1?.name ? user?.knockQ4?.name : "");
+  const [Q5, setQ5] = useState(user?.knockQ1?.name ? user?.knockQ5?.name : "");
+  const [Q6, setQ6] = useState(user?.knockQ1?.name ? user?.knockQ6?.name : "");
+  const [Q7, setQ7] = useState(user?.knockQ1?.name ? user?.knockQ7?.name : "");
+  const [Q8, setQ8] = useState(user?.knockQ1?.name ? user?.knockQ8?.name : "");
+  const [S1, setS1] = useState(user?.knockQ1?.name ? user?.knockS1?.name : "");
   const [S1Changed, setS1Changed] = useState(false);
-  const [S2, setS2] = useState("");
+  const [S2, setS2] = useState(user?.knockQ1?.name ? user?.knockS2?.name : "");
   const [S2Changed, setS2Changed] = useState(false);
-  const [S3, setS3] = useState("");
+  const [S3, setS3] = useState(user?.knockQ1?.name ? user?.knockS3?.name : "");
   const [S3Changed, setS3Changed] = useState(false);
-  const [S4, setS4] = useState("");
+  const [S4, setS4] = useState(user?.knockQ1?.name ? user?.knockS4?.name : "");
   const [S4Changed, setS4Changed] = useState(false);
-  const [F1, setF1] = useState("");
+  const [F1, setF1] = useState(user?.knockQ1?.name ? user?.knockF1?.name : "");
   const [F1Changed, setF1Changed] = useState(false);
-  const [F2, setF2] = useState("");
+  const [F2, setF2] = useState(user?.knockQ1?.name ? user?.knockF2?.name : "");
   const [F2Changed, setF2Changed] = useState(false);
-  const [champ, setChamp] = useState("");
+  const [champ, setChamp] = useState(
+    user?.knockQ1?.name ? user?.knockChamp?.name : ""
+  );
   const [champChanged, setChampChanged] = useState(false);
 
   const [selectionObj, setSelectionObj] = useState({
@@ -304,8 +306,8 @@ const My_Picks_Unlocked_Page = () => {
           <h3 className="black-text">
             {joe?.tourneyStage === 1 &&
               "Select a country from the dropdowns to rank where you think they will finish in their group"}
-            {/* {joe?.tourneyStage === 4 &&
-              "Click on the country you think will win each game"} */}
+            {joe?.tourneyStage === 4 &&
+              "Select the country you think will win each game"}
           </h3>
 
           <Button text="Submit Picks" form="update-user" />
@@ -332,9 +334,11 @@ const My_Picks_Unlocked_Page = () => {
             </div>
           )}
 
-          <div className="error-cont-placeholder-tiebreaker">
-            {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
-          </div>
+          {joe?.tourneyStage === 1 && (
+            <div className="error-cont-placeholder-tiebreaker">
+              {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
+            </div>
+          )}
 
           <div className="edit-group-picks">
             {joe?.tourneyStage === 1 && (
@@ -344,7 +348,7 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {/* {joe?.tourneyStage === 4 && user.tiebreaker && (
+            {joe?.tourneyStage === 4 && user.tiebreaker && (
               <Knockout_Cont_Unlocked
                 setTeam={setTeam}
                 setChanged={setChanged}
@@ -394,7 +398,7 @@ const My_Picks_Unlocked_Page = () => {
                 champChanged={champChanged}
                 setChampChanged={setChampChanged}
               />
-            )} */}
+            )}
           </div>
         </form>
       )}

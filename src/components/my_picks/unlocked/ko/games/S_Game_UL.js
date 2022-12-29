@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const S_Game_UL = ({
   setTeam,
-  setChanged,
+  // setChanged,
   setKoError,
   gameNum,
   game,
@@ -13,48 +13,50 @@ const S_Game_UL = ({
   S4,
   currentSemiTeamSet,
   CurrentQTeams,
-  nextGame,
+  // nextGame,
   setNextGame,
-  F1,
-  F2,
+  // F1,
+  // F2,
   setF1,
   setF2,
-  F1Changed,
-  F2Changed,
-  setF1Changed,
-  setF2Changed,
+  // F1Changed,
+  // F2Changed,
+  // setF1Changed,
+  // setF2Changed,
 }) => {
-  const user = useSelector((state) => state.auth);
+  // const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
 
-  const teamName = eval(game);
+  const gameVarTeamObj = teams.find((team) => team.name === eval(game));
 
-  const nextGameVar = eval(nextGame);
+  // const nextGameVar = eval(nextGame);
   const setNextGameVar = eval(setNextGame);
 
-  useEffect(() => {
-    switch (nextGame) {
-      case "F1":
-        nextGameVar.length < 1 &&
-          !F1Changed &&
-          user.knockF1 &&
-          setTeam(setNextGameVar, user.knockF1);
-        setChanged(setF1Changed);
-        break;
-      case "F2":
-        nextGameVar.length < 1 &&
-          !F2Changed &&
-          user.knockF2 &&
-          setTeam(setNextGameVar, user.knockF2);
-        setChanged(setF2Changed);
-        break;
-      default:
-        break;
-    }
-  });
+  // useEffect(() => {
+  //   switch (nextGame) {
+  //     case "F1":
+  //       nextGameVar.length < 1 &&
+  //         !F1Changed &&
+  //         user.knockF1 &&
+  //         setTeam(setNextGameVar, user.knockF1);
+  //       setChanged(setF1Changed);
+  //       break;
+  //     case "F2":
+  //       nextGameVar.length < 1 &&
+  //         !F2Changed &&
+  //         user.knockF2 &&
+  //         setTeam(setNextGameVar, user.knockF2);
+  //       setChanged(setF2Changed);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // });
 
   const teamAnswer =
-    teamName.length && CurrentQTeams.includes(teamName) ? teamName : "";
+    gameVarTeamObj?.name && CurrentQTeams.includes(gameVarTeamObj?.name)
+      ? gameVarTeamObj?.name
+      : "";
 
   const teamAnswerObj = teams.find((team) => team.name === teamAnswer);
 
@@ -78,8 +80,8 @@ const S_Game_UL = ({
   return (
     <div className={gameClass}>
       <div
-        className={`team-ko-img-cont reg-input ${
-          teamAnswerObj?.name.length > 1 ? "" : "ko-edit-red"
+        className={`team-ko-img-cont reg-input ko-edit${
+          gameVarTeamObj == undefined ? "-red" : ""
         }`}
         onClick={() => {
           setTeam(setNextGameVar, teamAnswerObj?.name);
