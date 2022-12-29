@@ -798,7 +798,7 @@ const syncAndSeed = async () => {
   Sarah.knockS2 = Japan.name;
   Sarah.knockS3 = England.name;
   Sarah.knockS4 = Spain.name;
-
+  //
   Joe.knockF1 = Brasil.name;
   Joe.knockF2 = France.name;
   Stan.knockF1 = Brasil.name;

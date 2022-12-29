@@ -4,10 +4,6 @@
 ////roll through every file through stage 4 and adjust everything needed:////
 
 //////stage 4
-////My_Picks_Unlocked_Page
-//step// go through lifecycle for a user with completed picks
-////roll through each game file in ko stage unlocked and comment out stuff as needed, remove the info from the Knockout_Cont_Unlocked last
-//^^ on the S_Game_UL file next
 
 ////Pool_Picks_Page - unhide all things that deal with tourneyStage === 4
 //step// go through lifecycle for a user with no picks

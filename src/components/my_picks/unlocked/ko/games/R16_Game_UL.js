@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { findR16Teams } from "../../../../../store";
 
@@ -6,14 +5,6 @@ const R16_Game_UL = ({
   setTeam,
   setKoError,
   game,
-  // Q1,
-  // Q2,
-  // Q3,
-  // Q4,
-  // Q5,
-  // Q6,
-  // Q7,
-  // Q8,
   setQ1,
   setQ2,
   setQ3,

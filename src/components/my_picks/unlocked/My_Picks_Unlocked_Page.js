@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { updateUser, dupeValInArr, findJoe, loadUsers } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
@@ -53,21 +53,14 @@ const My_Picks_Unlocked_Page = () => {
   const [Q7, setQ7] = useState(user?.knockQ1?.name ? user?.knockQ7?.name : "");
   const [Q8, setQ8] = useState(user?.knockQ1?.name ? user?.knockQ8?.name : "");
   const [S1, setS1] = useState(user?.knockQ1?.name ? user?.knockS1?.name : "");
-  const [S1Changed, setS1Changed] = useState(false);
   const [S2, setS2] = useState(user?.knockQ1?.name ? user?.knockS2?.name : "");
-  const [S2Changed, setS2Changed] = useState(false);
   const [S3, setS3] = useState(user?.knockQ1?.name ? user?.knockS3?.name : "");
-  const [S3Changed, setS3Changed] = useState(false);
   const [S4, setS4] = useState(user?.knockQ1?.name ? user?.knockS4?.name : "");
-  const [S4Changed, setS4Changed] = useState(false);
   const [F1, setF1] = useState(user?.knockQ1?.name ? user?.knockF1?.name : "");
-  const [F1Changed, setF1Changed] = useState(false);
   const [F2, setF2] = useState(user?.knockQ1?.name ? user?.knockF2?.name : "");
-  const [F2Changed, setF2Changed] = useState(false);
   const [champ, setChamp] = useState(
     user?.knockQ1?.name ? user?.knockChamp?.name : ""
   );
-  const [champChanged, setChampChanged] = useState(false);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
@@ -157,12 +150,6 @@ const My_Picks_Unlocked_Page = () => {
 
   const setTeam = (setTeam, name) => {
     setTeam(name);
-  };
-
-  const setChanged = (set) => {
-    setTimeout(() => {
-      set(true);
-    }, 100);
   };
 
   const onSubmit = async (evt) => {
@@ -348,55 +335,40 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {joe?.tourneyStage === 4 && user.tiebreaker && (
+            {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <Knockout_Cont_Unlocked
                 setTeam={setTeam}
-                setChanged={setChanged}
                 setKoError={setKoError}
                 Q1={Q1}
-                setQ1={setQ1}
                 Q2={Q2}
-                setQ2={setQ2}
                 Q3={Q3}
-                setQ3={setQ3}
                 Q4={Q4}
-                setQ4={setQ4}
                 Q5={Q5}
-                setQ5={setQ5}
                 Q6={Q6}
-                setQ6={setQ6}
                 Q7={Q7}
-                setQ7={setQ7}
                 Q8={Q8}
+                setQ1={setQ1}
+                setQ2={setQ2}
+                setQ3={setQ3}
+                setQ4={setQ4}
+                setQ5={setQ5}
+                setQ6={setQ6}
+                setQ7={setQ7}
                 setQ8={setQ8}
                 S1={S1}
-                setS1={setS1}
-                S1Changed={S1Changed}
-                setS1Changed={setS1Changed}
                 S2={S2}
-                setS2={setS2}
-                S2Changed={S2Changed}
-                setS2Changed={setS2Changed}
                 S3={S3}
-                setS3={setS3}
-                S3Changed={S3Changed}
-                setS3Changed={setS3Changed}
                 S4={S4}
+                setS1={setS1}
+                setS2={setS2}
+                setS3={setS3}
                 setS4={setS4}
-                S4Changed={S4Changed}
-                setS4Changed={setS4Changed}
                 F1={F1}
-                setF1={setF1}
-                F1Changed={F1Changed}
-                setF1Changed={setF1Changed}
                 F2={F2}
+                setF1={setF1}
                 setF2={setF2}
-                F2Changed={F2Changed}
-                setF2Changed={setF2Changed}
                 champ={champ}
                 setChamp={setChamp}
-                champChanged={champChanged}
-                setChampChanged={setChampChanged}
               />
             )}
           </div>

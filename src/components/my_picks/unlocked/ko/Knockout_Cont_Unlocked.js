@@ -6,52 +6,37 @@ import Champ_UL from "./Champ_UL";
 
 const Knockout_Cont_Unlocked = ({
   setTeam,
-  setChanged,
   setKoError,
   Q1,
-  setQ1,
   Q2,
-  setQ2,
   Q3,
-  setQ3,
   Q4,
-  setQ4,
   Q5,
-  setQ5,
   Q6,
-  setQ6,
   Q7,
-  setQ7,
   Q8,
+  setQ1,
+  setQ2,
+  setQ3,
+  setQ4,
+  setQ5,
+  setQ6,
+  setQ7,
   setQ8,
   S1,
-  setS1,
-  // S1Changed,
-  // setS1Changed,
   S2,
-  setS2,
-  // S2Changed,
-  // setS2Changed,
   S3,
-  setS3,
-  // S3Changed,
-  // setS3Changed,
   S4,
+  setS1,
+  setS2,
+  setS3,
   setS4,
-  // S4Changed,
-  // setS4Changed,
   F1,
-  setF1,
-  F1Changed,
-  setF1Changed,
   F2,
+  setF1,
   setF2,
-  F2Changed,
-  setF2Changed,
   champ,
   setChamp,
-  champChanged,
-  setChampChanged,
 }) => {
   return (
     <div className="knockout-cont-edit black-text">
@@ -60,10 +45,6 @@ const Knockout_Cont_Unlocked = ({
           side={"left"}
           setTeam={setTeam}
           setKoError={setKoError}
-          // Q1={Q1}
-          // Q2={Q2}
-          // Q3={Q3}
-          // Q4={Q4}
           setQ1={setQ1}
           setQ2={setQ2}
           setQ3={setQ3}
@@ -72,7 +53,6 @@ const Knockout_Cont_Unlocked = ({
         <Q_UL
           side={"left"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           Q1={Q1}
           Q2={Q2}
@@ -80,17 +60,10 @@ const Knockout_Cont_Unlocked = ({
           Q4={Q4}
           setS1={setS1}
           setS2={setS2}
-          // S1={S1}
-          // S2={S2}
-          // S1Changed={S1Changed}
-          // S2Changed={S2Changed}
-          // setS1Changed={setS1Changed}
-          // setS2Changed={setS2Changed}
         />
         <S_UL
           side={"left"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           Q1={Q1}
           Q2={Q2}
@@ -100,24 +73,17 @@ const Knockout_Cont_Unlocked = ({
           S2={S2}
           setS1={setS1}
           setS2={setS2}
-          // F1={F1}
           setF1={setF1}
-          // F1Changed={F1Changed}
-          // setF1Changed={setF1Changed}
         />
         <F_UL
           side={"left"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           S1={S1}
           S2={S2}
           F1={F1}
           setF1={setF1}
-          // champ={champ}
           setChamp={setChamp}
-          // champChanged={champChanged}
-          // setChampChanged={setChampChanged}
         />
         <Champ_UL
           champ={champ}
@@ -129,21 +95,16 @@ const Knockout_Cont_Unlocked = ({
         <F_UL
           side={"right"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           S3={S3}
           S4={S4}
           F2={F2}
           setF2={setF2}
-          // champ={champ}
           setChamp={setChamp}
-          // champChanged={champChanged}
-          // setChampChanged={setChampChanged}
         />
         <S_UL
           side={"right"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           Q5={Q5}
           Q6={Q6}
@@ -153,15 +114,11 @@ const Knockout_Cont_Unlocked = ({
           S4={S4}
           setS3={setS3}
           setS4={setS4}
-          // F2={F2}
           setF2={setF2}
-          // F2Changed={F2Changed}
-          // setF2Changed={setF2Changed}
         />
         <Q_UL
           side={"right"}
           setTeam={setTeam}
-          // setChanged={setChanged}
           setKoError={setKoError}
           Q5={Q5}
           Q6={Q6}
@@ -169,21 +126,11 @@ const Knockout_Cont_Unlocked = ({
           Q8={Q8}
           setS3={setS3}
           setS4={setS4}
-          // S3={S3}
-          // S4={S4}
-          // S3Changed={S3Changed}
-          // S4Changed={S4Changed}
-          // setS3Changed={setS3Changed}
-          // setS4Changed={setS4Changed}
         />
         <R16_UL
           side={"right"}
           setTeam={setTeam}
           setKoError={setKoError}
-          // Q5={Q5}
-          // Q6={Q6}
-          // Q7={Q7}
-          // Q8={Q8}
           setQ5={setQ5}
           setQ6={setQ6}
           setQ7={setQ7}

@@ -3,7 +3,6 @@ import F_Game_UL from "./games/F_Game_UL";
 const F_UL = ({
   side,
   setTeam,
-  // setChanged,
   setKoError,
   S1,
   S2,
@@ -13,10 +12,7 @@ const F_UL = ({
   F2,
   setF1,
   setF2,
-  // champ,
   setChamp,
-  // champChanged,
-  // setChampChanged,
 }) => {
   const gameNum = side === "left" ? 1 : 2;
   const game = eval(`F${gameNum}`);
@@ -35,17 +31,13 @@ const F_UL = ({
       <h2>Final</h2>
       <F_Game_UL
         setTeam={setTeam}
-        // setChanged={setChanged}
         setKoError={setKoError}
         game={`F${gameNum}`}
         F1={game}
         F2={game}
         currentFinalTeamSet={currentFinalTeamSet}
         CurrentSTeams={[team1S, team2S]}
-        // champ={champ}
         setChamp={setChamp}
-        // champChanged={champChanged}
-        // setChampChanged={setChampChanged}
       />
     </div>
   );
