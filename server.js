@@ -1,9 +1,7 @@
 ////////////F1 - add flags next to the teams name
 
 ///stage 5
-//my_picks_ko & group
-//my_picks_ko - add correct team on hover over the wrong teams ko cont
-//fix css so the ko cont has a min/max height - the css is off when teams start to advance from each round
+//my_picks_locked ---ko - add correct team on hover over the wrong teams ko cont
 
 //pool_picks_ko & group
 ////Pool_Picks_Page - unhide all things that deal with tourneyStage === 5

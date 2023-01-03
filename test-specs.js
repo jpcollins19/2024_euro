@@ -10317,7 +10317,7 @@ describe("Cals everthing correctly", () => {
                       ].teamThatAdvanced = null;
 
                       usersObj[userName].koRounds[round][game].usersPickClass =
-                        "";
+                        "unknown";
 
                       usersObj[userName].koRounds[round][game].points = 0;
                     });

@@ -22,7 +22,7 @@ const R16_Game_L = ({ game }) => {
       {teamsPlayingInMatch.map((team) => (
         <div key={team.id} className="team-ko-img-cont">
           <img className="team-flag-ko" src={team.flag} />
-          <p className="team-name-ko">{team.name}</p>
+          <p className="team-name-ko-R16">{team.name}</p>
         </div>
       ))}
     </div>

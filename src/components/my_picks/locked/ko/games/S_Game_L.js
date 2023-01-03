@@ -25,19 +25,21 @@ const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
   }
 
   return (
-    <div
-      className={`white-text ${gameClass} ${
-        gameInfo.usersPick?.name ? `${gameInfo.usersPickClass}-box` : ""
-      }`}
-    >
-      <div className="team-ko-img-cont">
-        {gameInfo.usersPick?.name && (
-          <img className="team-flag-ko" src={gameInfo.usersPick?.flag} />
-        )}
+    <div className={`white-text ${gameClass}`}>
+      <div
+        className={`${
+          gameInfo.usersPick?.name ? `${gameInfo.usersPickClass}-box` : ""
+        }`}
+      >
+        <div className="team-ko-img-cont">
+          {gameInfo.usersPick?.name && (
+            <img className="team-flag-ko" src={gameInfo.usersPick?.flag} />
+          )}
 
-        <p className={`team-name-ko ${gameInfo.usersPickClass}-text`}>
-          {gameInfo.usersPick?.name}
-        </p>
+          <p className={`team-name-ko ${gameInfo.usersPickClass}-text`}>
+            {gameInfo.usersPick?.name}
+          </p>
+        </div>
       </div>
     </div>
   );

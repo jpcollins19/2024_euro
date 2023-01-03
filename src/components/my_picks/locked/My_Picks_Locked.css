@@ -385,10 +385,7 @@
     rgb(11, 11, 11) 50%,
     rgb(159, 159, 147) 100%
   );
-  border: solid 1px white;
   font-size: 17px;
-  min-width: 8rem;
-  max-width: 8rem;
 }
 
 .knockout-cont > div > .champ > div > div {
@@ -404,10 +401,15 @@
 
 .R16 > div > div {
   margin: 0.5rem 0rem 0.5rem 0rem;
+  border: solid 1px white;
+  min-width: 8rem;
+  max-width: 8rem;
 }
 
 .team-ko-img-cont {
   position: relative;
+  min-width: 8rem;
+  max-width: 8rem;
 }
 
 .team-flag-ko {
@@ -417,7 +419,7 @@
   min-height: 27px;
 }
 
-.team-name-ko {
+.team-name-ko-R16 {
   position: absolute;
   top: -12;
   bottom: 0;
@@ -426,6 +428,22 @@
   color: #fff;
   visibility: hidden;
   opacity: 0;
+}
+
+.team-name-ko {
+  position: absolute;
+  top: -17;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.team-ko-img-cont:hover .team-name-ko-R16 {
+  visibility: visible;
+  opacity: 1;
 }
 
 .team-ko-img-cont:hover .team-name-ko {
@@ -446,7 +464,7 @@
 
 .team-name-ko-champ {
   position: absolute;
-  top: 12;
+  top: -10;
   bottom: 0;
   left: 0;
   right: 0;
@@ -462,6 +480,13 @@
 
 .team-ko-img-cont:hover .team-flag-ko-champ {
   opacity: 0.5;
+}
+
+.unknown-box {
+  border: solid 1px white;
+  min-width: 8.2rem;
+  max-width: 8.2rem;
+  border-radius: 0.5rem;
 }
 
 .wrong-box {
@@ -488,35 +513,42 @@
 }
 
 .Q1L {
-  margin-top: 42%;
+  min-height: 6rem;
+  margin-top: 25%;
 }
 
 .Q2L {
-  margin-top: 57%;
+  min-height: 6rem;
+  margin-top: 21%;
 }
 
 .Q3L {
-  margin-top: 59%;
+  min-height: 6rem;
+  margin-top: 21%;
 }
 
 .Q4L {
-  margin-top: 58%;
+  min-height: 6rem;
+  margin-top: 21%;
 }
 
-.S1l {
-  margin-top: 82%;
+.S1L {
+  min-height: 165px;
+  margin-top: 45%;
 }
 
-.S2l {
-  margin-top: 143%;
+.S2L {
+  min-height: 165px;
+  margin-top: 59%;
 }
 
 .FL {
-  margin-top: 165%;
+  min-height: 293px;
+  margin-top: 87%;
 }
 
 .CL {
-  margin-top: 40%;
+  margin-top: 20%;
 }
 
 .champ {

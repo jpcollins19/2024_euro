@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { me, loadUsers, findJoe } from "../../../store";
+import { me, loadUsers, findJoe, loadTeams } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
 import Point_System_Cont from "./Point_System_Cont";
@@ -19,6 +19,7 @@ const My_Picks_Locked_Page = () => {
   useEffect(() => {
     dispatch(me());
     dispatch(loadUsers());
+    dispatch(loadTeams());
   }, []);
 
   setTimeout(() => {

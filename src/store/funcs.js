@@ -434,7 +434,7 @@ const koGameCalc = (user, game, teams) => {
       ) ?? null;
   }
 
-  let usersPickClass = "";
+  let usersPickClass = "unknown";
 
   const gameIsFinished = teamThatAdvanced?.name ? true : false;
 

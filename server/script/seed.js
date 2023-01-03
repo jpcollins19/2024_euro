@@ -125,7 +125,7 @@ const users = [
     knockChamp: "France",
 
     tiebreaker: 165,
-    tourneyStage: 4,
+    tourneyStage: 5,
   },
   //stan
   {
@@ -819,17 +819,17 @@ const syncAndSeed = async () => {
   Pat.knockChamp = Brasil.name;
   Sarah.knockChamp = Japan.name;
   //////////////////////////////////////////////////
-  // Netherlands.advanceToQ = true;
-  // Argentina.advanceToQ = true;
-  // Croatia.advanceToQ = true;
+  Netherlands.advanceToQ = true;
+  Argentina.advanceToQ = true;
+  Croatia.advanceToQ = true;
   // Brasil.advanceToQ = true;
   // England.advanceToQ = true;
   // France.advanceToQ = true;
   // Morocco.advanceToQ = true;
   // Portugal.advanceToQ = true;
-  // USA.outOfTourney = true;
-  // Australia.outOfTourney = true;
-  // Japan.outOfTourney = true;
+  USA.outOfTourney = true;
+  Australia.outOfTourney = true;
+  Japan.outOfTourney = true;
   // S_Korea.outOfTourney = true;
   // Senegal.outOfTourney = true;
   // Poland.outOfTourney = true;
