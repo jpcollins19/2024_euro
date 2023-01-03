@@ -2,6 +2,7 @@
 
 ///stage 5
 //my_picks_locked ---ko - add correct team on hover over the wrong teams ko cont
+//the above step is finished.  audit scenarios in stage 5 to see if this is broken anywhere.  ie make france advance, but then lose in the Semis, etc
 
 //pool_picks_ko & group
 ////Pool_Picks_Page - unhide all things that deal with tourneyStage === 5

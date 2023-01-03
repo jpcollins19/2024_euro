@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { koGameCalc } from "../../../../../store";
+import Correct_Team_Cont from "./Correct_Team_Cont";
 
 const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
   const { pathname } = useLocation();
@@ -10,6 +11,8 @@ const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
   const userToUse = pathname === "/pool_picks" ? selectedUser : user;
 
   const gameInfo = koGameCalc(userToUse, game, teams);
+
+  const gameIsFinished = gameInfo.teamThatAdvanced?.name ? true : false;
 
   let gameClass;
 
@@ -28,15 +31,25 @@ const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
     <div className={`white-text ${gameClass}`}>
       <div
         className={`${
-          gameInfo.usersPick?.name ? `${gameInfo.usersPickClass}-box` : ""
-        }`}
+          gameInfo.usersPick?.outOfTourney ? "wrong" : gameInfo.usersPickClass
+        }-box`}
       >
         <div className="team-ko-img-cont">
           {gameInfo.usersPick?.name && (
             <img className="team-flag-ko" src={gameInfo.usersPick?.flag} />
           )}
 
-          <p className={`team-name-ko ${gameInfo.usersPickClass}-text`}>
+          {gameIsFinished && gameInfo.usersPickClass === "wrong" && (
+            <Correct_Team_Cont gameInfo={gameInfo} />
+          )}
+
+          <p
+            className={`team-name-ko ${
+              gameInfo.usersPick?.outOfTourney
+                ? "wrong"
+                : gameInfo.usersPickClass
+            }-text`}
+          >
             {gameInfo.usersPick?.name}
           </p>
         </div>

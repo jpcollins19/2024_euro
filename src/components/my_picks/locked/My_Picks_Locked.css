@@ -441,12 +441,84 @@
   opacity: 0;
 }
 
+.correct-team-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -50;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+  border: solid 4px rgb(11, 238, 11);
+  background: linear-gradient(
+    to bottom right,
+    rgb(159, 159, 147) 0%,
+    rgb(11, 11, 11) 50%,
+    rgb(159, 159, 147) 100%
+  );
+  border-radius: 0.5rem;
+  color: rgb(11, 238, 11);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.correct-team-cont-CL {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -67;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+  border: solid 2px rgb(11, 238, 11);
+  background: linear-gradient(
+    to bottom right,
+    rgb(159, 159, 147) 0%,
+    rgb(11, 11, 11) 50%,
+    rgb(159, 159, 147) 100%
+  );
+  border-radius: 0.5rem;
+  color: rgb(11, 238, 11);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.correct-team-name-ko {
+  position: absolute;
+  top: -18;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.correct-team-name-ko-CL {
+  position: absolute;
+  top: -23;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .team-ko-img-cont:hover .team-name-ko-R16 {
   visibility: visible;
   opacity: 1;
 }
 
 .team-ko-img-cont:hover .team-name-ko {
+  visibility: visible;
+  opacity: 1;
+}
+
+.team-ko-img-cont:hover .correct-team-cont {
+  visibility: visible;
+  opacity: 1;
+}
+
+.team-ko-img-cont:hover .correct-team-cont-CL {
   visibility: visible;
   opacity: 1;
 }
