@@ -454,14 +454,21 @@ const knockoutClass = (user, teams, position) => {
   // return "";
 };
 
-const audit = (arr, actualGoalsScored) => {
-  let rank = arr[0].rank;
+const sortNames = (arr) => {
+  return arr.sort((a, b) => {
+    let fa = a.name,
+      fb = b.name;
 
-  const tiebreakers = createCountObj(arr, "tiebreaker");
+    return fa < fb ? -1 : fa > fb ? 1 : 0;
+  });
+};
+
+const tieBreakerAudit = (arr, actualGoalsScored) => {
+  const tiebreakerObj = createCountObj(arr, "tiebreaker");
 
   const audit = arr
     .map((user) => {
-      user.numOfTimes = tiebreakers[user.tiebreaker];
+      user.numOfTimes = tiebreakerObj[user.tiebreaker];
 
       user.tiebreakerStatus =
         user.tiebreaker === actualGoalsScored
@@ -490,20 +497,144 @@ const audit = (arr, actualGoalsScored) => {
 
   audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
 
+  return auditObj;
+};
+
+const dupeScoreAudit = (arr, actualGoalsScored) => {
+  let rank = arr[0].rank;
+
+  const tiebreakerAuditObj = tieBreakerAudit(arr, actualGoalsScored);
+
+  // console.log("tiebreakerAuditObj1", tiebreakerAuditObj);
+
   let answer = [];
 
-  Object.keys(auditObj).forEach((key) => {
-    const keySorted = auditObj[key].sort((a, b) =>
+  Object.keys(tiebreakerAuditObj).forEach((key) => {
+    let userOrder_OG = tiebreakerAuditObj[key].sort((a, b) =>
       key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
     );
-    answer = [...answer, ...keySorted];
+
+    let newUserOrder = Object.entries(
+      userOrder_OG.reduce((a, user) => {
+        if (a[user.tiebreaker]) {
+          a[user.tiebreaker].push(user.name);
+        } else {
+          a[user.tiebreaker] = [user.name];
+        }
+
+        return a;
+      }, {})
+    )
+      .map((entry) => {
+        if (entry[1].length > 1) {
+          // console.log("entry[1] - before", entry[1]);
+          entry[1] = entry[1].sort((a, b) => {
+            return a < b ? -1 : a > b ? 1 : 0;
+          });
+
+          // console.log("entry[1] - after", entry[1]);
+        }
+
+        return entry;
+      })
+      .reduce((a, entry) => {
+        entry[1].forEach((name) => a.push(name));
+
+        return a;
+      }, []);
+
+    // console.log("newUserOrder", newUserOrder);
+
+    newUserOrder = newUserOrder.map((user) => {
+      userOrder_OG.forEach((user_OG) => {
+        if (user === user_OG.name) {
+          user = user_OG;
+        }
+      });
+
+      return user;
+    });
+
+    // if (tiebreakerAuditObj[key].length > 1) {
+    //   console.log("userOrder_OG", userOrder_OG);
+
+    //   const newUserOrder = Object.entries(
+    //     userOrder_OG.reduce((a, user) => {
+    //       if (a[user.tiebreaker]) {
+    //         a[user.tiebreaker].push(user.name);
+    //       } else {
+    //         a[user.tiebreaker] = [user.name];
+    //       }
+
+    //       return a;
+    //     }, {})
+    //   )
+    //     .map((entry) => {
+    //       if (entry[1].length > 1) {
+    //         // console.log("entry[1] - before", entry[1]);
+    //         entry[1] = entry[1].sort((a, b) => {
+    //           return a < b ? -1 : a > b ? 1 : 0;
+    //         });
+
+    //         // console.log("entry[1] - after", entry[1]);
+    //       }
+
+    //       return entry;
+    //     })
+    //     .reduce((a, entry) => {
+    //       entry[1].forEach((name) => a.push(name));
+
+    //       return a;
+    //     }, []);
+
+    //   console.log("newUserOrder", newUserOrder);
+
+    //   const sameTiebreakerArr = Object.entries(
+    //     createCountObj(userOrder_OG, "tiebreaker")
+    //   )
+    //     .filter((entry) => entry[1] > 1)
+    //     .map((entry) => Number(entry[0]));
+
+    //   // console.log("sameTiebreakerArr", sameTiebreakerArr);
+
+    //   if (sameTiebreakerArr.length) {
+    //     let tempArr = [];
+
+    //     const tiebreakerObj = sameTiebreakerArr.reduce((a, tiebreaker) => {
+    //       userOrder_OG.forEach((user) => {
+    //         if (user.tiebreaker === tiebreaker) {
+    //           if (a[tiebreaker]) {
+    //             a[tiebreaker].push(user.name);
+    //           } else {
+    //             a[tiebreaker] = [user.name];
+    //           }
+    //         }
+    //       });
+
+    //       return a;
+    //     }, {});
+
+    //     // console.log("tiebreakerObj", tiebreakerObj);
+    //     // console.log("START OF CALL");
+    //     // console.log(userOrder);
+
+    //     userOrder_OG = sortNames(userOrder_OG);
+
+    //     // console.log("END OF CALL");
+    //     // console.log(keySorted);
+    //   } else {
+    //     userOrder_OG.sort((a, b) => a.tiebreaker - b.tiebreaker);
+    //   }
+    // }
+
+    answer = [...answer, ...newUserOrder];
   });
 
-  return answer.map((userObj) => {
-    userObj.rank = rank;
+  return answer.map((user) => {
+    user.rank = rank;
     rank++;
 
-    return userObj;
+    return user;
   });
 };
 
@@ -555,28 +686,25 @@ const currentScoresObj = (users, teams, actualGoalsScored = null) => {
     if (dupeScores.length) {
       const scoreObj = dupeScores.reduce((a, user) => {
         a[user.total] ? a[user.total].push(user) : (a[user.total] = [user]);
-
         return a;
       }, {});
-
       Object.keys(scoreObj).forEach((key) => {
-        const newRanking = audit(scoreObj[key], actualGoalsScored);
-
-        newDupeScores = [...newDupeScores, ...newRanking];
+        const newDupeScoreRank = dupeScoreAudit(
+          scoreObj[key],
+          actualGoalsScored
+        );
+        newDupeScores = [...newDupeScores, ...newDupeScoreRank];
       });
 
-      return [...newDupeScores, ...nonDupeScores];
+      const newRank = [...newDupeScores, ...nonDupeScores];
+
+      return newRank.sort((a, b) => a.rank - b.rank);
     }
 
     return nonDupeScores;
   }
 
-  return firstAudit.sort((a, b) => {
-    let fa = a.name,
-      fb = b.name;
-
-    return fa < fb ? -1 : fa > fb ? 1 : 0;
-  });
+  return sortNames(firstAudit);
 };
 
 module.exports = {
