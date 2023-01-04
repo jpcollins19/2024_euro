@@ -132,113 +132,6 @@ const createCountObj = (arr, key) => {
   }, {});
 };
 
-const audit = (arr, actualGoalsScored) => {
-  // let rank = arr[0].rank;
-  // const tiebreakers = createCountObj(arr, "tiebreaker");
-  // const audit = arr
-  //   .map((userObj) => {
-  //     userObj.numOfTimes = tiebreakers[userObj.tiebreaker];
-  //     userObj.tiebreakerStatus =
-  //       userObj.tiebreaker === actualGoalsScored
-  //         ? "exact"
-  //         : userObj.tiebreaker < actualGoalsScored
-  //         ? "notOver"
-  //         : "over";
-  //     return userObj;
-  //   })
-  //   .map((userObj) => {
-  //     if (userObj.numOfTimes > 1) userObj.tieExists = true;
-  //     return userObj;
-  //   })
-  //   .sort((a, b) => {
-  //     let fa = a.tiebreakerStatus,
-  //       fb = b.tiebreakerStatus;
-  //     return fa < fb ? -1 : fa > fb ? 1 : 0;
-  //   });
-  // const auditObj = {
-  //   exact: [],
-  //   notOver: [],
-  //   over: [],
-  // };
-  // audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
-  // let answer = [];
-  // Object.keys(auditObj).forEach((key) => {
-  //   const keySorted = auditObj[key].sort((a, b) =>
-  //     key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
-  //   );
-  //   answer = [...answer, ...keySorted];
-  // });
-  // return answer.map((userObj) => {
-  //   userObj.rank = rank;
-  //   rank++;
-  //   return userObj;
-  // });
-};
-
-const currentScoresObj = (users, teams, actualGoalsScored = null) => {
-  // let rank = 1;
-  // const firstAudit = users
-  //   .reduce((a, user) => {
-  //     const total = totalScoreCalc(
-  //       singleGroupCalc(user, teams, "A"),
-  //       singleGroupCalc(user, teams, "B"),
-  //       singleGroupCalc(user, teams, "C"),
-  //       singleGroupCalc(user, teams, "D"),
-  //       singleGroupCalc(user, teams, "E"),
-  //       singleGroupCalc(user, teams, "F"),
-  //       singleGroupCalc(user, teams, "G"),
-  //       singleGroupCalc(user, teams, "H"),
-  //       knockoutRoundCalc("quarters", user, teams),
-  //       knockoutRoundCalc("semis", user, teams),
-  //       knockoutRoundCalc("finals", user, teams),
-  //       knockoutRoundCalc("champ", user, teams)
-  //     );
-  //     const userObj = {
-  //       name: user.name,
-  //       tiebreaker: user.tiebreaker,
-  //       total,
-  //       tieExists: false,
-  //       paid: user.paid,
-  //     };
-  //     a.push(userObj);
-  //     return a;
-  //   }, [])
-  //   .sort((a, b) => b.total - a.total)
-  //   .map((user) => {
-  //     user.rank = rank;
-  //     rank++;
-  //     return user;
-  //   });
-  // let readyToRun = false;
-  // firstAudit.forEach((user) => {
-  //   if (user.total !== 0) readyToRun = true;
-  // });
-  // if (readyToRun) {
-  //   let dupeScores = [];
-  //   let nonDupeScores = [];
-  //   let newDupeScores = [];
-  //   const scores = createCountObj(firstAudit, "total");
-  //   firstAudit.forEach((user) => {
-  //     scores[user.total] === 1
-  //       ? nonDupeScores.push(user)
-  //       : dupeScores.push(user);
-  //   });
-  //   if (dupeScores.length) {
-  //     const scoreObj = dupeScores.reduce((a, user) => {
-  //       a[user.total] ? a[user.total].push(user) : (a[user.total] = [user]);
-  //       return a;
-  //     }, {});
-  //     Object.keys(scoreObj).forEach((key) => {
-  //       const newRanking = audit(scoreObj[key], actualGoalsScored);
-  //       newDupeScores = [...newDupeScores, ...newRanking];
-  //     });
-  //     return [...newDupeScores, ...nonDupeScores];
-  //   }
-  //   return nonDupeScores;
-  // }
-  // return firstAudit;
-};
-
 const teamRankSort = (teams) => {
   // const sorted = teams.sort((a, b) => b.Pts - a.Pts);
   // return sorted.reduce((a, team, idx) => {
@@ -479,10 +372,14 @@ const userTotalPoints = (user, teams) => {
 
   const koRounds = ["quarters", "semis", "final", "champion"];
 
-  const koTotals = koRounds.reduce((a, round) => {
-    const roundTotal = koRoundCalc(user, round, teams);
+  const userHasKOPicks = user.knockChamp !== null ? true : false;
 
-    a += roundTotal;
+  const koTotals = koRounds.reduce((a, round) => {
+    if (userHasKOPicks) {
+      const roundTotal = koRoundCalc(user, round, teams);
+
+      a += roundTotal;
+    }
 
     return a;
   }, 0);
@@ -555,6 +452,131 @@ const knockoutClass = (user, teams, position) => {
   // if (usersTeamPick?.name === advancingTeam) return "correct";
   // if (usersTeamPick?.outOfTourney) return "wrong";
   // return "";
+};
+
+const audit = (arr, actualGoalsScored) => {
+  let rank = arr[0].rank;
+
+  const tiebreakers = createCountObj(arr, "tiebreaker");
+
+  const audit = arr
+    .map((user) => {
+      user.numOfTimes = tiebreakers[user.tiebreaker];
+
+      user.tiebreakerStatus =
+        user.tiebreaker === actualGoalsScored
+          ? "exact"
+          : user.tiebreaker < actualGoalsScored
+          ? "notOver"
+          : "over";
+
+      return user;
+    })
+    .map((user) => {
+      if (user.numOfTimes > 1) user.tieExists = true;
+      return user;
+    })
+    .sort((a, b) => {
+      let fa = a.tiebreakerStatus,
+        fb = b.tiebreakerStatus;
+      return fa < fb ? -1 : fa > fb ? 1 : 0;
+    });
+
+  const auditObj = {
+    exact: [],
+    notOver: [],
+    over: [],
+  };
+
+  audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
+
+  let answer = [];
+
+  Object.keys(auditObj).forEach((key) => {
+    const keySorted = auditObj[key].sort((a, b) =>
+      key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
+    );
+    answer = [...answer, ...keySorted];
+  });
+
+  return answer.map((userObj) => {
+    userObj.rank = rank;
+    rank++;
+
+    return userObj;
+  });
+};
+
+const currentScoresObj = (users, teams, actualGoalsScored = null) => {
+  let rank = 1;
+
+  const firstAudit = users
+    .reduce((a, user) => {
+      const total = userTotalPoints(user, teams);
+
+      const userObj = {
+        name: user.name,
+        tiebreaker: user.tiebreaker,
+        total,
+        tieExists: false,
+        paid: user.paid,
+      };
+
+      a.push(userObj);
+
+      return a;
+    }, [])
+    .sort((a, b) => b.total - a.total)
+    .map((user) => {
+      user.rank = rank;
+      rank++;
+      return user;
+    });
+
+  let readyToRun = false;
+
+  firstAudit.forEach((user) => {
+    if (user.total !== 0) readyToRun = true;
+  });
+
+  if (readyToRun) {
+    let dupeScores = [];
+    let nonDupeScores = [];
+    let newDupeScores = [];
+
+    const scores = createCountObj(firstAudit, "total");
+
+    firstAudit.forEach((user) => {
+      scores[user.total] === 1
+        ? nonDupeScores.push(user)
+        : dupeScores.push(user);
+    });
+
+    if (dupeScores.length) {
+      const scoreObj = dupeScores.reduce((a, user) => {
+        a[user.total] ? a[user.total].push(user) : (a[user.total] = [user]);
+
+        return a;
+      }, {});
+
+      Object.keys(scoreObj).forEach((key) => {
+        const newRanking = audit(scoreObj[key], actualGoalsScored);
+
+        newDupeScores = [...newDupeScores, ...newRanking];
+      });
+
+      return [...newDupeScores, ...nonDupeScores];
+    }
+
+    return nonDupeScores;
+  }
+
+  return firstAudit.sort((a, b) => {
+    let fa = a.name,
+      fb = b.name;
+
+    return fa < fb ? -1 : fa > fb ? 1 : 0;
+  });
 };
 
 module.exports = {

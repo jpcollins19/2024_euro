@@ -30,7 +30,7 @@ const Leaderboard_Page = () => {
     >
       {loading ? (
         <Loading />
-      ) : user && user.name ? (
+      ) : user?.name ? (
         <div>
           <div className="table-cont">
             {joe?.tourneyStage === 1 ? (

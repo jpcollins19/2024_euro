@@ -1,43 +1,23 @@
-////////////F1 - add flags next to the teams name
+///test specs - write specs for the 'Calcs leaderboard' describe block --- round 1
+//when tourney is over
 
-///stage 5
-//my_picks_locked ---ko - add correct team on hover over the wrong teams ko cont
-//the above step is finished.  audit scenarios in stage 5 to see if this is broken anywhere.  ie make france advance, but then lose in the Semis, etc
-
-//pool_picks_ko & group
-////Pool_Picks_Page - unhide all things that deal with tourneyStage === 5
-//step// go through lifecycle for a user with completed picks
-
-////////////F1 - add flags next to the teams name ------END
-
-////roll through every file through stage 5 and adjust everything needed:////
-
-////stage 5
-//fix all admin pages through stage 5 - might not be needed, but do a full audit
-//Pool_Picks_Page - unhide all things that deal with tourneyStage === 5
-//My_Picks_Locked_Page - Total_Points_Cont - roll through this and make adjustments as needed for group stage scoring
-////////write test specs for all things needed as this stage goes on////////
-////test specs - 'Joe's Knockout Scores' in the 'Calcs everyone's overall scores' describe block - write a 'koCalc' func
-////test specs - calcs className info in the 'Calcs everyone's overall correct/wrong className info in KO stage' describe block
-
-////roll through every file through stage 5 and adjust everything needed:////
+/////////do work on Leaderboard_Cont for all 5 stages/////////
 
 ////////take pics of fam render tournament website for each users group and ko scores - leaderboard too
 
 //put app away and focus on masters
 
-///test specs - write specs for the 'Calcs leaderboard' describe block.  add diff phases for diff 'it' blocks - 2 groups complete, 6 others are still active, ko round in diff stages, etc
-
-/////////do work on Leaderboard_Cont for all 5 stages/////////
+///test specs - write specs for the 'Calcs leaderboard' describe block --- round 2
+//when tourney is NOT over
+//when only 2 groups are complete
+//when only group stages are complete, before ko stage starts
+//with ko round in diff stages
 
 ////re-do the file for users > admin:
 //start with stage 1 and test for all stages for updates when they are applicable - do not need to update stages 4 or 5, you already did this in initial re-factoring in late Dec 22
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
-
-///////css
-//fix spacing on ko containers - the left side Quarters row is closer to the R16 than the right side Quarters row
 
 //add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use
 
