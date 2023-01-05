@@ -7734,7 +7734,8 @@ describe("Cals everthing correctly", () => {
       fakeUser2,
       fakeUser3,
       fakeUser4,
-      tieNames;
+      fakeUser5,
+      fakeUser6;
 
     beforeEach(() => {
       users = users.filter((user) => user?.tiebreaker);
@@ -8085,8 +8086,6 @@ describe("Cals everthing correctly", () => {
             { name: "Frank", tiebreaker: 113 },
             { name: "Sally", tiebreaker: 112 },
             { name: "Jill", tiebreaker: 112 },
-            //for 6A, make 2 fakeUsers match Joe with 55 pts and:
-            //make 2 other fakeUsers match Kevin with 37 pts
           ],
           totalGoalsScored: 100,
           resultNames: [
@@ -8109,6 +8108,319 @@ describe("Cals everthing correctly", () => {
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: 6,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 102 },
+            { name: "Stanley", tiebreaker: 100 },
+          ],
+          addFakeUsers: false,
+          fakeUserToMatch: "",
+          fakeUsersToAdd: [],
+          totalGoalsScored: 100,
+          resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
+          resultScores: [55, 55, 52, 44, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: "6A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 102 },
+            { name: "Stanley", tiebreaker: 100 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Stanley",
+          fakeUsersToAdd: [
+            { name: "Mark", tiebreaker: 113 },
+            { name: "Frank", tiebreaker: 113 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Stanley",
+            "Joe",
+            "Frank",
+            "Mark",
+            "Anthony",
+            "Pat",
+            "Sally",
+            "Craig",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 52, 44, 37, 37, 37, 24, 24],
+          resultTieExists: [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: 7,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 102 },
+            { name: "Stanley", tiebreaker: 107 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Pat",
+          fakeUsersToAdd: [{ name: "Paat", tiebreaker: 163 }],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Joe",
+            "Stanley",
+            "Anthony",
+            "Paat",
+            "Pat",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 52, 44, 44, 37, 24],
+          resultTieExists: [false, false, false, true, true, false, false],
+        },
+        {
+          number: "7A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 102 },
+            { name: "Stanley", tiebreaker: 110 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Stanley",
+          fakeUsersToAdd: [
+            { name: "Mark", tiebreaker: 101 },
+            { name: "Sally", tiebreaker: 106 },
+            { name: "Frank", tiebreaker: 106 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Mark",
+            "Joe",
+            "Frank",
+            "Sally",
+            "Stanley",
+            "Anthony",
+            "Pat",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 55, 52, 44, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: 8,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 120 },
+            { name: "Stanley", tiebreaker: 105 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Kevin",
+          fakeUsersToAdd: [{ name: "Jill", tiebreaker: 105 }],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Stanley",
+            "Joe",
+            "Anthony",
+            "Pat",
+            "Jill",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 52, 44, 37, 37, 24],
+          resultTieExists: [false, false, false, false, false, false, false],
+        },
+        {
+          number: "8A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 120 },
+            { name: "Stanley", tiebreaker: 105 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Stanley",
+          fakeUsersToAdd: [
+            { name: "Mark", tiebreaker: 100 },
+            { name: "Sally", tiebreaker: 106 },
+            { name: "Frank", tiebreaker: 106 },
+            { name: "Craig", tiebreaker: 98 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Mark",
+            "Craig",
+            "Stanley",
+            "Frank",
+            "Sally",
+            "Joe",
+            "Anthony",
+            "Pat",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 55, 55, 52, 44, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: 9,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 98 },
+            { name: "Stanley", tiebreaker: 90 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Joe",
+          fakeUsersToAdd: [
+            { name: "Zane", tiebreaker: 68 },
+            { name: "Adam", tiebreaker: 105 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Joe",
+            "Stanley",
+            "Zane",
+            "Adam",
+            "Anthony",
+            "Pat",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 52, 44, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: "9A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 98 },
+            { name: "Stanley", tiebreaker: 90 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Stanley",
+          fakeUsersToAdd: [
+            { name: "Frank", tiebreaker: 99 },
+            { name: "Sally", tiebreaker: 96 },
+            { name: "Mark", tiebreaker: 96 },
+            { name: "Jill", tiebreaker: 95 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Frank",
+            "Joe",
+            "Mark",
+            "Sally",
+            "Jill",
+            "Stanley",
+            "Anthony",
+            "Pat",
+            "Zoe",
+            "Eric",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 55, 55, 52, 44, 37, 37, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: 10,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 90 },
+            { name: "Stanley", tiebreaker: 98 },
+          ],
+          addFakeUsers: true,
+          fakeUserToMatch: "Joe",
+          fakeUsersToAdd: [
+            { name: "Zane", tiebreaker: 68 },
+            { name: "Adam", tiebreaker: 105 },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Stanley",
+            "Joe",
+            "Zane",
+            "Adam",
+            "Anthony",
+            "Pat",
+            "Kevin",
+            "Zoe",
+            "Eric",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 55, 52, 44, 37, 37, 37, 24],
+          resultTieExists: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -8145,6 +8457,12 @@ describe("Cals everthing correctly", () => {
                       case 4:
                         fakeUser4 = addFakeUser(user, fakeUser.name);
                         break;
+                      case 5:
+                        fakeUser5 = addFakeUser(user, fakeUser.name);
+                        break;
+                      case 6:
+                        fakeUser6 = addFakeUser(user, fakeUser.name);
+                        break;
                     }
                   });
                 }
@@ -8176,6 +8494,18 @@ describe("Cals everthing correctly", () => {
                     }
                     users = [...users, fakeUser4];
                     break;
+                  case 5:
+                    if (fakeUser.tiebreaker) {
+                      fakeUser5.tiebreaker = fakeUser.tiebreaker;
+                    }
+                    users = [...users, fakeUser5];
+                    break;
+                  case 6:
+                    if (fakeUser.tiebreaker) {
+                      fakeUser6.tiebreaker = fakeUser.tiebreaker;
+                    }
+                    users = [...users, fakeUser6];
+                    break;
                 }
               });
 
@@ -8188,11 +8518,57 @@ describe("Cals everthing correctly", () => {
 
                 users = [...users, fakeUser2];
               }
+
+              if (scenario.number === "6A") {
+                users.forEach((user) => {
+                  if (user.name === "Kevin") {
+                    fakeUser3 = addFakeUser(user, "Sally");
+                    fakeUser4 = addFakeUser(user, "Craig");
+
+                    fakeUser3.tiebreaker = 97;
+                    fakeUser4.tiebreaker = 112;
+                  }
+                });
+
+                users = [...users, fakeUser3, fakeUser4];
+              }
+
+              if (scenario.number === "9A") {
+                users.forEach((user) => {
+                  if (user.name === "Kevin") {
+                    fakeUser5 = addFakeUser(user, "Zoe");
+                    fakeUser6 = addFakeUser(user, "Eric");
+
+                    fakeUser5.tiebreaker = 97;
+                    fakeUser6.tiebreaker = 95;
+
+                    user.tiebreaker = 69;
+                  }
+                });
+
+                users = [...users, fakeUser5, fakeUser6];
+              }
+
+              if (scenario.number === 10) {
+                users.forEach((user) => {
+                  if (user.name === "Kevin") {
+                    fakeUser3 = addFakeUser(user, "Zoe");
+                    fakeUser4 = addFakeUser(user, "Eric");
+
+                    fakeUser3.tiebreaker = 97;
+                    fakeUser4.tiebreaker = 95;
+
+                    user.tiebreaker = 98;
+                  }
+                });
+
+                users = [...users, fakeUser3, fakeUser4];
+              }
             }
 
             answer = currentScoresObj(users, teams, scenario.totalGoalsScored);
 
-            // if (scenario.number === "4A") {
+            // if (scenario.number === "9A") {
             //   console.log(answer);
             // }
 
@@ -8208,433 +8584,6 @@ describe("Cals everthing correctly", () => {
           });
         });
 
-        // it("scenario #6 - only 2 users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 102
-        //         : user.name === "Stanley"
-        //         ? 100
-        //         : user.tiebreaker;
-        //     if (user.name === "Kelly") {
-        //       user.groupC1 = "Argentina";
-        //       user.groupC3 = "Poland";
-        //       user.groupC3 = "Saudi Arabia";
-        //       user.groupD2 = "Denmark";
-        //       user.groupD4 = "Tunisia";
-        //       user.knockQ1 = "Ecuador";
-        //       user.knockQ3 = "Canada";
-        //       user.knockQ8 = "Cameroon";
-        //       user.knockS1 = "Argentina";
-        //       user.knockS2 = "Brasil";
-        //       user.knockS4 = "Cameroon";
-        //       user.knockF1 = "Argentina";
-        //       user.knockF2 = "Australia";
-        //       user.knockChamp = "Argentina";
-        //     }
-        //     return user;
-        //   });
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   expect(names["1"]).to.equal("Kelly");
-        //   expect(names["2"]).to.equal("Stanley");
-        //   expect(names["3"]).to.equal("Joe");
-        //   expect(names["4"]).to.equal("Coach Raiff");
-        //   expect(names["5"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(93);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(49);
-        //   expect(scores["5"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(false);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        // });
-        // it("scenario #6 - 3+ users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 102
-        //         : user.name === "Stanley"
-        //         ? 100
-        //         : user.tiebreaker;
-        //     if (user.name === "Joe") {
-        //       frank = addFakeUser(user, "Frank");
-        //     }
-        //     return user;
-        //   });
-        //   users = [...users, frank];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Joe", "Frank"];
-        //   expect(names["1"]).to.equal("Stanley");
-        //   expect(tieNames.includes(names["2"])).to.equal(true);
-        //   expect(tieNames.includes(names["3"])).to.equal(true);
-        //   expect(names["4"]).to.equal("Kelly");
-        //   expect(names["5"]).to.equal("Coach Raiff");
-        //   expect(names["6"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(51);
-        //   expect(scores["5"]).to.equal(49);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(true);
-        //   expect(tieExists["3"]).to.equal(true);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        // });
-        // it("scenario #7 - only 2 users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 102
-        //         : user.name === "Stanley"
-        //         ? 105
-        //         : user.tiebreaker;
-        //     if (user.name === "E") {
-        //       sally = addFakeUser(user, "Sally");
-        //     }
-        //     return user;
-        //   });
-        //   sally.tiebreaker = 110;
-        //   users = [...users, sally];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   expect(names["1"]).to.equal("Joe");
-        //   expect(names["2"]).to.equal("Stanley");
-        //   expect(names["3"]).to.equal("Kelly");
-        //   expect(names["4"]).to.equal("Coach Raiff");
-        //   expect(names["5"]).to.equal("Sally");
-        //   expect(names["6"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(51);
-        //   expect(scores["4"]).to.equal(49);
-        //   expect(scores["5"]).to.equal(39);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(false);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        // });
-        // it("scenario #7 - 3+ users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 102
-        //         : user.name === "Stanley"
-        //         ? 110
-        //         : user.tiebreaker;
-        //     if (user.name === "Joe") {
-        //       frank = addFakeUser(user, "Frank");
-        //       mark = addFakeUser(user, "Mark");
-        //       sally = addFakeUser(user, "Sally");
-        //     }
-        //     return user;
-        //   });
-        //   frank.tiebreaker = 106;
-        //   mark.tiebreaker = 101;
-        //   sally.tiebreaker = 106;
-        //   users = [...users, frank, mark, sally];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Sally", "Frank"];
-        //   expect(names["1"]).to.equal("Mark");
-        //   expect(names["2"]).to.equal("Joe");
-        //   expect(tieNames.includes(names["3"])).to.equal(true);
-        //   expect(tieNames.includes(names["4"])).to.equal(true);
-        //   expect(names["5"]).to.equal("Stanley");
-        //   expect(names["6"]).to.equal("Kelly");
-        //   expect(names["7"]).to.equal("Coach Raiff");
-        //   expect(names["8"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(92);
-        //   expect(scores["5"]).to.equal(92);
-        //   expect(scores["6"]).to.equal(51);
-        //   expect(scores["7"]).to.equal(49);
-        //   expect(scores["8"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(true);
-        //   expect(tieExists["4"]).to.equal(true);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        //   expect(tieExists["7"]).to.equal(false);
-        //   expect(tieExists["8"]).to.equal(false);
-        // });
-        // it("scenario #8 - only 2 users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 120
-        //         : user.name === "Stanley"
-        //         ? 105
-        //         : user.tiebreaker;
-        //     if (user.name === "Kelly") {
-        //       jill = addFakeUser(user, "Jill");
-        //     }
-        //     return user;
-        //   });
-        //   jill.tiebreaker = 110;
-        //   users = [...users, jill];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   expect(names["1"]).to.equal("Stanley");
-        //   expect(names["2"]).to.equal("Joe");
-        //   expect(names["3"]).to.equal("Jill");
-        //   expect(names["4"]).to.equal("Kelly");
-        //   expect(names["5"]).to.equal("Coach Raiff");
-        //   expect(names["6"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(51);
-        //   expect(scores["4"]).to.equal(51);
-        //   expect(scores["5"]).to.equal(49);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(false);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        // });
-        // it("scenario #8 - 3+ users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 120
-        //         : user.name === "Stanley"
-        //         ? 105
-        //         : user.tiebreaker;
-        //     if (user.name === "Joe") {
-        //       frank = addFakeUser(user, "Frank");
-        //       mark = addFakeUser(user, "Mark");
-        //       sally = addFakeUser(user, "Sally");
-        //       jill = addFakeUser(user, "Jill");
-        //     }
-        //     return user;
-        //   });
-        //   frank.tiebreaker = 106;
-        //   mark.tiebreaker = 150;
-        //   sally.tiebreaker = 150;
-        //   jill.tiebreaker = 179;
-        //   users = [...users, frank, mark, sally, jill];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Mark", "Sally"];
-        //   expect(names["1"]).to.equal("Stanley");
-        //   expect(names["2"]).to.equal("Frank");
-        //   expect(names["3"]).to.equal("Joe");
-        //   expect(tieNames.includes(names["4"])).to.equal(true);
-        //   expect(tieNames.includes(names["5"])).to.equal(true);
-        //   expect(names["6"]).to.equal("Jill");
-        //   expect(names["7"]).to.equal("Kelly");
-        //   expect(names["8"]).to.equal("Coach Raiff");
-        //   expect(names["9"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(92);
-        //   expect(scores["5"]).to.equal(92);
-        //   expect(scores["6"]).to.equal(92);
-        //   expect(scores["7"]).to.equal(51);
-        //   expect(scores["8"]).to.equal(49);
-        //   expect(scores["9"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(false);
-        //   expect(tieExists["4"]).to.equal(true);
-        //   expect(tieExists["5"]).to.equal(true);
-        //   expect(tieExists["6"]).to.equal(false);
-        //   expect(tieExists["7"]).to.equal(false);
-        //   expect(tieExists["8"]).to.equal(false);
-        //   expect(tieExists["8"]).to.equal(false);
-        // });
-        // it("scenario #9 - only 2 users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 98
-        //         : user.name === "Stanley"
-        //         ? 90
-        //         : user.tiebreaker;
-        //     if (user.name === "Coach Raiff") {
-        //       jill = addFakeUser(user, "Jill");
-        //     }
-        //     return user;
-        //   });
-        //   jill.tiebreaker = 60;
-        //   users = [...users, jill];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   expect(names["1"]).to.equal("Joe");
-        //   expect(names["2"]).to.equal("Stanley");
-        //   expect(names["3"]).to.equal("Kelly");
-        //   expect(names["4"]).to.equal("Jill");
-        //   expect(names["5"]).to.equal("Coach Raiff");
-        //   expect(names["6"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(51);
-        //   expect(scores["4"]).to.equal(49);
-        //   expect(scores["5"]).to.equal(49);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(false);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        // });
-        // it("scenario #9 - 3+ users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe"
-        //         ? 98
-        //         : user.name === "Stanley"
-        //         ? 90
-        //         : user.tiebreaker;
-        //     if (user.name === "Joe") {
-        //       frank = addFakeUser(user, "Frank");
-        //       mark = addFakeUser(user, "Mark");
-        //       sally = addFakeUser(user, "Sally");
-        //       jill = addFakeUser(user, "Jill");
-        //     }
-        //     return user;
-        //   });
-        //   frank.tiebreaker = 99;
-        //   mark.tiebreaker = 96;
-        //   sally.tiebreaker = 96;
-        //   jill.tiebreaker = 95;
-        //   users = [...users, frank, mark, sally, jill];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Mark", "Sally"];
-        //   expect(names["1"]).to.equal("Frank");
-        //   expect(names["2"]).to.equal("Joe");
-        //   expect(tieNames.includes(names["3"])).to.equal(true);
-        //   expect(tieNames.includes(names["4"])).to.equal(true);
-        //   expect(names["5"]).to.equal("Jill");
-        //   expect(names["6"]).to.equal("Stanley");
-        //   expect(names["7"]).to.equal("Kelly");
-        //   expect(names["8"]).to.equal("Coach Raiff");
-        //   expect(names["9"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(92);
-        //   expect(scores["5"]).to.equal(92);
-        //   expect(scores["6"]).to.equal(92);
-        //   expect(scores["7"]).to.equal(51);
-        //   expect(scores["8"]).to.equal(49);
-        //   expect(scores["9"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(false);
-        //   expect(tieExists["2"]).to.equal(false);
-        //   expect(tieExists["3"]).to.equal(true);
-        //   expect(tieExists["4"]).to.equal(true);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        //   expect(tieExists["7"]).to.equal(false);
-        //   expect(tieExists["8"]).to.equal(false);
-        //   expect(tieExists["8"]).to.equal(false);
-        // });
         // it("scenario #11 - only 2 users tied", () => {
         //   users = users.map((user) => {
         //     user.tiebreaker =

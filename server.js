@@ -2,6 +2,7 @@
 //when tourney is over
 
 /////////do work on Leaderboard_Cont for all 5 stages/////////
+//audit to see if linear gradient is used at all
 
 ////////take pics of fam render tournament website for each users group and ko scores - leaderboard too
 

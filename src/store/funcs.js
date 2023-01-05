@@ -514,6 +514,8 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
       key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
     );
 
+    // console.log("userOrder_OG", userOrder_OG);
+
     let newUserOrder = Object.entries(
       userOrder_OG.reduce((a, user) => {
         if (a[user.tiebreaker]) {
@@ -524,7 +526,19 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
 
         return a;
       }, {})
-    )
+    );
+
+    // console.log("newUserOrder - 0", newUserOrder);
+
+    // console.log("key", key);
+
+    if (key === "notOver") {
+      newUserOrder = newUserOrder.sort((a, b) => b[0] - a[0]);
+    }
+
+    // console.log("newUserOrder - 1", newUserOrder);
+
+    newUserOrder = newUserOrder
       .map((entry) => {
         if (entry[1].length > 1) {
           // console.log("entry[1] - before", entry[1]);
@@ -543,7 +557,36 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
         return a;
       }, []);
 
-    // console.log("newUserOrder", newUserOrder);
+    // let newUserOrder = Object.entries(
+    //   userOrder_OG.reduce((a, user) => {
+    //     if (a[user.tiebreaker]) {
+    //       a[user.tiebreaker].push(user.name);
+    //     } else {
+    //       a[user.tiebreaker] = [user.name];
+    //     }
+
+    //     return a;
+    //   }, {})
+    // )
+    //   .map((entry) => {
+    //     if (entry[1].length > 1) {
+    //       // console.log("entry[1] - before", entry[1]);
+    //       entry[1] = entry[1].sort((a, b) => {
+    //         return a < b ? -1 : a > b ? 1 : 0;
+    //       });
+
+    //       // console.log("entry[1] - after", entry[1]);
+    //     }
+
+    //     return entry;
+    //   })
+    //   .reduce((a, entry) => {
+    //     entry[1].forEach((name) => a.push(name));
+
+    //     return a;
+    //   }, []);
+
+    // console.log("newUserOrder - 2", newUserOrder);
 
     newUserOrder = newUserOrder.map((user) => {
       userOrder_OG.forEach((user_OG) => {
@@ -554,6 +597,8 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
 
       return user;
     });
+
+    // console.log("newUserOrder - 2", newUserOrder);
 
     // if (tiebreakerAuditObj[key].length > 1) {
     //   console.log("userOrder_OG", userOrder_OG);
