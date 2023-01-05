@@ -7723,19 +7723,13 @@ describe("Cals everthing correctly", () => {
   });
 
   describe("Calcs leaderboard", () => {
-    let groupLetters,
-      koLetters,
-      koObj,
-      names,
-      scores,
-      tieExists,
-      answer,
-      fakeUser1,
-      fakeUser2,
-      fakeUser3,
-      fakeUser4,
-      fakeUser5,
-      fakeUser6;
+    let groupLetters, koLetters, koObj, names, scores, tieExists, answer;
+    // fakeUser1,
+    // fakeUser2,
+    // fakeUser3,
+    // fakeUser4,
+    // fakeUser5,
+    // fakeUser6;
 
     beforeEach(() => {
       users = users.filter((user) => user?.tiebreaker);
@@ -7831,9 +7825,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 98 },
             { name: "Stanley", tiebreaker: 102 },
           ],
-          addFakeUsers: false,
-          fakeUserToMatch: "",
-          fakeUsersToAdd: [],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: ["Joe", "Stanley", "Anthony", "Pat", "Kevin", "Sarah"],
           resultScores: [55, 55, 52, 44, 37, 24],
@@ -7846,13 +7843,16 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 102 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Frank" },
             { name: "Sally", tiebreaker: 98 },
             { name: "Jill" },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Sally",
@@ -7885,9 +7885,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 98 },
           ],
-          addFakeUsers: false,
-          fakeUserToMatch: "",
-          fakeUsersToAdd: [],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
           resultScores: [55, 55, 52, 44, 37, 24],
@@ -7900,9 +7903,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 98 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Joe",
-          fakeUsersToAdd: [{ name: "Frank" }],
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Joe",
+          fakeUsersToAdd1: [{ name: "Frank" }],
+          addFakeUsers2: true,
+          fakeUserToMatch2: "Sarah",
+          fakeUsersToAdd2: [{ name: "Sally" }],
           totalGoalsScored: 100,
           resultNames: [
             "Stanley",
@@ -7924,9 +7930,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 100 },
             { name: "Stanley", tiebreaker: 98 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Kevin",
-          fakeUsersToAdd: [{ name: "Frank", tiebreaker: 90 }],
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Kevin",
+          fakeUsersToAdd1: [{ name: "Frank", tiebreaker: 90 }],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -7947,14 +7956,17 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 100 },
             { name: "Stanley", tiebreaker: 98 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Frank", tiebreaker: 113 },
             { name: "Sally" },
             { name: "Jill", tiebreaker: 112 },
             { name: "Mark" },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -7989,9 +8001,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 98 },
             { name: "Stanley", tiebreaker: 100 },
           ],
-          addFakeUsers: false,
-          fakeUserToMatch: "",
-          fakeUsersToAdd: [],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
           resultScores: [55, 55, 52, 44, 37, 24],
@@ -8004,13 +8019,16 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 98 },
             { name: "Stanley", tiebreaker: 100 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Mark", tiebreaker: 113 },
             { name: "Frank", tiebreaker: 113 },
             { name: "Sally", tiebreaker: 112 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Stanley",
@@ -8043,12 +8061,15 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 100 },
             { name: "Stanley", tiebreaker: 106 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Pat",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Pat",
+          fakeUsersToAdd1: [
             { name: "Jack", tiebreaker: 100 },
             { name: "Craig", tiebreaker: 100 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -8079,14 +8100,17 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 100 },
             { name: "Stanley", tiebreaker: 106 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Mark", tiebreaker: 113 },
             { name: "Frank", tiebreaker: 113 },
             { name: "Sally", tiebreaker: 112 },
             { name: "Jill", tiebreaker: 112 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -8121,9 +8145,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 100 },
           ],
-          addFakeUsers: false,
-          fakeUserToMatch: "",
-          fakeUsersToAdd: [],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
           resultScores: [55, 55, 52, 44, 37, 24],
@@ -8145,11 +8172,17 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 100 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Mark", tiebreaker: 113 },
             { name: "Frank", tiebreaker: 113 },
+          ],
+          addFakeUsers2: true,
+          fakeUserToMatch2: "Kevin",
+          fakeUsersToAdd2: [
+            { name: "Sally", tiebreaker: 97 },
+            { name: "Craig", tiebreaker: 112 },
           ],
           totalGoalsScored: 100,
           resultNames: [
@@ -8185,9 +8218,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 107 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Pat",
-          fakeUsersToAdd: [{ name: "Paat", tiebreaker: 163 }],
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Pat",
+          fakeUsersToAdd1: [{ name: "Paat", tiebreaker: 163 }],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -8208,13 +8244,16 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 102 },
             { name: "Stanley", tiebreaker: 110 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Mark", tiebreaker: 101 },
             { name: "Sally", tiebreaker: 106 },
             { name: "Frank", tiebreaker: 106 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Mark",
@@ -8247,9 +8286,12 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 120 },
             { name: "Stanley", tiebreaker: 105 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Kevin",
-          fakeUsersToAdd: [{ name: "Jill", tiebreaker: 105 }],
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Kevin",
+          fakeUsersToAdd1: [{ name: "Jill", tiebreaker: 105 }],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Stanley",
@@ -8270,14 +8312,17 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 120 },
             { name: "Stanley", tiebreaker: 105 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Mark", tiebreaker: 100 },
             { name: "Sally", tiebreaker: 106 },
             { name: "Frank", tiebreaker: 106 },
             { name: "Craig", tiebreaker: 98 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Mark",
@@ -8312,12 +8357,15 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 98 },
             { name: "Stanley", tiebreaker: 90 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Joe",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Joe",
+          fakeUsersToAdd1: [
             { name: "Zane", tiebreaker: 68 },
             { name: "Adam", tiebreaker: 105 },
           ],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
           totalGoalsScored: 100,
           resultNames: [
             "Joe",
@@ -8348,13 +8396,19 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 98 },
             { name: "Stanley", tiebreaker: 90 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Stanley",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Stanley",
+          fakeUsersToAdd1: [
             { name: "Frank", tiebreaker: 99 },
             { name: "Sally", tiebreaker: 96 },
             { name: "Mark", tiebreaker: 96 },
             { name: "Jill", tiebreaker: 95 },
+          ],
+          addFakeUsers2: true,
+          fakeUserToMatch2: "Kevin",
+          fakeUsersToAdd2: [
+            { name: "Zoe", tiebreaker: 97 },
+            { name: "Eric", tiebreaker: 95 },
           ],
           totalGoalsScored: 100,
           resultNames: [
@@ -8394,11 +8448,17 @@ describe("Cals everthing correctly", () => {
             { name: "Joe", tiebreaker: 90 },
             { name: "Stanley", tiebreaker: 98 },
           ],
-          addFakeUsers: true,
-          fakeUserToMatch: "Joe",
-          fakeUsersToAdd: [
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Joe",
+          fakeUsersToAdd1: [
             { name: "Zane", tiebreaker: 68 },
             { name: "Adam", tiebreaker: 105 },
+          ],
+          addFakeUsers2: true,
+          fakeUserToMatch2: "Kevin",
+          fakeUsersToAdd2: [
+            { name: "Zoe", tiebreaker: 97 },
+            { name: "Eric", tiebreaker: 95 },
           ],
           totalGoalsScored: 100,
           resultNames: [
@@ -8408,9 +8468,9 @@ describe("Cals everthing correctly", () => {
             "Adam",
             "Anthony",
             "Pat",
-            "Kevin",
             "Zoe",
             "Eric",
+            "Kevin",
             "Sarah",
           ],
           resultScores: [55, 55, 55, 55, 52, 44, 37, 37, 37, 24],
@@ -8440,135 +8500,166 @@ describe("Cals everthing correctly", () => {
               });
             });
 
-            if (scenario.addFakeUsers) {
-              users.forEach((user) => {
-                if (user.name === scenario.fakeUserToMatch) {
-                  scenario.fakeUsersToAdd.forEach((fakeUser, idx) => {
-                    switch (idx + 1) {
-                      case 1:
-                        fakeUser1 = addFakeUser(user, fakeUser.name);
-                        break;
-                      case 2:
-                        fakeUser2 = addFakeUser(user, fakeUser.name);
-                        break;
-                      case 3:
-                        fakeUser3 = addFakeUser(user, fakeUser.name);
-                        break;
-                      case 4:
-                        fakeUser4 = addFakeUser(user, fakeUser.name);
-                        break;
-                      case 5:
-                        fakeUser5 = addFakeUser(user, fakeUser.name);
-                        break;
-                      case 6:
-                        fakeUser6 = addFakeUser(user, fakeUser.name);
-                        break;
-                    }
-                  });
-                }
-              });
+            // if (scenario.addFakeUsers1) {
+            //   users.forEach((user) => {
+            //     if (user.name === scenario.fakeUserToMatch1) {
+            //       scenario.fakeUsersToAdd1.forEach((fakeUser) => {
+            //         // switch (idx + 1) {
+            //         //   case 1:
+            //         //     fakeUser1 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         //   case 2:
+            //         //     fakeUser2 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         //   case 3:
+            //         //     fakeUser3 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         //   case 4:
+            //         //     fakeUser4 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         //   case 5:
+            //         //     fakeUser5 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         //   case 6:
+            //         //     fakeUser6 = addFakeUser(user, fakeUser.name);
+            //         //     break;
+            //         // }
 
-              scenario.fakeUsersToAdd.forEach((fakeUser, idx) => {
-                switch (idx + 1) {
-                  case 1:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser1.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser1];
-                    break;
-                  case 2:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser2.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser2];
-                    break;
-                  case 3:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser3.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser3];
-                    break;
-                  case 4:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser4.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser4];
-                    break;
-                  case 5:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser5.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser5];
-                    break;
-                  case 6:
-                    if (fakeUser.tiebreaker) {
-                      fakeUser6.tiebreaker = fakeUser.tiebreaker;
-                    }
-                    users = [...users, fakeUser6];
-                    break;
-                }
-              });
+            //         let newFakeUser = addFakeUser(user, fakeUser.name);
+            //         console.log("newFakeUser", newFakeUser.name);
+            //         if (fakeUser.tiebreaker) {
+            //           newFakeUser.tiebreaker = fakeUser.tiebreaker;
+            //         }
 
-              if (scenario.number === "2A") {
+            //         users = [...users, newFakeUser];
+            //         // console.log("fakeUserVal", fakeUserVal);
+            //       });
+            //     }
+            //   });
+
+            //   scenario.fakeUsersToAdd1.forEach((fakeUser, idx) => {
+            //     // let fakeUserVal = eval(`fakeUser${idx + 1}`);
+            //     // if (fakeUser.tiebreaker) {
+            //     //   fakeUserVal.tiebreaker = fakeUser.tiebreaker;
+            //     // }
+            //     // switch (idx + 1) {
+            //     //   case 1:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser1.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser1];
+            //     //     break;
+            //     //   case 2:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser2.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser2];
+            //     //     break;
+            //     //   case 3:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser3.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser3];
+            //     //     break;
+            //     //   case 4:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser4.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser4];
+            //     //     break;
+            //     //   case 5:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser5.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser5];
+            //     //     break;
+            //     //   case 6:
+            //     //     if (fakeUser.tiebreaker) {
+            //     //       fakeUser6.tiebreaker = fakeUser.tiebreaker;
+            //     //     }
+            //     //     users = [...users, fakeUser6];
+            //     //     break;
+            //     // }
+            //   });
+
+            //   // if (scenario.number === "2A") {
+            //   //   users.forEach((user) => {
+            //   //     if (user.name === "Sarah") {
+            //   //       fakeUser2 = addFakeUser(user, "Sally");
+            //   //     }
+            //   //   });
+
+            //   //   users = [...users, fakeUser2];
+            //   // }
+
+            //   // if (scenario.number === "6A") {
+            //   //   users.forEach((user) => {
+            //   //     if (user.name === "Kevin") {
+            //   //       fakeUser3 = addFakeUser(user, "Sally");
+            //   //       fakeUser4 = addFakeUser(user, "Craig");
+
+            //   //       fakeUser3.tiebreaker = 97;
+            //   //       fakeUser4.tiebreaker = 112;
+            //   //     }
+            //   //   });
+
+            //   //   users = [...users, fakeUser3, fakeUser4];
+            //   // }
+
+            //   // if (scenario.number === "9A") {
+            //   //   users.forEach((user) => {
+            //   //     if (user.name === "Kevin") {
+            //   //       fakeUser5 = addFakeUser(user, "Zoe");
+            //   //       fakeUser6 = addFakeUser(user, "Eric");
+
+            //   //       fakeUser5.tiebreaker = 97;
+            //   //       fakeUser6.tiebreaker = 95;
+
+            //   //       user.tiebreaker = 69;
+            //   //     }
+            //   //   });
+
+            //   //   users = [...users, fakeUser5, fakeUser6];
+            //   // }
+
+            //   // if (scenario.number === 10) {
+            //   //   users.forEach((user) => {
+            //   //     if (user.name === "Kevin") {
+            //   //       fakeUser3 = addFakeUser(user, "Zoe");
+            //   //       fakeUser4 = addFakeUser(user, "Eric");
+
+            //   //       fakeUser3.tiebreaker = 97;
+            //   //       fakeUser4.tiebreaker = 95;
+
+            //   //       user.tiebreaker = 98;
+            //   //     }
+            //   //   });
+
+            //   //   users = [...users, fakeUser3, fakeUser4];
+            //   // }
+            // }
+
+            for (let i = 1; i <= 2; i++) {
+              if (scenario[`addFakeUsers${i}`]) {
                 users.forEach((user) => {
-                  if (user.name === "Sarah") {
-                    fakeUser2 = addFakeUser(user, "Sally");
+                  if (user.name === scenario[`fakeUserToMatch${i}`]) {
+                    scenario[`fakeUsersToAdd${i}`].forEach((fakeUser) => {
+                      const newFakeUser = addFakeUser(user, fakeUser.name);
+
+                      if (fakeUser.tiebreaker) {
+                        newFakeUser.tiebreaker = fakeUser.tiebreaker;
+                      }
+
+                      users = [...users, newFakeUser];
+                    });
                   }
                 });
-
-                users = [...users, fakeUser2];
-              }
-
-              if (scenario.number === "6A") {
-                users.forEach((user) => {
-                  if (user.name === "Kevin") {
-                    fakeUser3 = addFakeUser(user, "Sally");
-                    fakeUser4 = addFakeUser(user, "Craig");
-
-                    fakeUser3.tiebreaker = 97;
-                    fakeUser4.tiebreaker = 112;
-                  }
-                });
-
-                users = [...users, fakeUser3, fakeUser4];
-              }
-
-              if (scenario.number === "9A") {
-                users.forEach((user) => {
-                  if (user.name === "Kevin") {
-                    fakeUser5 = addFakeUser(user, "Zoe");
-                    fakeUser6 = addFakeUser(user, "Eric");
-
-                    fakeUser5.tiebreaker = 97;
-                    fakeUser6.tiebreaker = 95;
-
-                    user.tiebreaker = 69;
-                  }
-                });
-
-                users = [...users, fakeUser5, fakeUser6];
-              }
-
-              if (scenario.number === 10) {
-                users.forEach((user) => {
-                  if (user.name === "Kevin") {
-                    fakeUser3 = addFakeUser(user, "Zoe");
-                    fakeUser4 = addFakeUser(user, "Eric");
-
-                    fakeUser3.tiebreaker = 97;
-                    fakeUser4.tiebreaker = 95;
-
-                    user.tiebreaker = 98;
-                  }
-                });
-
-                users = [...users, fakeUser3, fakeUser4];
               }
             }
 
             answer = currentScoresObj(users, teams, scenario.totalGoalsScored);
 
-            // if (scenario.number === "9A") {
+            // if (scenario.number === "1A") {
             //   console.log(answer);
             // }
 
