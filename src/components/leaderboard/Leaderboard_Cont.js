@@ -14,7 +14,7 @@ const Leaderboard_Cont = () => {
 
   let rankInfo = currentScoresObj(users, teams, 163);
 
-  console.log("rankInfo", rankInfo);
+  // console.log("rankInfo", rankInfo);
 
   // rankInfo = rankInfo && rankInfo.sort((a, b) => a.rank - b.rank);
 

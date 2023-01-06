@@ -2,127 +2,11 @@ const findJoe = (arr) => {
   return arr.find((user) => user.admin);
 };
 
-const knockoutRoundCalc = (round, userObj, teams) => {
-  // let advancingTeams, userPicks;
-  // switch (round) {
-  //   case "quarters":
-  //     advancingTeams = teams.filter((team) => team.advanceToQ);
-  //     userPicks = Object.entries(userObj).reduce((a, arr) => {
-  //       const key = arr[0];
-  //       if (
-  //         key === "knockQ1" ||
-  //         key === "knockQ2" ||
-  //         key === "knockQ3" ||
-  //         key === "knockQ4" ||
-  //         key === "knockQ5" ||
-  //         key === "knockQ6" ||
-  //         key === "knockQ7" ||
-  //         key === "knockQ8"
-  //       ) {
-  //         a.push(arr[1]);
-  //       }
-  //       return a;
-  //     }, []);
-  //     break;
-  //   case "semis":
-  //     advancingTeams = teams.filter((team) => team.advanceToS);
-  //     userPicks = Object.entries(userObj).reduce((a, arr) => {
-  //       const key = arr[0];
-  //       if (
-  //         key === "knockS1" ||
-  //         key === "knockS2" ||
-  //         key === "knockS3" ||
-  //         key === "knockS4"
-  //       ) {
-  //         a.push(arr[1]);
-  //       }
-  //       return a;
-  //     }, []);
-  //     break;
-  //   case "finals":
-  //     advancingTeams = teams.filter((team) => team.advanceToF);
-  //     userPicks = Object.entries(userObj).reduce((a, arr) => {
-  //       const key = arr[0];
-  //       if (key === "knockF1" || key === "knockF2") {
-  //         a.push(arr[1]);
-  //       }
-  //       return a;
-  //     }, []);
-  //     break;
-  //   case "champ":
-  //     advancingTeams = teams.filter((team) => team.advanceToChamp);
-  //     userPicks = Object.entries(userObj).reduce((a, arr) => {
-  //       const key = arr[0];
-  //       if (key === "knockChamp") {
-  //         a.push(arr[1]);
-  //       }
-  //       return a;
-  //     }, []);
-  // }
-  // const knockoutObj = { [round]: 0 };
-  // return advancingTeams.reduce((a, team) => {
-  //   if (userPicks.includes(team.name)) {
-  //     const points =
-  //       round === "quarters"
-  //         ? 2
-  //         : round === "semis"
-  //         ? 4
-  //         : round === "finals"
-  //         ? 6
-  //         : round === "champ"
-  //         ? 10
-  //         : 0;
-  //     a[round] += points;
-  //   }
-  //   return a;
-  // }, knockoutObj);
-};
-
 const G = {
   R1: 0,
   R2: 0,
   R3: 0,
   R4: 0,
-};
-
-const totalScoreCalc = (
-  groupA = G,
-  groupB = G,
-  groupC = G,
-  groupD = G,
-  groupE = G,
-  groupF = G,
-  groupG = G,
-  groupH = G,
-  Quart = { quarters: 0 },
-  Semi = { semis: 0 },
-  Final = { finals: 0 },
-  Champ = { champ: 0 }
-) => {
-  // const points = [];
-  // for (let i = 0; i < 8; i++) {
-  //   const converter = {
-  //     0: "A",
-  //     1: "B",
-  //     2: "C",
-  //     3: "D",
-  //     4: "E",
-  //     5: "F",
-  //     6: "G",
-  //     7: "H",
-  //   };
-  //   const groupVar = eval(`group${converter[i]}`);
-  //   Object.entries(groupVar)
-  //     .map((entry) => {
-  //       return entry[1];
-  //     })
-  //     .map((val) => points.push(val));
-  // }
-  // points.push(Quart.quarters);
-  // points.push(Semi.semis);
-  // points.push(Final.finals);
-  // points.push(Champ.champ);
-  // return points.reduce((a, b) => a + b);
 };
 
 const createCountObj = (arr, key) => {
@@ -387,73 +271,6 @@ const userTotalPoints = (user, teams) => {
   return groupTotal + koTotals;
 };
 
-const knockoutClass = (user, teams, position) => {
-  // const usersTeamPick = user[`knock${position}`];
-  // const round = position === "Champ" ? "Champ" : position.split("")[0];
-  // const number = position === "Champ" ? "Champ" : position.split("")[1];
-  // const placeObj = {
-  //   Q: {
-  //     1: ["A1", "B2"],
-  //     2: ["C1", "D2"],
-  //     3: ["E1", "F2"],
-  //     4: ["G1", "H2"],
-  //     5: ["B1", "A2"],
-  //     6: ["D1", "C2"],
-  //     7: ["F1", "E2"],
-  //     8: ["H1", "G2"],
-  //   },
-  //   S: {
-  //     1: ["A1", "B2", "C1", "D2"],
-  //     2: ["E1", "F2", "G1", "H2"],
-  //     3: ["B1", "A2", "D1", "C2"],
-  //     4: ["F1", "E2", "H1", "G2"],
-  //   },
-  //   F: {
-  //     1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-  //     2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-  //   },
-  // };
-  // let advancingTeam, knockoutPos, team;
-  // if (position !== "Champ") {
-  //   knockoutPos = placeObj[round][number];
-  // }
-  // switch (round) {
-  //   case "Q":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         knockoutPos.includes(team.knockoutPosition)
-  //     );
-  //     advancingTeam = team?.name;
-  //     break;
-  //   case "S":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         knockoutPos.includes(team.knockoutPosition)
-  //     );
-  //     advancingTeam = team?.name;
-  //     break;
-  //   case "F":
-  //     team = teams.find(
-  //       (team) =>
-  //         team[`advanceTo${round}`] &&
-  //         knockoutPos.includes(team.knockoutPosition)
-  //     );
-  //     advancingTeam = team?.name;
-  //     break;
-  //   case "Champ":
-  //     team = teams.find((team) => team[`advanceTo${round}`]);
-  //     advancingTeam = team?.name;
-  //     break;
-  //   default:
-  //     throw "error";
-  // }
-  // if (usersTeamPick?.name === advancingTeam) return "correct";
-  // if (usersTeamPick?.outOfTourney) return "wrong";
-  // return "";
-};
-
 const sortNames = (arr) => {
   return arr.sort((a, b) => {
     let fa = a.name,
@@ -505,16 +322,12 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
 
   const tiebreakerAuditObj = tieBreakerAudit(arr, actualGoalsScored);
 
-  // console.log("tiebreakerAuditObj1", tiebreakerAuditObj);
-
   let answer = [];
 
   Object.keys(tiebreakerAuditObj).forEach((key) => {
     let userOrder_OG = tiebreakerAuditObj[key].sort((a, b) =>
       key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker - a.tiebreaker
     );
-
-    // console.log("userOrder_OG", userOrder_OG);
 
     let newUserOrder = Object.entries(
       userOrder_OG.reduce((a, user) => {
@@ -528,25 +341,16 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
       }, {})
     );
 
-    // console.log("newUserOrder - 0", newUserOrder);
-
-    // console.log("key", key);
-
     if (key === "notOver") {
       newUserOrder = newUserOrder.sort((a, b) => b[0] - a[0]);
     }
 
-    // console.log("newUserOrder - 1", newUserOrder);
-
     newUserOrder = newUserOrder
       .map((entry) => {
         if (entry[1].length > 1) {
-          // console.log("entry[1] - before", entry[1]);
           entry[1] = entry[1].sort((a, b) => {
             return a < b ? -1 : a > b ? 1 : 0;
           });
-
-          // console.log("entry[1] - after", entry[1]);
         }
 
         return entry;
@@ -557,37 +361,6 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
         return a;
       }, []);
 
-    // let newUserOrder = Object.entries(
-    //   userOrder_OG.reduce((a, user) => {
-    //     if (a[user.tiebreaker]) {
-    //       a[user.tiebreaker].push(user.name);
-    //     } else {
-    //       a[user.tiebreaker] = [user.name];
-    //     }
-
-    //     return a;
-    //   }, {})
-    // )
-    //   .map((entry) => {
-    //     if (entry[1].length > 1) {
-    //       // console.log("entry[1] - before", entry[1]);
-    //       entry[1] = entry[1].sort((a, b) => {
-    //         return a < b ? -1 : a > b ? 1 : 0;
-    //       });
-
-    //       // console.log("entry[1] - after", entry[1]);
-    //     }
-
-    //     return entry;
-    //   })
-    //   .reduce((a, entry) => {
-    //     entry[1].forEach((name) => a.push(name));
-
-    //     return a;
-    //   }, []);
-
-    // console.log("newUserOrder - 2", newUserOrder);
-
     newUserOrder = newUserOrder.map((user) => {
       userOrder_OG.forEach((user_OG) => {
         if (user === user_OG.name) {
@@ -597,80 +370,6 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
 
       return user;
     });
-
-    // console.log("newUserOrder - 2", newUserOrder);
-
-    // if (tiebreakerAuditObj[key].length > 1) {
-    //   console.log("userOrder_OG", userOrder_OG);
-
-    //   const newUserOrder = Object.entries(
-    //     userOrder_OG.reduce((a, user) => {
-    //       if (a[user.tiebreaker]) {
-    //         a[user.tiebreaker].push(user.name);
-    //       } else {
-    //         a[user.tiebreaker] = [user.name];
-    //       }
-
-    //       return a;
-    //     }, {})
-    //   )
-    //     .map((entry) => {
-    //       if (entry[1].length > 1) {
-    //         // console.log("entry[1] - before", entry[1]);
-    //         entry[1] = entry[1].sort((a, b) => {
-    //           return a < b ? -1 : a > b ? 1 : 0;
-    //         });
-
-    //         // console.log("entry[1] - after", entry[1]);
-    //       }
-
-    //       return entry;
-    //     })
-    //     .reduce((a, entry) => {
-    //       entry[1].forEach((name) => a.push(name));
-
-    //       return a;
-    //     }, []);
-
-    //   console.log("newUserOrder", newUserOrder);
-
-    //   const sameTiebreakerArr = Object.entries(
-    //     createCountObj(userOrder_OG, "tiebreaker")
-    //   )
-    //     .filter((entry) => entry[1] > 1)
-    //     .map((entry) => Number(entry[0]));
-
-    //   // console.log("sameTiebreakerArr", sameTiebreakerArr);
-
-    //   if (sameTiebreakerArr.length) {
-    //     let tempArr = [];
-
-    //     const tiebreakerObj = sameTiebreakerArr.reduce((a, tiebreaker) => {
-    //       userOrder_OG.forEach((user) => {
-    //         if (user.tiebreaker === tiebreaker) {
-    //           if (a[tiebreaker]) {
-    //             a[tiebreaker].push(user.name);
-    //           } else {
-    //             a[tiebreaker] = [user.name];
-    //           }
-    //         }
-    //       });
-
-    //       return a;
-    //     }, {});
-
-    //     // console.log("tiebreakerObj", tiebreakerObj);
-    //     // console.log("START OF CALL");
-    //     // console.log(userOrder);
-
-    //     userOrder_OG = sortNames(userOrder_OG);
-
-    //     // console.log("END OF CALL");
-    //     // console.log(keySorted);
-    //   } else {
-    //     userOrder_OG.sort((a, b) => a.tiebreaker - b.tiebreaker);
-    //   }
-    // }
 
     answer = [...answer, ...newUserOrder];
   });
@@ -760,9 +459,6 @@ module.exports = {
   groupCalc,
   groupTotalCalc,
   userTotalPoints,
-  totalScoreCalc,
-  knockoutRoundCalc,
-  knockoutClass,
   currentScoresObj,
   teamRankSort,
   dupeValInArr,

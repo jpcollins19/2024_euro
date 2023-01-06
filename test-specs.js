@@ -7724,12 +7724,6 @@ describe("Cals everthing correctly", () => {
 
   describe("Calcs leaderboard", () => {
     let groupLetters, koLetters, koObj, names, scores, tieExists, answer;
-    // fakeUser1,
-    // fakeUser2,
-    // fakeUser3,
-    // fakeUser4,
-    // fakeUser5,
-    // fakeUser6;
 
     beforeEach(() => {
       users = users.filter((user) => user?.tiebreaker);
@@ -8487,6 +8481,86 @@ describe("Cals everthing correctly", () => {
             false,
           ],
         },
+        {
+          number: "10A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 90 },
+            { name: "Stanley", tiebreaker: 98 },
+          ],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
+          totalGoalsScored: 100,
+          resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
+          resultScores: [55, 55, 52, 44, 37, 24],
+          resultTieExists: [false, false, false, false, false, false],
+        },
+        {
+          number: 11,
+          verbiage: "only 2 users tied",
+          users: [
+            { name: "Joe", tiebreaker: 98 },
+            { name: "Stanley", tiebreaker: 98 },
+          ],
+          addFakeUsers1: true,
+          fakeUserToMatch1: "Joe",
+          fakeUsersToAdd1: [{ name: "Jill" }],
+          addFakeUsers2: true,
+          fakeUserToMatch2: "Anthony",
+          fakeUsersToAdd2: [
+            { name: "Zane" },
+            { name: "Eric" },
+            { name: "Adam" },
+          ],
+          totalGoalsScored: 100,
+          resultNames: [
+            "Jill",
+            "Joe",
+            "Stanley",
+            "Adam",
+            "Anthony",
+            "Eric",
+            "Zane",
+            "Pat",
+            "Kevin",
+            "Sarah",
+          ],
+          resultScores: [55, 55, 55, 52, 52, 52, 52, 44, 37, 24],
+          resultTieExists: [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+          ],
+        },
+        {
+          number: "11A",
+          verbiage: "3+ users tied",
+          users: [
+            { name: "Joe", tiebreaker: 90 },
+            { name: "Stanley", tiebreaker: 98 },
+          ],
+          addFakeUsers1: false,
+          fakeUserToMatch1: "",
+          fakeUsersToAdd1: [],
+          addFakeUsers2: false,
+          fakeUserToMatch2: "",
+          fakeUsersToAdd2: [],
+          totalGoalsScored: 100,
+          resultNames: ["Stanley", "Joe", "Anthony", "Pat", "Kevin", "Sarah"],
+          resultScores: [55, 55, 52, 44, 37, 24],
+          resultTieExists: [false, false, false, false, false, false],
+        },
       ];
 
       describe("user tie(s) exist(s)", () => {
@@ -8499,145 +8573,6 @@ describe("Cals everthing correctly", () => {
                 }
               });
             });
-
-            // if (scenario.addFakeUsers1) {
-            //   users.forEach((user) => {
-            //     if (user.name === scenario.fakeUserToMatch1) {
-            //       scenario.fakeUsersToAdd1.forEach((fakeUser) => {
-            //         // switch (idx + 1) {
-            //         //   case 1:
-            //         //     fakeUser1 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         //   case 2:
-            //         //     fakeUser2 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         //   case 3:
-            //         //     fakeUser3 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         //   case 4:
-            //         //     fakeUser4 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         //   case 5:
-            //         //     fakeUser5 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         //   case 6:
-            //         //     fakeUser6 = addFakeUser(user, fakeUser.name);
-            //         //     break;
-            //         // }
-
-            //         let newFakeUser = addFakeUser(user, fakeUser.name);
-            //         console.log("newFakeUser", newFakeUser.name);
-            //         if (fakeUser.tiebreaker) {
-            //           newFakeUser.tiebreaker = fakeUser.tiebreaker;
-            //         }
-
-            //         users = [...users, newFakeUser];
-            //         // console.log("fakeUserVal", fakeUserVal);
-            //       });
-            //     }
-            //   });
-
-            //   scenario.fakeUsersToAdd1.forEach((fakeUser, idx) => {
-            //     // let fakeUserVal = eval(`fakeUser${idx + 1}`);
-            //     // if (fakeUser.tiebreaker) {
-            //     //   fakeUserVal.tiebreaker = fakeUser.tiebreaker;
-            //     // }
-            //     // switch (idx + 1) {
-            //     //   case 1:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser1.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser1];
-            //     //     break;
-            //     //   case 2:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser2.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser2];
-            //     //     break;
-            //     //   case 3:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser3.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser3];
-            //     //     break;
-            //     //   case 4:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser4.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser4];
-            //     //     break;
-            //     //   case 5:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser5.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser5];
-            //     //     break;
-            //     //   case 6:
-            //     //     if (fakeUser.tiebreaker) {
-            //     //       fakeUser6.tiebreaker = fakeUser.tiebreaker;
-            //     //     }
-            //     //     users = [...users, fakeUser6];
-            //     //     break;
-            //     // }
-            //   });
-
-            //   // if (scenario.number === "2A") {
-            //   //   users.forEach((user) => {
-            //   //     if (user.name === "Sarah") {
-            //   //       fakeUser2 = addFakeUser(user, "Sally");
-            //   //     }
-            //   //   });
-
-            //   //   users = [...users, fakeUser2];
-            //   // }
-
-            //   // if (scenario.number === "6A") {
-            //   //   users.forEach((user) => {
-            //   //     if (user.name === "Kevin") {
-            //   //       fakeUser3 = addFakeUser(user, "Sally");
-            //   //       fakeUser4 = addFakeUser(user, "Craig");
-
-            //   //       fakeUser3.tiebreaker = 97;
-            //   //       fakeUser4.tiebreaker = 112;
-            //   //     }
-            //   //   });
-
-            //   //   users = [...users, fakeUser3, fakeUser4];
-            //   // }
-
-            //   // if (scenario.number === "9A") {
-            //   //   users.forEach((user) => {
-            //   //     if (user.name === "Kevin") {
-            //   //       fakeUser5 = addFakeUser(user, "Zoe");
-            //   //       fakeUser6 = addFakeUser(user, "Eric");
-
-            //   //       fakeUser5.tiebreaker = 97;
-            //   //       fakeUser6.tiebreaker = 95;
-
-            //   //       user.tiebreaker = 69;
-            //   //     }
-            //   //   });
-
-            //   //   users = [...users, fakeUser5, fakeUser6];
-            //   // }
-
-            //   // if (scenario.number === 10) {
-            //   //   users.forEach((user) => {
-            //   //     if (user.name === "Kevin") {
-            //   //       fakeUser3 = addFakeUser(user, "Zoe");
-            //   //       fakeUser4 = addFakeUser(user, "Eric");
-
-            //   //       fakeUser3.tiebreaker = 97;
-            //   //       fakeUser4.tiebreaker = 95;
-
-            //   //       user.tiebreaker = 98;
-            //   //     }
-            //   //   });
-
-            //   //   users = [...users, fakeUser3, fakeUser4];
-            //   // }
-            // }
 
             for (let i = 1; i <= 2; i++) {
               if (scenario[`addFakeUsers${i}`]) {
@@ -8659,10 +8594,6 @@ describe("Cals everthing correctly", () => {
 
             answer = currentScoresObj(users, teams, scenario.totalGoalsScored);
 
-            // if (scenario.number === "1A") {
-            //   console.log(answer);
-            // }
-
             names = answer.map((user) => user.name);
             scores = answer.map((user) => user.total);
             tieExists = answer.map((user) => user.tieExists);
@@ -8674,111 +8605,6 @@ describe("Cals everthing correctly", () => {
             }
           });
         });
-
-        // it("scenario #11 - only 2 users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe" || user.name === "Stanley"
-        //         ? 98
-        //         : user.tiebreaker;
-        //     if (user.name === "Kelly") {
-        //       mark = addFakeUser(user, "Mark");
-        //     }
-        //     return user;
-        //   });
-        //   users = [...users, mark];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Kelly", "Mark", "Stanley", "Joe"];
-        //   expect(tieNames.includes(names["1"])).to.equal(true);
-        //   expect(tieNames.includes(names["2"])).to.equal(true);
-        //   expect(tieNames.includes(names["3"])).to.equal(true);
-        //   expect(tieNames.includes(names["4"])).to.equal(true);
-        //   expect(names["5"]).to.equal("Coach Raiff");
-        //   expect(names["6"]).to.equal("E");
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(51);
-        //   expect(scores["4"]).to.equal(51);
-        //   expect(scores["5"]).to.equal(49);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(true);
-        //   expect(tieExists["2"]).to.equal(true);
-        //   expect(tieExists["3"]).to.equal(true);
-        //   expect(tieExists["4"]).to.equal(true);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(false);
-        // });
-        // it("scenario #11 - 3+ users tied", () => {
-        //   users = users.map((user) => {
-        //     user.tiebreaker =
-        //       user.name === "Joe" || user.name === "Stanley"
-        //         ? 98
-        //         : user.tiebreaker;
-        //     if (user.name === "Joe") {
-        //       frank = addFakeUser(user, "Frank");
-        //     }
-        //     if (user.name === "E") {
-        //       mark = addFakeUser(user, "Mark");
-        //       sally = addFakeUser(user, "Sally");
-        //       jill = addFakeUser(user, "Jill");
-        //     }
-        //     return user;
-        //   });
-        //   users = [...users, frank, mark, sally, jill];
-        //   answer = currentScoresObj(users, teams, 100);
-        //   names = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.name;
-        //     return a;
-        //   }, {});
-        //   scores = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.total;
-        //     return a;
-        //   }, {});
-        //   tieExists = answer.reduce((a, userObj) => {
-        //     a[userObj.rank] = userObj.tieExists;
-        //     return a;
-        //   }, {});
-        //   tieNames = ["Joe", "Stanley", "Jill", "Frank", "Mark", "Sally", "E"];
-        //   expect(tieNames.includes(names["1"])).to.equal(true);
-        //   expect(tieNames.includes(names["2"])).to.equal(true);
-        //   expect(tieNames.includes(names["3"])).to.equal(true);
-        //   expect(names["4"]).to.equal("Kelly");
-        //   expect(names["5"]).to.equal("Coach Raiff");
-        //   expect(tieNames.includes(names["6"])).to.equal(true);
-        //   expect(tieNames.includes(names["7"])).to.equal(true);
-        //   expect(tieNames.includes(names["8"])).to.equal(true);
-        //   expect(tieNames.includes(names["9"])).to.equal(true);
-        //   expect(scores["1"]).to.equal(92);
-        //   expect(scores["2"]).to.equal(92);
-        //   expect(scores["3"]).to.equal(92);
-        //   expect(scores["4"]).to.equal(51);
-        //   expect(scores["5"]).to.equal(49);
-        //   expect(scores["6"]).to.equal(39);
-        //   expect(scores["7"]).to.equal(39);
-        //   expect(scores["8"]).to.equal(39);
-        //   expect(scores["9"]).to.equal(39);
-        //   expect(tieExists["1"]).to.equal(true);
-        //   expect(tieExists["2"]).to.equal(true);
-        //   expect(tieExists["3"]).to.equal(true);
-        //   expect(tieExists["4"]).to.equal(false);
-        //   expect(tieExists["5"]).to.equal(false);
-        //   expect(tieExists["6"]).to.equal(true);
-        //   expect(tieExists["7"]).to.equal(true);
-        //   expect(tieExists["8"]).to.equal(true);
-        //   expect(tieExists["8"]).to.equal(true);
-        // });
       });
     });
   });
@@ -9861,320 +9687,320 @@ describe("Cals everthing correctly", () => {
       },
     };
 
-    // Object.keys(usersObj).forEach((userName) => {
-    //   describe(`${userName}'s Scores`, () => {
-    //     beforeEach(() => {
-    //       user = users.find((userr) => userr.name === userName);
+    Object.keys(usersObj).forEach((userName) => {
+      describe(`${userName}'s Scores`, () => {
+        beforeEach(() => {
+          user = users.find((userr) => userr.name === userName);
 
-    //       const tina = teams.find((team) => team.name === "Argentina");
+          const tina = teams.find((team) => team.name === "Argentina");
 
-    //       if (user.name === "Stanley") {
-    //         user.knockF1 = tina;
-    //         user.knockChamp = tina;
-    //       }
-    //     });
+          if (user.name === "Stanley") {
+            user.knockF1 = tina;
+            user.knockChamp = tina;
+          }
+        });
 
-    //     describe(`${userName}'s Group Stage`, () => {
-    //       beforeEach(() => {
-    //         teams.forEach((team) => {
-    //           const inputs = [
-    //             "advanceToQ",
-    //             "advanceToS",
-    //             "advanceToF",
-    //             "advanceToChamp",
-    //             "outOfTourney",
-    //           ];
+        describe(`${userName}'s Group Stage`, () => {
+          beforeEach(() => {
+            teams.forEach((team) => {
+              const inputs = [
+                "advanceToQ",
+                "advanceToS",
+                "advanceToF",
+                "advanceToChamp",
+                "outOfTourney",
+              ];
 
-    //           inputs.forEach((input) => {
-    //             team[input] = false;
-    //           });
-    //         });
-    //       });
+              inputs.forEach((input) => {
+                team[input] = false;
+              });
+            });
+          });
 
-    //       Object.keys(usersObj[userName].groups).forEach((group) => {
-    //         it(`calcs ${userName}'s group ${group} total & className correctly`, () => {
-    //           const groupResults = groupCalc(user, group);
+          Object.keys(usersObj[userName].groups).forEach((group) => {
+            it(`calcs ${userName}'s group ${group} total & className correctly`, () => {
+              const groupResults = groupCalc(user, group);
 
-    //           for (let i = 0; i < groupResults.length; i++) {
-    //             const expectedPoints =
-    //               usersObj[userName].groups[group][i].points;
-    //             const expectedClassName =
-    //               usersObj[userName].groups[group][i].className;
+              for (let i = 0; i < groupResults.length; i++) {
+                const expectedPoints =
+                  usersObj[userName].groups[group][i].points;
+                const expectedClassName =
+                  usersObj[userName].groups[group][i].className;
 
-    //             expect(groupResults[i].points).to.equal(expectedPoints);
-    //             expect(groupResults[i].className).to.equal(expectedClassName);
-    //           }
-    //         });
-    //       });
+                expect(groupResults[i].points).to.equal(expectedPoints);
+                expect(groupResults[i].className).to.equal(expectedClassName);
+              }
+            });
+          });
 
-    //       describe(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
-    //         beforeEach(() => {
-    //           let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
-    //             usersObj[userName].midStage3
-    //           );
+          describe(`calculates ${userName}'s total group scores correctly with only ${usersObj[userName].midStage3} group(s) complete`, () => {
+            beforeEach(() => {
+              let letters = ["A", "B", "C", "D", "E", "F", "G", "H"].slice(
+                usersObj[userName].midStage3
+              );
 
-    //           const groupKeys = [];
+              const groupKeys = [];
 
-    //           letters.forEach((letter) => {
-    //             for (let i = 1; i <= 4; i++) {
-    //               groupKeys.push(`group${letter}${i}`);
-    //             }
-    //           });
+              letters.forEach((letter) => {
+                for (let i = 1; i <= 4; i++) {
+                  groupKeys.push(`group${letter}${i}`);
+                }
+              });
 
-    //           groupKeys.forEach((key) => {
-    //             user[key].groupIsFinished = false;
-    //           });
-    //         });
+              groupKeys.forEach((key) => {
+                user[key].groupIsFinished = false;
+              });
+            });
 
-    //         it(`groupTotalCalc func`, () => {
-    //           groupTotal = groupTotalCalc(user);
+            it(`groupTotalCalc func`, () => {
+              groupTotal = groupTotalCalc(user);
 
-    //           expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
-    //         });
+              expect(groupTotal).to.equal(usersObj[userName].midStage3Total);
+            });
 
-    //         it(`userTotalPoints func`, () => {
-    //           userOverallTotal = userTotalPoints(user, teams);
+            it(`userTotalPoints func`, () => {
+              userOverallTotal = userTotalPoints(user, teams);
 
-    //           expect(userOverallTotal).to.equal(
-    //             usersObj[userName].midStage3Total
-    //           );
-    //         });
-    //       });
+              expect(userOverallTotal).to.equal(
+                usersObj[userName].midStage3Total
+              );
+            });
+          });
 
-    //       describe(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
-    //         it(`groupTotalCalc func`, () => {
-    //           groupTotal = groupTotalCalc(user);
+          describe(`calculates ${userName}'s total group scores correctly at the end of stage 3`, () => {
+            it(`groupTotalCalc func`, () => {
+              groupTotal = groupTotalCalc(user);
 
-    //           expect(groupTotal).to.equal(
-    //             usersObj[userName].groupsFinishedTotal
-    //           );
-    //         });
+              expect(groupTotal).to.equal(
+                usersObj[userName].groupsFinishedTotal
+              );
+            });
 
-    //         it(`userTotalPoints func`, () => {
-    //           userOverallTotal = userTotalPoints(user, teams);
+            it(`userTotalPoints func`, () => {
+              userOverallTotal = userTotalPoints(user, teams);
 
-    //           expect(userOverallTotal).to.equal(
-    //             usersObj[userName].groupsFinishedTotal
-    //           );
-    //         });
-    //       });
-    //     });
+              expect(userOverallTotal).to.equal(
+                usersObj[userName].groupsFinishedTotal
+              );
+            });
+          });
+        });
 
-    //     describe(`${userName}'s Knockout rounds`, () => {
-    //       Object.keys(usersObj[userName].koRounds).forEach((round) => {
-    //         describe(`${userName}: ${round}`, () => {
-    //           const letter = round.toUpperCase().split("")[0];
+        describe(`${userName}'s Knockout rounds`, () => {
+          Object.keys(usersObj[userName].koRounds).forEach((round) => {
+            describe(`${userName}: ${round}`, () => {
+              const letter = round.toUpperCase().split("")[0];
 
-    //           beforeEach(() => {
-    //             switch (round) {
-    //               case "quarters":
-    //                 teams.forEach((team) => {
-    //                   team.advanceToS = false;
-    //                   team.advanceToF = false;
-    //                   team.advanceToChamp = false;
-    //                 });
-    //                 break;
-    //               case "semis":
-    //                 teams.forEach((team) => {
-    //                   team.advanceToF = false;
-    //                   team.advanceToChamp = false;
-    //                 });
-    //                 break;
-    //               case "final":
-    //                 teams.forEach((team) => {
-    //                   team.advanceToChamp = false;
-    //                 });
-    //                 break;
-    //             }
-    //           });
+              beforeEach(() => {
+                switch (round) {
+                  case "quarters":
+                    teams.forEach((team) => {
+                      team.advanceToS = false;
+                      team.advanceToF = false;
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                  case "semis":
+                    teams.forEach((team) => {
+                      team.advanceToF = false;
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                  case "final":
+                    teams.forEach((team) => {
+                      team.advanceToChamp = false;
+                    });
+                    break;
+                }
+              });
 
-    //           describe(`when ${round} is finished`, () => {
-    //             Object.keys(usersObj[userName].koRounds[round]).forEach(
-    //               (game) => {
-    //                 describe(`game: ${game}`, () => {
-    //                   beforeEach(() => {
-    //                     gameAnswer = koGameCalc(user, game, teams);
-    //                   });
+              describe(`when ${round} is finished`, () => {
+                Object.keys(usersObj[userName].koRounds[round]).forEach(
+                  (game) => {
+                    describe(`game: ${game}`, () => {
+                      beforeEach(() => {
+                        gameAnswer = koGameCalc(user, game, teams);
+                      });
 
-    //                   it(`pulls in users prediction correctly`, () => {
-    //                     expect(gameAnswer.usersPick.name).to.equal(
-    //                       usersObj[userName].koRounds[round][game].usersPick
-    //                         .name
-    //                     );
-    //                   });
+                      it(`pulls in users prediction correctly`, () => {
+                        expect(gameAnswer.usersPick.name).to.equal(
+                          usersObj[userName].koRounds[round][game].usersPick
+                            .name
+                        );
+                      });
 
-    //                   it(`game: ${game} - pulls in the team that advanced correctly`, () => {
-    //                     expect(gameAnswer.teamThatAdvanced.name).to.equal(
-    //                       usersObj[userName].koRounds[round][game]
-    //                         .teamThatAdvanced.name
-    //                     );
-    //                   });
+                      it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+                        expect(gameAnswer.teamThatAdvanced.name).to.equal(
+                          usersObj[userName].koRounds[round][game]
+                            .teamThatAdvanced.name
+                        );
+                      });
 
-    //                   it(`game: ${game} - pulls in the users className correctly`, () => {
-    //                     expect(gameAnswer.usersPickClass).to.equal(
-    //                       usersObj[userName].koRounds[round][game]
-    //                         .usersPickClass
-    //                     );
-    //                   });
+                      it(`game: ${game} - pulls in the users className correctly`, () => {
+                        expect(gameAnswer.usersPickClass).to.equal(
+                          usersObj[userName].koRounds[round][game]
+                            .usersPickClass
+                        );
+                      });
 
-    //                   it(`game: ${game} - calcs users points correctly`, () => {
-    //                     expect(gameAnswer.points).to.equal(
-    //                       usersObj[userName].koRounds[round][game].points
-    //                     );
-    //                   });
-    //                 });
-    //               }
-    //             );
+                      it(`game: ${game} - calcs users points correctly`, () => {
+                        expect(gameAnswer.points).to.equal(
+                          usersObj[userName].koRounds[round][game].points
+                        );
+                      });
+                    });
+                  }
+                );
 
-    //             it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
-    //               koRoundTotal = koRoundCalc(user, round, teams);
+                it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+                  koRoundTotal = koRoundCalc(user, round, teams);
 
-    //               expect(koRoundTotal).to.equal(
-    //                 usersObj[userName][`koRoundFinishedTotal_${letter}`]
-    //               );
-    //             });
+                  expect(koRoundTotal).to.equal(
+                    usersObj[userName][`koRoundFinishedTotal_${letter}`]
+                  );
+                });
 
-    //             it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
-    //               userOverallTotal = userTotalPoints(user, teams);
+                it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+                  userOverallTotal = userTotalPoints(user, teams);
 
-    //               expect(userOverallTotal).to.equal(
-    //                 usersObj[userName][`koRoundFinished_${letter}_overallTotal`]
-    //               );
-    //             });
-    //           });
+                  expect(userOverallTotal).to.equal(
+                    usersObj[userName][`koRoundFinished_${letter}_overallTotal`]
+                  );
+                });
+              });
 
-    //           if (round !== "champion") {
-    //             describe(`when ${round} only has ${
-    //               usersObj[userName][`midStage5_${letter}`]
-    //             } game(s) completed`, () => {
-    //               beforeEach(() => {
-    //                 const koRoundGames = {
-    //                   Q: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
-    //                   S: ["S1", "S2", "S3", "S4"],
-    //                   F: ["F1", "F2"],
-    //                 };
+              if (round !== "champion") {
+                describe(`when ${round} only has ${
+                  usersObj[userName][`midStage5_${letter}`]
+                } game(s) completed`, () => {
+                  beforeEach(() => {
+                    const koRoundGames = {
+                      Q: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+                      S: ["S1", "S2", "S3", "S4"],
+                      F: ["F1", "F2"],
+                    };
 
-    //                 koNonCompletedGames = koRoundGames[letter].slice(
-    //                   usersObj[userName][`midStage5_${letter}`]
-    //                 );
+                    koNonCompletedGames = koRoundGames[letter].slice(
+                      usersObj[userName][`midStage5_${letter}`]
+                    );
 
-    //                 koNonCompletedGames.forEach((game) => {
-    //                   usersObj[userName].koRounds[round][
-    //                     game
-    //                   ].teamThatAdvanced = null;
+                    koNonCompletedGames.forEach((game) => {
+                      usersObj[userName].koRounds[round][
+                        game
+                      ].teamThatAdvanced = null;
 
-    //                   usersObj[userName].koRounds[round][game].usersPickClass =
-    //                     "unknown";
+                      usersObj[userName].koRounds[round][game].usersPickClass =
+                        "unknown";
 
-    //                   usersObj[userName].koRounds[round][game].points = 0;
-    //                 });
+                      usersObj[userName].koRounds[round][game].points = 0;
+                    });
 
-    //                 const koRoundGamePositions = {
-    //                   Q: {
-    //                     1: ["A1", "B2"],
-    //                     2: ["C1", "D2"],
-    //                     3: ["E1", "F2"],
-    //                     4: ["G1", "H2"],
-    //                     5: ["B1", "A2"],
-    //                     6: ["D1", "C2"],
-    //                     7: ["F1", "E2"],
-    //                     8: ["H1", "G2"],
-    //                   },
-    //                   S: {
-    //                     1: ["A1", "B2", "C1", "D2"],
-    //                     2: ["E1", "F2", "G1", "H2"],
-    //                     3: ["B1", "A2", "D1", "C2"],
-    //                     4: ["F1", "E2", "H1", "G2"],
-    //                   },
-    //                   F: {
-    //                     1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-    //                     2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-    //                   },
-    //                 };
+                    const koRoundGamePositions = {
+                      Q: {
+                        1: ["A1", "B2"],
+                        2: ["C1", "D2"],
+                        3: ["E1", "F2"],
+                        4: ["G1", "H2"],
+                        5: ["B1", "A2"],
+                        6: ["D1", "C2"],
+                        7: ["F1", "E2"],
+                        8: ["H1", "G2"],
+                      },
+                      S: {
+                        1: ["A1", "B2", "C1", "D2"],
+                        2: ["E1", "F2", "G1", "H2"],
+                        3: ["B1", "A2", "D1", "C2"],
+                        4: ["F1", "E2", "H1", "G2"],
+                      },
+                      F: {
+                        1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+                        2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+                      },
+                    };
 
-    //                 koNonCompletedGames.forEach((game) => {
-    //                   const letter = game.split("")[0];
-    //                   const number = game.split("")[1];
+                    koNonCompletedGames.forEach((game) => {
+                      const letter = game.split("")[0];
+                      const number = game.split("")[1];
 
-    //                   koRoundGamePositions[letter][number].forEach(
-    //                     (finishingPosition) => {
-    //                       teams.forEach((team) => {
-    //                         if (team.knockoutPosition === finishingPosition) {
-    //                           team[`advanceTo${letter}`] = false;
-    //                           team.outOfTourney = false;
-    //                         }
-    //                       });
-    //                     }
-    //                   );
-    //                 });
-    //               });
+                      koRoundGamePositions[letter][number].forEach(
+                        (finishingPosition) => {
+                          teams.forEach((team) => {
+                            if (team.knockoutPosition === finishingPosition) {
+                              team[`advanceTo${letter}`] = false;
+                              team.outOfTourney = false;
+                            }
+                          });
+                        }
+                      );
+                    });
+                  });
 
-    //               Object.keys(usersObj[userName].koRounds[round]).forEach(
-    //                 (game) => {
-    //                   describe(`game: ${game}`, () => {
-    //                     beforeEach(() => {
-    //                       gameAnswer = koGameCalc(user, game, teams);
-    //                     });
+                  Object.keys(usersObj[userName].koRounds[round]).forEach(
+                    (game) => {
+                      describe(`game: ${game}`, () => {
+                        beforeEach(() => {
+                          gameAnswer = koGameCalc(user, game, teams);
+                        });
 
-    //                     it(`pulls in users prediction correctly`, () => {
-    //                       expect(gameAnswer.usersPick.name).to.equal(
-    //                         usersObj[userName].koRounds[round][game].usersPick
-    //                           .name
-    //                       );
-    //                     });
+                        it(`pulls in users prediction correctly`, () => {
+                          expect(gameAnswer.usersPick.name).to.equal(
+                            usersObj[userName].koRounds[round][game].usersPick
+                              .name
+                          );
+                        });
 
-    //                     it(`game: ${game} - pulls in the team that advanced correctly`, () => {
-    //                       if (koNonCompletedGames.includes(game)) {
-    //                         expect(gameAnswer.teamThatAdvanced).to.equal(
-    //                           usersObj[userName].koRounds[round][game]
-    //                             .teamThatAdvanced
-    //                         );
-    //                       } else {
-    //                         expect(gameAnswer.teamThatAdvanced.name).to.equal(
-    //                           usersObj[userName].koRounds[round][game]
-    //                             .teamThatAdvanced.name
-    //                         );
-    //                       }
-    //                     });
+                        it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+                          if (koNonCompletedGames.includes(game)) {
+                            expect(gameAnswer.teamThatAdvanced).to.equal(
+                              usersObj[userName].koRounds[round][game]
+                                .teamThatAdvanced
+                            );
+                          } else {
+                            expect(gameAnswer.teamThatAdvanced.name).to.equal(
+                              usersObj[userName].koRounds[round][game]
+                                .teamThatAdvanced.name
+                            );
+                          }
+                        });
 
-    //                     it(`game: ${game} - pulls in the users className correctly`, () => {
-    //                       expect(gameAnswer.usersPickClass).to.equal(
-    //                         usersObj[userName].koRounds[round][game]
-    //                           .usersPickClass
-    //                       );
-    //                     });
+                        it(`game: ${game} - pulls in the users className correctly`, () => {
+                          expect(gameAnswer.usersPickClass).to.equal(
+                            usersObj[userName].koRounds[round][game]
+                              .usersPickClass
+                          );
+                        });
 
-    //                     it(`game: ${game} - calcs users points correctly`, () => {
-    //                       expect(gameAnswer.points).to.equal(
-    //                         usersObj[userName].koRounds[round][game].points
-    //                       );
-    //                     });
-    //                   });
-    //                 }
-    //               );
+                        it(`game: ${game} - calcs users points correctly`, () => {
+                          expect(gameAnswer.points).to.equal(
+                            usersObj[userName].koRounds[round][game].points
+                          );
+                        });
+                      });
+                    }
+                  );
 
-    //               it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
-    //                 koRoundTotal = koRoundCalc(user, round, teams);
+                  it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+                    koRoundTotal = koRoundCalc(user, round, teams);
 
-    //                 expect(koRoundTotal).to.equal(
-    //                   usersObj[userName][`midStage5Total_${letter}`]
-    //                 );
-    //               });
+                    expect(koRoundTotal).to.equal(
+                      usersObj[userName][`midStage5Total_${letter}`]
+                    );
+                  });
 
-    //               it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
-    //                 userOverallTotal = userTotalPoints(user, teams);
+                  it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+                    userOverallTotal = userTotalPoints(user, teams);
 
-    //                 expect(userOverallTotal).to.equal(
-    //                   usersObj[userName][`midStage5_${letter}_overallTotal`]
-    //                 );
-    //               });
-    //             });
-    //           }
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
+                    expect(userOverallTotal).to.equal(
+                      usersObj[userName][`midStage5_${letter}_overallTotal`]
+                    );
+                  });
+                });
+              }
+            });
+          });
+        });
+      });
+    });
   });
 });
 

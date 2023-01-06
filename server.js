@@ -1,13 +1,3 @@
-///test specs - write specs for the 'Calcs leaderboard' describe block --- round 1
-//when tourney is over
-
-/////////do work on Leaderboard_Cont for all 5 stages/////////
-//audit to see if linear gradient is used at all
-
-////////take pics of fam render tournament website for each users group and ko scores - leaderboard too
-
-//put app away and focus on masters
-
 ///test specs - write specs for the 'Calcs leaderboard' describe block --- round 2
 //when tourney is NOT over
 //when only 2 groups are complete
@@ -21,6 +11,13 @@
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
 
 //add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use
+
+////Make the following pages prettier:
+//forgot pw
+//reset pw page confirmation
+//my profile - locked
+//my profile - unlocked - change name
+//my profile - unlocked - change pw
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?

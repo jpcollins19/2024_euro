@@ -190,7 +190,9 @@ const User_Admin_Page = () => {
       });
     });
 
-    Object.keys(selectedUser).length &&
+    joe.tourneyStage >= 4 &&
+      Object.keys(selectedUser).length > 0 &&
+      selectedUser?.knockQ1 &&
       koLetters.forEach((letter) => {
         switch (letter) {
           case "Q":
