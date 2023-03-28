@@ -1,3 +1,45 @@
+//roll through each file and remove mui ---START
+///header --START
+//need to break out the Bottom_Row file into cleaner code suing Navbar_Link file
+//can delete the middle_row folder?
+
+///header --END
+
+///misc
+///preSignIn
+///rules
+///userAccount
+///admin - users --START
+
+//need to resume work on inputting user pick data once a user is selected from the dropdown, then work on onSubmit code
+
+///admin - users --END
+
+///admin - groups
+///admin - teams
+///group details
+///leaderboard
+///my picks
+///pool picks
+
+//roll through each file and remove mui ---END
+
+//find better pics for: ---START
+// preSignIn
+//leaderboard
+// groupDetails?
+
+//find better pics for: ---END
+
+//sign_in - add gaurd rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
+//^^steps for above - 1. add setTimeout to Sign_in onSubmit ----- 2. auth_store: add if statement to the authenticate method  ----- 3. User model: add if/then statement to User.authenticate method
+//sign_in and create account and all other pages:
+//create a new file for the Input_Field like you did in masters
+
+//scorecard - re-do this page to match masters setup (no input tags, cannot be editable, etc)
+//also create a generic inputField file like you did with masters, and remove the rank, name and points files
+//add a key/table to note what the background color represents
+
 ///test specs - write specs for the 'Calcs leaderboard' describe block --- round 2
 //when tourney is NOT over
 //when only 2 groups are complete
@@ -9,10 +51,11 @@
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
+//mneed to create a .env file and add to gitignore - need to then add forgot pw stuff like in the world cup OG app - need to adjust the subject line verbiage in sendGrid to read as 'euros' instead of 'world cup'
 
-//add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use
+//add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use - need to remove loading from sign-in-page-leaderboard file
 
-////Make the following pages prettier:
+////Make the following pages prettier - look at masters app for format examples:
 //forgot pw
 //reset pw page confirmation
 //my profile - locked
@@ -45,7 +88,7 @@
 //css work on new admin > group matches page
 
 ////group details
-//once the page starts loading, it calls the 'api/matches' and does the work that code has already ben written for.
+//once the page starts loading, it calls the 'api/matches' and does the work that code has already been written for.
 
 ////////////F2 - group Details page
 //adjust the headers to it is "+/-" instead of GF & GA - look at below first - game plan all of this at the same time

@@ -69,25 +69,15 @@ const Routes = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div>
-      <Switch>
-        {!userLoggedIn && joe && joe.tourneyStage > 1
-          ? nonUserRoutes
-              .filter(
-                (route) =>
-                  route.path !== "/create_account" &&
-                  route.path !== "/account_created"
-              )
-              .map((route, idx) => (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  exact
-                  component={route.component}
-                />
-              ))
-          : !userLoggedIn && joe && joe.tourneyStage === 1
-          ? nonUserRoutes.map((route, idx) => (
+    <Switch>
+      {!userLoggedIn && joe && joe.tourneyStage > 1
+        ? nonUserRoutes
+            .filter(
+              (route) =>
+                route.path !== "/create_account" &&
+                route.path !== "/account_created"
+            )
+            .map((route, idx) => (
               <Route
                 key={idx}
                 path={route.path}
@@ -95,67 +85,75 @@ const Routes = () => {
                 component={route.component}
               />
             ))
-          : ""}
+        : !userLoggedIn && joe && joe.tourneyStage === 1
+        ? nonUserRoutes.map((route, idx) => (
+            <Route
+              key={idx}
+              path={route.path}
+              exact
+              component={route.component}
+            />
+          ))
+        : ""}
 
-        <Route path="/rules" exact component={Rules_Page} />
+      <Route path="/rules" exact component={Rules_Page} />
 
-        {userLoggedIn && (
-          <Route exact path="/">
-            <Redirect to="/leaderboard" />
-          </Route>
-        )}
+      {userLoggedIn && (
+        <Route exact path="/">
+          <Redirect to="/leaderboard" />
+        </Route>
+      )}
 
-        {user && user.email === "joe@gmail.com" && (
-          <Route path="/admin/users">
-            {!userLoggedIn ? <Redirect to="/" /> : <User_Admin_Page />}
-          </Route>
-        )}
-        {user && user.email === "joe@gmail.com" && (
-          <Route path="/admin/groups">
-            {!userLoggedIn ? <Redirect to="/" /> : <Group_Admin_Page />}
-          </Route>
-        )}
-        {user && user.email === "joe@gmail.com" && (
-          <Route path="/admin/teams">
-            {!userLoggedIn ? <Redirect to="/" /> : <Team_Admin_Page />}
-          </Route>
-        )}
-        {joe && joe.tourneyStage === 1 && user && user.id && (
-          <Route path="/my_picks_edit_group">
-            {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
-          </Route>
-        )}
-        {joe && joe.tourneyStage === 4 && user && user.id && (
-          <Route path="/my_picks_edit_ko">
-            {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
-          </Route>
-        )}
-        <Route path="/leaderboard">
-          {!userLoggedIn ? <Redirect to="/" /> : <Leaderboard_Page />}
+      {user && user.email === "joe@gmail.com" && (
+        <Route path="/admin/users">
+          {!userLoggedIn ? <Redirect to="/" /> : <User_Admin_Page />}
         </Route>
-        <Route path="/my_picks">
-          {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Locked_Page />}
+      )}
+      {user && user.email === "joe@gmail.com" && (
+        <Route path="/admin/groups">
+          {!userLoggedIn ? <Redirect to="/" /> : <Group_Admin_Page />}
         </Route>
-        <Route path="/pool_picks">
-          {!userLoggedIn ? <Redirect to="/" /> : <Pool_Picks_Page />}
+      )}
+      {user && user.email === "joe@gmail.com" && (
+        <Route path="/admin/teams">
+          {!userLoggedIn ? <Redirect to="/" /> : <Team_Admin_Page />}
         </Route>
-        <Route path="/group_details">
-          {!userLoggedIn ? <Redirect to="/" /> : <Group_Details_Page />}
+      )}
+      {joe && joe.tourneyStage === 1 && user && user.id && (
+        <Route path="/my_picks_edit_group">
+          {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
         </Route>
-        <Route path="/my_profile">
-          {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_L />}
+      )}
+      {joe && joe.tourneyStage === 4 && user && user.id && (
+        <Route path="/my_picks_edit_ko">
+          {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
         </Route>
-        <Route path="/edit_profile_name">
-          {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
-        </Route>
-        <Route path="/edit_profile_password">
-          {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
-        </Route>
-        <Route path="*">
-          <NoMatch />
-        </Route>
-      </Switch>
-    </div>
+      )}
+      <Route path="/leaderboard">
+        {!userLoggedIn ? <Redirect to="/" /> : <Leaderboard_Page />}
+      </Route>
+      <Route path="/my_picks">
+        {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Locked_Page />}
+      </Route>
+      <Route path="/pool_picks">
+        {!userLoggedIn ? <Redirect to="/" /> : <Pool_Picks_Page />}
+      </Route>
+      <Route path="/group_details">
+        {!userLoggedIn ? <Redirect to="/" /> : <Group_Details_Page />}
+      </Route>
+      <Route path="/my_profile">
+        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_L />}
+      </Route>
+      <Route path="/edit_profile_name">
+        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      </Route>
+      <Route path="/edit_profile_password">
+        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      </Route>
+      <Route path="*">
+        <NoMatch />
+      </Route>
+    </Switch>
   );
 
   //   <Switch>

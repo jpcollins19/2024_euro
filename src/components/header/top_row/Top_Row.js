@@ -1,15 +1,27 @@
 import Link from "@mui/material/Link";
-import User_Profile_Dropdown from "../UserAccount/User_Profile_Dropdown";
+import User_Profile_Dropdown from "../../UserAccount/User_Profile_Dropdown";
 import LastUpdated from "./LastUpdated";
+import Payout from "./Payout";
 
-const TopRow = ({ user, tourneyStarted, userSubmittedPicks }) => {
+const Top_Row = ({ user, tourneyStarted, userSubmittedPicks }) => {
+  const shouldPayoutShow = () => {
+    return (
+      (!tourneyStarted && user?.id) || (tourneyStarted && userSubmittedPicks)
+    );
+  };
+
   return (
-    <div className="login-row">
+    <div className="top-row-navbar">
+      <h1>2024 Euros</h1>
+
       <LastUpdated
         user={user}
         tourneyStarted={tourneyStarted}
         userSubmittedPicks={userSubmittedPicks}
       />
+
+      {shouldPayoutShow() && <Payout />}
+
       <div className="login-cont">
         {user?.id ? (
           <User_Profile_Dropdown />
@@ -26,4 +38,4 @@ const TopRow = ({ user, tourneyStarted, userSubmittedPicks }) => {
   );
 };
 
-export default TopRow;
+export default Top_Row;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeUpdated } from "../../store";
+import { changeUpdated } from "../../../store";
 import Text from "./Text";
 import EditText from "./EditText";
 

@@ -4,6 +4,7 @@ import { HashRouter as Router } from "react-router-dom";
 import { loadUsers, loadTeams, loadUpdated } from "./store";
 import Header from "./components/header/Header";
 import Routes from "./Routes";
+import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,8 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <div className="body-cont">
+
+      <div className="routes-cont">
         <Routes />
       </div>
     </Router>

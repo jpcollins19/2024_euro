@@ -1,19 +1,23 @@
 .admin-page {
-  background: linear-gradient(
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* background: linear-gradient(
     to bottom,
     rgb(6, 241, 233) 0%,
     rgb(5, 189, 183) 25%,
     rgb(2, 124, 120) 50%,
     rgb(2, 82, 79) 75%,
     rgb(0, 12, 11) 100%
-  );
+  ); */
   overflow: auto;
+  height: 84vh;
+  padding-top: 5%;
 }
 
-.admin-container {
+.admin-user-container {
   display: flex;
   flex-direction: column;
-  margin-top: 3%;
 }
 
 .admin-header {
@@ -21,6 +25,8 @@
   flex-direction: column;
   margin-top: 3rem;
   margin-bottom: 1%;
+  border: solid 2px red;
+  width: 100vw;
 }
 
 .user-details-cont {
@@ -30,25 +36,39 @@
   margin-top: 1%;
 }
 
-.input-cont-admin-user {
-  display: flex;
-  align-items: center;
-  padding-left: 1%;
-}
-
-.input-cont-admin-user > input {
-  background: transparent;
-  font-size: 1.5rem;
-  text-align: center;
-  border: solid 2px black;
-}
-
 .paid-cont {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: end;
-  width: 15rem;
+  width: 15vw;
+}
+
+.data-cont-admin-user {
+  display: flex;
+  align-items: center;
+}
+
+.data-cont-admin-user > div {
+  display: flex;
+  justify-content: end;
+  /* width: 1vw; */
+}
+
+.data-cont-admin-user > input {
+  background: transparent;
+  font-size: 1.5rem;
+  text-align: center;
+  border: solid 2px black;
+  margin-left: 2%;
+}
+
+.dcau-input {
+  width: 10vw;
+}
+
+.dcau-checkbox {
+  display: flex;
+  justify-content: end;
 }
 
 .user-admin {

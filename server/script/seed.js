@@ -125,7 +125,7 @@ const users = [
     knockChamp: "France",
 
     tiebreaker: 165,
-    tourneyStage: 5,
+    tourneyStage: 1,
   },
   //stan
   {

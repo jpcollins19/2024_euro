@@ -1,17 +1,51 @@
-.body-cont {
-  overflow: auto;
-  height: 84vh;
-  width: 100vw;
-  cursor: default;
-}
-
-.header-cont {
+.navbar-cont {
   position: sticky;
-  z-index: 1;
   top: 0;
   width: 100vw;
-  height: 15vh;
+  height: 16vh;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: solid 2px red;
 }
+
+.top-row-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  height: 3rem;
+}
+
+.top-row-navbar > h1 {
+  font-size: 300%;
+  padding-top: 7%;
+}
+
+.last-updated-cont {
+  position: absolute;
+  top: 2;
+  left: 1;
+  padding: 0.9rem 0rem 0rem 1rem;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.last-updated-cont > div > input {
+  font-size: 1rem;
+  width: 20rem;
+}
+
+.last-updated-button {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+/* .middle-row-navbar {
+  display: flex;
+  justify-content: center;
+} */
 
 .payout {
   margin-top: 4%;
@@ -21,14 +55,14 @@
   flex-direction: column;
   color: black;
   position: absolute;
-  top: -50;
+  top: -15;
   left: 150;
 }
 
 .payout-cont-f {
   position: absolute;
-  top: 25;
-  left: -16;
+  top: 30;
+  left: -10;
 }
 
 .payout-text-cont {
@@ -58,30 +92,6 @@
   border: solid 1px black;
 }
 
-.login-row {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  height: 3rem;
-}
-
-.last-updated-cont {
-  padding: 0.9rem 0rem 0rem 1rem;
-  flex-grow: 1;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.last-updated-cont > div > input {
-  font-size: 1rem;
-  width: 20rem;
-}
-
-.last-updated-button {
-  margin-left: 1rem;
-  cursor: pointer;
-}
-
 .submitted-picks {
   font-size: 1rem;
   padding: 0.5rem 0rem 0rem 6rem;
@@ -101,4 +111,29 @@
 
 .user-dropdown {
   cursor: pointer;
+}
+
+.bottom-row-navbar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 4rem;
+  /* border: solid 2px yellow; */
+}
+
+.bottom-row-navbar > a {
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4rem;
+  padding: 10px;
+}
+
+.selected-url {
+  color: #ede7f6;
+  background-color: #115293;
+}
+
+.not-selected-url {
+  color: black;
 }
