@@ -7,9 +7,6 @@ const Navbar_Link = ({ page, adminPage }) => {
   const pathname1 = pathname.split("/")[1];
   const pathname2 = pathname.split("/")[2];
 
-  // console.log("pathname1", pathname1);
-  // console.log("pathname2", pathname2);
-
   const urlToUse = adminPage ? `/admin/${urlWord(page)}` : `/${urlWord(page)}`;
 
   let verbiageToDisplay;

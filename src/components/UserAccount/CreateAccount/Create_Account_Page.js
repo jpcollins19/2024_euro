@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   addUser,
   formatEmail,
@@ -8,21 +8,9 @@ import {
   getUserNames,
 } from "../../../store";
 import toast, { Toaster } from "react-hot-toast";
+import Input_Field from "../Input_Field";
+import Sign_In_Options from "../Sign_In_Options";
 import Button from "../../Misc/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    border: "solid 2px black",
-    borderRadius: "9px",
-    background: "rgb(237, 239, 245)",
-  },
-}));
 
 const Create_Account_Page = () => {
   const dispatch = useDispatch();
@@ -34,8 +22,6 @@ const Create_Account_Page = () => {
   const [password1, setPassword1] = useState("");
   const [showPW, setShowPW] = useState(false);
 
-  const classes = useStyles();
-
   const showPwClick = () => {
     setShowPW(!showPW);
   };
@@ -45,18 +31,18 @@ const Create_Account_Page = () => {
   };
 
   const inputs = [
-    { label: "Email Address", name: "Email", marginLeft: "25%", type: "" },
-    { label: "Name", name: "Name", marginLeft: "35%", type: "" },
+    { label: "Email Address", name: "Email", marginLeft: "31%", type: "" },
+    { label: "Name", name: "Name", marginLeft: "40%", type: "" },
     {
       label: "Password",
       name: "Password",
-      marginLeft: "30%",
+      marginLeft: "35%",
       type: showPW ? "text" : "password",
     },
     {
       label: "Confirm Password",
       name: "Password1",
-      marginLeft: "20%",
+      marginLeft: "30%",
       type: showPW ? "text" : "password",
     },
   ];
@@ -115,112 +101,41 @@ const Create_Account_Page = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="create-account-page"
-    >
+    <div className="create-account-page">
       <Toaster
         toastOptions={{
-          className: "toaster-error",
-          style: {
-            background: "#f0c5c5",
-            color: "red",
-          },
+          className: "toaster-error-create-account",
         }}
       />
-      <main className="create-account-cont-outside">
+      <div className="create-account-cont-outside">
         <div className="create-account-cont-inside">
-          <div>
-            <Container component="main" maxWidth="xs">
-              <CssBaseline />
-              <Box
-                sx={{
-                  marginTop: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography component="h1" variant="h">
-                  Create Account
-                </Typography>
-                <Box
-                  component="form"
-                  onSubmit={onSubmit}
-                  sx={{ mt: 1 }}
-                  display="flex"
-                  flexDirection="column"
-                  id="create-account"
-                >
-                  {inputs.map((input, idx) => (
-                    <TextField
-                      key={input.name}
-                      onChange={onChange}
-                      sx={{
-                        margin: 1,
-                        padding: 0,
-                      }}
-                      margin="normal"
-                      required
-                      label={input.label}
-                      variant="filled"
-                      name={input.name}
-                      InputProps={{ disableUnderline: true }}
-                      inputProps={{
-                        style: {
-                          textAlign: "center",
-                          color: "black",
-                          fontWeight: "bold",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: {
-                          textAlign: "center",
-                          color: "black",
-                          marginLeft: input.marginLeft,
-                        },
-                      }}
-                      className={classes.textField}
-                      type={input.type}
-                    />
-                  ))}
+          <h1> Create Account</h1>
+          <form
+            onSubmit={onSubmit}
+            className="create-account-form"
+            id="create-account"
+          >
+            {inputs.map((input, idx) => (
+              <Input_Field key={idx} input={input} onChange={onChange} />
+            ))}
 
-                  <div className="view-pw" onClick={() => showPwClick()}>
-                    View Password
-                  </div>
-                  <Button
-                    text="Create Account"
-                    disabled={!email || !name || !password || !password1}
-                    form="create-account"
-                  />
-                  {options.map((option) => (
-                    <div
-                      key={option.text}
-                      className="option-cont-create-account"
-                    >
-                      {option.route === "/sign_in" && (
-                        <div>Already have an account?</div>
-                      )}
-                      <Link
-                        to={option.route}
-                        style={{ textDecoration: "none", color: "blue" }}
-                      >
-                        <h4>{option.text}</h4>
-                      </Link>
-                    </div>
-                  ))}
-                </Box>
-              </Box>
-            </Container>
-          </div>
+            <div className="view-pw" onClick={() => showPwClick()}>
+              View Password
+            </div>
+
+            <Button
+              text="Create Account"
+              disabled={!email || !name || !password || !password1}
+              form="create-account"
+            />
+
+            {options.map((option, idx) => (
+              <Sign_In_Options key={idx} option={option} />
+            ))}
+          </form>
         </div>
-      </main>
-    </Box>
+      </div>
+    </div>
   );
 };
 

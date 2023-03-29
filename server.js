@@ -1,14 +1,5 @@
 //roll through each file and remove mui ---START
-///header --START
-//need to break out the Bottom_Row file into cleaner code suing Navbar_Link file
-//can delete the middle_row folder?
 
-///header --END
-
-///misc
-///preSignIn
-///rules
-///userAccount
 ///admin - users --START
 
 //need to resume work on inputting user pick data once a user is selected from the dropdown, then work on onSubmit code
@@ -26,15 +17,16 @@
 
 //find better pics for: ---START
 // preSignIn
-//leaderboard
+// leaderboard
 // groupDetails?
 
 //find better pics for: ---END
 
-//sign_in - add gaurd rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
+//sign_in - add guard rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
 //^^steps for above - 1. add setTimeout to Sign_in onSubmit ----- 2. auth_store: add if statement to the authenticate method  ----- 3. User model: add if/then statement to User.authenticate method
-//sign_in and create account and all other pages:
-//create a new file for the Input_Field like you did in masters
+
+////sendgrid
+//change the password reset verbiage from "world cup" to "euro"
 
 //scorecard - re-do this page to match masters setup (no input tags, cannot be editable, etc)
 //also create a generic inputField file like you did with masters, and remove the rank, name and points files
@@ -51,16 +43,9 @@
 
 ///////bugz
 //once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
-//mneed to create a .env file and add to gitignore - need to then add forgot pw stuff like in the world cup OG app - need to adjust the subject line verbiage in sendGrid to read as 'euros' instead of 'world cup'
+//need to create a .env file and add to gitignore - need to then add forgot pw stuff like in the world cup OG app - need to adjust the subject line verbiage in sendGrid to read as 'euros' instead of 'world cup'
 
 //add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use - need to remove loading from sign-in-page-leaderboard file
-
-////Make the following pages prettier - look at masters app for format examples:
-//forgot pw
-//reset pw page confirmation
-//my profile - locked
-//my profile - unlocked - change name
-//my profile - unlocked - change pw
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?
@@ -111,9 +96,10 @@
 //Then you can double down when the knockout part comes out or hedge.  And if you’re winner doesn’t get out of groups, tough shit.
 //To add to that you also could do name the 4 semi finalists before hand too and give pts for that
 
-/////adjust the date info for when the picks will show on the:
-//leaderboard page
-//pool picks page
+/////adjust the date info on the following pages:
+//rules
+//leaderboard
+//pool picks
 
 /////////////////////////////////
 // Tourney Stage Info //
@@ -129,6 +115,7 @@ const express = require("express");
 const app = express();
 const syncAndSeed = require("./server/script/seed");
 const path = require("path");
+const { BugReportSharp } = require("@mui/icons-material");
 
 app.use(express.json());
 

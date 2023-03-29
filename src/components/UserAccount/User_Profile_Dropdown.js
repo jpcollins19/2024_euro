@@ -10,7 +10,6 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
-import Stack from "@mui/material/Stack";
 
 const User_Profile_Dropdown = () => {
   const dispatch = useDispatch();
@@ -42,59 +41,57 @@ const User_Profile_Dropdown = () => {
   };
 
   return (
-    <Stack direction="row" spacing={2}>
-      <div className="user-details-dropdown">
-        <Button ref={ref} onClick={onMouseEnter}>
-          <UserIcon
-            sx={{
-              fontSize: 50,
-              color: "white",
-              background: "blue",
-              marginRight: -2,
-              borderRadius: 1,
+    <div className="user-details-dropdown">
+      <Button ref={ref} onClick={onMouseEnter}>
+        <UserIcon
+          sx={{
+            fontSize: 50,
+            color: "white",
+            background: "blue",
+            marginRight: -2,
+            borderRadius: 1,
+          }}
+        />
+      </Button>
+      <Popper
+        open={dropdown}
+        anchorEl={ref.current}
+        placement="bottom-start"
+        transition
+        className="dropdown-elevate"
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom-start" ? "left top" : "left bottom",
             }}
-          />
-        </Button>
-        <Popper
-          open={dropdown}
-          anchorEl={ref.current}
-          placement="bottom-start"
-          transition
-          className="dropdown-elevate"
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === "bottom-start" ? "left top" : "left bottom",
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={onMouseLeave}>
-                  <MenuList
-                    autoFocusItem={dropdown}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={onMouseLeave}>
+                <MenuList
+                  autoFocusItem={dropdown}
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/my_profile"
                   >
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to="/my_profile"
-                    >
-                      <MenuItem>My Profile</MenuItem>
-                    </Link>
+                    <MenuItem>My Profile</MenuItem>
+                  </Link>
 
-                    <MenuItem onClick={() => dispatch(logout(history))}>
-                      Sign Out
-                    </MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </Stack>
+                  <MenuItem onClick={() => dispatch(logout(history))}>
+                    Sign Out
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
   );
 };
 

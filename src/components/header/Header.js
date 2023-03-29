@@ -4,7 +4,6 @@ import { me, findJoe } from "../../store";
 import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Top_Row from "./top_row/Top_Row";
-import Middle_Row from "./middle_row/Middle_Row";
 import Bottom_Row from "./bottom_row/Bottom_Row";
 import "./Header.css";
 
@@ -31,11 +30,7 @@ const Header = () => {
           tourneyStarted={tourneyStarted}
           userSubmittedPicks={userSubmittedPicks}
         />
-        {/* <Middle_Row
-          user={user}
-          tourneyStarted={tourneyStarted}
-          userSubmittedPicks={userSubmittedPicks}
-        /> */}
+
         <Bottom_Row user={user} />
       </AppBar>
     </div>

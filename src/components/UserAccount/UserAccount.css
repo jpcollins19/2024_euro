@@ -3,19 +3,25 @@
 /*///////////////////////*/
 
 .login-page {
-  background-color: rgb(224, 218, 218);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-cont-outside {
   border-radius: 1rem;
   padding: 1rem;
-  background: black;
+  background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
+  box-shadow: 0 1px 2px black, 0 2px 4px black, 0 4px 8px black,
+    0 -1px 2px black, 0 -2px 4px black, 0 -4px 8px black;
   height: 34rem;
   width: 32rem;
-  margin-top: 6rem;
 }
 
 .login-cont-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 1rem;
   padding: 1rem;
   height: 32rem;
@@ -26,6 +32,14 @@
     white calc(100% / 3 * 2),
     #ce2b37 calc(100% / 3 * 2)
   );
+}
+
+.login-cont-inside > h1 {
+  margin: 0 0 5% 0;
+}
+
+.login-form {
+  max-width: 60%;
 }
 
 .view-pw {
@@ -39,8 +53,19 @@
 .option-cont {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 1rem;
   width: 100%;
+}
+
+.option-cont > h4 {
+  margin-right: 4px;
+  margin: 0;
+}
+
+.option-cont > a {
+  text-decoration: none;
+  color: blue;
 }
 
 .option-cont > a > h4 {
@@ -52,35 +77,34 @@
 /*/ //////////////////////*/
 
 .create-account-page {
-  padding: 0;
-  justify-content: start;
-  background-color: rgb(224, 218, 218);
-  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: auto;
 }
 
-.toaster-error {
-  background-color: #f0c5c5;
-  color: red;
+.toaster-error-create-account {
+  background-color: rgb(248, 219, 219);
+  color: rgb(146, 65, 65);
   text-align: center;
-  margin-top: 12rem;
-  min-width: 20rem;
-  min-height: 4rem;
+  margin: 10% 0 0 0;
 }
 
 .create-account-cont-outside {
-  margin-top: 4.5rem;
   border-radius: 1rem;
   padding: 1rem;
-  background: black;
-  height: 38rem;
+  background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
+  height: 39rem;
   width: 32rem;
 }
 
 .create-account-cont-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 1rem;
   padding: 0.5rem;
-  height: 36rem;
+  height: 37rem;
   width: 30rem;
   background: linear-gradient(
     to right,
@@ -89,6 +113,16 @@
     white calc(100% / 3 * 2),
     #ce2b37 calc(100% / 3 * 2)
   );
+}
+
+.create-account-cont-inside > h1 {
+  margin: 1% 0 2% 0;
+}
+
+.create-account-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
 }
 
 .option-cont-create-account {
@@ -111,49 +145,60 @@
 /*///////////////////////*/
 
 .action-confirm-page {
-  background-color: rgb(224, 218, 218);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .soccer-field-outside {
-  margin-top: 8%;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.5rem;
-  background: black;
-  height: 28rem;
-  width: 42rem;
+  background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
+  box-shadow: 0 1px 2px black, 0 2px 4px black, 0 4px 8px black,
+    0 -1px 2px black, 0 -2px 4px black, 0 -4px 8px black;
+  height: 25rem;
+  width: 50rem;
 }
 
 .soccer-field-inside {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Football_field_105x68.PNG/300px-Football_field_105x68.PNG");
-  height: 26rem;
-  width: 41rem;
+ background-image: url("https://www.sportsadda.com/static-assets/waf-images/06/29/ee/16-9/PbVXFupWPk.jpg?v=1.2&w=420%20420w");
+  height: 100%;
+  width: 100%;
   background-size: cover;
   border-radius: 0.2rem;
+  text-align: center;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.action-confirm-page > h1 {
-  margin-top: 15%;
+.soccer-field-inside > h1 {
+  margin: 0;
+}
+
+.soccer-field-inside > h4 {
+  color: white;
+  margin: 0;
 }
 
 .email-instructions {
-  margin-top: 1rem;
+  margin-top: 3%;
+  color: white;
+  max-width: 55%;
+}
+
+.email-instructions > a {
   color: white;
 }
 
 .click-to-sign-in {
-  margin-top: 40%;
-}
-
-.click-to-sign-in-f {
-  margin-top: 20%;
+  margin-top: 15%;
 }
 
 .click-to-sign-in > a {
   color: white;
-}
-
-.click-to-sign-in-f > a {
-  color: white;
+  text-decoration: none;
 }
 
 /*/ //////////////////////*/
@@ -178,31 +223,60 @@
 /*/ //////////////////////*/
 
 .user-profile-page {
-  background-color: rgb(224, 218, 218);
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+#update-profile {
+  min-width: 60%;
 }
 
 .user-profile-outside {
   border-radius: 1rem;
   padding: 0.5rem;
-  background: black;
+  background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
+  box-shadow: 0 1px 2px black, 0 2px 4px black, 0 4px 8px black,
+    0 -1px 2px black, 0 -2px 4px black, 0 -4px 8px black;
   height: 24rem;
   width: 30rem;
 }
 
 .user-profile-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 1rem;
   padding: 1rem;
   height: 23rem;
   background: linear-gradient(
-    to bottom,
+    to bottom right,
     rgb(65, 65, 59) 0%,
     rgb(95, 95, 86) 25%,
     rgb(152, 152, 141) 50%,
     rgb(95, 95, 86) 75%,
     rgb(65, 65, 59) 100%
   );
+  color: white;
+}
+
+.user-profile-inside > h1 {
+  margin: 1rem 0 0 0;
+}
+
+.name-cont {
+  text-align: center;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.name-cont > div {
+  border: dashed 2px white;
+  border-radius: 1.5rem;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  margin-top: 0.1px;
 }
 
 .user-profile-options {
@@ -214,6 +288,46 @@
 
 .user-profile-options > a {
   margin-top: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.upo-pw {
+  height: 27rem;
+  width: 30rem;
+}
+
+.upi-pw {
+  height: 26rem;
+}
+
+.upo-name {
+  height: 22rem;
+  width: 30rem;
+}
+
+.upi-name {
+  height: 21rem;
+}
+
+.view-pw-user-profile {
+  font-size: 1rem;
+  text-shadow: none;
+  cursor: pointer;
+  padding: 25px 0 5px 0;
+}
+
+.user-profile-edit-cancel-cont > div > a {
+  font-weight: bold;
+  color: white;
+}
+
+.user-profile-edit-error-cont {
+  min-height: 5rem;
+}
+
+.upecc-Name {
+  padding-top: 2rem;
 }
 
 .input-cont-user-profile {
@@ -230,6 +344,7 @@
   margin: 0rem 0rem 1rem 0rem;
   height: 4rem;
   border: solid 2px rgb(199, 192, 192);
+  border-radius: 0.5rem;
 }
 
 .input-cont-user-profile > input::placeholder {
@@ -238,11 +353,10 @@
   font-size: 1rem;
 }
 
-.toaster-submit-confirmation {
+.toaster-email-changed {
   text-align: center;
-  padding: 1rem 0rem 1rem 0rem;
-  margin-top: 11rem;
-  min-width: 30rem;
+  margin: 13% 0 0 0;
+  min-width: 25rem;
   font-weight: bold;
   border: solid 2px black;
 }
@@ -254,17 +368,22 @@
 .forgot-pw-outside {
   border-radius: 1rem;
   padding: 0.5rem;
-  background: black;
+  background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
+  box-shadow: 0 1px 2px black, 0 2px 4px black, 0 4px 8px black,
+    0 -1px 2px black, 0 -2px 4px black, 0 -4px 8px black;
   height: 26rem;
   width: 30rem;
 }
 
 .forgot-pw-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 1rem;
   padding: 1rem;
   height: 25rem;
   background: linear-gradient(
-    to bottom,
+    to bottom right,
     rgb(65, 65, 59) 0%,
     rgb(95, 95, 86) 25%,
     rgb(152, 152, 141) 50%,
@@ -273,9 +392,20 @@
   );
 }
 
+.forgot-pw-inside > h1 {
+  color: white
+}
+
+#forgot-pw{
+  margin: 1rem;
+  width: 70%
+}
+
 .back-to-sign-in {
   display: flex;
   justify-content: center;
+  text-decoration: none;
+  color: white
 }
 
 /*/ //////////////////////*/

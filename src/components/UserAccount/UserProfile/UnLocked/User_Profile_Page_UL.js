@@ -12,9 +12,6 @@ import Error from "../../../Misc/Error";
 import Button from "../../../Misc/Button";
 import Cancel from "../../../Misc/Cancel";
 import Input_Cont from "./Input_Cont";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 
 const User_Profile_Page = () => {
   const dispatch = useDispatch();
@@ -42,6 +39,7 @@ const User_Profile_Page = () => {
 
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState(null);
+  const [inputChanged, setInputChanged] = useState(false);
   const [nameChanged, setNameChanged] = useState(false);
   const [password, setPassword] = useState(null);
   const [password1, setPassword1] = useState(null);
@@ -62,8 +60,11 @@ const User_Profile_Page = () => {
 
   const userNames = getUserNames(useSelector((state) => state.users));
 
+  const classInfo = page === "Password" ? "pw" : "name";
+
   const onChange = (ev) => {
     setError(null);
+    setInputChanged(true);
 
     if (ev.target.name === "Name") {
       setName(ev.target.value);
@@ -110,74 +111,45 @@ const User_Profile_Page = () => {
     }
   };
 
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="user-profile-page"
-    >
-      {loading ? (
-        <Loading />
-      ) : (
-        <form
-          onSubmit={onSubmit}
-          id="update-profile"
-          className="user-profile-page"
-        >
-          <div className="user-profile-outside">
-            <div className="user-profile-inside">
-              <Container component="main" maxWidth="xs">
-                <Box
-                  sx={{
-                    marginTop: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    className="white-text"
-                    component="h1"
-                    variant="h"
-                    sx={{
-                      color: "white",
-                    }}
-                  >
-                    Edit {page && page}
-                  </Typography>
-
-                  {error ? (
-                    <Error error={error} />
-                  ) : (
-                    <Button text={"Submit"} form={"update-profile"} />
-                  )}
-
-                  <Input_Cont
-                    onChange={onChange}
-                    name={"Name"}
-                    showPW={showPW}
-                  />
-                  {page && page === "Password" && (
-                    <div
-                      className="view-pw white-text"
-                      onClick={() => showPwClick()}
-                    >
-                      View Password
-                    </div>
-                  )}
-
-                  <Cancel link="/my_profile" />
-                </Box>
-              </Container>
-            </div>
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="user-profile-page">
+      <div className={`user-profile-outside upo-${classInfo}`}>
+        <div className={`user-profile-inside upi-${classInfo}`}>
+          <h1>Edit {page}</h1>
+          <div className="user-profile-edit-error-cont">
+            {error ? (
+              <Error error={error} />
+            ) : (
+              <Button
+                text={"Submit"}
+                form={"update-profile"}
+                disabled={!inputChanged}
+              />
+            )}
           </div>
-        </form>
-      )}
-    </Box>
+
+          <form onSubmit={onSubmit} id="update-profile">
+            <Input_Cont user={user} onChange={onChange} showPW={showPW} />
+          </form>
+
+          {page && page === "Password" && (
+            <div
+              className="view-pw-user-profile white-text"
+              onClick={() => showPwClick()}
+            >
+              View Password
+            </div>
+          )}
+          <div
+            className={`user-profile-edit-cancel-cont upecc-${page} white-text`}
+          >
+            <Cancel link="/my_profile" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

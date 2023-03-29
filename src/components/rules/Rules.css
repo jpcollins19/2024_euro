@@ -1,15 +1,6 @@
 .rules-page {
-  padding-top: 3%;
-  background: linear-gradient(
-    to bottom right,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
-  width: 100vw;
-  height: 84vh;
+  padding-right: 10%;
+  margin-left: 3%;
   overflow: auto;
 }
 

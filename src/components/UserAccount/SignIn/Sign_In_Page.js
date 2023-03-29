@@ -1,22 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, formatEmail, findJoe } from "../../../store";
-import { Link } from "react-router-dom";
+import Input_Field from "../Input_Field";
+import Sign_In_Options from "../Sign_In_Options";
 import Button from "../../Misc/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    border: "solid 2px black",
-    borderRadius: "9px",
-    background: "rgb(237, 239, 245)",
-  },
-}));
 
 const Sign_In_Page = () => {
   const dispatch = useDispatch();
@@ -25,8 +12,6 @@ const Sign_In_Page = () => {
   const [password, setPassword] = useState("");
   const [showPW, setShowPW] = useState(false);
 
-  const classes = useStyles();
-
   const showPwClick = () => {
     setShowPW(!showPW);
   };
@@ -34,11 +19,11 @@ const Sign_In_Page = () => {
   const joe = findJoe(useSelector((state) => state.users));
 
   const inputs = [
-    { label: "Email Address", name: "Email", marginLeft: "20%", type: "" },
+    { label: "Email Address", name: "Email", marginLeft: "30%", type: "" },
     {
       label: "Password",
       name: "Password",
-      marginLeft: "28%",
+      marginLeft: "35%",
       type: showPW ? "text" : "password",
     },
   ];
@@ -68,109 +53,38 @@ const Sign_In_Page = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="login-page"
-    >
+    <div className="login-page">
       <div className="login-cont-outside">
         <div className="login-cont-inside">
-          <div>
-            <Container component="main" maxWidth="xs">
-              <CssBaseline />
-              <Box
-                sx={{
-                  marginTop: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography component="h1" variant="h">
-                  Sign in
-                </Typography>
-                <Box
-                  component="form"
-                  onSubmit={onSubmit}
-                  sx={{ mt: 1 }}
-                  display="flex"
-                  flexDirection="column"
-                  id="sign-in"
-                >
-                  {inputs.map((input) => (
-                    <TextField
-                      key={input.name}
-                      onChange={onChange}
-                      sx={{
-                        padding: 0,
-                      }}
-                      margin="normal"
-                      required
-                      fullWidth
-                      label={input.label}
-                      variant="filled"
-                      name={input.name}
-                      InputProps={{ disableUnderline: true }}
-                      inputProps={{
-                        style: {
-                          textAlign: "center",
-                          color: "black",
-                          fontWeight: "bold",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: {
-                          textAlign: "center",
-                          color: "black",
-                          marginLeft: input.marginLeft,
-                        },
-                      }}
-                      className={classes.textField}
-                      type={input.type}
-                    />
-                  ))}
-                  <div className="view-pw" onClick={() => showPwClick()}>
-                    View Password
-                  </div>
-                  <Button
-                    text="Sign In"
-                    disabled={!email || !password}
-                    form="sign-in"
-                  />
-                  {joe?.tourneyStage > 1
-                    ? options
-                        .filter((option) => option.text !== "Create Account")
-                        .map((option) => (
-                          <div key={option.text} className="option-cont">
-                            <Link
-                              to={option.route}
-                              style={{ textDecoration: "none", color: "blue" }}
-                            >
-                              <h4>{option.text}</h4>
-                            </Link>
-                          </div>
-                        ))
-                    : options.map((option) => (
-                        <div key={option.text} className="option-cont">
-                          <Link
-                            to={option.route}
-                            style={{ textDecoration: "none", color: "blue" }}
-                          >
-                            <h4>{option.text}</h4>
-                          </Link>
-                        </div>
-                      ))}
-                </Box>
-              </Box>
-            </Container>
-          </div>
+          <h1>Sign In</h1>
+          <form onSubmit={onSubmit} className="login-form" id="sign-in">
+            {inputs.map((input, idx) => (
+              <Input_Field key={idx} input={input} onChange={onChange} />
+            ))}
+
+            <div className="view-pw" onClick={() => showPwClick()}>
+              View Password
+            </div>
+
+            <Button
+              text="Sign In"
+              disabled={!email || !password}
+              form="sign-in"
+            />
+
+            {joe?.tourneyStage > 1
+              ? options
+                  .filter((option) => option.text !== "Create Account")
+                  .map((option, idx) => (
+                    <Sign_In_Options key={idx} option={option} />
+                  ))
+              : options.map((option, idx) => (
+                  <Sign_In_Options key={idx} option={option} />
+                ))}
+          </form>
         </div>
       </div>
-    </Box>
+    </div>
   );
 };
 

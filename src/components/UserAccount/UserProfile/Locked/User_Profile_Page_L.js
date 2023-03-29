@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { me } from "../../../../store";
 import Loading from "../../../Misc/Loading";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import Name from "./Name";
 import toast, { Toaster } from "react-hot-toast";
 
 const User_Profile_Page = () => {
@@ -18,7 +16,7 @@ const User_Profile_Page = () => {
   if (!user) return null;
 
   const pwUpdated = () => {
-    toast("Your password has been updated", { duration: 5000 });
+    toast("Your password has been updated!", { duration: 5000 });
   };
 
   useEffect(() => {
@@ -51,75 +49,50 @@ const User_Profile_Page = () => {
   }, 1000);
 
   const options = [
-    { route: "/edit_profile_name", text: "Edit Name" },
-    { route: "/edit_profile_password", text: "Change Password" },
+    {
+      route: "/edit_profile_name",
+      text: "Edit Name",
+      // marginTop: isMobile ? "80px" : "20px",
+      marginTop: "20px",
+    },
+    {
+      route: "/edit_profile_password",
+      text: "Change Password",
+      // marginTop: isMobile ? "30px" : "15px",
+      marginTop: "15px",
+    },
   ];
 
-  const inputs = [
-    { text: "My Profile:", component: "h1" },
-    { text: user && user.name, component: "h2" },
-  ];
-
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="user-profile-page"
-    >
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="user-profile-page">
       <Toaster
         toastOptions={{
-          className: "toaster-submit-confirmation",
+          className: "toaster-email-changed",
         }}
       />
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="user-profile-outside">
-          <div className="user-profile-inside">
-            <Container component="main" maxWidth="xs">
-              <Box
-                sx={{
-                  marginTop: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
+
+      <div className="user-profile-outside">
+        <div className="user-profile-inside">
+          <h1>My Profile</h1>
+
+          <Name user={user} />
+
+          <div className="user-profile-options">
+            {options.map((option, idx) => (
+              <Link
+                key={idx}
+                to={option.route}
+                style={{ marginTop: option.marginTop }}
               >
-                {inputs.map((input) => (
-                  <Typography
-                    key={input.text}
-                    className="white-text"
-                    component={input.component}
-                    variant="h"
-                    sx={{
-                      color: "white",
-                      margin: "1rem",
-                    }}
-                  >
-                    {input.text}
-                  </Typography>
-                ))}
-                <div className="user-profile-options">
-                  {options.map((option) => (
-                    <Link
-                      key={option.route}
-                      to={option.route}
-                      style={{ color: "white", textDecoration: "none" }}
-                    >
-                      {option.text}
-                    </Link>
-                  ))}
-                </div>
-              </Box>
-            </Container>
+                {option.text}
+              </Link>
+            ))}
           </div>
         </div>
-      )}
-    </Box>
+      </div>
+    </div>
   );
 };
 

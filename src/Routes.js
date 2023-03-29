@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "./components/Misc/Loading";
 import Pre_Sign_In_Page from "./components/PreSignIn/Pre_Sign_In_Page";
 import Sign_In_Page from "./components/UserAccount/SignIn/Sign_In_Page";
-import Sign_In_Page_Leaderboard from "./components/leaderboard/Sign_In_Page_Leaderboard";
 import Create_Account_Page from "./components/UserAccount/CreateAccount/Create_Account_Page";
 import Action_Confirmation from "./components/UserAccount/Action_Confirmation";
 import Forgot_PW_Page from "./components/UserAccount/ForgotPW/Forgot_PW_Page";
@@ -42,7 +41,7 @@ const Routes = () => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 500);
+  }, 1000);
 
   const nonUserRoutes = [
     { path: "/", component: Pre_Sign_In_Page },
@@ -61,7 +60,6 @@ const Routes = () => {
       component: Action_Confirmation,
     },
     { path: "/rules", component: Rules_Page },
-    //{ path: "/leaderboard", component: Sign_In_Page_Leaderboard },
     { path: "/forgot_pw", component: Forgot_PW_Page },
     { path: "/reset_pw/:id", component: Reset_PW_Page },
   ];
