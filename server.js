@@ -1,17 +1,40 @@
 //roll through each file and remove mui ---START
 
+///group details ---START
+//make everything columns instead of rows
+//adjust the headers to it is "+/-" instead of GF & GA - see below notes
+//needs to handle the "+/-" column being up to 5 symbols (12-11)"
+//needs to handle the "GD" column being up to 2 digits"
+
+///group details ---END
+
+///leaderboard ---START
+//scorecard - re-do this page to match masters setup (no input tags, cannot be editable, etc)
+//also create a generic inputField file like you did with masters, and remove the rank, name and points files
+//add a key/table to note what the background color represents
+
+///leaderboard ---END
+
+///pool picks
+///my picks
 ///admin - users --START
 
 //need to resume work on inputting user pick data once a user is selected from the dropdown, then work on onSubmit code
+//test updates for each stage:
+//stage 1: user has no group picks, making group picks for user for the first time
+//stage 1: user has group picks, need to adjust users group picks
+//stage 2: adjusting users group picks
+//stage 3: user has no KO picks, adjusting users group picks
+//stage 3: user has no KO picks, making KO picks for user for the first time
+//stage 3: user has KO picks, need to adjust users KO picks
+
+///////bugz
+//once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
 
 ///admin - users --END
 
 ///admin - groups
 ///admin - teams
-///group details
-///leaderboard
-///my picks
-///pool picks
 
 //roll through each file and remove mui ---END
 
@@ -28,24 +51,11 @@
 ////sendgrid
 //change the password reset verbiage from "world cup" to "euro"
 
-//scorecard - re-do this page to match masters setup (no input tags, cannot be editable, etc)
-//also create a generic inputField file like you did with masters, and remove the rank, name and points files
-//add a key/table to note what the background color represents
-
 ///test specs - write specs for the 'Calcs leaderboard' describe block --- round 2
 //when tourney is NOT over
 //when only 2 groups are complete
 //when only group stages are complete, before ko stage starts
 //with ko round in diff stages
-
-////re-do the file for users > admin:
-//start with stage 1 and test for all stages for updates when they are applicable - do not need to update stages 4 or 5, you already did this in initial re-factoring in late Dec 22
-
-///////bugz
-//once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
-//need to create a .env file and add to gitignore - need to then add forgot pw stuff like in the world cup OG app - need to adjust the subject line verbiage in sendGrid to read as 'euros' instead of 'world cup'
-
-//add toaster to the leaderboard not signed in page instead of the default error message - see masters code for exact code to use - need to remove loading from sign-in-page-leaderboard file
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?
@@ -75,14 +85,8 @@
 ////group details
 //once the page starts loading, it calls the 'api/matches' and does the work that code has already been written for.
 
-////////////F2 - group Details page
-//adjust the headers to it is "+/-" instead of GF & GA - look at below first - game plan all of this at the same time
-//adjust the format so the info pulls in via columns vs. current setup which is rows - this will take some planning
-//needs to handle the "+/-" column being up to 5 symbols (12-11)"
-//needs to handle the "GD" column being up to 2 digits"
-
 ////////////F3
-//Can’t submit Joe tourney stage to 4 unless all matches are compete
+//Should not be able to submit Joe tourney stage to 4 unless all matches are complete
 
 ////////////F4
 //admin > team > duplicate this file, label old one 'OLD-team' - label new one 'admin > KO'
@@ -90,7 +94,7 @@
 //admin > KO > admin can update the score to each game and that adjusts the teams instance. Has an option for advancing ok pks if the score is submitted a tie
 
 ////////////F5
-//add a "max pts available" once KO stage starts
+//leaderboard & test specs: add a "max pts available" once KO stage starts
 
 ////////////F6 -- new rules/scoring to add - when making group picks - you have to pick the winner before the tournament starts for like 10 points.
 //Then you can double down when the knockout part comes out or hedge.  And if you’re winner doesn’t get out of groups, tough shit.

@@ -30,13 +30,13 @@ const Single_User_Cont = () => {
 
   const joe = findJoe(useSelector((state) => state.users));
 
-  const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
-  const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
   const [name, setName] = useState(user?.name);
   const [password, setPassword] = useState(user?.password);
   const [paid, setPaid] = useState(user?.paid);
-  const [onlyUpdatePaidStatus, setOnlyUpdatePaidStatus] = useState(false);
+  const [onlyUpdateTopSection, setOnlyUpdateTopSection] = useState(false);
   const [tourneyStage, setTourneyStage] = useState(user?.tourneyStage);
+  const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
+  const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
 
   //
   // const [selectionObj, setSelectionObj] = useState({
@@ -192,8 +192,8 @@ const Single_User_Cont = () => {
 
   const togglePaid = () => setPaid((value) => !value);
 
-  const toggleOnlyUpdatePaidStatus = () => {
-    setOnlyUpdatePaidStatus((value) => !value);
+  const toggleOnlyUpdateTopSection = () => {
+    setOnlyUpdateTopSection((value) => !value);
   };
 
   const onChangeSelectionObj = (group, rank, team) => {
@@ -226,20 +226,19 @@ const Single_User_Cont = () => {
 
       const userObj = {
         id: user?.id,
-        paid: user?.paid,
+        name,
+        password,
+        paid,
+        tourneyStage,
       };
 
       if (deleteUserConfirmed) {
         return dispatch(deleteUser(userObj, history));
       }
 
-      if (onlyUpdatePaidStatus) {
+      if (onlyUpdateTopSection) {
         return dispatch(updateUser(userObj, history, "admin"));
       }
-
-      userObj.name = name;
-      userObj.password = password;
-      userObj.tourneyStage = tourneyStage;
 
       // const validTiebreaker = Number(tiebreaker) % 1 === 0;
       // const tiebreakerAsArray = tiebreaker?.split("");
@@ -341,15 +340,16 @@ const Single_User_Cont = () => {
   const checkboxes = [
     { title: "Paid?", defaultValue: paid, onChange: togglePaid },
     {
-      title: "Only Update Paid Status",
-      defaultValue: onlyUpdatePaidStatus,
-      onChange: toggleOnlyUpdatePaidStatus,
+      title: "Only Update This Section's Info",
+      defaultValue: onlyUpdateTopSection,
+      onChange: toggleOnlyUpdateTopSection,
     },
   ];
 
   return (
     <form id="admin-update-user" onSubmit={onSubmit}>
-      <div className="admin-header">
+      <div className="admin-user-top">
+        <Button text="Submit" form="admin-update-user" />
         {user?.name && (
           <div className="user-details-cont">
             {inputs.map((input) => (
@@ -366,13 +366,12 @@ const Single_User_Cont = () => {
                 <Checkbox_Cont key={idx} checkboxInfo={checkbox} />
               ))}
             </div>
-
-            <Button text="Submit" form="admin-update-user" />
           </div>
         )}
       </div>
-
-      {/* {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
+      {user?.id && (
+        <div className="admin-user-bottom">
+          {/* {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
           <div className="user-admin">
             <div className="error-cont-placeholder">
               {koError && <Error error="Incomplete Picks Below" />}
@@ -416,50 +415,41 @@ const Single_User_Cont = () => {
         ) : (
           ""
         )} */}
-      {/* 
-        {Object.values(selectedUser).length > 0 && (
-          <div className="user-admin">
-            <div className="tiebreaker-cont-edit-picks white-text">
-              <h3>Tiebreaker - total number of goals scored:</h3>
 
-              <input
-                defaultValue={tiebreaker}
-                onChange={(ev) => {
-                  setTiebreaker(ev.target.value);
-                  setTiebreakerError(false);
-                }}
-              ></input>
-            </div>
+          {/* <div className="tiebreaker-cont-edit-picks white-text">
+            <h3>Tiebreaker - total number of goals scored:</h3>
 
-            <div className="error-cont-placeholder">
-              {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
-            </div>
-
-            <Group_Cont_Admin
-              onChangeSelectionObj={onChangeSelectionObj}
-              groupErrorObj={groupErrorObj}
-            />
+            <input
+              defaultValue={tiebreaker}
+              onChange={(ev) => {
+                setTiebreaker(ev.target.value);
+                setTiebreakerError(false);
+              }}
+            ></input>
           </div>
-        )} */}
 
-      {/* {Object.keys(selectedUser).length && !deleteUserNeeded ? (
-          <Button
-            text="Delete User"
-            onClick={() => setDeleteUserNeeded(true)}
-          />
-        ) : (
-          ""
-        )} */}
+          <div className="error-cont-placeholder">
+            {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
+          </div>
 
-      {/* {Object.keys(selectedUser).length && deleteUserNeeded ? (
-          <Button
-            text="Confirm & Delete User"
-            form="admin-update-user"
-            onClick={() => setDeleteUserConfirmed(true)}
-          />
-        ) : (
-          ""
-        )} */}
+          <Group_Cont_Admin
+            onChangeSelectionObj={onChangeSelectionObj}
+            groupErrorObj={groupErrorObj}
+          /> */}
+        </div>
+      )}
+
+      {user?.id && !deleteUserNeeded && (
+        <Button text="Delete User" onClick={() => setDeleteUserNeeded(true)} />
+      )}
+
+      {user?.id && deleteUserNeeded && (
+        <Button
+          text="Confirm & Delete User"
+          form="admin-update-user"
+          onClick={() => setDeleteUserConfirmed(true)}
+        />
+      )}
     </form>
   );
 };

@@ -78,7 +78,7 @@ const User_Admin_Page = () => {
       />
 
       {loadingUser ? (
-        <Loading />
+        <Loading transparent={true} />
       ) : (
         <div className="admin-user-container">
           {selectedUser && (

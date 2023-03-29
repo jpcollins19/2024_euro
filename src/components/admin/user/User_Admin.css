@@ -2,14 +2,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* background: linear-gradient(
-    to bottom,
-    rgb(6, 241, 233) 0%,
-    rgb(5, 189, 183) 25%,
-    rgb(2, 124, 120) 50%,
-    rgb(2, 82, 79) 75%,
-    rgb(0, 12, 11) 100%
-  ); */
   overflow: auto;
   height: 84vh;
   padding-top: 5%;
@@ -20,12 +12,12 @@
   flex-direction: column;
 }
 
-.admin-header {
+.admin-user-top {
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
-  margin-bottom: 1%;
-  border: solid 2px red;
+  margin-top: 1%;
+  padding-bottom: 1%;
+  border-bottom: solid 2px black;
   width: 100vw;
 }
 
@@ -33,14 +25,14 @@
   display: flex;
   justify-content: space-around;
   font-weight: bold;
-  margin-top: 1%;
+  /* margin-top: 1%; */
 }
 
 .paid-cont {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 15vw;
+  width: 17vw;
 }
 
 .data-cont-admin-user {
@@ -67,8 +59,8 @@
 }
 
 .dcau-checkbox {
-  display: flex;
-  justify-content: end;
+  /* display: flex;
+  justify-content: end; */
 }
 
 .user-admin {
@@ -82,3 +74,7 @@
 /* .group-dropdown-admin {
   border-radius: 0.5rem;
 } */
+
+.admin-user-bottom {
+  border: solid 2px red;
+}

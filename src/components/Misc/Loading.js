@@ -1,8 +1,8 @@
 import { SpinnerCircularFixed } from "spinners-react";
 
-const Loading = () => {
+const Loading = ({ transparent }) => {
   return (
-    <div className="loading-cont">
+    <div className={`loading-cont ${transparent ? "loading-transp" : ""}`}>
       <SpinnerCircularFixed
         size={100}
         thickness={100}

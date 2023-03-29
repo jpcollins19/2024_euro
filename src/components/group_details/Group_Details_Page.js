@@ -8,22 +8,20 @@ const Group_Details_Page = () => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 500);
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
   return loading ? (
     <Loading />
   ) : (
-    <main className="group-details-page">
+    <div className="group-details-page">
       <div className="group-details-container">
-        <div className="group-details-full-table-container">
-          {letters.map((letter) => (
-            <Single_Cont key={letter} group={letter} />
-          ))}
-        </div>
+        {letters.map((letter) => (
+          <Single_Cont key={letter} group={letter} />
+        ))}
       </div>
-    </main>
+    </div>
   );
 };
 

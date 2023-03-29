@@ -1,7 +1,6 @@
 const Checkbox_Cont = ({ checkboxInfo }) => {
   return (
     <div className="data-cont-admin-user dcau-checkbox">
-      <div>{checkboxInfo?.title}</div>
       <input
         type="checkbox"
         defaultValue={checkboxInfo?.defaultValue}
@@ -12,6 +11,7 @@ const Checkbox_Cont = ({ checkboxInfo }) => {
             : !!checkboxInfo?.defaultValue
         }
       ></input>
+      <div>{checkboxInfo?.title}</div>
     </div>
   );
 };
