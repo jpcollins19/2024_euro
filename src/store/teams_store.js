@@ -9,6 +9,13 @@ const _loadTeams = (teams) => {
 export const loadTeams = () => {
   return async (dispatch) => {
     const teams = (await axios.get("/api/teams")).data;
+
+    teams.forEach((team) => {
+      team.MP = team.W + team.D + team.L;
+      team.GD = team.GF - team.GA;
+      team.pts = team.W * 3 + team.D;
+    });
+
     dispatch(_loadTeams(teams));
   };
 };

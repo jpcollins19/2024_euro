@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 const {
-  currentScoresObj,
+  getCurrentScores,
   addFakeUser,
   groupCalc,
   groupTotalCalc,
@@ -8,6 +8,7 @@ const {
   koGameCalc,
   koRoundCalc,
   userTotalPoints,
+  colorDescriptionTableNeeded,
 } = require("./src/store/funcs");
 
 describe("Cals everthing correctly", () => {
@@ -7758,7 +7759,7 @@ describe("Cals everthing correctly", () => {
           });
         });
 
-        answer = currentScoresObj(users, teams);
+        answer = getCurrentScores(users, teams);
 
         names = answer.map((user) => user.name);
 
@@ -7790,7 +7791,7 @@ describe("Cals everthing correctly", () => {
             }
           });
 
-          answer = currentScoresObj(users, teams);
+          answer = getCurrentScores(users, teams);
 
           names = answer.map((user) => user.name);
 
@@ -8592,7 +8593,7 @@ describe("Cals everthing correctly", () => {
               }
             }
 
-            answer = currentScoresObj(users, teams, scenario.totalGoalsScored);
+            answer = getCurrentScores(users, teams, scenario.totalGoalsScored);
 
             names = answer.map((user) => user.name);
             scores = answer.map((user) => user.total);
@@ -8603,6 +8604,93 @@ describe("Cals everthing correctly", () => {
               expect(scores[i]).to.equal(scenario.resultScores[i]);
               expect(tieExists[i]).to.equal(scenario.resultTieExists[i]);
             }
+          });
+        });
+      });
+    });
+  });
+
+  const colorDescriptionTableNeededFuncTesting = [
+    {
+      paid: false,
+      ties: false,
+      result: true,
+      testCases: [
+        { paidNames: ["Bunda"] },
+        { paidNames: ["Frank", "Jill", "Aboona", "Jill"] },
+        {
+          paidNames: [
+            "Frank",
+            "Jill",
+            "Aboona",
+            "Jill",
+            "Joe",
+            "Kelly",
+            "Stanley",
+            "Coach",
+          ],
+        },
+      ],
+    },
+    {
+      paid: false,
+      ties: true,
+      result: true,
+      testCases: [
+        { paidNames: ["Bunda"], tieNames: ["Bunda", "Aboona"] },
+        {
+          paidNames: ["Bunda", "Jill", "Coach"],
+          tieNames: ["Joe", "Kelly"],
+        },
+      ],
+    },
+    {
+      paid: true,
+      ties: true,
+      result: true,
+      testCases: [
+        { tieNames: ["Aboona", "Jill"] },
+        { tieNames: ["Coach", "Joe", "Kelly"] },
+      ],
+    },
+    {
+      paid: true,
+      ties: false,
+      result: false,
+      testCases: [1],
+    },
+  ];
+
+  describe("colorDescriptionTableNeeded func", () => {
+    describe("returns correct boolean based on leaderboard rankings", () => {
+      colorDescriptionTableNeededFuncTesting.forEach((scenario) => {
+        it(`all users paid = ${scenario.paid}; tie exists = ${scenario.ties}`, () => {
+          scenario.testCases.forEach((testCase) => {
+            users = [
+              { name: "Aboona", tieExists: false, paid: true },
+              { name: "Bunda", tieExists: false, paid: true },
+              { name: "Coach", tieExists: false, paid: true },
+              { name: "Frank", tieExists: false, paid: true },
+              { name: "Jill", tieExists: false, paid: true },
+              { name: "Joe", tieExists: false, paid: true },
+              { name: "Kelly", tieExists: false, paid: true },
+              { name: "Stanley", tieExists: false, paid: true },
+            ];
+
+            users.forEach((user) => {
+              scenario.ties &&
+                testCase.tieNames.forEach((name) => {
+                  if (user.name === name) user.tieExists = true;
+                });
+
+              !scenario.paid &&
+                testCase.paidNames.forEach((name) => {
+                  if (user.name === name) user.paid = false;
+                });
+            });
+
+            answer = colorDescriptionTableNeeded(users);
+            expect(answer).to.equal(scenario.result);
           });
         });
       });

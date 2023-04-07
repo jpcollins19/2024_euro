@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { urlWord, capFirstLetter } from "../../../store";
+import { urlWord, cap1stLetter } from "../../../store";
 
 const Navbar_Link = ({ page, adminPage }) => {
   const { pathname } = useLocation();
@@ -14,9 +14,9 @@ const Navbar_Link = ({ page, adminPage }) => {
   if (page === "rules") {
     verbiageToDisplay = "Rules / General Information";
   } else if (adminPage) {
-    verbiageToDisplay = `Admin - ${capFirstLetter(page)}`;
+    verbiageToDisplay = `Admin - ${cap1stLetter(page)}`;
   } else {
-    verbiageToDisplay = capFirstLetter(page);
+    verbiageToDisplay = cap1stLetter(page);
   }
 
   return (

@@ -24,8 +24,8 @@
 
 .last-updated-cont {
   position: absolute;
-  top: 2;
-  left: 1;
+  top: 45;
+  left: 20;
   padding: 0.9rem 0rem 0rem 1rem;
   flex-grow: 1;
   font-weight: bold;
@@ -40,56 +40,6 @@
 .last-updated-button {
   margin-left: 1rem;
   cursor: pointer;
-}
-
-/* .middle-row-navbar {
-  display: flex;
-  justify-content: center;
-} */
-
-.payout {
-  margin-top: 4%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: black;
-  position: absolute;
-  top: -15;
-  left: 150;
-}
-
-.payout-cont-f {
-  position: absolute;
-  top: 30;
-  left: -10;
-}
-
-.payout-text-cont {
-  border: solid 2px black;
-  display: flex;
-  text-align: center;
-  width: 140%;
-}
-
-.place-col-cont {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-
-.place-col-cont > div {
-  border: solid 1px black;
-}
-
-.dollar-col-cont {
-  display: flex;
-  flex: 2;
-  flex-direction: column;
-}
-
-.dollar-col-cont > div {
-  border: solid 1px black;
 }
 
 .submitted-picks {

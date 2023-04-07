@@ -19,11 +19,11 @@ const Sign_In_Page = () => {
   const joe = findJoe(useSelector((state) => state.users));
 
   const inputs = [
-    { label: "Email Address", name: "Email", marginLeft: "30%", type: "" },
+    { label: "Email Address", name: "Email", marginLeft: "26%", type: "" },
     {
       label: "Password",
       name: "Password",
-      marginLeft: "35%",
+      marginLeft: "32%",
       type: showPW ? "text" : "password",
     },
   ];

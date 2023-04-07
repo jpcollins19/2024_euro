@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
-  capFirstLetter,
+  cap1stLetter,
   groupTotalCalc,
   koRoundCalc,
   userTotalPoints,
@@ -34,7 +34,7 @@ const Total_Points_Cont = ({ selectedUser }) => {
             <h4>Stage</h4>
             {inputs.map((input) => (
               <div key={input} className={input === "Total" ? "bold" : ""}>
-                {capFirstLetter(input)}
+                {cap1stLetter(input)}
               </div>
             ))}
           </div>

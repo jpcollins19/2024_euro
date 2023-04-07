@@ -1,31 +1,21 @@
-import { useSelector } from "react-redux";
-import { currentScoresObj } from "../../store";
-import Rank from "./Rank";
-import Name from "./Name";
-import Score from "./Score";
+import { colorDescriptionTableNeeded } from "../../store";
+import Color_Description_Table from "./Color_Description_Table";
+import Input_Field from "./Input_Field";
 
-const Leaderboard_Cont = () => {
-  const users = useSelector((state) => state.users).filter(
-    (user) => user.tiebreaker
-  );
-
-  const user = useSelector((state) => state.auth);
-  const teams = useSelector((state) => state.teams);
-
-  let rankInfo = currentScoresObj(users, teams, 163);
-
-  // console.log("rankInfo", rankInfo);
-
-  // rankInfo = rankInfo && rankInfo.sort((a, b) => a.rank - b.rank);
+const Leaderboard_Cont = ({ joe, rankInfo }) => {
+  const inputs = ["rank", "name", "total"];
 
   return (
-    user?.tiebreaker && (
-      <div>
-        <Rank rankInfo={rankInfo} />
-        <Name rankInfo={rankInfo} />
-        <Score rankInfo={rankInfo} />
+    <div className="table-cont">
+      {joe?.tourneyStage > 1 && colorDescriptionTableNeeded(rankInfo) && (
+        <Color_Description_Table rankInfo={rankInfo} />
+      )}
+      <div className="rankInfo">
+        {inputs.map((input, idx) => (
+          <Input_Field key={idx} input={input} rankInfo={rankInfo} />
+        ))}
       </div>
-    )
+    </div>
   );
 };
 

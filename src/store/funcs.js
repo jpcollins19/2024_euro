@@ -1,5 +1,5 @@
 const findJoe = (arr) => {
-  return arr.find((user) => user.admin);
+  return arr.find((user) => user?.admin);
 };
 
 const G = {
@@ -42,7 +42,7 @@ const formatSelectedUser = (obj) => {
   return { value: obj, label: obj.name };
 };
 
-const capFirstLetter = (str) => {
+const cap1stLetter = (str) => {
   return str
     .split("")
     .map((letter, idx) => {
@@ -382,7 +382,7 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
   });
 };
 
-const currentScoresObj = (users, teams, actualGoalsScored = null) => {
+const getCurrentScores = (users, teams, actualGoalsScored = null) => {
   let rank = 1;
 
   const firstAudit = users
@@ -451,6 +451,40 @@ const currentScoresObj = (users, teams, actualGoalsScored = null) => {
   return sortNames(firstAudit);
 };
 
+const allUsersPaid = (arr) => {
+  const paidAudit = arr.map((user) => user.paid);
+  return !paidAudit.includes(false);
+};
+
+const usersAreTied = (arr) => {
+  const tieAudit = arr.map((user) => user.tieExists);
+  return tieAudit.includes(true);
+};
+
+const colorDescriptionTableNeeded = (arr) => {
+  //audit to see if the color table is needed.
+  //returns false if all users are paid, and there are no ties
+
+  const allUsersHavePaid = allUsersPaid(arr);
+  const userTieExists = usersAreTied(arr);
+
+  let answer = true;
+
+  if (allUsersHavePaid && !userTieExists) answer = false;
+
+  return answer;
+};
+
+const userStatusClass = (user) => {
+  return !user.paid
+    ? "not-paid"
+    : user.tieExists
+    ? "tie"
+    : user.paid
+    ? "paid"
+    : "";
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -459,15 +493,19 @@ module.exports = {
   groupCalc,
   groupTotalCalc,
   userTotalPoints,
-  currentScoresObj,
+  getCurrentScores,
   teamRankSort,
   dupeValInArr,
   urlWord,
   formatSelectedUser,
-  capFirstLetter,
+  cap1stLetter,
   findEntry,
   formatEmail,
   getUserNames,
   addFakeUser,
   findR16Teams,
+  colorDescriptionTableNeeded,
+  allUsersPaid,
+  usersAreTied,
+  userStatusClass,
 };

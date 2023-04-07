@@ -64,11 +64,6 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
           lastUpdatedAnswer={lastUpdatedAnswer}
         />
       )}
-      {user?.id && !userHasNoPicksAndTourneyHasStarted && (
-        <div className="submitted-picks">
-          # of submitted picks: {numOfSubmittedPicks.length}
-        </div>
-      )}
     </form>
   );
 };

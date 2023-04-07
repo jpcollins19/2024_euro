@@ -39,7 +39,7 @@
 }
 
 .login-form {
-  max-width: 60%;
+  max-width: 50%;
 }
 
 .view-pw {
@@ -122,7 +122,7 @@
 .create-account-form {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  max-width: 65%;
 }
 
 .option-cont-create-account {

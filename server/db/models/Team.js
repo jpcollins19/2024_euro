@@ -22,11 +22,6 @@ const Team = db.define("teams", {
     type: STRING,
   },
 
-  MP: {
-    type: INTEGER,
-    defaultValue: 0,
-  },
-
   W: {
     type: INTEGER,
     defaultValue: 0,
@@ -48,16 +43,6 @@ const Team = db.define("teams", {
   },
 
   GA: {
-    type: INTEGER,
-    defaultValue: 0,
-  },
-
-  GD: {
-    type: INTEGER,
-    defaultValue: 0,
-  },
-
-  pts: {
     type: INTEGER,
     defaultValue: 0,
   },

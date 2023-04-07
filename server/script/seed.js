@@ -45,9 +45,45 @@ let teamInfo = [
   { name: "S. Korea", group: "H" },
 ];
 
-teamInfo = teamInfo.map((team) => ({
-  ...team,
-  flag: `https://www.sciencekids.co.nz/images/pictures/flags680/${
+// const teamEditObj = {
+//   Netherlands: {
+//     groupFinishingPosition: 1,
+//     W: 2,
+//     D: 1,
+//     L: 0,
+//     GF: 12,
+//     GA: 1,
+//   },
+//   Senegal: {
+//     groupFinishingPosition: 2,
+//     W: 2,
+//     D: 0,
+//     L: 1,
+//     GF: 1,
+//     GA: 4,
+//   },
+//   Ecuador: {
+//     groupFinishingPosition: 3,
+//     W: 1,
+//     D: 1,
+//     L: 1,
+//     GF: 14,
+//     GA: 12,
+//   },
+//   Qatar: {
+//     groupFinishingPosition: 4,
+//     W: 0,
+//     D: 0,
+//     L: 3,
+//     GF: 3,
+//     GA: 15,
+//   },
+// };
+
+const entries = ["W", "D", "L", "GF", "GA", "groupFinishingPosition"];
+
+teamInfo.forEach((team) => {
+  team.flag = `https://www.sciencekids.co.nz/images/pictures/flags680/${
     team.name === "Saudi Arabia"
       ? "Saudi_Arabia"
       : team.name === "Brasil"
@@ -61,8 +97,13 @@ teamInfo = teamInfo.map((team) => ({
       : team.name === "Costa Rica"
       ? "Costa_Rica"
       : team.name
-  }.jpg`,
-}));
+  }.jpg`;
+
+  // team.group === "A" &&
+  //   entries.forEach((entry) => {
+  //     team[entry] = teamEditObj[team?.name][entry];
+  //   });
+});
 
 const users = [
   {
@@ -125,7 +166,7 @@ const users = [
     knockChamp: "France",
 
     tiebreaker: 165,
-    tourneyStage: 1,
+    tourneyStage: 2,
   },
   //stan
   {
@@ -549,6 +590,12 @@ const syncAndSeed = async () => {
         name: obj.name,
         group: obj.group,
         flag: obj.flag,
+        W: obj.W,
+        D: obj.D,
+        L: obj.L,
+        GF: obj.GF,
+        GA: obj.GA,
+        groupFinishingPosition: obj.groupFinishingPosition,
       })
     )
   );
@@ -691,7 +738,7 @@ const syncAndSeed = async () => {
   S_Korea.groupFinishingPosition = 2;
   Uruguay.groupFinishingPosition = 3;
   Ghana.groupFinishingPosition = 4;
-  // //
+  //
   Ecuador.groupIsFinished = true;
   Netherlands.groupIsFinished = true;
   Qatar.groupIsFinished = true;
@@ -725,105 +772,105 @@ const syncAndSeed = async () => {
   Portugal.groupIsFinished = true;
   Uruguay.groupIsFinished = true;
   // //////////////////////////////////////////////////
-  Joe.knockQ1 = Netherlands.name;
-  Joe.knockQ2 = Argentina.name;
-  Joe.knockQ3 = Japan.name;
-  Joe.knockQ4 = Brasil.name;
-  Joe.knockQ5 = England.name;
-  Joe.knockQ6 = France.name;
-  Joe.knockQ7 = Spain.name;
-  Joe.knockQ8 = Switz.name;
-  Stan.knockQ1 = Netherlands.name;
-  Stan.knockQ2 = Argentina.name;
-  Stan.knockQ3 = Japan.name;
-  Stan.knockQ4 = Brasil.name;
-  Stan.knockQ5 = England.name;
-  Stan.knockQ6 = France.name;
-  Stan.knockQ7 = Spain.name;
-  Stan.knockQ8 = Switz.name;
-  Anthony.knockQ1 = USA.name;
-  Anthony.knockQ2 = Argentina.name;
-  Anthony.knockQ3 = Croatia.name;
-  Anthony.knockQ4 = Brasil.name;
-  Anthony.knockQ5 = England.name;
-  Anthony.knockQ6 = France.name;
-  Anthony.knockQ7 = Spain.name;
-  Anthony.knockQ8 = Portugal.name;
-  Kevin.knockQ1 = USA.name;
-  Kevin.knockQ2 = Argentina.name;
-  Kevin.knockQ3 = Japan.name;
-  Kevin.knockQ4 = Brasil.name;
-  Kevin.knockQ5 = England.name;
-  Kevin.knockQ6 = Poland.name;
-  Kevin.knockQ7 = Morocco.name;
-  Kevin.knockQ8 = Switz.name;
-  Pat.knockQ1 = USA.name;
-  Pat.knockQ2 = Argentina.name;
-  Pat.knockQ3 = Croatia.name;
-  Pat.knockQ4 = Brasil.name;
-  Pat.knockQ5 = England.name;
-  Pat.knockQ6 = France.name;
-  Pat.knockQ7 = Spain.name;
-  Pat.knockQ8 = Portugal.name;
-  Sarah.knockQ1 = USA.name;
-  Sarah.knockQ2 = Argentina.name;
-  Sarah.knockQ3 = Japan.name;
-  Sarah.knockQ4 = Brasil.name;
-  Sarah.knockQ5 = England.name;
-  Sarah.knockQ6 = Poland.name;
-  Sarah.knockQ7 = Spain.name;
-  Sarah.knockQ8 = Switz.name;
-  //
-  Joe.knockS1 = Argentina.name;
-  Joe.knockS2 = Brasil.name;
-  Joe.knockS3 = France.name;
-  Joe.knockS4 = Spain.name;
-  Stan.knockS1 = Argentina.name;
-  Stan.knockS2 = Brasil.name;
-  Stan.knockS3 = France.name;
-  Stan.knockS4 = Spain.name;
-  Anthony.knockS1 = Argentina.name;
-  Anthony.knockS2 = Brasil.name;
-  Anthony.knockS3 = England.name;
-  Anthony.knockS4 = Spain.name;
-  Kevin.knockS1 = Argentina.name;
-  Kevin.knockS2 = Brasil.name;
-  Kevin.knockS3 = Poland.name;
-  Kevin.knockS4 = Morocco.name;
-  Pat.knockS1 = Argentina.name;
-  Pat.knockS2 = Brasil.name;
-  Pat.knockS3 = England.name;
-  Pat.knockS4 = Spain.name;
-  Sarah.knockS1 = Argentina.name;
-  Sarah.knockS2 = Japan.name;
-  Sarah.knockS3 = England.name;
-  Sarah.knockS4 = Spain.name;
-  //
-  Joe.knockF1 = Brasil.name;
-  Joe.knockF2 = France.name;
-  Stan.knockF1 = Brasil.name;
-  Stan.knockF2 = France.name;
-  Anthony.knockF1 = Brasil.name;
-  Anthony.knockF2 = England.name;
-  Kevin.knockF1 = Brasil.name;
-  Kevin.knockF2 = Morocco.name;
-  Pat.knockF1 = Brasil.name;
-  Pat.knockF2 = Spain.name;
-  Sarah.knockF1 = Japan.name;
-  Sarah.knockF2 = England.name;
-  //
-  Joe.knockChamp = France.name;
-  Stan.knockChamp = France.name;
-  Anthony.knockChamp = England.name;
-  Kevin.knockChamp = Brasil.name;
-  Pat.knockChamp = Brasil.name;
-  Sarah.knockChamp = Japan.name;
+  // Joe.knockQ1 = Netherlands.name;
+  // Joe.knockQ2 = Argentina.name;
+  // Joe.knockQ3 = Japan.name;
+  // Joe.knockQ4 = Brasil.name;
+  // Joe.knockQ5 = England.name;
+  // Joe.knockQ6 = France.name;
+  // Joe.knockQ7 = Spain.name;
+  // Joe.knockQ8 = Switz.name;
+  // Stan.knockQ1 = Netherlands.name;
+  // Stan.knockQ2 = Argentina.name;
+  // Stan.knockQ3 = Japan.name;
+  // Stan.knockQ4 = Brasil.name;
+  // Stan.knockQ5 = England.name;
+  // Stan.knockQ6 = France.name;
+  // Stan.knockQ7 = Spain.name;
+  // Stan.knockQ8 = Switz.name;
+  // Anthony.knockQ1 = USA.name;
+  // Anthony.knockQ2 = Argentina.name;
+  // Anthony.knockQ3 = Croatia.name;
+  // Anthony.knockQ4 = Brasil.name;
+  // Anthony.knockQ5 = England.name;
+  // Anthony.knockQ6 = France.name;
+  // Anthony.knockQ7 = Spain.name;
+  // Anthony.knockQ8 = Portugal.name;
+  // Kevin.knockQ1 = USA.name;
+  // Kevin.knockQ2 = Argentina.name;
+  // Kevin.knockQ3 = Japan.name;
+  // Kevin.knockQ4 = Brasil.name;
+  // Kevin.knockQ5 = England.name;
+  // Kevin.knockQ6 = Poland.name;
+  // Kevin.knockQ7 = Morocco.name;
+  // Kevin.knockQ8 = Switz.name;
+  // Pat.knockQ1 = USA.name;
+  // Pat.knockQ2 = Argentina.name;
+  // Pat.knockQ3 = Croatia.name;
+  // Pat.knockQ4 = Brasil.name;
+  // Pat.knockQ5 = England.name;
+  // Pat.knockQ6 = France.name;
+  // Pat.knockQ7 = Spain.name;
+  // Pat.knockQ8 = Portugal.name;
+  // Sarah.knockQ1 = USA.name;
+  // Sarah.knockQ2 = Argentina.name;
+  // Sarah.knockQ3 = Japan.name;
+  // Sarah.knockQ4 = Brasil.name;
+  // Sarah.knockQ5 = England.name;
+  // Sarah.knockQ6 = Poland.name;
+  // Sarah.knockQ7 = Spain.name;
+  // Sarah.knockQ8 = Switz.name;
+  // //
+  // Joe.knockS1 = Argentina.name;
+  // Joe.knockS2 = Brasil.name;
+  // Joe.knockS3 = France.name;
+  // Joe.knockS4 = Spain.name;
+  // Stan.knockS1 = Argentina.name;
+  // Stan.knockS2 = Brasil.name;
+  // Stan.knockS3 = France.name;
+  // Stan.knockS4 = Spain.name;
+  // Anthony.knockS1 = Argentina.name;
+  // Anthony.knockS2 = Brasil.name;
+  // Anthony.knockS3 = England.name;
+  // Anthony.knockS4 = Spain.name;
+  // Kevin.knockS1 = Argentina.name;
+  // Kevin.knockS2 = Brasil.name;
+  // Kevin.knockS3 = Poland.name;
+  // Kevin.knockS4 = Morocco.name;
+  // Pat.knockS1 = Argentina.name;
+  // Pat.knockS2 = Brasil.name;
+  // Pat.knockS3 = England.name;
+  // Pat.knockS4 = Spain.name;
+  // Sarah.knockS1 = Argentina.name;
+  // Sarah.knockS2 = Japan.name;
+  // Sarah.knockS3 = England.name;
+  // Sarah.knockS4 = Spain.name;
+  // //
+  // Joe.knockF1 = Brasil.name;
+  // Joe.knockF2 = France.name;
+  // Stan.knockF1 = Brasil.name;
+  // Stan.knockF2 = France.name;
+  // Anthony.knockF1 = Brasil.name;
+  // Anthony.knockF2 = England.name;
+  // Kevin.knockF1 = Brasil.name;
+  // Kevin.knockF2 = Morocco.name;
+  // Pat.knockF1 = Brasil.name;
+  // Pat.knockF2 = Spain.name;
+  // Sarah.knockF1 = Japan.name;
+  // Sarah.knockF2 = England.name;
+  // //
+  // Joe.knockChamp = France.name;
+  // Stan.knockChamp = France.name;
+  // Anthony.knockChamp = England.name;
+  // Kevin.knockChamp = Brasil.name;
+  // Pat.knockChamp = Brasil.name;
+  // Sarah.knockChamp = Japan.name;
   //////////////////////////////////////////////////
-  Netherlands.advanceToQ = true;
-  Argentina.advanceToQ = true;
-  Croatia.advanceToQ = true;
-  Brasil.advanceToQ = true;
-  England.advanceToQ = true;
+  // Netherlands.advanceToQ = true;
+  // Argentina.advanceToQ = true;
+  // Croatia.advanceToQ = true;
+  // Brasil.advanceToQ = true;
+  // England.advanceToQ = true;
   // France.advanceToQ = true;
   // Morocco.advanceToQ = true;
   // Portugal.advanceToQ = true;

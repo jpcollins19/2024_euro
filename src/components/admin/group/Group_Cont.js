@@ -57,26 +57,9 @@ const Group_Cont = ({ group }) => {
 
   const headers = ["Pos", "Team", "W", "D", "L", "GF", "GA"];
 
-  let groupTeams = useSelector((state) => state.teams)
+  const groupTeams = useSelector((state) => state.teams)
     .filter((team) => team.group === group)
     .sort((a, b) => a.groupFinishingPosition - b.groupFinishingPosition);
-
-  groupTeams = groupTeams.map((team) => ({
-    ...team,
-    flag: `https://www.sciencekids.co.nz/images/pictures/flags680/${
-      team.name === "Saudi Arabia"
-        ? "Saudi_Arabia"
-        : team.name === "Brasil"
-        ? "Brazil"
-        : team.name === "Switz"
-        ? "Switzerland"
-        : team.name === "USA"
-        ? "United_States"
-        : team.name === "S. Korea"
-        ? "South_Korea"
-        : team.name
-    }.jpg`,
-  }));
 
   useEffect(() => {
     groupTeams.forEach((team, idx) => {
@@ -124,33 +107,15 @@ const Group_Cont = ({ group }) => {
 
     try {
       groupTeams.forEach((team, idx) => {
-        let MP = 0;
-        let GD = 0;
-        let pts = 0;
-
         const obj = entries.reduce((a, entry) => {
-          if (entry !== "flag") {
+          if (entry !== "flag" && entry !== "name") {
             const answer = eval(`${entry}${idx}`);
 
             if (entry === "position") {
               a.groupFinishingPosition = Number(answer);
-            } else if (entry === "id" || entry === "name") {
+            } else if (entry === "id") {
               a[entry] = answer;
             } else {
-              if (entry === "W" || (entry === "D") | (entry === "L")) {
-                if (entry === "W") pts += Number(answer) * 3;
-
-                if (entry === "D") pts += Number(answer);
-
-                MP += Number(answer);
-              }
-
-              if (entry === "GF" || entry === "GA") {
-                if (entry === "GF") GD += Number(answer);
-
-                if (entry === "GA") GD -= Number(answer);
-              }
-
               a[entry] = Number(answer);
             }
           }
@@ -159,9 +124,6 @@ const Group_Cont = ({ group }) => {
         }, {});
 
         obj.groupIsFinished = groupFinished;
-        obj.MP = MP;
-        obj.GD = GD;
-        obj.pts = pts;
 
         dispatch(updateTeam(obj, history, "group_details"));
       });

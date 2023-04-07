@@ -24,7 +24,7 @@ const My_Picks_Locked_Page = () => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 500);
 
   const user = useSelector((state) => state.auth);
 

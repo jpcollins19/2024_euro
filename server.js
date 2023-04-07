@@ -1,22 +1,8 @@
 //roll through each file and remove mui ---START
 
-///group details ---START
-//make everything columns instead of rows
-//adjust the headers to it is "+/-" instead of GF & GA - see below notes
-//needs to handle the "+/-" column being up to 5 symbols (12-11)"
-//needs to handle the "GD" column being up to 2 digits"
-
-///group details ---END
-
-///leaderboard ---START
-//scorecard - re-do this page to match masters setup (no input tags, cannot be editable, etc)
-//also create a generic inputField file like you did with masters, and remove the rank, name and points files
-//add a key/table to note what the background color represents
-
-///leaderboard ---END
-
-///pool picks
 ///my picks
+///pool picks
+
 ///admin - users --START
 
 //need to resume work on inputting user pick data once a user is selected from the dropdown, then work on onSubmit code
@@ -47,6 +33,8 @@
 
 //sign_in - add guard rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
 //^^steps for above - 1. add setTimeout to Sign_in onSubmit ----- 2. auth_store: add if statement to the authenticate method  ----- 3. User model: add if/then statement to User.authenticate method
+
+/////roll through each file and remove commented-out code
 
 ////sendgrid
 //change the password reset verbiage from "world cup" to "euro"
@@ -104,6 +92,9 @@
 //rules
 //leaderboard
 //pool picks
+
+/////////F7
+//ability to opt into receiving email updates each time the site is updated with fresh scores
 
 /////////////////////////////////
 // Tourney Stage Info //
