@@ -8,7 +8,6 @@ import Cancel from "../../Misc/Cancel";
 import Error from "../../Misc/Error";
 import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
 import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
-import Box from "@mui/material/Box";
 import "./My_Picks_Unlocked.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -44,72 +43,70 @@ const My_Picks_Unlocked_Page = () => {
   const [groupHError, setGroupHError] = useState(false);
   //
   const [koError, setKoError] = useState(false);
-  const [Q1, setQ1] = useState(user?.knockQ1?.name ? user?.knockQ1?.name : "");
-  const [Q2, setQ2] = useState(user?.knockQ1?.name ? user?.knockQ2?.name : "");
-  const [Q3, setQ3] = useState(user?.knockQ1?.name ? user?.knockQ3?.name : "");
-  const [Q4, setQ4] = useState(user?.knockQ1?.name ? user?.knockQ4?.name : "");
-  const [Q5, setQ5] = useState(user?.knockQ1?.name ? user?.knockQ5?.name : "");
-  const [Q6, setQ6] = useState(user?.knockQ1?.name ? user?.knockQ6?.name : "");
-  const [Q7, setQ7] = useState(user?.knockQ1?.name ? user?.knockQ7?.name : "");
-  const [Q8, setQ8] = useState(user?.knockQ1?.name ? user?.knockQ8?.name : "");
-  const [S1, setS1] = useState(user?.knockQ1?.name ? user?.knockS1?.name : "");
-  const [S2, setS2] = useState(user?.knockQ1?.name ? user?.knockS2?.name : "");
-  const [S3, setS3] = useState(user?.knockQ1?.name ? user?.knockS3?.name : "");
-  const [S4, setS4] = useState(user?.knockQ1?.name ? user?.knockS4?.name : "");
-  const [F1, setF1] = useState(user?.knockQ1?.name ? user?.knockF1?.name : "");
-  const [F2, setF2] = useState(user?.knockQ1?.name ? user?.knockF2?.name : "");
-  const [champ, setChamp] = useState(
-    user?.knockQ1?.name ? user?.knockChamp?.name : ""
-  );
+  const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
+  const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
+  const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
+  const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
+  const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
+  const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
+  const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
+  const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
+  const [S1, setS1] = useState(user?.knockS1?.name ?? null);
+  const [S2, setS2] = useState(user?.knockS2?.name ?? null);
+  const [S3, setS3] = useState(user?.knockS3?.name ?? null);
+  const [S4, setS4] = useState(user?.knockS4?.name ?? null);
+  const [F1, setF1] = useState(user?.knockF1?.name ?? null);
+  const [F2, setF2] = useState(user?.knockF2?.name ?? null);
+  const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
-      1: user?.groupA1?.name ? user.groupA1?.name : null,
-      2: user?.groupA2?.name ? user.groupA2?.name : null,
-      3: user?.groupA3?.name ? user.groupA3?.name : null,
-      4: user?.groupA4?.name ? user.groupA4?.name : null,
+      1: user?.groupA1?.name ?? null,
+      2: user?.groupA2?.name ?? null,
+      3: user?.groupA3?.name ?? null,
+      4: user?.groupA4?.name ?? null,
     },
     B: {
-      1: user?.groupB1?.name ? user.groupB1?.name : null,
-      2: user?.groupB2?.name ? user.groupB2?.name : null,
-      3: user?.groupB3?.name ? user.groupB3?.name : null,
-      4: user?.groupB4?.name ? user.groupB4?.name : null,
+      1: user?.groupB1?.name ?? null,
+      2: user?.groupB2?.name ?? null,
+      3: user?.groupB3?.name ?? null,
+      4: user?.groupB4?.name ?? null,
     },
     C: {
-      1: user?.groupC1?.name ? user.groupC1?.name : null,
-      2: user?.groupC2?.name ? user.groupC2?.name : null,
-      3: user?.groupC3?.name ? user.groupC3?.name : null,
-      4: user?.groupC4?.name ? user.groupC4?.name : null,
+      1: user?.groupC1?.name ?? null,
+      2: user?.groupC2?.name ?? null,
+      3: user?.groupC3?.name ?? null,
+      4: user?.groupC4?.name ?? null,
     },
     D: {
-      1: user?.groupD1?.name ? user.groupD1?.name : null,
-      2: user?.groupD2?.name ? user.groupD2?.name : null,
-      3: user?.groupD3?.name ? user.groupD3?.name : null,
-      4: user?.groupD4?.name ? user.groupD4?.name : null,
+      1: user?.groupD1?.name ?? null,
+      2: user?.groupD2?.name ?? null,
+      3: user?.groupD3?.name ?? null,
+      4: user?.groupD4?.name ?? null,
     },
     E: {
-      1: user?.groupE1?.name ? user.groupE1?.name : null,
-      2: user?.groupE2?.name ? user.groupE2?.name : null,
-      3: user?.groupE3?.name ? user.groupE3?.name : null,
-      4: user?.groupE4?.name ? user.groupE4?.name : null,
+      1: user?.groupE1?.name ?? null,
+      2: user?.groupE2?.name ?? null,
+      3: user?.groupE3?.name ?? null,
+      4: user?.groupE4?.name ?? null,
     },
     F: {
-      1: user?.groupF1?.name ? user.groupF1?.name : null,
-      2: user?.groupF2?.name ? user.groupF2?.name : null,
-      3: user?.groupF3?.name ? user.groupF3?.name : null,
-      4: user?.groupF4?.name ? user.groupF4?.name : null,
+      1: user?.groupF1?.name ?? null,
+      2: user?.groupF2?.name ?? null,
+      3: user?.groupF3?.name ?? null,
+      4: user?.groupF4?.name ?? null,
     },
     G: {
-      1: user?.groupG1?.name ? user.groupG1?.name : null,
-      2: user?.groupG2?.name ? user.groupG2?.name : null,
-      3: user?.groupG3?.name ? user.groupG3?.name : null,
-      4: user?.groupG4?.name ? user.groupG4?.name : null,
+      1: user?.groupG1?.name ?? null,
+      2: user?.groupG2?.name ?? null,
+      3: user?.groupG3?.name ?? null,
+      4: user?.groupG4?.name ?? null,
     },
     H: {
-      1: user?.groupH1?.name ? user.groupH1?.name : null,
-      2: user?.groupH2?.name ? user.groupH2?.name : null,
-      3: user?.groupH3?.name ? user.groupH3?.name : null,
-      4: user?.groupH4?.name ? user.groupH4?.name : null,
+      1: user?.groupH1?.name ?? null,
+      2: user?.groupH2?.name ?? null,
+      3: user?.groupH3?.name ?? null,
+      4: user?.groupH4?.name ?? null,
     },
   });
 
@@ -273,15 +270,7 @@ const My_Picks_Unlocked_Page = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="my-picks-unlocked-page"
-    >
+    <div className="my-picks-unlocked-page">
       {loading ? (
         <Loading />
       ) : (
@@ -374,7 +363,7 @@ const My_Picks_Unlocked_Page = () => {
           </div>
         </form>
       )}
-    </Box>
+    </div>
   );
 };
 

@@ -8,7 +8,6 @@ import Point_System_Cont from "./Point_System_Cont";
 import Single_Group_Cont_Locked from "./group/Single_Group_Cont_Locked";
 import Total_Points_Cont from "./Total_Points_Cont";
 import Knockout_Cont_Locked from "./ko/Knockout_Cont_Locked";
-import Box from "@mui/material/Box";
 import "./My_Picks_Locked.css";
 
 const My_Picks_Locked_Page = () => {
@@ -32,77 +31,71 @@ const My_Picks_Locked_Page = () => {
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="my-picks-page"
-    >
-      {loading ? (
-        <Loading />
-      ) : (
-        <div>
-          <div className="name-cont">
-            <h1 className="white-text">{user?.name}</h1>
-          </div>
+  console.log(user);
 
-          {joe?.tourneyStage === 3 && user?.tiebreaker && <Point_System_Cont />}
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="my-picks-page">
+      <div className="name-cont">
+        <h1 className="white-text">{user?.name}</h1>
+      </div>
 
-          {joe?.tourneyStage === 1 && (
-            <Link
-              to="/my_picks_edit_group"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Button text="Select / Adjust Group Picks" />
-            </Link>
-          )}
+      {joe?.tourneyStage === 3 && user?.tiebreaker && <Point_System_Cont />}
 
-          {joe?.tourneyStage === 4 && user?.tiebreaker && (
-            <Link
-              to="/my_picks_edit_ko"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Button text="Select / Adjust Knockout Picks" />
-            </Link>
-          )}
+      {joe?.tourneyStage === 1 && (
+        <Link
+          to="/my_picks_edit_group"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <Button
+            text={`${user?.tiebreaker ? "Adjust" : "Select"} Group Picks`}
+          />
+        </Link>
+      )}
 
-          {joe?.tourneyStage >= 4 && user?.tiebreaker && (
-            <div className="top box">
-              <div className="box left">
-                <div className="predictions-cont">
-                  <Knockout_Cont_Locked user={user} />
-                </div>
-              </div>
-              <div className="box right">
-                <Total_Points_Cont />
-              </div>
+      {joe?.tourneyStage === 4 && user?.tiebreaker && (
+        <Link
+          to="/my_picks_edit_ko"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <Button
+            text={`${user?.knockQ1 ? "Adjust" : "Select"} Knockout Picks`}
+          />
+        </Link>
+      )}
+
+      {joe?.tourneyStage >= 4 && user?.tiebreaker && (
+        <div className="top box">
+          <div className="box left">
+            <div className="predictions-cont">
+              <Knockout_Cont_Locked user={user} />
             </div>
-          )}
+          </div>
+          <div className="box right">
+            <Total_Points_Cont />
+          </div>
+        </div>
+      )}
 
-          {user?.tiebreaker && (
-            <div className="top box">
-              <div className="box left">
-                {joe?.tourneyStage >= 4 && <Point_System_Cont />}
-                <div className="predictions-cont">
-                  {letters.map((letter) => (
-                    <Single_Group_Cont_Locked key={letter} group={letter} />
-                  ))}
-                </div>
-              </div>
-              {joe?.tourneyStage <= 3 && (
-                <div className="box right">
-                  <Total_Points_Cont />
-                </div>
-              )}
+      {user?.tiebreaker && (
+        <div className="top box">
+          <div className="box left">
+            {joe?.tourneyStage >= 4 && <Point_System_Cont />}
+            <div className="predictions-cont">
+              {letters.map((letter) => (
+                <Single_Group_Cont_Locked key={letter} group={letter} />
+              ))}
+            </div>
+          </div>
+          {joe?.tourneyStage <= 3 && (
+            <div className="box right">
+              <Total_Points_Cont />
             </div>
           )}
         </div>
       )}
-    </Box>
+    </div>
   );
 };
 

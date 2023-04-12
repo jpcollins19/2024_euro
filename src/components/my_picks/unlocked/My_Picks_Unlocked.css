@@ -1,16 +1,10 @@
 .my-picks-unlocked-page {
-  background: linear-gradient(
-    to bottom right,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
   width: 100vw;
   height: 84vh;
-  background-size: cover;
   overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .black-text {

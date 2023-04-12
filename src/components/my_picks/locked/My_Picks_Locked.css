@@ -2,14 +2,35 @@
   background-image: url("https://e0.365dm.com/16/06/2048x1152/euro-2012-zlatan-ibrahimovic-sweden-france_3488865.jpg");
   background-size: cover;
   overflow: auto;
+  height: 84vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.my-picks-page > div {
+/* .my-picks-page > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 3rem;
+} */
+
+.name-cont {
+  display: flex;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.name-cont > h1 {
+  font-size: 3rem;
+}
+
+.white-text {
+  margin: 0;
+  text-align: center;
+  text-shadow: 2px 2px black;
+  color: white;
 }
 
 .point-system-table-cont {
@@ -84,23 +105,6 @@
   padding-right: 0.5rem;
   min-width: 31rem;
 } */
-
-.name-cont {
-  display: flex;
-  align-items: center;
-  margin-top: 3%;
-}
-
-.name-cont > h1 {
-  font-size: 3rem;
-}
-
-.white-text {
-  margin: 0;
-  text-align: center;
-  text-shadow: 2px 2px black;
-  color: white;
-}
 
 .top {
   display: flex;

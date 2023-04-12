@@ -29,7 +29,7 @@ const Single_Group_Cont_Locked = ({ group, selectedUser }) => {
       </div>
     </div>
   ) : (
-    <div></div>
+    ""
   );
 };
 
