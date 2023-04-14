@@ -31,8 +31,6 @@ const My_Picks_Locked_Page = () => {
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-  console.log(user);
-
   return loading ? (
     <Loading />
   ) : (

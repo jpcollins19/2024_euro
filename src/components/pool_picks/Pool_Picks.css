@@ -1,13 +1,16 @@
 .pool-picks-page {
   background-image: url("https://www.thesun.co.uk/wp-content/uploads/2021/06/NINTCHDBPICT000232040579.jpg");
-  width: 100vw;
+  /* width: 100vw; */
   height: 84vh;
   background-size: cover;
   overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.stage-1-header {
-  margin-top: 5%;
+.pool-picks-page > h1 {
+  margin: 10% 5% 0 5%;
 }
 
 .pool-picks-header {
@@ -18,7 +21,7 @@
 }
 
 .pool-picks-header > h1 {
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 .pool-picks-container {

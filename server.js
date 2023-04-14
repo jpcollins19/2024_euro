@@ -1,11 +1,5 @@
 //roll through each file and remove mui ---START
 
-///my picks --- START
-
-///Unlocked
-//stage 4 - error doesnt show when KO picks are incomplete
-
-///my picks --- END
 ///pool picks
 
 ///admin - users --START

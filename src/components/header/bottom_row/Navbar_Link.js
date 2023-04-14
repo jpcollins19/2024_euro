@@ -1,13 +1,17 @@
 import { useLocation, Link } from "react-router-dom";
 import { urlWord, cap1stLetter } from "../../../store";
 
-const Navbar_Link = ({ page, adminPage }) => {
+const Navbar_Link = ({ page, adminPage, user }) => {
   const { pathname } = useLocation();
 
   const pathname1 = pathname.split("/")[1];
   const pathname2 = pathname.split("/")[2];
 
-  const urlToUse = adminPage ? `/admin/${urlWord(page)}` : `/${urlWord(page)}`;
+  const urlToUse = adminPage
+    ? `/admin/${urlWord(page)}`
+    : page === "pool picks"
+    ? `/${urlWord(page)}/${user?.id}`
+    : `/${urlWord(page)}`;
 
   let verbiageToDisplay;
 

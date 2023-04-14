@@ -1,5 +1,3 @@
-import Toolbar from "@mui/material/Toolbar";
-import Link from "@mui/material/Link";
 import Navbar_Link from "./Navbar_Link";
 
 const Bottom_Row = ({ user }) => {
@@ -14,7 +12,7 @@ const Bottom_Row = ({ user }) => {
         ))}
       {user?.id &&
         navOptions.map((page, idx) => (
-          <Navbar_Link key={idx} page={page} adminPage={false} />
+          <Navbar_Link key={idx} page={page} adminPage={false} user={user} />
         ))}
       <Navbar_Link page={"rules"} adminPage={false} />
     </div>

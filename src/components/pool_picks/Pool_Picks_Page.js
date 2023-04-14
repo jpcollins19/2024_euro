@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation, Route, Redirect } from "react-router-dom";
 import { formatSelectedUser, loadUsers, findJoe, me } from "../../store";
 import Loading from "../Misc/Loading";
 import Dropdown from "../Misc/Dropdown";
@@ -7,63 +8,77 @@ import Point_System_Cont from "../my_picks/locked/Point_System_Cont";
 import Single_Group_Cont from "../my_picks/locked/group/Single_Group_Cont_Locked";
 import Total_Points_Cont from "../my_picks/locked/Total_Points_Cont";
 import Knockout_Cont from "../my_picks/locked/ko/Knockout_Cont_Locked";
-import Box from "@mui/material/Box";
 import "./Pool_Picks.css";
 
 const Pool_Picks_Page = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  // const [selectedUser, setSelectedUser] = useState(
+  //   formatSelectedUser(useSelector((state) => state.auth))
+  // );
 
   const [loading, setLoading] = useState(true);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 500);
+
+  const users = useSelector((state) => state.users)
+    .filter((user) => user.tiebreaker)
+    .sort((a, b) => {
+      const fa = a.name.toLowerCase();
+      const fb = b.name.toLowerCase();
+
+      if (fa < fb) return -1;
+      if (fa > fb) return 1;
+
+      return 0;
+    })
+    .map((user) => {
+      return formatSelectedUser(user);
+    });
 
   useEffect(() => {
     dispatch(loadUsers());
     dispatch(me());
-  }, []);
 
-  const [selectedUser, setSelectedUser] = useState(
-    formatSelectedUser(useSelector((state) => state.auth))
-  );
+    const userId = pathname.split("/pool_picks/")[1];
+
+    const currentUserProfileNeeded = users.find(
+      (user) => user?.value?.id === userId
+    );
+
+    setSelectedUser(currentUserProfileNeeded);
+  }, []);
 
   const user = useSelector((state) => state.auth);
 
   const joe = findJoe(useSelector((state) => state.users));
 
-  const users = useSelector((state) => state.users)
-    .filter((user) => user.tiebreaker)
-    .map((user) => {
-      return { value: user, label: user.name };
-    });
+  const onChange = (userId) => {
+    console.log("byah", userId);
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+    // <Redirect to={`/pool_picks/${userId}`} />;
 
-  const onChange = async (userId) => {
-    const newUser = users.find((user) => user.value.id === userId);
-    setSelectedUser(newUser);
+    <Redirect to={`/pool_picks/joe`} />;
+
+    // const newUser = users.find((user) => user.value.id === userId);
+    // setSelectedUser(newUser);
   };
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="pool-picks-page"
-    >
-      {loading ? (
-        <Loading />
-      ) : joe?.tourneyStage === 1 ? (
-        <div className="stage-1-header white-text">
-          <h1>
-            Pool Picks will not be viewable until the tournament commences on
-            11/20/22
-          </h1>
-        </div>
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="pool-picks-page">
+      {joe?.tourneyStage === 1 ? (
+        <h1 className="white-text">
+          Pool Picks will not be viewable until the tournament commences on
+          11/20/22
+        </h1>
       ) : (
         <div className="pool-picks-container">
           {user?.tiebreaker && (
@@ -117,7 +132,7 @@ const Pool_Picks_Page = () => {
           </div>
         </div>
       )}
-    </Box>
+    </div>
   );
 };
 

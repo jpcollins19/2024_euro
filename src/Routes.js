@@ -27,8 +27,6 @@ const Routes = () => {
 
   const user = useSelector((state) => state.auth);
 
-  let userLoggedIn = user && Object.keys(user).length > 0 ? true : false;
-
   const joe = useSelector((state) => state.users).find(
     (user) => user.email === "joe@gmail.com"
   );
@@ -68,7 +66,7 @@ const Routes = () => {
     <Loading />
   ) : (
     <Switch>
-      {!userLoggedIn && joe && joe.tourneyStage > 1
+      {!user?.id && joe && joe.tourneyStage > 1
         ? nonUserRoutes
             .filter(
               (route) =>
@@ -83,7 +81,7 @@ const Routes = () => {
                 component={route.component}
               />
             ))
-        : !userLoggedIn && joe && joe.tourneyStage === 1
+        : !user?.id && joe && joe.tourneyStage === 1
         ? nonUserRoutes.map((route, idx) => (
             <Route
               key={idx}
@@ -96,58 +94,70 @@ const Routes = () => {
 
       <Route path="/rules" exact component={Rules_Page} />
 
-      {userLoggedIn && (
+      {user?.id && (
         <Route exact path="/">
           <Redirect to="/leaderboard" />
         </Route>
       )}
 
-      {user && user.email === "joe@gmail.com" && (
+      {user?.admin && (
         <Route path="/admin/users">
-          {!userLoggedIn ? <Redirect to="/" /> : <User_Admin_Page />}
+          {!user?.id ? <Redirect to="/" /> : <User_Admin_Page />}
         </Route>
       )}
-      {user && user.email === "joe@gmail.com" && (
+
+      {user?.admin && (
         <Route path="/admin/groups">
-          {!userLoggedIn ? <Redirect to="/" /> : <Group_Admin_Page />}
+          {!user?.id ? <Redirect to="/" /> : <Group_Admin_Page />}
         </Route>
       )}
-      {user && user.email === "joe@gmail.com" && (
+
+      {user?.admin && (
         <Route path="/admin/teams">
-          {!userLoggedIn ? <Redirect to="/" /> : <Team_Admin_Page />}
+          {!user?.id ? <Redirect to="/" /> : <Team_Admin_Page />}
         </Route>
       )}
-      {joe && joe.tourneyStage === 1 && user && user.id && (
+
+      {joe?.tourneyStage === 1 && user?.id && (
         <Route path="/my_picks_edit_group">
-          {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
+          {!user?.id ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
         </Route>
       )}
-      {joe && joe.tourneyStage === 4 && user && user.id && (
+
+      {joe?.tourneyStage === 4 && user?.id && (
         <Route path="/my_picks_edit_ko">
-          {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
+          {!user?.id ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
         </Route>
       )}
+
       <Route path="/leaderboard">
-        {!userLoggedIn ? <Redirect to="/" /> : <Leaderboard_Page />}
+        {!user?.id ? <Redirect to="/" /> : <Leaderboard_Page />}
       </Route>
+
       <Route path="/my_picks">
-        {!userLoggedIn ? <Redirect to="/" /> : <My_Picks_Locked_Page />}
+        {!user?.id ? <Redirect to="/" /> : <My_Picks_Locked_Page />}
       </Route>
-      <Route path="/pool_picks">
-        {!userLoggedIn ? <Redirect to="/" /> : <Pool_Picks_Page />}
+
+      <Route path="/pool_picks/:id">
+        {!user?.id ? <Redirect to="/" /> : <Pool_Picks_Page />}
       </Route>
+
       <Route path="/group_details">
-        {!userLoggedIn ? <Redirect to="/" /> : <Group_Details_Page />}
+        {!user?.id ? <Redirect to="/" /> : <Group_Details_Page />}
       </Route>
+
       <Route path="/my_profile">
-        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_L />}
+        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_L />}
       </Route>
+
       <Route path="/edit_profile_name">
-        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
       </Route>
+
       <Route path="/edit_profile_password">
-        {!userLoggedIn ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
       </Route>
+
       <Route path="*">
         <NoMatch />
       </Route>

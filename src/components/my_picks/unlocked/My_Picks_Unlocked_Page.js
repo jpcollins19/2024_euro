@@ -210,42 +210,36 @@ const My_Picks_Unlocked_Page = () => {
         const Ss = [1, 2, 3, 4];
         const Fs = [1, 2];
 
+        const koAudit = (team, letter, num) => {
+          if (!team) {
+            setKoError(true);
+            errorAudit.push(1);
+          } else {
+            userObj[`knock${letter}${num}`] = team;
+          }
+        };
+
         koLetters.forEach((letter) => {
           switch (letter) {
             case "Q":
               Qs.forEach((num) => {
                 const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
+                koAudit(team, letter, num);
               });
               break;
             case "S":
               Ss.forEach((num) => {
                 const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
+                koAudit(team, letter, num);
               });
               break;
             case "F":
               Fs.forEach((num) => {
                 const team = eval(`${letter}${num}`);
 
-                if (team.length === 0) {
-                  setKoError(true);
-                  errorAudit.push(1);
-                } else {
-                  userObj[`knock${letter}${num}`] = team;
-                }
+                koAudit(team, letter, num);
               });
               break;
             case "champ":
