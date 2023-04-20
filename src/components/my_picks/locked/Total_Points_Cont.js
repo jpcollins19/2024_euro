@@ -7,6 +7,7 @@ import {
   koRoundCalc,
   userTotalPoints,
   loadUsers,
+  isPoolPicksPage,
 } from "../../../store";
 
 const Total_Points_Cont = ({ selectedUser }) => {
@@ -15,7 +16,10 @@ const Total_Points_Cont = ({ selectedUser }) => {
   const { pathname } = useLocation();
 
   const user = useSelector((state) => state.auth);
-  const userToUse = pathname === "/pool_picks" ? selectedUser : user;
+
+  const poolPicksPage = isPoolPicksPage(pathname);
+
+  const userToUse = poolPicksPage ? selectedUser : user;
 
   const teams = useSelector((state) => state.teams);
 

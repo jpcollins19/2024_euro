@@ -83,6 +83,7 @@
   font-weight: bold;
   border-radius: 4rem;
   padding: 5px 10px 5px 10px;
+  font-size: 1vw;
 }
 
 .selected-url {

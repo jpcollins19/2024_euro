@@ -1,6 +1,20 @@
 //roll through each file and remove mui ---START
 
-///pool picks
+//fix % spacing on the following pages:
+
+////my picks
+//stage 2 - total points cont on the right
+//stage 3 - total points cont on the right
+//stage 4 - total points cont on the right
+//stage 4 - check on edit page
+//stage 5
+
+////pool picks
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
 
 ///admin - users --START
 

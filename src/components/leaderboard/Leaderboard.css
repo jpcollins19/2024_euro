@@ -124,7 +124,7 @@
   align-items: center;
   flex-direction: column;
   /* flex-direction: column; */
-  margin: 1% 0% 10% 0%;
+  margin: 2% 0% 10% 0%;
   /* border: solid 2px red; */
 }
 
@@ -181,10 +181,26 @@
 
 .rankInfo {
   display: flex;
-  /* border: solid 2px yellow; */
 }
 
 .rankInfo > div > div > div {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 0.5rem;
+  height: 2rem;
+  border: solid 2px white;
+}
+
+.rankInfo > div > a {
+  text-decoration: none;
+}
+
+.rankInfo > div > a > div {
   color: white;
   display: flex;
   justify-content: center;

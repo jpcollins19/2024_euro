@@ -390,6 +390,7 @@ const getCurrentScores = (users, teams, actualGoalsScored = null) => {
       const total = userTotalPoints(user, teams);
 
       const userObj = {
+        id: user?.id,
         name: user.name,
         tiebreaker: user.tiebreaker,
         total,
@@ -485,6 +486,12 @@ const userStatusClass = (user) => {
     : "";
 };
 
+const isPoolPicksPage = (pathname) => {
+  const path = pathname.split("/")[1];
+
+  return path === "pool_picks";
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -508,4 +515,5 @@ module.exports = {
   allUsersPaid,
   usersAreTied,
   userStatusClass,
+  isPoolPicksPage,
 };

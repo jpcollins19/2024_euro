@@ -14,11 +14,8 @@ const Pool_Picks_Page = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  // const [selectedUser, setSelectedUser] = useState(
-  //   formatSelectedUser(useSelector((state) => state.auth))
-  // );
-
   const [loading, setLoading] = useState(true);
+
   const [selectedUser, setSelectedUser] = useState(null);
 
   setTimeout(() => {
@@ -40,32 +37,47 @@ const Pool_Picks_Page = () => {
       return formatSelectedUser(user);
     });
 
-  useEffect(() => {
+  const loadPage = () => {
     dispatch(loadUsers());
     dispatch(me());
 
     const userId = pathname.split("/pool_picks/")[1];
+
+    // console.log("pathname", pathname);
+
+    // console.log("userId", userId);
 
     const currentUserProfileNeeded = users.find(
       (user) => user?.value?.id === userId
     );
 
     setSelectedUser(currentUserProfileNeeded);
+    // console.log("byah", currentUserProfileNeeded);
+    // console.log("selectedUser", selectedUser);
+  };
+
+  useEffect(() => {
+    loadPage();
   }, []);
+
+  useEffect(() => {
+    loadPage();
+  }, [pathname]);
 
   const user = useSelector((state) => state.auth);
 
   const joe = findJoe(useSelector((state) => state.users));
 
   const onChange = (userId) => {
-    console.log("byah", userId);
+    setLoading(true);
 
-    // <Redirect to={`/pool_picks/${userId}`} />;
+    window.location = `#/pool_picks/${userId}`;
 
-    <Redirect to={`/pool_picks/joe`} />;
+    // loadPage();
 
-    // const newUser = users.find((user) => user.value.id === userId);
-    // setSelectedUser(newUser);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   };
 
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];

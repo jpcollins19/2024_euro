@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { koGameCalc } from "../../../../../store";
+import { koGameCalc, isPoolPicksPage } from "../../../../../store";
 import Correct_Team_Cont from "./Correct_Team_Cont";
 
 const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
@@ -8,7 +8,9 @@ const S_Game_L = ({ game, gameNum, selectedUser, user }) => {
 
   const teams = useSelector((state) => state.teams);
 
-  const userToUse = pathname === "/pool_picks" ? selectedUser : user;
+  const poolPicksPage = isPoolPicksPage(pathname);
+
+  const userToUse = poolPicksPage ? selectedUser : user;
 
   const gameInfo = koGameCalc(userToUse, game, teams);
 
