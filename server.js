@@ -3,11 +3,7 @@
 //fix % spacing on the following pages:
 
 ////my picks
-//stage 2 - total points cont on the right
-//stage 3 - total points cont on the right
-//stage 4 - total points cont on the right
-//stage 4 - check on edit page
-//stage 5
+//stage 5 - check each cell with a team winning and a team losing
 
 ////pool picks
 //stage 1

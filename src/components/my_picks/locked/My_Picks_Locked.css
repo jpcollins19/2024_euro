@@ -119,14 +119,14 @@
 .left {
   display: flex;
   flex: 1.5;
-  width: 86%;
+  width: 83vw;
   flex-direction: column;
   padding: 0;
   align-items: center;
 }
 
 .right {
-  width: 16%;
+  width: 16vw;
   display: flex;
   justify-content: center;
 }
@@ -359,15 +359,18 @@
 }
 
 .knockout-cont > div > div {
-  min-width: 9.5rem;
-  max-width: 9.5rem;
+  /* min-width: 9.5rem;
+  max-width: 9.5rem; */
+  width: 9.5vw;
   text-align: center;
+  /* border: solid 2px red; */
 }
 
 .knockout-cont > div > div > h2 {
   text-shadow: 2px 2px black;
   color: white;
   margin-top: 0.2rem;
+  font-size: 1.5vw;
 }
 
 .knockout-cont > div > div > div {
@@ -406,14 +409,17 @@
 .R16 > div > div {
   margin: 0.5rem 0rem 0.5rem 0rem;
   border: solid 1px white;
-  min-width: 8rem;
-  max-width: 8rem;
+  width: 7vw;
+  /* width: 8vw; */
+  /* min-width: 8rem;
+  max-width: 8rem; */
 }
 
 .team-ko-img-cont {
   position: relative;
-  min-width: 8rem;
-  max-width: 8rem;
+
+  /* min-width: 8rem;
+  max-width: 8rem; */
 }
 
 .team-flag-ko {
@@ -435,6 +441,8 @@
 }
 
 .team-name-ko {
+  display: flex;
+  justify-content: center;
   position: absolute;
   top: -17;
   bottom: 0;
@@ -560,8 +568,9 @@
 
 .unknown-box {
   border: solid 1px white;
-  min-width: 8.2rem;
-  max-width: 8.2rem;
+  /* min-width: 8.2rem;
+  max-width: 8.2rem; */
+  width: 7vw;
   border-radius: 0.5rem;
 }
 
@@ -590,7 +599,8 @@
 
 .Q1L {
   min-height: 6rem;
-  margin-top: 25%;
+  /* margin-top: 25%; */
+  margin-top: 4vh;
 }
 
 .Q2L {
@@ -600,7 +610,8 @@
 
 .Q3L {
   min-height: 6rem;
-  margin-top: 21%;
+  /* margin-top: 21%; */
+  margin-top: 4vh;
 }
 
 .Q4L {
@@ -610,17 +621,20 @@
 
 .S1L {
   min-height: 165px;
-  margin-top: 45%;
+  /* margin-top: 45%; */
+  margin-top: 7vh;
 }
 
 .S2L {
   min-height: 165px;
-  margin-top: 59%;
+  /* margin-top: 59%; */
+  margin-top: 10.5vh;
 }
 
 .FL {
   min-height: 293px;
-  margin-top: 87%;
+  /* margin-top: 87%; */
+  margin-top: 15vh;
 }
 
 .CL {
@@ -631,13 +645,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10rem;
+  width: 10vw;
 }
 
 .champ > div {
   display: flex;
   justify-content: center;
-  width: 10rem;
+  width: 10vw;
 }
 
 .trophy {
@@ -645,7 +659,7 @@
   background-image: url("/public/pics/trophy.jpg");
   height: 11.5rem;
   border-radius: 1rem;
-  max-width: 9rem;
+  width: 9vw;
   background-position: center;
   margin: 35% 0% 0% 0%;
 }
