@@ -147,7 +147,7 @@ const users = [
     groupH4: "S. Korea",
 
     tiebreaker: 165,
-    tourneyStage: 5,
+    tourneyStage: 2,
   },
   //stan
   {
@@ -346,42 +346,42 @@ const users = [
     email: "sarah@gmail.com",
     password: "sarah",
     name: "Sarah",
-    paid: true,
+    // paid: true,
 
-    groupA1: "Ecuador",
-    groupA2: "Qatar",
-    groupA3: "Netherlands",
-    groupA4: "Senegal",
-    groupB1: "Wales",
-    groupB2: "USA",
-    groupB3: "England",
-    groupB4: "Iran",
-    groupC1: "Argentina",
-    groupC2: "Mexico",
-    groupC3: "Saudi Arabia",
-    groupC4: "Poland",
-    groupD1: "Denmark",
-    groupD2: "France",
-    groupD3: "Tunisia",
-    groupD4: "Australia",
-    groupE1: "Spain",
-    groupE2: "Germany",
-    groupE3: "Costa Rica",
-    groupE4: "Japan",
-    groupF1: "Croatia",
-    groupF2: "Canada",
-    groupF3: "Morocco",
-    groupF4: "Belgium",
-    groupG1: "Serbia",
-    groupG2: "Brasil",
-    groupG3: "Switz",
-    groupG4: "Cameroon",
-    groupH1: "Portugal",
-    groupH2: "Ghana",
-    groupH3: "Uruguay",
-    groupH4: "S. Korea",
+    // groupA1: "Ecuador",
+    // groupA2: "Qatar",
+    // groupA3: "Netherlands",
+    // groupA4: "Senegal",
+    // groupB1: "Wales",
+    // groupB2: "USA",
+    // groupB3: "England",
+    // groupB4: "Iran",
+    // groupC1: "Argentina",
+    // groupC2: "Mexico",
+    // groupC3: "Saudi Arabia",
+    // groupC4: "Poland",
+    // groupD1: "Denmark",
+    // groupD2: "France",
+    // groupD3: "Tunisia",
+    // groupD4: "Australia",
+    // groupE1: "Spain",
+    // groupE2: "Germany",
+    // groupE3: "Costa Rica",
+    // groupE4: "Japan",
+    // groupF1: "Croatia",
+    // groupF2: "Canada",
+    // groupF3: "Morocco",
+    // groupF4: "Belgium",
+    // groupG1: "Serbia",
+    // groupG2: "Brasil",
+    // groupG3: "Switz",
+    // groupG4: "Cameroon",
+    // groupH1: "Portugal",
+    // groupH2: "Ghana",
+    // groupH3: "Uruguay",
+    // groupH4: "S. Korea",
 
-    tiebreaker: 42,
+    // tiebreaker: 42,
   },
 ];
 
@@ -772,36 +772,36 @@ const syncAndSeed = async () => {
   Pat.knockChamp = Brasil.name;
   // Sarah.knockChamp = Japan.name;
   //////////////////////////////////////////////////
-  // Netherlands.advanceToQ = true;
-  // Argentina.advanceToQ = true;
-  // Croatia.advanceToQ = true;
-  // Brasil.advanceToQ = true;
-  // England.advanceToQ = true;
-  // France.advanceToQ = true;
-  // Morocco.advanceToQ = true;
-  // Portugal.advanceToQ = true;
-  // USA.outOfTourney = true;
-  // Australia.outOfTourney = true;
-  // Japan.outOfTourney = true;
-  // S_Korea.outOfTourney = true;
-  // Senegal.outOfTourney = true;
-  // Poland.outOfTourney = true;
-  // Spain.outOfTourney = true;
-  // Switz.outOfTourney = true;
-  // Argentina.advanceToS = true;
-  // Croatia.advanceToS = true;
-  // France.advanceToS = true;
-  // Morocco.advanceToS = true;
-  // Netherlands.outOfTourney = true;
-  // Brasil.outOfTourney = true;
-  // England.outOfTourney = true;
-  // Portugal.outOfTourney = true;
-  // Argentina.advanceToF = true;
-  // France.advanceToF = true;
-  // Croatia.outOfTourney = true;
-  // Morocco.outOfTourney = true;
-  // Argentina.advanceToChamp = true;
-  // France.outOfTourney = true;
+  Netherlands.advanceToQ = true;
+  Argentina.advanceToQ = true;
+  Croatia.advanceToQ = true;
+  Brasil.advanceToQ = true;
+  England.advanceToQ = true;
+  France.advanceToQ = true;
+  Morocco.advanceToQ = true;
+  Portugal.advanceToQ = true;
+  USA.outOfTourney = true;
+  Australia.outOfTourney = true;
+  Japan.outOfTourney = true;
+  S_Korea.outOfTourney = true;
+  Senegal.outOfTourney = true;
+  Poland.outOfTourney = true;
+  Spain.outOfTourney = true;
+  Switz.outOfTourney = true;
+  Argentina.advanceToS = true;
+  Croatia.advanceToS = true;
+  France.advanceToS = true;
+  Morocco.advanceToS = true;
+  Netherlands.outOfTourney = true;
+  Brasil.outOfTourney = true;
+  England.outOfTourney = true;
+  Portugal.outOfTourney = true;
+  Argentina.advanceToF = true;
+  France.advanceToF = true;
+  Croatia.outOfTourney = true;
+  Morocco.outOfTourney = true;
+  Argentina.advanceToChamp = true;
+  France.outOfTourney = true;
   await Promise.all([
     Ecuador.save(),
     Netherlands.save(),

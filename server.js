@@ -1,20 +1,8 @@
 //roll through each file and remove mui ---START
 
-//fix % spacing on the following pages:
-
-////my picks
-//stage 5 - check each cell with a team winning and a team losing
-
-////pool picks
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
-
 ///admin - users --START
 
-//need to resume work on inputting user pick data once a user is selected from the dropdown, then work on onSubmit code
+//need to resume work on inputting user pick data once a user is selected from the dropdown - next step === add ko stage info
 //test updates for each stage:
 //stage 1: user has no group picks, making group picks for user for the first time
 //stage 1: user has group picks, need to adjust users group picks

@@ -1,9 +1,9 @@
-import { capFirstLetter } from "../../../store";
+import { cap1stLetter } from "../../../store";
 
 const Input_Cont = ({ selectedUser, name, set }) => {
   return (
     <div className="data-cont-admin-user dcau">
-      <div>{capFirstLetter(name && name)}:</div>
+      <div>{cap1stLetter(name && name)}:</div>
       <input
         className="dcau-input"
         defaultValue={selectedUser && selectedUser[name]}

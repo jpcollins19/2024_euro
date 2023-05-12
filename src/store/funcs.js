@@ -215,7 +215,7 @@ const koGameCalc = (user, game, teams) => {
 
   const gameIsFinished = teamThatAdvanced?.name ? true : false;
 
-  if (gameIsFinished) {
+  if (gameIsFinished && usersPick?.name) {
     usersPickClass =
       usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
   }

@@ -76,5 +76,6 @@
 } */
 
 .admin-user-bottom {
+  padding-top: 1rem;
   border: solid 2px red;
 }

@@ -6,7 +6,7 @@ import {
   deleteUser,
   dupeValInArr,
   loadUsers,
-  capFirstLetter,
+  cap1stLetter,
   findJoe,
 } from "../../../store";
 import Button from "../../Misc/Button";
@@ -22,127 +22,6 @@ const Single_User_Cont = () => {
   let history = useHistory();
   const { pathname } = useLocation();
 
-  const userId = pathname.split("/admin/users/")[1];
-
-  const user = useSelector((state) => state.users).find(
-    (user) => user.id === userId
-  );
-
-  const joe = findJoe(useSelector((state) => state.users));
-
-  const [name, setName] = useState(user?.name);
-  const [password, setPassword] = useState(user?.password);
-  const [paid, setPaid] = useState(user?.paid);
-  const [onlyUpdateTopSection, setOnlyUpdateTopSection] = useState(false);
-  const [tourneyStage, setTourneyStage] = useState(user?.tourneyStage);
-  const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
-  const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
-
-  //
-  // const [selectionObj, setSelectionObj] = useState({
-  //   A: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   B: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   C: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   D: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   E: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   F: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   G: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  //   H: {
-  //     1: null,
-  //     2: null,
-  //     3: null,
-  //     4: null,
-  //   },
-  // });
-  //
-  // const [tiebreaker, setTiebreaker] = useState(null);
-  // const [tiebreakerError, setTiebreakerError] = useState(false);
-  // const [groupAError, setGroupAError] = useState(false);
-  // const [groupBError, setGroupBError] = useState(false);
-  // const [groupCError, setGroupCError] = useState(false);
-  // const [groupDError, setGroupDError] = useState(false);
-  // const [groupEError, setGroupEError] = useState(false);
-  // const [groupFError, setGroupFError] = useState(false);
-  // const [groupGError, setGroupGError] = useState(false);
-  // const [groupHError, setGroupHError] = useState(false);
-  //
-  // const [koError, setKoError] = useState(false);
-  // const [Q1, setQ1] = useState("");
-  // const [Q2, setQ2] = useState("");
-  // const [Q3, setQ3] = useState("");
-  // const [Q4, setQ4] = useState("");
-  // const [Q5, setQ5] = useState("");
-  // const [Q6, setQ6] = useState("");
-  // const [Q7, setQ7] = useState("");
-  // const [Q8, setQ8] = useState("");
-  // const [S1, setS1] = useState("");
-  // const [S2, setS2] = useState("");
-  // const [S3, setS3] = useState("");
-  // const [S4, setS4] = useState("");
-  // const [F1, setF1] = useState("");
-  // const [F2, setF2] = useState("");
-  // const [champ, setChamp] = useState("");
-
-  // const groupErrorObj = {
-  //   groupAError: groupAError,
-  //   groupBError: groupBError,
-  //   groupCError: groupCError,
-  //   groupDError: groupDError,
-  //   groupEError: groupEError,
-  //   groupFError: groupFError,
-  //   groupGError: groupGError,
-  //   groupHError: groupHError,
-  //   setGroupAError: setGroupAError,
-  //   setGroupBError: setGroupBError,
-  //   setGroupCError: setGroupCError,
-  //   setGroupDError: setGroupDError,
-  //   setGroupEError: setGroupEError,
-  //   setGroupFError: setGroupFError,
-  //   setGroupGError: setGroupGError,
-  //   setGroupHError: setGroupHError,
-  // };
-
-  // const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  // const koLetters = ["Q", "S", "F", "champ"];
-  // const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-  // const Ss = [1, 2, 3, 4];
-  // const Fs = [1, 2];
-
   useEffect(() => {
     dispatch(loadUsers());
 
@@ -155,7 +34,7 @@ const Single_User_Cont = () => {
     //   const nums = [1, 2, 3, 4];
     //   nums.forEach((num) => {
     //     const team = selectedUser[`group${letter}${num}`];
-    //     selectionObj[letter][num] = team?.name;
+    //     groupSelections[letter][num] = team?.name;
     //   });
     // });
     // joe.tourneyStage >= 4 &&
@@ -190,14 +69,136 @@ const Single_User_Cont = () => {
     //   });
   }, []);
 
+  const userId = pathname.split("/admin/users/")[1];
+
+  const user = useSelector((state) => state.users).find(
+    (user) => user.id === userId
+  );
+
+  const joe = findJoe(useSelector((state) => state.users));
+
+  const [name, setName] = useState(user?.name);
+  const [password, setPassword] = useState(user?.password);
+  const [paid, setPaid] = useState(user?.paid);
+  const [onlyUpdateTopSection, setOnlyUpdateTopSection] = useState(false);
+  const [tourneyStage, setTourneyStage] = useState(user?.tourneyStage);
+  const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
+  const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
+
+  const [groupSelections, setGroupSelections] = useState({
+    A: {
+      1: user?.groupA1?.name ?? null,
+      2: user?.groupA2?.name ?? null,
+      3: user?.groupA3?.name ?? null,
+      4: user?.groupA4?.name ?? null,
+    },
+    B: {
+      1: user?.groupB1?.name ?? null,
+      2: user?.groupB2?.name ?? null,
+      3: user?.groupB3?.name ?? null,
+      4: user?.groupB4?.name ?? null,
+    },
+    C: {
+      1: user?.groupC1?.name ?? null,
+      2: user?.groupC2?.name ?? null,
+      3: user?.groupC3?.name ?? null,
+      4: user?.groupC4?.name ?? null,
+    },
+    D: {
+      1: user?.groupD1?.name ?? null,
+      2: user?.groupD2?.name ?? null,
+      3: user?.groupD3?.name ?? null,
+      4: user?.groupD4?.name ?? null,
+    },
+    E: {
+      1: user?.groupE1?.name ?? null,
+      2: user?.groupE2?.name ?? null,
+      3: user?.groupE3?.name ?? null,
+      4: user?.groupE4?.name ?? null,
+    },
+    F: {
+      1: user?.groupF1?.name ?? null,
+      2: user?.groupF2?.name ?? null,
+      3: user?.groupF3?.name ?? null,
+      4: user?.groupF4?.name ?? null,
+    },
+    G: {
+      1: user?.groupG1?.name ?? null,
+      2: user?.groupG2?.name ?? null,
+      3: user?.groupG3?.name ?? null,
+      4: user?.groupG4?.name ?? null,
+    },
+    H: {
+      1: user?.groupH1?.name ?? null,
+      2: user?.groupH2?.name ?? null,
+      3: user?.groupH3?.name ?? null,
+      4: user?.groupH4?.name ?? null,
+    },
+  });
+
+  const [tiebreaker, setTiebreaker] = useState(
+    user?.tiebreaker ? user?.tiebreaker.toString() : null
+  );
+  const [tiebreakerError, setTiebreakerError] = useState(false);
+  const [groupAError, setGroupAError] = useState(false);
+  const [groupBError, setGroupBError] = useState(false);
+  const [groupCError, setGroupCError] = useState(false);
+  const [groupDError, setGroupDError] = useState(false);
+  const [groupEError, setGroupEError] = useState(false);
+  const [groupFError, setGroupFError] = useState(false);
+  const [groupGError, setGroupGError] = useState(false);
+  const [groupHError, setGroupHError] = useState(false);
+
+  // const [koError, setKoError] = useState(false);
+  // const [Q1, setQ1] = useState("");
+  // const [Q2, setQ2] = useState("");
+  // const [Q3, setQ3] = useState("");
+  // const [Q4, setQ4] = useState("");
+  // const [Q5, setQ5] = useState("");
+  // const [Q6, setQ6] = useState("");
+  // const [Q7, setQ7] = useState("");
+  // const [Q8, setQ8] = useState("");
+  // const [S1, setS1] = useState("");
+  // const [S2, setS2] = useState("");
+  // const [S3, setS3] = useState("");
+  // const [S4, setS4] = useState("");
+  // const [F1, setF1] = useState("");
+  // const [F2, setF2] = useState("");
+  // const [champ, setChamp] = useState("");
+
+  const groupErrorObj = {
+    groupAError: groupAError,
+    groupBError: groupBError,
+    groupCError: groupCError,
+    groupDError: groupDError,
+    groupEError: groupEError,
+    groupFError: groupFError,
+    groupGError: groupGError,
+    groupHError: groupHError,
+    setGroupAError: setGroupAError,
+    setGroupBError: setGroupBError,
+    setGroupCError: setGroupCError,
+    setGroupDError: setGroupDError,
+    setGroupEError: setGroupEError,
+    setGroupFError: setGroupFError,
+    setGroupGError: setGroupGError,
+    setGroupHError: setGroupHError,
+  };
+
+  const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  // const koLetters = ["Q", "S", "F", "champ"];
+  // const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
+  // const Ss = [1, 2, 3, 4];
+  // const Fs = [1, 2];
+
   const togglePaid = () => setPaid((value) => !value);
 
   const toggleOnlyUpdateTopSection = () => {
     setOnlyUpdateTopSection((value) => !value);
   };
 
-  const onChangeSelectionObj = (group, rank, team) => {
-    selectionObj[group][rank] = team;
+  const onChangeGroupSelections = (group, rank, team) => {
+    groupSelections[group][rank] = team;
   };
 
   const errorAudit = [];
@@ -209,15 +210,15 @@ const Single_User_Cont = () => {
     }
   };
 
-  const setTeam = (setTeam, name) => {
-    setTeam(name);
-  };
+  // const setTeam = (setTeam, name) => {
+  //   setTeam(name);
+  // };
 
-  const setChanged = (set) => {
-    setTimeout(() => {
-      set(true);
-    }, 100);
-  };
+  // const setChanged = (set) => {
+  //   setTimeout(() => {
+  //     set(true);
+  //   }, 100);
+  // };
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -240,39 +241,43 @@ const Single_User_Cont = () => {
         return dispatch(updateUser(userObj, history, "admin"));
       }
 
-      // const validTiebreaker = Number(tiebreaker) % 1 === 0;
-      // const tiebreakerAsArray = tiebreaker?.split("");
+      const validTiebreaker = Number(tiebreaker) % 1 === 0;
 
-      // if (
-      //   !validTiebreaker ||
-      //   tiebreaker === "" ||
-      //   tiebreakerAsArray?.includes(" ") ||
-      //   tiebreaker === "0" ||
-      //   tiebreaker === null
-      // ) {
-      //   return setTiebreakerError(true);
-      // }
+      const tiebreakerAsArray = tiebreaker?.split("");
 
-      // userObj.tiebreaker = tiebreaker;
+      if (
+        !validTiebreaker ||
+        tiebreaker === "" ||
+        tiebreakerAsArray?.includes(" ") ||
+        tiebreaker === "0" ||
+        tiebreaker === null
+      ) {
+        return setTiebreakerError(true);
+      }
 
-      // groupLetters.forEach((letter) => {
-      //   const groupObj = selectionObj[letter];
-      //   const teams = Object.values(groupObj);
-      //   const setError = eval(`setGroup${letter}Error`);
+      userObj.tiebreaker = tiebreaker;
 
-      //   if (teams.includes(null) || !dupeValInArr(teams)) {
-      //     setError(true);
-      //     errorAudit.push(1);
-      //   }
-      // });
+      groupLetters.forEach((letter) => {
+        console.log("groupSelections - onSubmit", groupSelections);
+        const groupObj = groupSelections[letter];
+        const teams = Object.values(groupObj);
+        const setError = eval(`setGroup${letter}Error`);
 
-      // groupLetters.forEach((letter) => {
-      //   const nums = [1, 2, 3, 4];
+        console.log("teams", teams);
 
-      //   nums.forEach((num) => {
-      //     userObj[`group${letter}${num}`] = selectionObj[letter][num];
-      //   });
-      // });
+        if (teams.includes(null) || !dupeValInArr(teams)) {
+          setError(true);
+          errorAudit.push(1);
+        }
+      });
+
+      groupLetters.forEach((letter) => {
+        const nums = [1, 2, 3, 4];
+
+        nums.forEach((num) => {
+          userObj[`group${letter}${num}`] = groupSelections[letter][num];
+        });
+      });
 
       // if (joe?.tourneyStage >= 4) {
       //   koLetters.forEach((letter) => {
@@ -357,7 +362,7 @@ const Single_User_Cont = () => {
                 key={input}
                 selectedUser={user}
                 name={input}
-                set={eval(`set${capFirstLetter(input)}`)}
+                set={eval(`set${cap1stLetter(input)}`)}
               />
             ))}
 
@@ -416,7 +421,7 @@ const Single_User_Cont = () => {
           ""
         )} */}
 
-          {/* <div className="tiebreaker-cont-edit-picks white-text">
+          <div className="tiebreaker-cont-edit-picks">
             <h3>Tiebreaker - total number of goals scored:</h3>
 
             <input
@@ -433,9 +438,11 @@ const Single_User_Cont = () => {
           </div>
 
           <Group_Cont_Admin
-            onChangeSelectionObj={onChangeSelectionObj}
+            user={user}
+            groupLetters={groupLetters}
+            onChangeGroupSelections={onChangeGroupSelections}
             groupErrorObj={groupErrorObj}
-          /> */}
+          />
         </div>
       )}
 

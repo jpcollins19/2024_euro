@@ -97,9 +97,12 @@ export const deleteUser = (user, history) => {
 
 export const updateUser = (user, history, route = "dont update") => {
   return async (dispatch) => {
+    const userId = user?.id;
+
     user = (await axios.put(`/api/users/${user.id}`, user)).data;
+
     route !== "dont update" &&
-      history.push(route === "admin" ? "/pool_picks" : route);
+      history.push(route === "admin" ? `/pool_picks/${userId}` : route);
   };
 };
 

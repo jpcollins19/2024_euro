@@ -14,7 +14,7 @@ const Q_Game_L = ({ game, gameNum, selectedUser, user }) => {
 
   const gameInfo = koGameCalc(userToUse, game, teams);
 
-  const gameIsFinished = gameInfo.teamThatAdvanced?.name ? true : false;
+  const gameIsFinished = gameInfo.teamThatAdvanced?.name ?? false;
 
   let gameClass;
 

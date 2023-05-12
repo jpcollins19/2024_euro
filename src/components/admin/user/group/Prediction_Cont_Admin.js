@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Dropdown from "../../../Misc/Dropdown";
 
-const Prediction_Cont_Admin = ({ group, onChange }) => {
+const Prediction_Cont_Admin = ({ user, group, onChange }) => {
   const convertTeamDropdown = (team) => {
     return {
       value: team,
@@ -22,8 +22,6 @@ const Prediction_Cont_Admin = ({ group, onChange }) => {
     .map((team) => {
       return convertTeamDropdown(team);
     });
-
-  const user = useSelector((state) => state.auth);
 
   const nums = [0, 1, 2, 3];
 
