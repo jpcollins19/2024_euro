@@ -2,21 +2,6 @@
 
 ///admin - users --START
 
-//need to resume work on inputting user pick data once a user is selected from the dropdown - next step === add ko stage info
-//test updates for each stage:
-//stage 1: user has no group picks, making group picks for user for the first time
-//stage 1: user has group picks, need to adjust users group picks
-//stage 2: adjusting users group picks
-//stage 3: user has no KO picks, adjusting users group picks
-//stage 3: user has no KO picks, making KO picks for user for the first time
-//stage 3: user has KO picks, need to adjust users KO picks
-
-///////bugz
-//once you update joes picks in admin, it should take you to the pool picks page, check to see if the update you made to the joe's picks is showing right away
-
-///admin - users --END
-
-///admin - groups
 ///admin - teams
 
 //roll through each file and remove mui ---END
@@ -92,6 +77,56 @@
 
 /////////F7
 //ability to opt into receiving email updates each time the site is updated with fresh scores
+
+//////tablet and mobile compatibility --- START
+//sign in
+
+//create account
+
+//forgot pw
+
+//all 3 action confirmation pages
+//1
+//2
+//3
+
+//rules
+
+//group details
+
+//my picks - locked - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//my picks - unlocked - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//pool picks - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//leaderboard
+//stage 1
+//stage 2
+//dont need to do any more stages as 2-5 === same setup
+
+//admin - users
+
+//admin - groups
+
+//admin - teams
+
+//////tablet and mobile compatibility --- END
 
 /////////////////////////////////
 // Tourney Stage Info //

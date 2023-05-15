@@ -1,6 +1,7 @@
 .group-cont {
   display: flex;
   align-items: center;
+  flex-direction: column;
   padding-top: 2%;
 }
 
@@ -11,7 +12,7 @@
   padding: 0rem 2rem 1rem 2rem;
   margin: 1rem 0.5rem 1rem 0.5rem;
   background: linear-gradient(
-    to bottom,
+    to bottom right,
     rgb(159, 159, 147) 0%,
     rgb(222, 222, 212) 25%,
     rgb(203, 203, 192) 50%,
@@ -21,6 +22,7 @@
   border-radius: 4rem;
   width: 35rem;
   height: 20rem;
+  border: solid 2px black;
 }
 
 .group-header {
@@ -30,6 +32,28 @@
   text-align: center;
   border-bottom: solid 2px rgb(175, 170, 170);
 }
+
+.group-table-cont-admin {
+  display: flex;
+}
+
+.group-table-cont-admin > div > div > div {
+  min-height: 35px;
+  max-height: 35px;
+  padding: 5% 0 5% 0;
+}
+
+.group-table-cont-admin > div > div > input {
+  min-height: 32px;
+  max-height: 32px;
+  margin: 5% 0 5% 0;
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 
 
 .text-header {
   display: flex;
@@ -74,14 +98,14 @@
 
 .header-GD {
   padding-right: 0.8rem;
-}
+} */
 
 /* .team-row-cont {
   margin-bottom: 1%;
   border-bottom: solid 2px rgb(175, 170, 170);
 } */
 
-.single-group-cont-text {
+/* .single-group-cont-text {
   display: flex;
   align-items: center;
 }
@@ -134,4 +158,4 @@
 }
 .group-finished-cont > input {
   margin-left: 1%;
-}
+} */

@@ -63,19 +63,15 @@
   justify-content: end; */
 }
 
-.user-admin {
-  /* display: flex;
-  flex-direction: column; */
-  border-top: solid 2px black;
-  padding-top: 1%;
-  /* border: solid 2px red; */
-}
-
 /* .group-dropdown-admin {
   border-radius: 0.5rem;
 } */
 
 .admin-user-bottom {
-  padding-top: 1rem;
-  border: solid 2px red;
+  margin-top: 1rem;
+}
+
+.ko-picks-user-admin {
+  margin-bottom: 2rem;
+  border-bottom: solid 2px black;
 }

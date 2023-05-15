@@ -87,11 +87,11 @@ export const addUser = (user, history) => {
   };
 };
 
-export const deleteUser = (user, history) => {
+export const deleteUser = (user, history, userId) => {
   return async (dispatch) => {
     await axios.delete(`/api/users/${user.id}`);
     dispatch(_deleteUser(user));
-    history.push("/pool_picks");
+    history.push(`/pool_picks/${userId}`);
   };
 };
 

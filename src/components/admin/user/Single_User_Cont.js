@@ -10,7 +10,6 @@ import {
   findJoe,
 } from "../../../store";
 import Button from "../../Misc/Button";
-import Dropdown from "../../Misc/Dropdown";
 import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Checkbox_Cont from "./Checkbox_Cont";
@@ -24,49 +23,6 @@ const Single_User_Cont = () => {
 
   useEffect(() => {
     dispatch(loadUsers());
-
-    // setTiebreaker(
-    //   selectedUser.tiebreaker === undefined
-    //     ? null
-    //     : selectedUser.tiebreaker.toString()
-    // );
-    // groupLetters.forEach((letter) => {
-    //   const nums = [1, 2, 3, 4];
-    //   nums.forEach((num) => {
-    //     const team = selectedUser[`group${letter}${num}`];
-    //     groupSelections[letter][num] = team?.name;
-    //   });
-    // });
-    // joe.tourneyStage >= 4 &&
-    //   Object.keys(selectedUser).length > 0 &&
-    //   selectedUser?.knockQ1 &&
-    //   koLetters.forEach((letter) => {
-    //     switch (letter) {
-    //       case "Q":
-    //         Qs.forEach((num) => {
-    //           const setTeam = eval(`set${letter}${num}`);
-    //           setTeam(selectedUser[`knock${letter}${num}`].name);
-    //         });
-    //         break;
-    //       case "S":
-    //         Ss.forEach((num) => {
-    //           const setTeam = eval(`set${letter}${num}`);
-    //           setTeam(selectedUser[`knock${letter}${num}`].name);
-    //         });
-    //         break;
-    //       case "F":
-    //         Fs.forEach((num) => {
-    //           const setTeam = eval(`set${letter}${num}`);
-    //           setTeam(selectedUser[`knock${letter}${num}`].name);
-    //         });
-    //         break;
-    //       case "champ":
-    //         setChamp(selectedUser.knockChamp.name);
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //   });
   }, []);
 
   const userId = pathname.split("/admin/users/")[1];
@@ -149,22 +105,22 @@ const Single_User_Cont = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
 
-  // const [koError, setKoError] = useState(false);
-  // const [Q1, setQ1] = useState("");
-  // const [Q2, setQ2] = useState("");
-  // const [Q3, setQ3] = useState("");
-  // const [Q4, setQ4] = useState("");
-  // const [Q5, setQ5] = useState("");
-  // const [Q6, setQ6] = useState("");
-  // const [Q7, setQ7] = useState("");
-  // const [Q8, setQ8] = useState("");
-  // const [S1, setS1] = useState("");
-  // const [S2, setS2] = useState("");
-  // const [S3, setS3] = useState("");
-  // const [S4, setS4] = useState("");
-  // const [F1, setF1] = useState("");
-  // const [F2, setF2] = useState("");
-  // const [champ, setChamp] = useState("");
+  const [koError, setKoError] = useState(false);
+  const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
+  const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
+  const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
+  const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
+  const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
+  const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
+  const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
+  const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
+  const [S1, setS1] = useState(user?.knockS1?.name ?? null);
+  const [S2, setS2] = useState(user?.knockS2?.name ?? null);
+  const [S3, setS3] = useState(user?.knockS3?.name ?? null);
+  const [S4, setS4] = useState(user?.knockS4?.name ?? null);
+  const [F1, setF1] = useState(user?.knockF1?.name ?? null);
+  const [F2, setF2] = useState(user?.knockF2?.name ?? null);
+  const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
   const groupErrorObj = {
     groupAError: groupAError,
@@ -186,10 +142,10 @@ const Single_User_Cont = () => {
   };
 
   const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  // const koLetters = ["Q", "S", "F", "champ"];
-  // const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-  // const Ss = [1, 2, 3, 4];
-  // const Fs = [1, 2];
+  const koLetters = ["Q", "S", "F", "champ"];
+  const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
+  const Ss = [1, 2, 3, 4];
+  const Fs = [1, 2];
 
   const togglePaid = () => setPaid((value) => !value);
 
@@ -210,15 +166,9 @@ const Single_User_Cont = () => {
     }
   };
 
-  // const setTeam = (setTeam, name) => {
-  //   setTeam(name);
-  // };
-
-  // const setChanged = (set) => {
-  //   setTimeout(() => {
-  //     set(true);
-  //   }, 100);
-  // };
+  const setTeam = (setTeam, name) => {
+    setTeam(name);
+  };
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -234,7 +184,7 @@ const Single_User_Cont = () => {
       };
 
       if (deleteUserConfirmed) {
-        return dispatch(deleteUser(userObj, history));
+        return dispatch(deleteUser(userObj, history, joe?.id));
       }
 
       if (onlyUpdateTopSection) {
@@ -258,12 +208,9 @@ const Single_User_Cont = () => {
       userObj.tiebreaker = tiebreaker;
 
       groupLetters.forEach((letter) => {
-        console.log("groupSelections - onSubmit", groupSelections);
         const groupObj = groupSelections[letter];
         const teams = Object.values(groupObj);
         const setError = eval(`setGroup${letter}Error`);
-
-        console.log("teams", teams);
 
         if (teams.includes(null) || !dupeValInArr(teams)) {
           setError(true);
@@ -279,58 +226,52 @@ const Single_User_Cont = () => {
         });
       });
 
-      // if (joe?.tourneyStage >= 4) {
-      //   koLetters.forEach((letter) => {
-      //     switch (letter) {
-      //       case "Q":
-      //         Qs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+      const koAudit = (team, letter, num) => {
+        if (!team) {
+          setKoError(true);
+          errorAudit.push(1);
+        } else {
+          userObj[`knock${letter}${num}`] = team;
+        }
+      };
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "S":
-      //         Ss.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+      if (joe?.tourneyStage >= 4) {
+        koLetters.forEach((letter) => {
+          switch (letter) {
+            case "Q":
+              Qs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "F":
-      //         Fs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                koAudit(team, letter, num);
+              });
+              break;
+            case "S":
+              Ss.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           if (team.length === 0) {
-      //             setKoError(true);
-      //             errorAudit.push(1);
-      //           } else {
-      //             userObj[`knock${letter}${num}`] = team;
-      //           }
-      //         });
-      //         break;
-      //       case "champ":
-      //         if (champ.length === 0) {
-      //           setKoError(true);
-      //           errorAudit.push(1);
-      //         } else {
-      //           userObj.knockChamp = champ;
-      //         }
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   });
-      // }
+                koAudit(team, letter, num);
+              });
+              break;
+            case "F":
+              Fs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
+
+                koAudit(team, letter, num);
+              });
+              break;
+            case "champ":
+              if (champ.length === 0) {
+                setKoError(true);
+                errorAudit.push(1);
+              } else {
+                userObj.knockChamp = champ;
+              }
+              break;
+            default:
+              break;
+          }
+        });
+      }
 
       !tiebreakerError &&
         !errorAudit.length &&
@@ -374,52 +315,51 @@ const Single_User_Cont = () => {
           </div>
         )}
       </div>
+
       {user?.id && (
         <div className="admin-user-bottom">
-          {/* {joe?.tourneyStage >= 4 && Object.keys(selectedUser).length ? (
-          <div className="user-admin">
-            <div className="error-cont-placeholder">
-              {koError && <Error error="Incomplete Picks Below" />}
-            </div>
+          {joe?.tourneyStage >= 4 && (
+            <div className="ko-picks-user-admin">
+              <div className="error-cont-placeholder">
+                {koError && <Error error="Incomplete Picks Below" />}
+              </div>
 
-            <Knockout_Cont_Unlocked_Admin
-              setTeam={setTeam}
-              setKoError={setKoError}
-              Q1={Q1}
-              Q2={Q2}
-              Q3={Q3}
-              Q4={Q4}
-              Q5={Q5}
-              Q6={Q6}
-              Q7={Q7}
-              Q8={Q8}
-              setQ1={setQ1}
-              setQ2={setQ2}
-              setQ3={setQ3}
-              setQ4={setQ4}
-              setQ5={setQ5}
-              setQ6={setQ6}
-              setQ7={setQ7}
-              setQ8={setQ8}
-              S1={S1}
-              S2={S2}
-              S3={S3}
-              S4={S4}
-              setS1={setS1}
-              setS2={setS2}
-              setS3={setS3}
-              setS4={setS4}
-              F1={F1}
-              F2={F2}
-              setF1={setF1}
-              setF2={setF2}
-              champ={champ}
-              setChamp={setChamp}
-            />
-          </div>
-        ) : (
-          ""
-        )} */}
+              <Knockout_Cont_Unlocked_Admin
+                setTeam={setTeam}
+                setKoError={setKoError}
+                Q1={Q1}
+                Q2={Q2}
+                Q3={Q3}
+                Q4={Q4}
+                Q5={Q5}
+                Q6={Q6}
+                Q7={Q7}
+                Q8={Q8}
+                setQ1={setQ1}
+                setQ2={setQ2}
+                setQ3={setQ3}
+                setQ4={setQ4}
+                setQ5={setQ5}
+                setQ6={setQ6}
+                setQ7={setQ7}
+                setQ8={setQ8}
+                S1={S1}
+                S2={S2}
+                S3={S3}
+                S4={S4}
+                setS1={setS1}
+                setS2={setS2}
+                setS3={setS3}
+                setS4={setS4}
+                F1={F1}
+                F2={F2}
+                setF1={setF1}
+                setF2={setF2}
+                champ={champ}
+                setChamp={setChamp}
+              />
+            </div>
+          )}
 
           <div className="tiebreaker-cont-edit-picks">
             <h3>Tiebreaker - total number of goals scored:</h3>

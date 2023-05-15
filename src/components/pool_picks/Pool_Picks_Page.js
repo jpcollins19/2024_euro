@@ -52,6 +52,7 @@ const Pool_Picks_Page = () => {
     );
 
     setSelectedUser(currentUserProfileNeeded);
+
     // console.log("byah", currentUserProfileNeeded);
     // console.log("selectedUser", selectedUser);
   };
@@ -72,8 +73,6 @@ const Pool_Picks_Page = () => {
     setLoading(true);
 
     window.location = `#/pool_picks/${userId}`;
-
-    // loadPage();
 
     setTimeout(() => {
       setLoading(false);

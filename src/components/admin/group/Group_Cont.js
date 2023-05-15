@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { capFirstLetter, updateTeam } from "../../../store";
+import { cap1stLetter, updateTeam } from "../../../store";
 import Button from "../../Misc/Button";
-import Team_Cont from "./Team_Cont";
+import Column_Group_Admin from "./Column_Group_Admin";
 
 const Group_Cont = ({ group }) => {
   const dispatch = useDispatch();
@@ -55,8 +55,6 @@ const Group_Cont = ({ group }) => {
 
   const entries = ["id", "position", "flag", "name", "W", "D", "L", "GF", "GA"];
 
-  const headers = ["Pos", "Team", "W", "D", "L", "GF", "GA"];
-
   const groupTeams = useSelector((state) => state.teams)
     .filter((team) => team.group === group)
     .sort((a, b) => a.groupFinishingPosition - b.groupFinishingPosition);
@@ -74,7 +72,7 @@ const Group_Cont = ({ group }) => {
           entry === "flag" ||
           entry === "name"
         ) {
-          set = eval(`set${capFirstLetter(entry)}${idx}`);
+          set = eval(`set${cap1stLetter(entry)}${idx}`);
         } else {
           set = eval(`set${entry}${idx}`);
         }
@@ -86,19 +84,22 @@ const Group_Cont = ({ group }) => {
     });
   }, [group]);
 
+  const box1Entries = ["position", "flag", "name"];
+  const box2Entries = ["W", "D", "L", "GF", "GA"];
+
+  const toggle = () => setGroupFinished((value) => !value);
+
+  const nums = [0, 1, 2, 3];
+
   const onChange = (idx, entry, val) => {
     let set;
 
-    if (
-      entry === "id" ||
-      entry === "position" ||
-      entry === "flag" ||
-      entry === "name"
-    ) {
-      set = eval(`set${capFirstLetter(entry)}${idx}`);
-    } else {
+    if (entry === "position") {
+      set = eval(`setPosition${idx}`);
+    } else if (box2Entries.includes(entry)) {
       set = eval(`set${entry}${idx}`);
     }
+
     set(val);
   };
 
@@ -132,40 +133,49 @@ const Group_Cont = ({ group }) => {
     }
   };
 
-  const toggle = () => setGroupFinished((value) => !value);
-
   return (
-    <form onSubmit={onSubmit} id="submit-group">
+    <form onSubmit={onSubmit} id="submit-group" className="group-cont">
       <div className="single-group-cont-edit">
         <h3 className="group-header">Group {group}</h3>
-        <div className="text-cont">
-          <div className="text-header">
-            {headers.map((header) => (
-              <div key={header} className={`header-${header}`}>
-                {header}
-              </div>
-            ))}
-          </div>
-          {groupTeams &&
-            groupTeams.map((team, idx) => {
-              const teamObj = entries.reduce((a, entry) => {
-                const target = eval(`${entry}${idx}`);
-
-                a[entry] = target;
-                return a;
-              }, {});
+        <div className="group-table-cont-admin">
+          <div className="box1-gd">
+            {box1Entries.map((entry) => {
+              const values = nums.map((num) => {
+                return eval(`${entry}${num}`);
+              });
 
               return (
-                <Team_Cont
-                  key={idx}
-                  teamObj={teamObj}
-                  idx={idx}
+                <Column_Group_Admin
+                  key={entry}
+                  box={1}
+                  entry={entry}
+                  values={values}
                   onChange={onChange}
                 />
               );
             })}
+          </div>
+
+          <div className="box2-gd">
+            {box2Entries.map((entry) => {
+              const values = nums.map((num) => {
+                return eval(`${entry}${num}`);
+              });
+
+              return (
+                <Column_Group_Admin
+                  key={entry}
+                  box={1}
+                  entry={entry}
+                  values={values}
+                  onChange={onChange}
+                />
+              );
+            })}
+          </div>
         </div>
-        <div className="group-finished-cont">
+
+        {/* <div className="group-finished-cont">
           Group Finished:
           <input
             type="checkbox"
@@ -173,7 +183,7 @@ const Group_Cont = ({ group }) => {
             onChange={toggle}
             checked={groupFinished ? groupFinished : !!groupFinished}
           ></input>
-        </div>
+        </div> */}
       </div>
       <Button text="Submit" form="submit-group" />
     </form>
