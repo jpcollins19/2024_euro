@@ -175,15 +175,15 @@ const Group_Cont = ({ group }) => {
           </div>
         </div>
 
-        {/* <div className="group-finished-cont">
-          Group Finished:
+        <div className="group-finished-cont">
+          Group Is Finished:
           <input
             type="checkbox"
             defaultValue={groupFinished}
             onChange={toggle}
             checked={groupFinished ? groupFinished : !!groupFinished}
           ></input>
-        </div> */}
+        </div>
       </div>
       <Button text="Submit" form="submit-group" />
     </form>

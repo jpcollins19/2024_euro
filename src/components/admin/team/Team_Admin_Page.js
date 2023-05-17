@@ -1,17 +1,23 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loadTeams } from "../../../store";
 import Dropdown from "../../Misc/Dropdown";
 import Team_Cont from "./Team_Cont";
-import Box from "@mui/material/Box";
 import "./Team_Admin.css";
 
 const Team_Admin_Page = () => {
+  const dispatch = useDispatch();
+
   const [team, setTeam] = useState(null);
 
-  const places = [1, 2];
+  const finishingPositions = [1, 2];
+
+  useEffect(() => {
+    dispatch(loadTeams());
+  }, []);
 
   const teams = useSelector((state) => state.teams)
-    .filter((team) => places.includes(team.groupFinishingPosition))
+    .filter((team) => finishingPositions.includes(team.groupFinishingPosition))
     .sort((a, b) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;
@@ -22,31 +28,20 @@ const Team_Admin_Page = () => {
     });
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-      height="84vh"
-      className="admin-page"
-    >
-      <div className="admin-container">
-        <div className="admin-header">
-          <Dropdown
-            placeholder="Select Team"
-            options={teams}
-            width="19rem"
-            set={(option) => setTeam(option.value)}
-          />
+    <div className="admin-page">
+      <Dropdown
+        placeholder="Select Team"
+        options={teams}
+        width="19rem"
+        set={(option) => setTeam(option.value)}
+      />
+
+      {team && (
+        <div className="team-cont">
+          <Team_Cont team={team} />
         </div>
-        {team && (
-          <div className="team-cont">
-            <Team_Cont team={team} />
-          </div>
-        )}
-      </div>
-    </Box>
+      )}
+    </div>
   );
 };
 

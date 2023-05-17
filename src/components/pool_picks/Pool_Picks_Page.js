@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, Route, Redirect } from "react-router-dom";
-import { formatSelectedUser, loadUsers, findJoe, me } from "../../store";
+import {
+  formatSelectedUser,
+  loadUsers,
+  loadTeams,
+  findJoe,
+  me,
+} from "../../store";
 import Loading from "../Misc/Loading";
 import Dropdown from "../Misc/Dropdown";
 import Point_System_Cont from "../my_picks/locked/Point_System_Cont";
@@ -39,6 +45,7 @@ const Pool_Picks_Page = () => {
 
   const loadPage = () => {
     dispatch(loadUsers());
+    dispatch(loadTeams());
     dispatch(me());
 
     const userId = pathname.split("/pool_picks/")[1];

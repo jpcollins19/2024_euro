@@ -53,6 +53,17 @@
   font-size: 16px;
 }
 
+.group-finished-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.group-finished-cont > input {
+  margin-left: 1%;
+}
+
 /* 
 
 .text-header {
@@ -150,12 +161,4 @@
   margin-left: 1.7%;
 }
 
-.group-finished-cont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
-.group-finished-cont > input {
-  margin-left: 1%;
-} */
+ */

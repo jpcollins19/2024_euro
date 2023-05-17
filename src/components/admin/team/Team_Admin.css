@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   padding-top: 2%;
+  border: solid 2px red;
 }
 
 .single-team-cont-edit {
@@ -11,7 +12,7 @@
   padding: 0rem 2rem 1rem 2rem;
   margin: 3rem 0.5rem 1rem 0.5rem;
   background: linear-gradient(
-    to bottom,
+    to bottom right,
     rgb(159, 159, 147) 0%,
     rgb(222, 222, 212) 25%,
     rgb(203, 203, 192) 50%,
@@ -21,6 +22,7 @@
   border-radius: 4rem;
   width: 20rem;
   height: 14rem;
+  border: solid 2px black;
 }
 
 .team-header {
@@ -40,11 +42,3 @@
 .check-box-cont > input {
   margin-left: 1%;
 }
-
-/* .team-admin-page > button {
-  margin-top: 2%;
-  width: 10rem;
-  height: 2.5rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-} */

@@ -1,18 +1,3 @@
-//roll through each file and remove mui ---START
-
-///admin - users --START
-
-///admin - teams
-
-//roll through each file and remove mui ---END
-
-//find better pics for: ---START
-// preSignIn
-// leaderboard
-// groupDetails?
-
-//find better pics for: ---END
-
 //sign_in - add guard rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
 //^^steps for above - 1. add setTimeout to Sign_in onSubmit ----- 2. auth_store: add if statement to the authenticate method  ----- 3. User model: add if/then statement to User.authenticate method
 

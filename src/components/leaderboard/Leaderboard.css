@@ -1,12 +1,11 @@
 .leaderboard-page {
-  background-image: url("https://i.ytimg.com/vi/gL4XDoJcfZc/maxresdefault.jpg");
-  /* width: 100vw; */
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-size: cover;
+  /* background-image: url("https://i.ytimg.com/vi/gL4XDoJcfZc/maxresdefault.jpg"); */
   overflow: auto;
+  background-image: url("/public/pics/italy-champs.png");
+  background-size: cover;
+  background-position: center;
   height: 84vh;
+  width: 100vw;
 }
 
 .payout-cont-outside {
@@ -124,7 +123,7 @@
   align-items: center;
   flex-direction: column;
   /* flex-direction: column; */
-  margin: 2% 0% 10% 0%;
+  padding: 2% 0% 10% 0%;
   /* border: solid 2px red; */
 }
 
@@ -138,7 +137,7 @@
   border-radius: 1rem;
   border: solid 3px white;
   padding: 8px 20px 8px 8px;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .color-description-table-cont > div {

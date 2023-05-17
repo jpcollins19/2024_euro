@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { capFirstLetter, updateTeam, findEntry } from "../../../store";
+import { findJoe, cap1stLetter, updateTeam, findEntry } from "../../../store";
 import Button from "../../Misc/Button";
 import Input_Cont from "./Input_Cont";
 
@@ -18,6 +18,10 @@ const Team_Cont = ({ team }) => {
   const [advanceToChamp, setAdvanceToChamp] = useState(null);
   const [outOfTourney, setOutOfTourney] = useState(null);
 
+  const users = useSelector((state) => state.users);
+
+  const joe = findJoe(users);
+
   const entries = [
     "id",
     "advanceToQ",
@@ -29,7 +33,7 @@ const Team_Cont = ({ team }) => {
 
   useEffect(() => {
     entries.forEach((entry) => {
-      const set = eval(`set${capFirstLetter(entry)}`);
+      const set = eval(`set${cap1stLetter(entry)}`);
       set(team[entry]);
     });
   }, [team]);
@@ -51,9 +55,7 @@ const Team_Cont = ({ team }) => {
         return a;
       }, {});
 
-      console.log("obj", obj);
-
-      dispatch(updateTeam(obj, history, "pool_picks"));
+      dispatch(updateTeam(obj, history, joe?.id));
     } catch (err) {
       console.log(err);
     }

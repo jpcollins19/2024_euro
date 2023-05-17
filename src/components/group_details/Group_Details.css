@@ -1,9 +1,16 @@
 .group-details-page {
-  background-image: url("https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/Spain-v-Italy---UEFA-EURO-2012-Final-5191b5c4b67a9531cb6ff22e197efdd5.jpg");
-  /* width: 100vw;
-  height: 84vh; */
+  /* background-image: url("https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/Spain-v-Italy---UEFA-EURO-2012-Final-5191b5c4b67a9531cb6ff22e197efdd5.jpg");
+  width: 100vw;
+  height: 84vh;
   background-size: cover;
+  overflow: auto; */
+
   overflow: auto;
+  background-image: url("/public/pics/spain-champs.webp");
+  background-size: cover;
+  background-position: center;
+  height: 84vh;
+  width: 100vw;
 }
 
 .group-details-container {
