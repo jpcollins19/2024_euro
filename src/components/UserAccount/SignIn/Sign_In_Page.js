@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, formatEmail, findJoe } from "../../../store";
 import Input_Field from "../Input_Field";
 import Sign_In_Options from "../Sign_In_Options";
 import Button from "../../Misc/Button";
+import toast, { Toaster } from "react-hot-toast";
+import Error from "@mui/icons-material/ErrorOutline";
 
 const Sign_In_Page = () => {
   const dispatch = useDispatch();
@@ -11,10 +13,43 @@ const Sign_In_Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPW, setShowPW] = useState(false);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
+
+  // const isMobileView = getScreenWidth("max", 65);
 
   const showPwClick = () => {
     setShowPW(!showPW);
   };
+
+  useEffect(() => {
+    setInvalidCredentials(false);
+    toast.dismiss();
+  }, []);
+
+  useEffect(() => {
+    if (invalidCredentials) {
+      toast(
+        <div>
+          <Error
+            color="red"
+            // fontSize={`${isMobileView ? "large" : "medium"}`}
+            fontSize="medium"
+          />
+          <div className="invalid-credentials-text">
+            Invalid Email Address and/or Password
+          </div>
+        </div>,
+        {
+          duration: 5000,
+        }
+      );
+
+      setTimeout(() => {
+        setInvalidCredentials(false);
+        toast.dismiss();
+      }, 5500);
+    }
+  }, [invalidCredentials]);
 
   const joe = findJoe(useSelector((state) => state.users));
 
@@ -46,7 +81,14 @@ const Sign_In_Page = () => {
     ev.preventDefault();
     try {
       dispatch(authenticate(email, password));
-      location.hash = "#/leaderboard";
+
+      setTimeout(() => {
+        if (window.localStorage.token) {
+          location.hash = "#/leaderboard";
+        } else {
+          setInvalidCredentials(true);
+        }
+      }, 200);
     } catch (err) {
       console.log(err.response);
     }
@@ -54,6 +96,14 @@ const Sign_In_Page = () => {
 
   return (
     <div className="login-page">
+      {invalidCredentials && (
+        <Toaster
+          toastOptions={{
+            className: "toaster-invalid-credentials",
+          }}
+        />
+      )}
+
       <div className="login-cont-outside">
         <div className="login-cont-inside">
           <h1>Sign In</h1>

@@ -1,6 +1,3 @@
-//sign_in - add guard rails to know if there is a token in window.localStorage like you did for masters, then there is no need for the sign_in_scorecard page
-//^^steps for above - 1. add setTimeout to Sign_in onSubmit ----- 2. auth_store: add if statement to the authenticate method  ----- 3. User model: add if/then statement to User.authenticate method
-
 /////roll through each file and remove commented-out code
 
 ////sendgrid
@@ -14,6 +11,8 @@
 
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?
+
+//setup auto email notifications everytime the site is updated like you did for masters
 
 ////////////A1:
 //create a table for matches (Match) - Match should have the following instances: {matchNumber(determines the 1st, 2nd, 3rd etc game of each group - eg: 'A1', 'B5' etc), group, matchUniqueId ('AustraliaFrance'), homeTeamId, homeTeamName, homeTeamFlag, homeTeamGoalsScored, awayTeamId, awayTeamName, awayTeamFlag, awayTeamGoalsScored, matchComplete}
@@ -37,31 +36,24 @@
 //admin > matches --- Auto save group is finished if all matches in group are complete
 //css work on new admin > group matches page
 
-////group details
+////group details (only if you do A1 work above)
 //once the page starts loading, it calls the 'api/matches' and does the work that code has already been written for.
 
-////////////F3
+////////////F3 - guardrails
 //Should not be able to submit Joe tourney stage to 4 unless all matches are complete
 
 ////////////F4
 //admin > team > duplicate this file, label old one 'OLD-team' - label new one 'admin > KO'
 //on client side: team-OLD - change this page to a hidden route
-//admin > KO > admin can update the score to each game and that adjusts the teams instance. Has an option for advancing ok pks if the score is submitted a tie
+//admin > KO > admin can update the ko bracket to show the team that advanced
 
 ////////////F5
 //leaderboard & test specs: add a "max pts available" once KO stage starts
-
-////////////F6 -- new rules/scoring to add - when making group picks - you have to pick the winner before the tournament starts for like 10 points.
-//Then you can double down when the knockout part comes out or hedge.  And if you’re winner doesn’t get out of groups, tough shit.
-//To add to that you also could do name the 4 semi finalists before hand too and give pts for that
 
 /////adjust the date info on the following pages:
 //rules
 //leaderboard
 //pool picks
-
-/////////F7
-//ability to opt into receiving email updates each time the site is updated with fresh scores
 
 //////tablet and mobile compatibility --- START
 //sign in

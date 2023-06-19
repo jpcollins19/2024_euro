@@ -8,6 +8,20 @@
   align-items: center;
 }
 
+.toaster-invalid-credentials {
+  background-color: rgb(248, 219, 219);
+  color: rgb(146, 65, 65);
+  margin: 10.75% 0 0 0%;
+  display: flex;
+}
+
+.toaster-invalid-credentials > div > div {
+  display: flex;
+  align-items: center;
+  width: 20rem;
+  height: 2rem;
+}
+
 .login-cont-outside {
   border-radius: 1rem;
   padding: 1rem;
