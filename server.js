@@ -1,14 +1,3 @@
-/////roll through each file and remove commented-out code
-
-////sendgrid
-//change the password reset verbiage from "world cup" to "euro"
-
-///test specs - write specs for the 'Calcs leaderboard' describe block --- round 2
-//when tourney is NOT over
-//when only 2 groups are complete
-//when only group stages are complete, before ko stage starts
-//with ko round in diff stages
-
 //double check euro group/KO setup before you do the below admin work
 //adjust rules page accordingly based on rules that you have learned?
 
@@ -104,6 +93,18 @@
 //admin - teams
 
 //////tablet and mobile compatibility --- END
+
+/////when website is live and is in testing ----START
+
+////mobile view ---START
+
+//audit every page and stage with the mobile view
+
+////mobile view ---END
+
+///verify that the forgot pw lifecycle is working
+
+/////when website is live and is in testing ----END
 
 /////////////////////////////////
 // Tourney Stage Info //

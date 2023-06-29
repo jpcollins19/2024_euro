@@ -25,7 +25,6 @@
   display: flex;
   justify-content: space-around;
   font-weight: bold;
-  /* margin-top: 1%; */
 }
 
 .paid-cont {
@@ -43,7 +42,6 @@
 .data-cont-admin-user > div {
   display: flex;
   justify-content: end;
-  /* width: 1vw; */
 }
 
 .data-cont-admin-user > input {
@@ -57,15 +55,6 @@
 .dcau-input {
   width: 10vw;
 }
-
-.dcau-checkbox {
-  /* display: flex;
-  justify-content: end; */
-}
-
-/* .group-dropdown-admin {
-  border-radius: 0.5rem;
-} */
 
 .admin-user-bottom {
   margin-top: 1rem;

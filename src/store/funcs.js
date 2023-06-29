@@ -16,14 +16,6 @@ const createCountObj = (arr, key) => {
   }, {});
 };
 
-const teamRankSort = (teams) => {
-  // const sorted = teams.sort((a, b) => b.Pts - a.Pts);
-  // return sorted.reduce((a, team, idx) => {
-  //   a[idx + 1] = team.name;
-  //   return a;
-  // }, {});
-};
-
 const dupeValInArr = (arr) => {
   return arr.length === new Set(arr).size;
 };
@@ -501,7 +493,6 @@ module.exports = {
   groupTotalCalc,
   userTotalPoints,
   getCurrentScores,
-  teamRankSort,
   dupeValInArr,
   urlWord,
   formatSelectedUser,

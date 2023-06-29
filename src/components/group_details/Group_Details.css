@@ -1,10 +1,4 @@
 .group-details-page {
-  /* background-image: url("https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/Spain-v-Italy---UEFA-EURO-2012-Final-5191b5c4b67a9531cb6ff22e197efdd5.jpg");
-  width: 100vw;
-  height: 84vh;
-  background-size: cover;
-  overflow: auto; */
-
   overflow: auto;
   background-image: url("/public/pics/spain-champs.webp");
   background-size: cover;
@@ -18,16 +12,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 2%;
-  /* border: solid 2px red; */
 }
-
-/* .group-details-full-table-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  width: 99vw;
-  height: 75vh;
-} */
 
 .single-group-cont {
   display: flex;
@@ -59,10 +44,7 @@
 }
 
 .group-table-cont {
-  /* border: solid 2px yellow; */
   display: flex;
-
-  /* flex-direction: column; */
 }
 
 .group-table-cont > div > div > div {
@@ -71,16 +53,9 @@
   padding: 5% 0 5% 0;
 }
 
-/* .group-table-cont > div > div > img {
-  min-height: 30px;
-  max-height: 30px;
-  padding: 5% 0 5% 0;
-} */
-
 .box1-gd {
   display: flex;
   flex: 0.7;
-  /* border: solid 2px rgb(5, 249, 241); */
 }
 
 .box1-gd > div > div {
@@ -90,7 +65,6 @@
 .box2-gd {
   display: flex;
   flex: 0.3;
-  /* border: solid 2px purple; */
 }
 
 .gd-cc-flag {
@@ -99,13 +73,11 @@
   max-width: 45px;
   min-width: 45px;
   align-items: center;
-  /* border: solid 2px red; */
 }
 
 .gd-cc-name {
   display: flex;
   flex: 0.8;
-  /* border: solid 2px blue; */
 }
 
 .spacer {
@@ -121,13 +93,11 @@
 .gd-cc-plus-minus {
   min-width: 47px;
   max-width: 47px;
-  /* border: solid 2px red; */
 }
 
 .group-table-column-cont {
   display: flex;
   flex-direction: column;
-  /* border: solid 2px rgb(5, 17, 244); */
 }
 
 .gd-column-header {
@@ -136,17 +106,13 @@
   justify-content: center;
   min-height: 30px;
   margin: 0;
-  /* border: solid 2px red; */
 }
 
 .group-table-column-cont > div {
   display: flex;
   align-items: center;
-  /* font-size: 120%; */
   height: 3vh;
   padding: 3% 0 3% 0;
-  /* border: solid 1px orange; */
-  /* margin: 3% 0 3% 0; */
   border-bottom: solid 2px rgb(175, 170, 170);
 }
 
@@ -155,76 +121,10 @@
 }
 
 .gd-flag {
-  /* padding: 3% 0 3% 0; */
   min-height: 35px;
   max-height: 35px;
   min-width: 45px;
   max-width: 45px;
-  /* margin: 3% 0 3% 0; */
   padding: 10% 0 10% 0;
   border-bottom: solid 2px rgb(175, 170, 170);
 }
-
-/* .group-table-cont > div {
-  margin: 0rem 0.2rem 0rem 0.2rem;
-  min-width: 1.5rem;
-  text-align: center;
-}
-
-.team {
-  display: flex;
-  flex: 1;
-}
-
-.team-row-cont {
-  border-bottom: solid 2px rgb(175, 170, 170);
-}
-
-.single-group-cont-text {
-  display: flex;
-  align-items: center;
-}
-
-.single-group-cont-text > div {
-  font-size: 1.5rem;
-}
-
-.name-gd {
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  min-width: 39.5%;
-  max-width: 39.5%;
-}
-
-.MP-gd {
-  margin-right: 1.1rem;
-  margin-left: 1.2rem;
-}
-
-.W-gd {
-  margin-right: 1.1rem;
-}
-
-.D-gd {
-  margin-right: 1rem;
-}
-
-.L-gd {
-  margin-right: 1.1rem;
-}
-
-.GF-gd {
-  margin-right: 1rem;
-}
-
-.GA-gd {
-  margin-right: 0.5rem;
-}
-
-.GD-gd {
-  display: flex;
-  justify-content: center;
-  min-width: 2rem;
-  margin-right: 0.5rem;
-} */

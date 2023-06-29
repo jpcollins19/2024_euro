@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Route, Redirect } from "react-router-dom";
-import {
-  updateUser,
-  deleteUser,
-  dupeValInArr,
-  loadUsers,
-  findJoe,
-} from "../../../store";
+import { Route, Redirect } from "react-router-dom";
+import { loadUsers, findJoe } from "../../../store";
 import Single_User_Cont from "./Single_User_Cont";
 import Dropdown from "../../Misc/Dropdown";
 import Loading from "../../Misc/Loading";
@@ -16,18 +10,12 @@ import "./User_Admin.css";
 const User_Admin_Page = () => {
   const dispatch = useDispatch();
 
-  const history = useHistory();
-
   const [loadingUser, setLoadingUser] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
-
-  // setTimeout(() => {
-  //   setLoading(false);
-  // }, 500);
 
   const joe = findJoe(useSelector((state) => state.users));
 

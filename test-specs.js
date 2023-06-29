@@ -7730,53 +7730,99 @@ describe("Cals everthing correctly", () => {
       users = users.filter((user) => user?.tiebreaker);
     });
 
-    describe("tournament started - in stage 2 - no user scores yet", () => {
-      it("lists names alphabetically", () => {
-        groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-        koLetters = ["Q", "S", "F", "Champ"];
+    describe("tournament is active", () => {
+      beforeEach(() => {
+        users = users.filter((user) => user?.tiebreaker);
+      });
 
-        koObj = {
-          Q: 8,
-          S: 4,
-          F: 2,
-        };
+      const beforeTourneyIsOverTesting = [
+        {
+          stage: 2,
+          expectation:
+            "no groups are finished - should list names alphabetically",
+          adjustGroups: true,
+          groupSlice: 0,
+          correctResults: {
+            0: { name: "Anthony", total: 0, tieExists: false },
+            1: { name: "Joe", total: 0, tieExists: false },
+            2: { name: "Kevin", total: 0, tieExists: false },
+            3: { name: "Pat", total: 0, tieExists: false },
+            4: { name: "Sarah", total: 0, tieExists: false },
+            5: { name: "Stanley", total: 0, tieExists: false },
+          },
+        },
+        {
+          stage: 3,
+          expectation: "first 2 groups are finished",
+          adjustGroups: true,
+          groupSlice: 2,
+          correctResults: {
+            0: { name: "Anthony", total: 12, tieExists: false },
+            1: { name: "Pat", total: 12, tieExists: false },
+            2: { name: "Joe", total: 9, tieExists: true },
+            3: { name: "Stanley", total: 9, tieExists: true },
+            4: { name: "Kevin", total: 6, tieExists: false },
+            5: { name: "Sarah", total: 2, tieExists: false },
+          },
+        },
+        {
+          stage: 4,
+          expectation: "all groups are finished",
+          adjustGroups: false,
+          correctResults: {
+            0: { name: "Anthony", total: 36, tieExists: false },
+            1: { name: "Joe", total: 31, tieExists: true },
+            2: { name: "Stanley", total: 31, tieExists: true },
+            3: { name: "Pat", total: 28, tieExists: false },
+            4: { name: "Kevin", total: 21, tieExists: false },
+            5: { name: "Sarah", total: 14, tieExists: false },
+          },
+        },
+      ];
 
-        users.forEach((user) => {
-          groupLetters.forEach((letter) => {
-            for (let i = 1; i <= 4; i++) {
-              user[`group${letter}${i}`].groupIsFinished = false;
+      beforeTourneyIsOverTesting.forEach((test) => {
+        it(`stage ${test.stage} - ${test.expectation}`, () => {
+          users.forEach((user) => {
+            if (test.adjustGroups) {
+              groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
+              groupLetters = groupLetters.slice(test.groupSlice);
+
+              groupLetters.forEach((letter) => {
+                for (let i = 1; i <= 4; i++) {
+                  user[`group${letter}${i}`].groupIsFinished = false;
+                }
+              });
             }
+
+            koLetters = ["Q", "S", "F", "Champ"];
+
+            koObj = {
+              Q: 8,
+              S: 4,
+              F: 2,
+            };
+
+            koLetters.forEach((letter) => {
+              if (letter !== "Champ") {
+                for (let i = 1; i <= koObj[letter]; i++) {
+                  user[`knock${letter}${i}`] = null;
+                }
+              } else {
+                user.knockChamp = null;
+              }
+            });
           });
 
-          koLetters.forEach((letter) => {
-            if (letter !== "Champ") {
-              for (let i = 1; i <= koObj[letter]; i++) {
-                user[`knock${letter}${i}`] = null;
-              }
-            } else {
-              user.knockChamp = null;
-            }
+          answer = getCurrentScores(users, teams);
+          console.log(answer);
+
+          answer.forEach((user, idx) => {
+            expect(user.name).to.equal(test.correctResults[idx].name);
+            expect(user.total).to.equal(test.correctResults[idx].total);
+            expect(user.tieExists).to.equal(test.correctResults[idx].tieExists);
           });
         });
-
-        answer = getCurrentScores(users, teams);
-
-        names = answer.map((user) => user.name);
-
-        scores = answer.map((user) => user.total);
-
-        expect(names[0]).to.equal("Anthony");
-        expect(names[1]).to.equal("Joe");
-        expect(names[2]).to.equal("Kevin");
-        expect(names[3]).to.equal("Pat");
-        expect(names[4]).to.equal("Sarah");
-        expect(names[5]).to.equal("Stanley");
-        expect(scores[0]).to.equal(0);
-        expect(scores[1]).to.equal(0);
-        expect(scores[2]).to.equal(0);
-        expect(scores[3]).to.equal(0);
-        expect(scores[4]).to.equal(0);
-        expect(scores[5]).to.equal(0);
       });
     });
 

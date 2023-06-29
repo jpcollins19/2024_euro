@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 import "./Misc.css";
 
 const No_Match = () => {
-  return (
+  const [loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 500);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="no-match-page">
       <h1>404 Error, page not found</h1>
       <h2>Lost your way? </h2>

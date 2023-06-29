@@ -50,18 +50,11 @@ const Pool_Picks_Page = () => {
 
     const userId = pathname.split("/pool_picks/")[1];
 
-    // console.log("pathname", pathname);
-
-    // console.log("userId", userId);
-
     const currentUserProfileNeeded = users.find(
       (user) => user?.value?.id === userId
     );
 
     setSelectedUser(currentUserProfileNeeded);
-
-    // console.log("byah", currentUserProfileNeeded);
-    // console.log("selectedUser", selectedUser);
   };
 
   useEffect(() => {

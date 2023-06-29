@@ -137,20 +137,15 @@
 }
 
 .knockout-cont-edit > div > div {
-  /* min-width: 9rem;
-  max-width: 9rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 9.5vw;
-  /* text-align: center; */
-  /* border: solid 2px red; */
 }
 
 .knockout-cont-edit > div > div > h2 {
   margin-top: 0.2rem;
   font-size: 1.5vw;
-  /* border: solid 2px blue; */
   width: 9.5vw;
 }
 
@@ -171,8 +166,6 @@
   text-align: center;
   cursor: pointer;
   margin: 0.5rem 0rem 0.5rem 0rem;
-  /* min-width: 9rem;
-  max-width: 9rem; */
   width: 9vw;
 }
 
@@ -213,10 +206,6 @@
 }
 
 .team-flag-ko-champ-edit {
-  /* min-width: 90px;
-  max-width: 90px;
-  max-height: 54px;
-  min-height: 54px; */
   width: 6vw;
   height: 5.5vh;
 }
@@ -231,43 +220,34 @@
 
 .reg-input {
   height: 3rem;
-  /* min-width: 9rem;
-  max-width: 9rem; */
   width: 8vw;
 }
 
 .Q1UL {
-  /* margin-top: 36%; */
   margin-top: 3.5vh;
 }
 
 .Q2UL {
-  /* margin-top: 60%; */
   margin-top: 9.5vh;
 }
 
 .Q3UL {
-  /* margin-top: 60%; */
   margin-top: 10vh;
 }
 
 .Q4UL {
-  /* margin-top: 60%; */
   margin-top: 9.5vh;
 }
 
 .S1UL {
-  /* margin-top: 80%; */
   margin-top: 12vh;
 }
 
 .S2UL {
-  /* margin-top: 155%; */
   margin-top: 26.5vh;
 }
 
 .FUL {
-  /* margin-top: 170%; */
   margin-top: 28.5vh;
 }
 
@@ -281,16 +261,12 @@
 
 .champ-edit {
   width: 13vw;
-  /* display: flex;
-  align-items: center; */
 }
 
 .champ-edit > div {
   display: flex;
   justify-content: center;
   width: 12vw;
-  /* height: 20vh; */
-  /* margin-top: 75%; */
   margin-top: 26vh;
 }
 

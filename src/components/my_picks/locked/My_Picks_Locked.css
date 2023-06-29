@@ -8,14 +8,6 @@
   flex-direction: column;
 }
 
-/* .my-picks-page > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 3rem;
-} */
-
 .name-cont {
   display: flex;
   align-items: center;
@@ -65,46 +57,6 @@
   border-radius: 1rem;
   margin: 0 5px 0 5px;
 }
-
-/* .point-system-table-text {
-  display: flex;
-}
-
-.point-system-table-text > div {
-  background: linear-gradient(
-    to bottom,
-    rgb(159, 159, 147) 0%,
-    rgb(222, 222, 212) 25%,
-    rgb(203, 203, 192) 50%,
-    rgb(222, 222, 212) 75%,
-    rgb(159, 159, 147) 100%
-  );
-} */
-
-/*  */
-
-/* 
-
-.yellow-PS {
-  background-color: yellow;
-  color: yellow;
-}
-
-.green-PS {
-  background-color: rgb(8, 233, 8);
-  color: rgb(8, 233, 8);
-}
-
-.orange-PS {
-  background-color: orange;
-  color: orange;
-} */
-
-/* .notes-cont {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  min-width: 31rem;
-} */
 
 .top {
   display: flex;
@@ -222,7 +174,6 @@
 
 .prediction-cont > div {
   display: flex;
-  /* justify-content: center; */
   width: 9.5rem;
 }
 
@@ -249,7 +200,6 @@
 .outcome-locked-flag {
   display: flex;
   align-items: center;
-  /* padding: 0 5px 0 10px; */
 }
 
 .outcome-locked-flag > img {
@@ -359,11 +309,8 @@
 }
 
 .knockout-cont > div > div {
-  /* min-width: 9.5rem;
-  max-width: 9.5rem; */
   width: 9.5vw;
   text-align: center;
-  /* border: solid 2px red; */
 }
 
 .knockout-cont > div > div > h2 {
@@ -410,16 +357,10 @@
   margin: 0.5rem 0rem 0.5rem 0rem;
   border: solid 1px white;
   width: 7vw;
-  /* width: 8vw; */
-  /* min-width: 8rem;
-  max-width: 8rem; */
 }
 
 .team-ko-img-cont {
   position: relative;
-
-  /* min-width: 8rem;
-  max-width: 8rem; */
 }
 
 .team-flag-ko {
@@ -455,16 +396,12 @@
 
 .wrong-box {
   border: solid 4px red;
-  /* min-width: 8.4rem;
-  max-width: 8.4rem; */
   width: 7.5vw;
   border-radius: 0.7rem;
 }
 
 .correct-box {
   border: solid 4px rgb(11, 238, 11);
-  /* min-width: 8.4rem;
-  max-width: 8.4rem; */
   width: 7.5vw;
   border-radius: 0.7rem;
 }
@@ -590,8 +527,6 @@
 
 .unknown-box {
   border: solid 1px white;
-  /* min-width: 8.2rem;
-  max-width: 8.2rem; */
   width: 7vw;
   border-radius: 0.5rem;
 }
@@ -607,7 +542,6 @@
 
 .Q1L {
   min-height: 6rem;
-  /* margin-top: 25%; */
   margin-top: 4vh;
 }
 
@@ -618,7 +552,6 @@
 
 .Q3L {
   min-height: 6rem;
-  /* margin-top: 21%; */
   margin-top: 4vh;
 }
 
@@ -629,19 +562,16 @@
 
 .S1L {
   min-height: 165px;
-  /* margin-top: 45%; */
   margin-top: 7vh;
 }
 
 .S2L {
   min-height: 165px;
-  /* margin-top: 59%; */
   margin-top: 10.5vh;
 }
 
 .FL {
   min-height: 293px;
-  /* margin-top: 87%; */
   margin-top: 15vh;
 }
 
