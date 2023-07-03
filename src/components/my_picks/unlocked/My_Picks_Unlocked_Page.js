@@ -59,62 +59,60 @@ const My_Picks_Unlocked_Page = () => {
   const [F2, setF2] = useState(user?.knockF2?.name ?? null);
   const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
+  console.log(["user", user]);
+
   const [selectionObj, setSelectionObj] = useState({
     A: {
       1: user?.groupA1?.name ?? null,
       2: user?.groupA2?.name ?? null,
       3: user?.groupA3?.name ?? null,
       4: user?.groupA4?.name ?? null,
+      thirdPlaceAdvanceToKO_A: user?.thirdPlaceAdvanceToKO_A?.name ?? null,
     },
     B: {
       1: user?.groupB1?.name ?? null,
       2: user?.groupB2?.name ?? null,
       3: user?.groupB3?.name ?? null,
       4: user?.groupB4?.name ?? null,
+      thirdPlaceAdvanceToKO_B: user?.thirdPlaceAdvanceToKO_B?.name ?? null,
     },
     C: {
       1: user?.groupC1?.name ?? null,
       2: user?.groupC2?.name ?? null,
       3: user?.groupC3?.name ?? null,
       4: user?.groupC4?.name ?? null,
+      thirdPlaceAdvanceToKO_C: user?.thirdPlaceAdvanceToKO_C?.name ?? null,
     },
     D: {
       1: user?.groupD1?.name ?? null,
       2: user?.groupD2?.name ?? null,
       3: user?.groupD3?.name ?? null,
       4: user?.groupD4?.name ?? null,
+      thirdPlaceAdvanceToKO_D: user?.thirdPlaceAdvanceToKO_D?.name ?? null,
     },
     E: {
       1: user?.groupE1?.name ?? null,
       2: user?.groupE2?.name ?? null,
       3: user?.groupE3?.name ?? null,
       4: user?.groupE4?.name ?? null,
+      thirdPlaceAdvanceToKO_E: user?.thirdPlaceAdvanceToKO_E?.name ?? null,
     },
     F: {
       1: user?.groupF1?.name ?? null,
       2: user?.groupF2?.name ?? null,
       3: user?.groupF3?.name ?? null,
       4: user?.groupF4?.name ?? null,
-    },
-    G: {
-      1: user?.groupG1?.name ?? null,
-      2: user?.groupG2?.name ?? null,
-      3: user?.groupG3?.name ?? null,
-      4: user?.groupG4?.name ?? null,
-    },
-    H: {
-      1: user?.groupH1?.name ?? null,
-      2: user?.groupH2?.name ?? null,
-      3: user?.groupH3?.name ?? null,
-      4: user?.groupH4?.name ?? null,
+      thirdPlaceAdvanceToKO_F: user?.thirdPlaceAdvanceToKO_F?.name ?? null,
     },
   });
+
+  console.log("selectionObj", selectionObj);
 
   const onChangeSelectionObj = (group, rank, team) => {
     selectionObj[group][rank] = team;
   };
 
-  const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const groupLetters = ["A", "B", "C", "D", "E", "F"];
   const koLetters = ["Q", "S", "F", "champ"];
 
   const errorAudit = [];
@@ -298,11 +296,11 @@ const My_Picks_Unlocked_Page = () => {
             </div>
           )}
 
-          {joe?.tourneyStage === 4 && (
+          {/* {joe?.tourneyStage === 4 && (
             <div className="error-cont-placeholder">
               {koError && <Error error="Incomplete Picks Below" />}
             </div>
-          )}
+          )} */}
 
           {joe?.tourneyStage === 1 && (
             <div className="error-cont-placeholder-tiebreaker">
@@ -318,7 +316,7 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {joe?.tourneyStage === 4 && user?.tiebreaker && (
+            {/* {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <Knockout_Cont_Unlocked
                 setTeam={setTeam}
                 setKoError={setKoError}
@@ -353,7 +351,7 @@ const My_Picks_Unlocked_Page = () => {
                 champ={champ}
                 setChamp={setChamp}
               />
-            )}
+            )} */}
           </div>
         </form>
       )}

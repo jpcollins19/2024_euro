@@ -37,19 +37,23 @@ const Rules_Page = () => {
 
       <h2>Stage 1 scoring:</h2>
       <ul>
-        <li>3 pts for predicting the correct country to win the group.</li>
+        <li>5 pts for predicting the correct country to win the group.</li>
         <li>
-          2 pts for predicting the correct country to take 2nd in the group.
+          4 pts for predicting the correct country to take 2nd in the group.
         </li>
         <li>
-          1 pt for predicting a country to advance out of the group, but you did
-          not rank them in the correct 1/2 spot.
+          3 pts for predicting the correct country to take 3rd in in the group
+          and advance to the Knockout Stage.
         </li>
         <li>
-          1 pt for predicting the correct 3rd place finisher of the group.
+          2 pts for predicting a country to advance out of the group, but you
+          did not rank them in the correct 1/2/3 spot.
         </li>
         <li>
-          1 pt for predicting the correct 4th place finisher of the group.
+          1 pt for predicting the correct country to take 3rd in the group.
+        </li>
+        <li>
+          1 pt for predicting the correct country to take 4th in the group.
         </li>
       </ul>
 

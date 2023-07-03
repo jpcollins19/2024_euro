@@ -10,7 +10,7 @@ const Group_Details_Page = () => {
     setLoading(false);
   }, 500);
 
-  const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const letters = ["A", "B", "C", "D", "E", "F"];
 
   return loading ? (
     <Loading />

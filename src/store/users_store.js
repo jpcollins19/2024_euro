@@ -21,13 +21,15 @@ const loadUserData = async () => {
 
   const teams = (await axios.get("/api/teams")).data;
 
-  const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const groupLetters = ["A", "B", "C", "D", "E", "F"];
   const groupKeys = [];
 
   groupLetters.forEach((letter) => {
     for (let i = 1; i <= 4; i++) {
       groupKeys.push(`group${letter}${i}`);
     }
+
+    groupKeys.push(`thirdPlaceAdvanceToKO_${letter}`);
   });
 
   const knockRounds = ["Q", "S", "F", "Champ"];

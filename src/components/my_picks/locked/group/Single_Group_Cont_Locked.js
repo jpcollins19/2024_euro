@@ -6,6 +6,7 @@ import Outcome_Cont_Locked from "./Outcome_Cont_Locked";
 import Points_Cont_Locked from "./Points_Cont_Locked";
 
 const Single_Group_Cont_Locked = ({ group, selectedUser }) => {
+  console.log("selectedUser", selectedUser);
   const user = useSelector((state) => state.auth);
 
   const joe = findJoe(useSelector((state) => state.users));
@@ -22,10 +23,10 @@ const Single_Group_Cont_Locked = ({ group, selectedUser }) => {
       <div>
         <Rank_Cont_Locked />
         <Prediction_Cont_Locked group={group} selectedUser={selectedUser} />
-        {joe?.tourneyStage >= 3 && <Outcome_Cont_Locked group={group} />}
+        {/* {joe?.tourneyStage >= 3 && <Outcome_Cont_Locked group={group} />}
         {joe?.tourneyStage >= 3 && (
           <Points_Cont_Locked group={group} selectedUser={selectedUser} />
-        )}
+        )} */}
       </div>
     </div>
   ) : (

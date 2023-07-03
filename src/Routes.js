@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { me } from "./store";
+import { me, findJoe } from "./store";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "./components/Misc/Loading";
 import Pre_Sign_In_Page from "./components/PreSignIn/Pre_Sign_In_Page";
@@ -27,9 +27,7 @@ const Routes = () => {
 
   const user = useSelector((state) => state.auth);
 
-  const joe = useSelector((state) => state.users).find(
-    (user) => user.email === "joe@gmail.com"
-  );
+  const joe = findJoe(useSelector((state) => state.users));
 
   const [loading, setLoading] = useState(true);
 

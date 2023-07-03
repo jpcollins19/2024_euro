@@ -97,6 +97,7 @@ const findR16Teams = (teams, koPositions) => {
 };
 
 const groupCalc = (user, group) => {
+  console.log("user", user);
   let userGroupTeamRanks = [];
 
   for (let i = 1; i <= 4; i++) {

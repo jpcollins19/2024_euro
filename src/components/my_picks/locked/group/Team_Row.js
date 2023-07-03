@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { isPoolPicksPage } from "../../../../store/funcs";
 
 const Team_Row = ({ number, group, selectedUser }) => {
+  console.log(selectedUser);
   const { pathname } = useLocation();
 
   const user = useSelector((state) => state.auth);

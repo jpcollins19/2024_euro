@@ -19,10 +19,12 @@ const Leaderboard_Page = () => {
     (user) => user.tiebreaker
   );
 
+  console.log(users);
+
   const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
 
-  const rankInfo = joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : "";
+  // const rankInfo = joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : "";
 
   const tourneyStarted = joe?.tourneyStage !== 1;
   const userSubmittedPicks = user?.tiebreaker ?? false;
@@ -45,8 +47,9 @@ const Leaderboard_Page = () => {
           11/20/22
         </h1>
       ) : user?.tiebreaker ? (
-        <Leaderboard_Cont joe={joe} rankInfo={rankInfo} />
+        <div> 'byah'</div>
       ) : (
+        // <Leaderboard_Cont joe={joe} rankInfo={rankInfo} />
         ""
       )}
     </div>

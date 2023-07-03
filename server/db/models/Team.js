@@ -57,6 +57,11 @@ const Team = db.define("teams", {
     defaultValue: null,
   },
 
+  thirdPlaceAdvanceToKO: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+
   knockoutPosition: {
     type: VIRTUAL,
     get() {

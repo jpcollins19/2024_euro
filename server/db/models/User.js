@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const db = require("../db.js");
 require("dotenv").config();
 
-const { STRING, UUID, UUIDV4, BOOLEAN, INTEGER, DATE, NOW } = Sequelize;
+const { STRING, UUID, UUIDV4, BOOLEAN, INTEGER } = Sequelize;
 
 const SALT_ROUNDS = 5;
 
@@ -70,7 +70,10 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-
+  thirdPlaceAdvanceToKO_A: {
+    type: STRING,
+    defaultValue: null,
+  },
   groupB1: {
     type: STRING,
     defaultValue: null,
@@ -84,6 +87,10 @@ const User = db.define("users", {
     defaultValue: null,
   },
   groupB4: {
+    type: STRING,
+    defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_B: {
     type: STRING,
     defaultValue: null,
   },
@@ -104,6 +111,10 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
+  thirdPlaceAdvanceToKO_C: {
+    type: STRING,
+    defaultValue: null,
+  },
 
   groupD1: {
     type: STRING,
@@ -118,6 +129,10 @@ const User = db.define("users", {
     defaultValue: null,
   },
   groupD4: {
+    type: STRING,
+    defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_D: {
     type: STRING,
     defaultValue: null,
   },
@@ -138,6 +153,11 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
+  thirdPlaceAdvanceToKO_E: {
+    type: STRING,
+    defaultValue: null,
+  },
+
   groupF1: {
     type: STRING,
     defaultValue: null,
@@ -154,37 +174,11 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  groupG1: {
+  thirdPlaceAdvanceToKO_F: {
     type: STRING,
     defaultValue: null,
   },
-  groupG2: {
-    type: STRING,
-    defaultValue: null,
-  },
-  groupG3: {
-    type: STRING,
-    defaultValue: null,
-  },
-  groupG4: {
-    type: STRING,
-    defaultValue: null,
-  },
-  groupH1: {
-    type: STRING,
-    defaultValue: null,
-  },
-  groupH2: {
-    type: STRING,
-    defaultValue: null,
-  },
-  groupH3: {
-    type: STRING,
-  },
-  groupH4: {
-    type: STRING,
-    defaultValue: null,
-  },
+
   knockQ1: {
     type: STRING,
   },

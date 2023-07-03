@@ -1,5 +1,52 @@
-//double check euro group/KO setup before you do the below admin work
-//adjust rules page accordingly based on rules that you have learned?
+////RULES ADJUSTMENTS stage 1 -- START
+
+///My Picks - unlocked
+//error handling on submitting a 3rd place to advance
+//-thirdPlace finishers count must === 4
+
+///admin - users
+
+////RULES ADJUSTMENTS stage 1 -- START
+
+////RULES ADJUSTMENTS stage 2 -- START
+
+//My Picks - locked
+///My Picks - unlocked
+///Leaderboard
+///Pool Picks
+
+////RULES ADJUSTMENTS stage 2 -- START
+
+////RULES ADJUSTMENTS stage 3 -- START
+
+//My Picks - locked
+//start on total points funcs - do a retro calc for stage 1 & 2
+
+///admin - groups
+///My Picks - unlocked
+///Leaderboard
+///Pool Picks
+
+////RULES ADJUSTMENTS stage 3 -- START
+
+////RULES ADJUSTMENTS stage 4 -- START
+
+//My Picks - locked
+///My Picks - unlocked
+///Leaderboard
+///Pool Picks
+
+////RULES ADJUSTMENTS stage 4 -- START
+
+////RULES ADJUSTMENTS stage 5 -- START
+
+///admin - teams
+//My Picks - locked
+///My Picks - unlocked
+///Leaderboard
+///Pool Picks
+
+////RULES ADJUSTMENTS stage 5 -- START
 
 //setup auto email notifications everytime the site is updated like you did for masters
 
