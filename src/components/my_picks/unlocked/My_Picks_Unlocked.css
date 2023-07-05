@@ -12,6 +12,7 @@
   text-align: center;
   text-shadow: 2px 2px white;
   color: #29323c;
+  white-space: pre-wrap;
 }
 
 .my-picks-container-ul {
@@ -89,6 +90,7 @@
 
 .single-group-cont-edit-picks-inside > div > h5 {
   margin: 0 0 5px 0;
+  min-height: 1.5rem;
 }
 
 .prediction-verbiage-unlocked {
@@ -99,6 +101,7 @@
   margin: 0rem 0.17rem 0.5rem 0rem;
   font-size: 1rem;
   height: 2.5rem;
+  /* border: solid 2px red; */
 }
 
 .rank-cont > div {
@@ -119,6 +122,21 @@
 .team-name-in-dropdown {
   color: white;
 }
+
+.third-place-to-advance-cont-edit {
+  /* width: 1rem; */
+  height: 2.5rem;
+}
+
+.third-place-to-advance-cont-edit > div {
+  display: flex;
+  align-items: center;
+}
+
+/* .third-place-to-advance-cont-edit > div > input {
+  width: 1rem;
+  height: 1rem;
+} */
 
 /*/////////////////////////////*/
 /*/ ///knockout stuff below////*/

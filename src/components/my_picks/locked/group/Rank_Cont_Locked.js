@@ -1,6 +1,6 @@
 const Rank_Cont_Locked = () => {
   return (
-    <div>
+    <div className="skinny-black-border">
       <h5>Rank</h5>
       <div>1</div>
       <div>2</div>

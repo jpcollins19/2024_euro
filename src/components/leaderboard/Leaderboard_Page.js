@@ -19,10 +19,12 @@ const Leaderboard_Page = () => {
     (user) => user.tiebreaker
   );
 
-  console.log(users);
+  // console.log(users);
 
   const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
+
+  console.log("user", user);
 
   // const rankInfo = joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : "";
 

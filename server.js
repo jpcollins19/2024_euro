@@ -14,20 +14,22 @@
 ///My Picks - unlocked
 ///Leaderboard
 ///Pool Picks
+//audit to verify that the third place to advance * is working when you select a user that is not you
 
-////RULES ADJUSTMENTS stage 2 -- START
+////RULES ADJUSTMENTS stage 2 -- END
 
 ////RULES ADJUSTMENTS stage 3 -- START
 
 //My Picks - locked
 //start on total points funcs - do a retro calc for stage 1 & 2
+//fix css for third place to advance from group containers when it is in this stage
 
 ///admin - groups
 ///My Picks - unlocked
 ///Leaderboard
 ///Pool Picks
 
-////RULES ADJUSTMENTS stage 3 -- START
+////RULES ADJUSTMENTS stage 3 -- END
 
 ////RULES ADJUSTMENTS stage 4 -- START
 
@@ -36,7 +38,7 @@
 ///Leaderboard
 ///Pool Picks
 
-////RULES ADJUSTMENTS stage 4 -- START
+////RULES ADJUSTMENTS stage 4 -- END
 
 ////RULES ADJUSTMENTS stage 5 -- START
 
@@ -46,7 +48,7 @@
 ///Leaderboard
 ///Pool Picks
 
-////RULES ADJUSTMENTS stage 5 -- START
+////RULES ADJUSTMENTS stage 5 -- END
 
 //setup auto email notifications everytime the site is updated like you did for masters
 

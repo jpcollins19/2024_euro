@@ -39,7 +39,9 @@ const My_Picks_Locked_Page = () => {
         <h1 className="white-text">{user?.name}</h1>
       </div>
 
-      {/* {joe?.tourneyStage === 3 && user?.tiebreaker && <Point_System_Cont />} */}
+      {joe?.tourneyStage <= 3 && user?.tiebreaker && (
+        <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+      )}
 
       {joe?.tourneyStage === 1 && (
         <Link
@@ -79,7 +81,7 @@ const My_Picks_Locked_Page = () => {
       {user?.tiebreaker && (
         <div className="top box">
           <div className="box left">
-            {/* {joe?.tourneyStage >= 4 && <Point_System_Cont />} */}
+            {/* {joe?.tourneyStage >= 4 && <Point_System_Cont tourneyStage={joe?.tourneyStage}/>} */}
             <div className="predictions-cont">
               {letters.map((letter) => (
                 <Single_Group_Cont_Locked key={letter} group={letter} />

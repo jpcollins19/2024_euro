@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { updateUser, dupeValInArr, findJoe, loadUsers } from "../../../store";
+import {
+  updateUser,
+  dupeValInArr,
+  findJoe,
+  loadUsers,
+  auditThirdPlaceToAdvancePicks,
+} from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
 import Cancel from "../../Misc/Cancel";
@@ -33,14 +39,14 @@ const My_Picks_Unlocked_Page = () => {
   );
 
   const [tiebreakerError, setTiebreakerError] = useState(false);
-  const [groupAError, setGroupAError] = useState(false);
-  const [groupBError, setGroupBError] = useState(false);
-  const [groupCError, setGroupCError] = useState(false);
-  const [groupDError, setGroupDError] = useState(false);
-  const [groupEError, setGroupEError] = useState(false);
-  const [groupFError, setGroupFError] = useState(false);
-  const [groupGError, setGroupGError] = useState(false);
-  const [groupHError, setGroupHError] = useState(false);
+  const [groupAError_R, setGroupAError_R] = useState(false);
+  const [groupBError_R, setGroupBError_R] = useState(false);
+  const [groupCError_R, setGroupCError_R] = useState(false);
+  const [groupDError_R, setGroupDError_R] = useState(false);
+  const [groupEError_R, setGroupEError_R] = useState(false);
+  const [groupFError_R, setGroupFError_R] = useState(false);
+  const [groupGError_R, setGroupGError_R] = useState(false);
+  const [groupHError_R, setGroupHError_R] = useState(false);
   //
   const [koError, setKoError] = useState(false);
   const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
@@ -67,49 +73,55 @@ const My_Picks_Unlocked_Page = () => {
       2: user?.groupA2?.name ?? null,
       3: user?.groupA3?.name ?? null,
       4: user?.groupA4?.name ?? null,
-      thirdPlaceAdvanceToKO_A: user?.thirdPlaceAdvanceToKO_A?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupA3?.thirdPlaceAdvanceToKO_User,
     },
     B: {
       1: user?.groupB1?.name ?? null,
       2: user?.groupB2?.name ?? null,
       3: user?.groupB3?.name ?? null,
       4: user?.groupB4?.name ?? null,
-      thirdPlaceAdvanceToKO_B: user?.thirdPlaceAdvanceToKO_B?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupB3?.thirdPlaceAdvanceToKO_User,
     },
     C: {
       1: user?.groupC1?.name ?? null,
       2: user?.groupC2?.name ?? null,
       3: user?.groupC3?.name ?? null,
       4: user?.groupC4?.name ?? null,
-      thirdPlaceAdvanceToKO_C: user?.thirdPlaceAdvanceToKO_C?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupC3?.thirdPlaceAdvanceToKO_User,
     },
     D: {
       1: user?.groupD1?.name ?? null,
       2: user?.groupD2?.name ?? null,
       3: user?.groupD3?.name ?? null,
       4: user?.groupD4?.name ?? null,
-      thirdPlaceAdvanceToKO_D: user?.thirdPlaceAdvanceToKO_D?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupD3?.thirdPlaceAdvanceToKO_User,
     },
     E: {
       1: user?.groupE1?.name ?? null,
       2: user?.groupE2?.name ?? null,
       3: user?.groupE3?.name ?? null,
       4: user?.groupE4?.name ?? null,
-      thirdPlaceAdvanceToKO_E: user?.thirdPlaceAdvanceToKO_E?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupE3?.thirdPlaceAdvanceToKO_User,
     },
     F: {
       1: user?.groupF1?.name ?? null,
       2: user?.groupF2?.name ?? null,
       3: user?.groupF3?.name ?? null,
       4: user?.groupF4?.name ?? null,
-      thirdPlaceAdvanceToKO_F: user?.thirdPlaceAdvanceToKO_F?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupF3?.thirdPlaceAdvanceToKO_User,
     },
   });
 
-  console.log("selectionObj", selectionObj);
+  // console.log("selectionObj", selectionObj);
 
-  const onChangeSelectionObj = (group, rank, team) => {
-    selectionObj[group][rank] = team;
+  const onChangeSelectionObj = (group, key, answer) => {
+    if (key === "thirdPlaceAdvanceToKO") {
+      selectionObj[group][key] = !selectionObj[group][key];
+    } else {
+      selectionObj[group][key] = answer;
+    }
+
+    console.log("byah", selectionObj);
   };
 
   const groupLetters = ["A", "B", "C", "D", "E", "F"];
@@ -125,22 +137,22 @@ const My_Picks_Unlocked_Page = () => {
   };
 
   const groupErrorObj = {
-    groupAError: groupAError,
-    groupBError: groupBError,
-    groupCError: groupCError,
-    groupDError: groupDError,
-    groupEError: groupEError,
-    groupFError: groupFError,
-    groupGError: groupGError,
-    groupHError: groupHError,
-    setGroupAError: setGroupAError,
-    setGroupBError: setGroupBError,
-    setGroupCError: setGroupCError,
-    setGroupDError: setGroupDError,
-    setGroupEError: setGroupEError,
-    setGroupFError: setGroupFError,
-    setGroupGError: setGroupGError,
-    setGroupHError: setGroupHError,
+    groupAError_R: groupAError_R,
+    groupBError_R: groupBError_R,
+    groupCError_R: groupCError_R,
+    groupDError_R: groupDError_R,
+    groupEError_R: groupEError_R,
+    groupFError_R: groupFError_R,
+    groupGError_R: groupGError_R,
+    groupHError_R: groupHError_R,
+    setGroupAError_R: setGroupAError_R,
+    setGroupBError_R: setGroupBError_R,
+    setGroupCError_R: setGroupCError_R,
+    setGroupDError_R: setGroupDError_R,
+    setGroupEError_R: setGroupEError_R,
+    setGroupFError_R: setGroupFError_R,
+    setGroupGError_R: setGroupGError_R,
+    setGroupHError_R: setGroupHError_R,
   };
 
   const setTeam = (setTeam, name) => {
@@ -158,21 +170,6 @@ const My_Picks_Unlocked_Page = () => {
       if (joe?.tourneyStage === 1) {
         clearArr(errorAudit);
 
-        groupLetters.forEach((letter) => {
-          const groupObj = selectionObj[letter];
-          const teams = Object.values(groupObj);
-          const setError = eval(`setGroup${letter}Error`);
-
-          if (
-            teams.includes(null) ||
-            teams.includes("not-valid") ||
-            !dupeValInArr(teams)
-          ) {
-            setError(true);
-            errorAudit.push(1);
-          }
-        });
-
         const validTiebreaker = Number(tiebreaker) % 1 === 0;
         const tiebreakerAsArray = tiebreaker?.split("");
 
@@ -189,11 +186,40 @@ const My_Picks_Unlocked_Page = () => {
         userObj.tiebreaker = tiebreaker;
 
         groupLetters.forEach((letter) => {
+          const groupObj = selectionObj[letter];
+          const answers = Object.values(groupObj);
+          const setError = eval(`setGroup${letter}Error_R`);
+
+          if (
+            answers.includes(null) ||
+            answers.includes("not-valid") ||
+            !dupeValInArr(answers)
+          ) {
+            setError(true);
+            errorAudit.push(1);
+          }
+        });
+
+        groupLetters.forEach((letter) => {
           const nums = [1, 2, 3, 4];
 
           nums.forEach((num) => {
             userObj[`group${letter}${num}`] = selectionObj[letter][num];
           });
+        });
+
+        const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
+          a[letter] = selectionObj[letter].thirdPlaceAdvanceToKO;
+
+          return a;
+        }, {});
+
+        const thirdPlaceToAdvanceAudit = auditThirdPlaceToAdvancePicks(
+          thirdPlaceToAdvanceObj
+        );
+
+        thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
+          errorAudit.push(1);
         });
 
         !tiebreakerError &&
@@ -273,10 +299,16 @@ const My_Picks_Unlocked_Page = () => {
         >
           <h3 className="black-text">
             {joe?.tourneyStage === 1 &&
-              "Select a country from the dropdowns to rank where you think they will finish in their group"}
+              "Select a country from the dropdowns to rank where you think they will finish in their group. \n Check the box next to the third place team if you think they will advance from the group as well."}
             {joe?.tourneyStage === 4 &&
               "Select the country you think will win each game"}
           </h3>
+
+          {joe?.tourneyStage === 1 && (
+            <h4 className="black-text">
+              (must select four 3rd place teams to advance).
+            </h4>
+          )}
 
           <Button text="Submit Picks" form="update-user" />
 
@@ -313,6 +345,7 @@ const My_Picks_Unlocked_Page = () => {
               <Group_Cont_Unlocked
                 onChangeSelectionObj={onChangeSelectionObj}
                 groupErrorObj={groupErrorObj}
+                selectionObj={selectionObj}
               />
             )}
 

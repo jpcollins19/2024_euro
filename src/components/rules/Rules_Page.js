@@ -8,7 +8,9 @@ const Rules_Page = () => {
       <ul>
         <li>
           Stage 1 - Rank where you think each country will finish in their
-          respective group. Due date for your stage 1 picks is
+          respective group. **Note that you will need to select four 3rd place
+          teams to advance out of their respective group as well.** Due date for
+          your stage 1 picks is
         </li>
         <li className="to-do"> 11/19/22.</li>
         <li className="margin-top">

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { formatUserData } from "./users_store";
 
 const TOKEN = "token";
 
@@ -17,52 +18,7 @@ export const me = () => async (dispatch) => {
     });
 
     const teams = (await axios.get("/api/teams")).data;
-    let user = response.data;
-
-    const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-    const groupKeys = [];
-
-    groupLetters.forEach((letter) => {
-      for (let i = 1; i <= 4; i++) {
-        groupKeys.push(`group${letter}${i}`);
-      }
-
-      groupKeys.push(`thirdPlaceAdvanceToKO_${letter}`);
-    });
-
-    const knockRounds = ["Q", "S", "F", "Champ"];
-    const knockKeys = [];
-
-    const knockObj = {
-      Q: 8,
-      S: 4,
-      F: 2,
-      Champ: 1,
-    };
-
-    knockRounds.forEach((round) => {
-      switch (round) {
-        case "Champ":
-          knockKeys.push(`knock${round}`);
-          break;
-        default:
-          for (let i = 1; i <= knockObj[round]; i++) {
-            knockKeys.push(`knock${round}${i}`);
-          }
-      }
-    });
-
-    groupKeys.forEach((key) => {
-      if (user[key]) {
-        user[key] = teams.find((team) => team.name === user[key]);
-      }
-    });
-
-    knockKeys.forEach((key) => {
-      if (user[key]) {
-        user[key] = teams.find((team) => team.name === user[key]);
-      }
-    });
+    const user = formatUserData(response.data, teams);
 
     return dispatch(setAuth(user));
   }

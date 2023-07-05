@@ -9,6 +9,7 @@ const {
   koRoundCalc,
   userTotalPoints,
   colorDescriptionTableNeeded,
+  auditThirdPlaceToAdvancePicks,
 } = require("./src/store/funcs");
 
 describe("Cals everthing correctly", () => {
@@ -9760,6 +9761,113 @@ describe("func testing", () => {
       expect(my_picks).to.equal("my_picks");
       expect(pool_picks).to.equal("pool_picks");
       expect(group_details).to.equal("group_details");
+    });
+  });
+
+  const auditThirdPlaceToAdvancePicksTesting = [
+    {
+      scenario: "no",
+      obj: {
+        A: false,
+        B: false,
+        C: false,
+        D: false,
+        E: false,
+        F: false,
+      },
+      answer: { outcome: "-4", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+    },
+    {
+      scenario: 1,
+      obj: {
+        A: false,
+        B: true,
+        C: false,
+        D: false,
+        E: false,
+        F: false,
+      },
+      answer: { outcome: "-3", groupErrors: ["A", "C", "D", "E", "F"] },
+    },
+    {
+      scenario: 2,
+      obj: {
+        A: false,
+        B: true,
+        C: false,
+        D: false,
+        E: true,
+        F: false,
+      },
+      answer: { outcome: "-2", groupErrors: ["A", "C", "D", "F"] },
+    },
+    {
+      scenario: 3,
+      obj: {
+        A: true,
+        B: false,
+        C: false,
+        D: true,
+        E: false,
+        F: true,
+      },
+      answer: { outcome: "-1", groupErrors: ["B", "C", "E"] },
+    },
+    {
+      scenario: 4,
+      obj: {
+        A: true,
+        B: true,
+        C: false,
+        D: true,
+        E: true,
+        F: false,
+      },
+      answer: { outcome: "=", groupErrors: [] },
+    },
+    {
+      scenario: 5,
+      obj: {
+        A: true,
+        B: true,
+        C: true,
+        D: true,
+        E: false,
+        F: true,
+      },
+      answer: { outcome: "+1", groupErrors: ["A", "B", "C", "D", "F"] },
+    },
+    // {
+    //   scenario: 6,
+    //   obj: {
+    //     A: true,
+    //     B: true,
+    //     C: true,
+    //     D: true,
+    //     E: true,
+    //     F: true,
+    //   },
+    //   answer: { outcome: "+2", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+    // },
+  ];
+
+  describe("auditThirdPlaceToAdvancePicks", () => {
+    auditThirdPlaceToAdvancePicksTesting.forEach((scenario) => {
+      it(`with ${scenario.scenario} picks`, () => {
+        const answer = auditThirdPlaceToAdvancePicks(scenario.obj);
+
+        console.log(answer);
+
+        expect(scenario.answer.outcome).to.equal(answer.outcome);
+
+        scenario.answer.groupErrors.forEach((letter, i) => {
+          expect(letter).to.equal(answer.groupErrors[i]);
+        });
+
+        answer.groupErrors.forEach((letter, i) => {
+          expect(letter).to.equal(scenario.answer.groupErrors[i]);
+        });
+      });
     });
   });
 });

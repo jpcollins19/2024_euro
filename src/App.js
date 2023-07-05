@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { HashRouter as Router } from "react-router-dom";
 import { loadUsers, loadTeams, loadUpdated } from "./store";
 import Header from "./components/header/Header";
@@ -14,6 +14,10 @@ const App = () => {
     dispatch(loadTeams());
     dispatch(loadUpdated());
   }, []);
+
+  const users = useSelector((state) => state.users);
+
+  console.log(users);
 
   return (
     <Router>

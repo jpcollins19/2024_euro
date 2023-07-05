@@ -16,11 +16,7 @@ const _deleteUser = (user) => {
   return { type: DELETE_USER, user };
 };
 
-const loadUserData = async () => {
-  let users = (await axios.get("/api/users")).data;
-
-  const teams = (await axios.get("/api/teams")).data;
-
+export const formatUserData = (user, teams) => {
   const groupLetters = ["A", "B", "C", "D", "E", "F"];
   const groupKeys = [];
 
@@ -28,8 +24,6 @@ const loadUserData = async () => {
     for (let i = 1; i <= 4; i++) {
       groupKeys.push(`group${letter}${i}`);
     }
-
-    groupKeys.push(`thirdPlaceAdvanceToKO_${letter}`);
   });
 
   const knockRounds = ["Q", "S", "F", "Champ"];
@@ -54,20 +48,42 @@ const loadUserData = async () => {
     }
   });
 
+  groupKeys.forEach((key) => {
+    if (user[key]) {
+      const keyArr = key.split("");
+      const groupFinishingPosition = Number(keyArr[keyArr.length - 1]);
+      const selectedTeam = teams.find((team) => team.name === user[key]);
+
+      if (groupFinishingPosition === 3) {
+        const group = keyArr[keyArr.length - 2];
+
+        const thirdPlaceAdvanceToKO_TeamName =
+          user[`thirdPlaceAdvanceToKO_${group}`];
+
+        if (selectedTeam?.name === thirdPlaceAdvanceToKO_TeamName) {
+          selectedTeam.thirdPlaceAdvanceToKO_User = true;
+        }
+      }
+
+      user[key] = selectedTeam;
+    }
+  });
+
+  knockKeys.forEach((key) => {
+    if (user[key]) {
+      user[key] = teams.find((team) => team.name === user[key]);
+    }
+  });
+
+  return user;
+};
+
+const loadUserData = async () => {
+  let users = (await axios.get("/api/users")).data;
+  const teams = (await axios.get("/api/teams")).data;
+
   users = users.map((user) => {
-    groupKeys.forEach((key) => {
-      if (user[key]) {
-        user[key] = teams.find((team) => team.name === user[key]);
-      }
-    });
-
-    knockKeys.forEach((key) => {
-      if (user[key]) {
-        user[key] = teams.find((team) => team.name === user[key]);
-      }
-    });
-
-    return user;
+    return formatUserData(user, teams);
   });
 
   return users;

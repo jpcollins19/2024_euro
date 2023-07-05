@@ -74,6 +74,7 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
+
   groupB1: {
     type: STRING,
     defaultValue: null,

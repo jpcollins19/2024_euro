@@ -57,7 +57,12 @@ const Team = db.define("teams", {
     defaultValue: null,
   },
 
-  thirdPlaceAdvanceToKO: {
+  thirdPlaceAdvanceToKO_Team: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+
+  thirdPlaceAdvanceToKO_User: {
     type: BOOLEAN,
     defaultValue: false,
   },

@@ -97,7 +97,7 @@ const findR16Teams = (teams, koPositions) => {
 };
 
 const groupCalc = (user, group) => {
-  console.log("user", user);
+  // console.log("user", user);
   let userGroupTeamRanks = [];
 
   for (let i = 1; i <= 4; i++) {
@@ -485,6 +485,39 @@ const isPoolPicksPage = (pathname) => {
   return path === "pool_picks";
 };
 
+const auditThirdPlaceToAdvancePicks = (obj) => {
+  let answer = { outcome: "=", groupErrors: [] };
+  let count = -4;
+
+  Object.values(obj).forEach((boolean) => boolean && count++);
+
+  if (count === 0) {
+    return answer;
+  }
+
+  if (count < 0) {
+    answer.outcome = `${count}`;
+
+    Object.entries(obj).forEach((entry) => {
+      if (!entry[1]) {
+        answer.groupErrors.push(entry[0]);
+      }
+    });
+  }
+
+  if (count > 0) {
+    answer.outcome = `+${count}`;
+
+    Object.entries(obj).forEach((entry) => {
+      if (entry[1]) {
+        answer.groupErrors.push(entry[0]);
+      }
+    });
+  }
+
+  return answer;
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -508,4 +541,5 @@ module.exports = {
   usersAreTied,
   userStatusClass,
   isPoolPicksPage,
+  auditThirdPlaceToAdvancePicks,
 };

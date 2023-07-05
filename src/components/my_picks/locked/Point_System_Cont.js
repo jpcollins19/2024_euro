@@ -1,8 +1,7 @@
-const Point_System_Cont = () => {
+const Point_System_Cont = ({ tourneyStage }) => {
   const inputs = [
     {
       text: "picked correct country to win group",
-      padding: "ps-top",
       color: "blue",
     },
     {
@@ -22,12 +21,17 @@ const Point_System_Cont = () => {
 
   return (
     <div className="point-system-table-cont">
-      {inputs.map((input, idx) => (
-        <div key={idx} className={input.padding}>
-          <div className={`color-cont ${input.color}`}></div>
-          <div>{input.text}</div>
-        </div>
-      ))}
+      <div className={`ps-top ${tourneyStage <= 2 ? "ps-bottom" : ""}`}>
+        <div className="color-cont">*</div>
+        <div>3rd place team selected to advance from group</div>
+      </div>
+      {tourneyStage >= 3 &&
+        inputs.map((input, idx) => (
+          <div key={idx} className={input.padding}>
+            <div className={`color-cont ${input.color}`}></div>
+            <div>{input.text}</div>
+          </div>
+        ))}
     </div>
   );
 };
