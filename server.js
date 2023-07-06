@@ -1,8 +1,9 @@
 ////RULES ADJUSTMENTS stage 1 -- START
 
 ///My Picks - unlocked
-//error handling on submitting a 3rd place to advance
-//-thirdPlace finishers count must === 4
+//add logic to change the 3rd place to advance selection
+//test submitting after adjusting a team to advance from 3rd and then unselecting
+//test submitting after adjusting for a brand new team to advance from OG selections
 
 ///admin - users
 
@@ -49,6 +50,8 @@
 ///Pool Picks
 
 ////RULES ADJUSTMENTS stage 5 -- END
+
+//make the last updated text look prettier
 
 //setup auto email notifications everytime the site is updated like you did for masters
 

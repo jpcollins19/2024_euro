@@ -4,23 +4,25 @@ const Group_Cont_Unlocked = ({
   onChangeSelectionObj,
   groupErrorObj,
   selectionObj,
+  resetMasterError,
 }) => {
   const letters = ["A", "B", "C", "D", "E", "F"];
 
   return (
     <div className="predictions-cont-edit">
       {letters.map((letter) => {
-        const groupError_R = groupErrorObj[`group${letter}Error_R`];
-        const setGroupError_R = groupErrorObj[`setGroup${letter}Error_R`];
+        const groupError = groupErrorObj[`group${letter}Error`];
+        const setGroupError = groupErrorObj[`setGroup${letter}Error`];
 
         return (
           <Single_Group_Cont_Unlocked
             key={letter}
             group={letter}
             onChangeSelectionObj={onChangeSelectionObj}
-            groupError_R={groupError_R}
-            setGroupError_R={setGroupError_R}
+            groupError={groupError}
+            setGroupError={setGroupError}
             selectionObj={selectionObj}
+            resetMasterError={resetMasterError}
           />
         );
       })}

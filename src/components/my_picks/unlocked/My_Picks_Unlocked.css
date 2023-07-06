@@ -16,30 +16,43 @@
 }
 
 .my-picks-container-ul {
-  margin-top: 5%;
+  margin-top: 2%;
   width: 90vw;
 }
 
-.error-cont-placeholder-tiebreaker {
+/* .error-cont-placeholder-tiebreaker {
   margin-top: -3.7rem;
   margin-left: 52rem;
   min-height: 5.2rem;
   width: 40rem;
-}
+} */
 
 .error-cont-placeholder {
   min-height: 5.2rem;
 }
 
+.master-error-cont-edit-picks {
+  min-height: 5.2rem;
+  /* border: solid 2px red; */
+}
+
+/* .tiebreaker-cont-edit-picks-outer {
+  display: flex;
+  justify-content: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px red;
+} */
+
 .tiebreaker-cont-edit-picks {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: solid 2px blue; */
 }
 
 .tiebreaker-cont-edit-picks > h3 {
   margin: 0;
-  padding-right: 0.5%;
 }
 
 .tiebreaker-cont-edit-picks > input {

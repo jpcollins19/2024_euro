@@ -38,17 +38,18 @@ const My_Picks_Unlocked_Page = () => {
     user?.tiebreaker ? user.tiebreaker.toString() : null
   );
 
-  const [tiebreakerError, setTiebreakerError] = useState(false);
-  const [groupAError_R, setGroupAError_R] = useState(false);
-  const [groupBError_R, setGroupBError_R] = useState(false);
-  const [groupCError_R, setGroupCError_R] = useState(false);
-  const [groupDError_R, setGroupDError_R] = useState(false);
-  const [groupEError_R, setGroupEError_R] = useState(false);
-  const [groupFError_R, setGroupFError_R] = useState(false);
-  const [groupGError_R, setGroupGError_R] = useState(false);
-  const [groupHError_R, setGroupHError_R] = useState(false);
+  const [masterError, setMasterError] = useState(true);
+  const [masterErrorText, setMasterErrorText] = useState(null);
+  const [groupAError, setGroupAError] = useState(false);
+  const [groupBError, setGroupBError] = useState(false);
+  const [groupCError, setGroupCError] = useState(false);
+  const [groupDError, setGroupDError] = useState(false);
+  const [groupEError, setGroupEError] = useState(false);
+  const [groupFError, setGroupFError] = useState(false);
+  const [groupGError, setGroupGError] = useState(false);
+  const [groupHError, setGroupHError] = useState(false);
   //
-  const [koError, setKoError] = useState(false);
+  // const [koError, setKoError] = useState(false);
   const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
   const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
   const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
@@ -65,7 +66,7 @@ const My_Picks_Unlocked_Page = () => {
   const [F2, setF2] = useState(user?.knockF2?.name ?? null);
   const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
-  console.log(["user", user]);
+  console.log("user", user);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
@@ -121,7 +122,7 @@ const My_Picks_Unlocked_Page = () => {
       selectionObj[group][key] = answer;
     }
 
-    console.log("byah", selectionObj);
+    console.log("selectionObj on change", selectionObj);
   };
 
   const groupLetters = ["A", "B", "C", "D", "E", "F"];
@@ -137,26 +138,31 @@ const My_Picks_Unlocked_Page = () => {
   };
 
   const groupErrorObj = {
-    groupAError_R: groupAError_R,
-    groupBError_R: groupBError_R,
-    groupCError_R: groupCError_R,
-    groupDError_R: groupDError_R,
-    groupEError_R: groupEError_R,
-    groupFError_R: groupFError_R,
-    groupGError_R: groupGError_R,
-    groupHError_R: groupHError_R,
-    setGroupAError_R: setGroupAError_R,
-    setGroupBError_R: setGroupBError_R,
-    setGroupCError_R: setGroupCError_R,
-    setGroupDError_R: setGroupDError_R,
-    setGroupEError_R: setGroupEError_R,
-    setGroupFError_R: setGroupFError_R,
-    setGroupGError_R: setGroupGError_R,
-    setGroupHError_R: setGroupHError_R,
+    groupAError: groupAError,
+    groupBError: groupBError,
+    groupCError: groupCError,
+    groupDError: groupDError,
+    groupEError: groupEError,
+    groupFError: groupFError,
+    groupGError: groupGError,
+    groupHError: groupHError,
+    setGroupAError: setGroupAError,
+    setGroupBError: setGroupBError,
+    setGroupCError: setGroupCError,
+    setGroupDError: setGroupDError,
+    setGroupEError: setGroupEError,
+    setGroupFError: setGroupFError,
+    setGroupGError: setGroupGError,
+    setGroupHError: setGroupHError,
   };
 
   const setTeam = (setTeam, name) => {
     setTeam(name);
+  };
+
+  const resetMasterError = () => {
+    setMasterError(false);
+    setMasterErrorText(null);
   };
 
   const onSubmit = async (evt) => {
@@ -170,6 +176,12 @@ const My_Picks_Unlocked_Page = () => {
       if (joe?.tourneyStage === 1) {
         clearArr(errorAudit);
 
+        groupLetters.forEach((letter) => {
+          const setError = eval(`setGroup${letter}Error`);
+
+          setError(false);
+        });
+
         const validTiebreaker = Number(tiebreaker) % 1 === 0;
         const tiebreakerAsArray = tiebreaker?.split("");
 
@@ -180,7 +192,10 @@ const My_Picks_Unlocked_Page = () => {
           tiebreaker === "0" ||
           tiebreaker === null
         ) {
-          return setTiebreakerError(true);
+          setMasterError(true);
+          setMasterErrorText("Invalid Tiebreaker Below");
+
+          return;
         }
 
         userObj.tiebreaker = tiebreaker;
@@ -188,7 +203,7 @@ const My_Picks_Unlocked_Page = () => {
         groupLetters.forEach((letter) => {
           const groupObj = selectionObj[letter];
           const answers = Object.values(groupObj);
-          const setError = eval(`setGroup${letter}Error_R`);
+          const setError = eval(`setGroup${letter}Error`);
 
           if (
             answers.includes(null) ||
@@ -200,13 +215,12 @@ const My_Picks_Unlocked_Page = () => {
           }
         });
 
-        groupLetters.forEach((letter) => {
-          const nums = [1, 2, 3, 4];
+        if (errorAudit.length) {
+          setMasterError(true);
+          setMasterErrorText("Invalid Dropdown Picks in the Group(s) below:");
 
-          nums.forEach((num) => {
-            userObj[`group${letter}${num}`] = selectionObj[letter][num];
-          });
-        });
+          return;
+        }
 
         const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
           a[letter] = selectionObj[letter].thirdPlaceAdvanceToKO;
@@ -219,12 +233,39 @@ const My_Picks_Unlocked_Page = () => {
         );
 
         thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
+          const setError = eval(`setGroup${letter}Error`);
+
           errorAudit.push(1);
+          setError(true);
         });
 
-        !tiebreakerError &&
-          !errorAudit.length &&
-          dispatch(updateUser(userObj, history, "my_picks"));
+        if (errorAudit.length) {
+          setMasterError(true);
+
+          const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
+          const number = thirdPlaceToAdvanceAudit?.outcome[1];
+          const selectText = outcome === "-" ? "select" : "un-select";
+          const more = outcome === "-" ? "more" : "";
+          const team = number === "1" ? "team" : "teams";
+          const advancing = outcome === "-" ? "to advance" : "from advancing";
+          const outFrom = outcome === "-" ? "out" : `from ${number}`;
+
+          let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
+
+          setMasterErrorText(errorText);
+
+          return;
+        }
+
+        groupLetters.forEach((letter) => {
+          console.log("selectionObj on submit", selectionObj);
+
+          const nums = [1, 2, 3, 4];
+
+          nums.forEach((num) => {
+            userObj[`group${letter}${num}`] = selectionObj[letter][num];
+          });
+        });
       }
 
       if (joe?.tourneyStage === 4) {
@@ -278,10 +319,11 @@ const My_Picks_Unlocked_Page = () => {
               break;
           }
         });
-
-        !errorAudit.length &&
-          dispatch(updateUser(userObj, history, "my_picks"));
       }
+
+      // !masterError &&
+      //   !errorAudit.length &&
+      //   dispatch(updateUser(userObj, history, "my_picks"));
     } catch (err) {
       console.log("reeeed error", err);
     }
@@ -314,6 +356,10 @@ const My_Picks_Unlocked_Page = () => {
 
           <Cancel link="my_picks" color="black" bold={true} />
 
+          <div className="master-error-cont-edit-picks">
+            {masterError && <Error error={masterErrorText} />}
+          </div>
+
           {joe?.tourneyStage === 1 && (
             <div className="tiebreaker-cont-edit-picks black-text">
               <h3>Tiebreaker - total number of goals scored:</h3>
@@ -322,7 +368,7 @@ const My_Picks_Unlocked_Page = () => {
                 defaultValue={tiebreaker}
                 onChange={(ev) => {
                   setTiebreaker(ev.target.value);
-                  setTiebreakerError(false);
+                  resetMasterError();
                 }}
               ></input>
             </div>
@@ -334,18 +380,13 @@ const My_Picks_Unlocked_Page = () => {
             </div>
           )} */}
 
-          {joe?.tourneyStage === 1 && (
-            <div className="error-cont-placeholder-tiebreaker">
-              {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
-            </div>
-          )}
-
           <div className="edit-group-picks">
             {joe?.tourneyStage === 1 && (
               <Group_Cont_Unlocked
                 onChangeSelectionObj={onChangeSelectionObj}
                 groupErrorObj={groupErrorObj}
                 selectionObj={selectionObj}
+                resetMasterError={resetMasterError}
               />
             )}
 

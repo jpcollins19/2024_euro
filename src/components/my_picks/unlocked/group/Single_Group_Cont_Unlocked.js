@@ -6,19 +6,21 @@ import Error from "../../../Misc/Error";
 const Single_Group_Cont_Unlocked = ({
   group,
   onChangeSelectionObj,
-  groupError_R,
-  setGroupError_R,
+  groupError,
+  setGroupError,
   selectionObj,
+  resetMasterError,
 }) => {
   const onChange = (group, rank, team) => {
     onChangeSelectionObj(group, rank, team);
-    setGroupError_R(false);
+    setGroupError(false);
+    resetMasterError();
   };
 
   return (
     <div className="single-group-cont-edit-picks-outside">
       <div className="error-cont-placeholder">
-        {groupError_R && <Error error="Invalid picks in group below" />}
+        {groupError && <Error error="Invalid picks in group below" />}
       </div>
 
       <h4 className="black-text">Group {group}</h4>
