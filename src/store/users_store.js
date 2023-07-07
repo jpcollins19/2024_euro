@@ -1,4 +1,5 @@
 import axios from "axios";
+import { groupLetters, koLetters } from "./variables";
 
 const LOAD_USERS = "LOAD_USERS";
 const ADD_USER = "ADD_USER";
@@ -17,7 +18,6 @@ const _deleteUser = (user) => {
 };
 
 export const formatUserData = (user, teams) => {
-  const groupLetters = ["A", "B", "C", "D", "E", "F"];
   const groupKeys = [];
 
   groupLetters.forEach((letter) => {
@@ -26,7 +26,6 @@ export const formatUserData = (user, teams) => {
     }
   });
 
-  const knockRounds = ["Q", "S", "F", "Champ"];
   const knockKeys = [];
 
   const knockObj = {
@@ -36,7 +35,7 @@ export const formatUserData = (user, teams) => {
     Champ: 1,
   };
 
-  knockRounds.forEach((round) => {
+  koLetters.forEach((round) => {
     switch (round) {
       case "Champ":
         knockKeys.push(`knock${round}`);
@@ -53,6 +52,7 @@ export const formatUserData = (user, teams) => {
       const keyArr = key.split("");
       const groupFinishingPosition = Number(keyArr[keyArr.length - 1]);
       const selectedTeam = teams.find((team) => team.name === user[key]);
+      selectedTeam.thirdPlaceAdvanceToKO_User = false;
 
       if (groupFinishingPosition === 3) {
         const group = keyArr[keyArr.length - 2];
@@ -60,7 +60,7 @@ export const formatUserData = (user, teams) => {
         const thirdPlaceAdvanceToKO_TeamName =
           user[`thirdPlaceAdvanceToKO_${group}`];
 
-        if (selectedTeam?.name === thirdPlaceAdvanceToKO_TeamName) {
+        if (thirdPlaceAdvanceToKO_TeamName) {
           selectedTeam.thirdPlaceAdvanceToKO_User = true;
         }
       }

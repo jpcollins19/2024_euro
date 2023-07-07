@@ -1,5 +1,6 @@
 import Rank_Cont_Admin from "./Rank_Cont_Admin";
 import Prediction_Cont_Admin from "./Prediction_Cont_Admin";
+import Third_Place_Advance_Admin from "./Third_Place_Advance_Admin";
 import Error from "../../../Misc/Error";
 
 const Single_Group_Cont_Admin = ({
@@ -8,10 +9,13 @@ const Single_Group_Cont_Admin = ({
   onChangeGroupSelections,
   groupError,
   setGroupError,
+  selectionObj,
+  resetMasterError,
 }) => {
-  const onChange = (group, rank, team) => {
-    onChangeGroupSelections(group, rank, team);
+  const onChange = (group, key, answer) => {
+    onChangeGroupSelections(group, key, answer);
     setGroupError(false);
+    resetMasterError();
   };
 
   return (
@@ -24,6 +28,11 @@ const Single_Group_Cont_Admin = ({
       <div className="single-group-cont-edit-picks-inside">
         <Rank_Cont_Admin />
         <Prediction_Cont_Admin user={user} group={group} onChange={onChange} />
+        <Third_Place_Advance_Admin
+          group={group}
+          onChange={onChange}
+          selectionObj={selectionObj}
+        />
       </div>
     </div>
   );

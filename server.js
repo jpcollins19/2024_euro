@@ -1,21 +1,17 @@
-////RULES ADJUSTMENTS stage 1 -- START
-
-///My Picks - unlocked
-//add logic to change the 3rd place to advance selection
-//test submitting after adjusting a team to advance from 3rd and then unselecting
-//test submitting after adjusting for a brand new team to advance from OG selections
-
-///admin - users
-
-////RULES ADJUSTMENTS stage 1 -- START
-
 ////RULES ADJUSTMENTS stage 2 -- START
 
-//My Picks - locked
-///My Picks - unlocked
+//my Picks - locked
+//on Total_Points_Cont
+
 ///Leaderboard
+
 ///Pool Picks
 //audit to verify that the third place to advance * is working when you select a user that is not you
+
+///admin - users
+//can just update the top section for paid
+//can just update the top section for pw or name updates
+//can still change group info after stage starts
 
 ////RULES ADJUSTMENTS stage 2 -- END
 
@@ -24,6 +20,11 @@
 //My Picks - locked
 //start on total points funcs - do a retro calc for stage 1 & 2
 //fix css for third place to advance from group containers when it is in this stage
+
+///admin - users
+//can just update the top section for paid
+//can just update the top section for pw or name updates
+//can still change group info after stage starts
 
 ///admin - groups
 ///My Picks - unlocked
@@ -34,10 +35,18 @@
 
 ////RULES ADJUSTMENTS stage 4 -- START
 
-//My Picks - locked
+///My Picks - locked
+//continue testing for calculating KO scores
+
 ///My Picks - unlocked
 ///Leaderboard
 ///Pool Picks
+
+///admin - users
+//can just update the top section for paid
+//can just update the top section for pw or name updates
+//can still change group info after stage starts
+//can change KO info during stage
 
 ////RULES ADJUSTMENTS stage 4 -- END
 
@@ -48,6 +57,12 @@
 ///My Picks - unlocked
 ///Leaderboard
 ///Pool Picks
+
+///admin - users
+//can just update the top section for paid
+//can just update the top section for pw or name updates
+//can still change group info after stage starts
+//can change KO info after stage starts
 
 ////RULES ADJUSTMENTS stage 5 -- END
 

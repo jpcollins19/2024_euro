@@ -11,8 +11,8 @@ const Single_Group_Cont_Unlocked = ({
   selectionObj,
   resetMasterError,
 }) => {
-  const onChange = (group, rank, team) => {
-    onChangeSelectionObj(group, rank, team);
+  const onChange = (group, key, answer) => {
+    onChangeSelectionObj(group, key, answer);
     setGroupError(false);
     resetMasterError();
   };

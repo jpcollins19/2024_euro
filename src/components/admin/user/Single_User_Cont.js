@@ -8,6 +8,12 @@ import {
   loadUsers,
   cap1stLetter,
   findJoe,
+  groupLetters,
+  auditThirdPlaceToAdvancePicks,
+  koLetters,
+  Qs,
+  Ss,
+  Fs,
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
@@ -31,6 +37,8 @@ const Single_User_Cont = () => {
     (user) => user.id === userId
   );
 
+  // console.log(user);
+
   const joe = findJoe(useSelector((state) => state.users));
 
   const [name, setName] = useState(user?.name);
@@ -47,55 +55,50 @@ const Single_User_Cont = () => {
       2: user?.groupA2?.name ?? null,
       3: user?.groupA3?.name ?? null,
       4: user?.groupA4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupA3?.thirdPlaceAdvanceToKO_User,
     },
     B: {
       1: user?.groupB1?.name ?? null,
       2: user?.groupB2?.name ?? null,
       3: user?.groupB3?.name ?? null,
       4: user?.groupB4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupB3?.thirdPlaceAdvanceToKO_User,
     },
     C: {
       1: user?.groupC1?.name ?? null,
       2: user?.groupC2?.name ?? null,
       3: user?.groupC3?.name ?? null,
       4: user?.groupC4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupC3?.thirdPlaceAdvanceToKO_User,
     },
     D: {
       1: user?.groupD1?.name ?? null,
       2: user?.groupD2?.name ?? null,
       3: user?.groupD3?.name ?? null,
       4: user?.groupD4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupD3?.thirdPlaceAdvanceToKO_User,
     },
     E: {
       1: user?.groupE1?.name ?? null,
       2: user?.groupE2?.name ?? null,
       3: user?.groupE3?.name ?? null,
       4: user?.groupE4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupE3?.thirdPlaceAdvanceToKO_User,
     },
     F: {
       1: user?.groupF1?.name ?? null,
       2: user?.groupF2?.name ?? null,
       3: user?.groupF3?.name ?? null,
       4: user?.groupF4?.name ?? null,
-    },
-    G: {
-      1: user?.groupG1?.name ?? null,
-      2: user?.groupG2?.name ?? null,
-      3: user?.groupG3?.name ?? null,
-      4: user?.groupG4?.name ?? null,
-    },
-    H: {
-      1: user?.groupH1?.name ?? null,
-      2: user?.groupH2?.name ?? null,
-      3: user?.groupH3?.name ?? null,
-      4: user?.groupH4?.name ?? null,
+      thirdPlaceAdvanceToKO: user?.groupF3?.thirdPlaceAdvanceToKO_User,
     },
   });
 
   const [tiebreaker, setTiebreaker] = useState(
     user?.tiebreaker ? user?.tiebreaker.toString() : null
   );
-  const [tiebreakerError, setTiebreakerError] = useState(false);
+  const [masterError, setMasterError] = useState(false);
+  const [masterErrorText, setMasterErrorText] = useState(null);
   const [groupAError, setGroupAError] = useState(false);
   const [groupBError, setGroupBError] = useState(false);
   const [groupCError, setGroupCError] = useState(false);
@@ -105,7 +108,7 @@ const Single_User_Cont = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
 
-  const [koError, setKoError] = useState(false);
+  // const [koError, setKoError] = useState(false);
   const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
   const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
   const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
@@ -141,20 +144,18 @@ const Single_User_Cont = () => {
     setGroupHError: setGroupHError,
   };
 
-  const groupLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const koLetters = ["Q", "S", "F", "champ"];
-  const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-  const Ss = [1, 2, 3, 4];
-  const Fs = [1, 2];
-
   const togglePaid = () => setPaid((value) => !value);
 
   const toggleOnlyUpdateTopSection = () => {
     setOnlyUpdateTopSection((value) => !value);
   };
 
-  const onChangeGroupSelections = (group, rank, team) => {
-    groupSelections[group][rank] = team;
+  const onChangeGroupSelections = (group, key, answer) => {
+    if (key === "thirdPlaceAdvanceToKO") {
+      groupSelections[group][key] = !groupSelections[group][key];
+    } else {
+      groupSelections[group][key] = answer;
+    }
   };
 
   const errorAudit = [];
@@ -170,11 +171,15 @@ const Single_User_Cont = () => {
     setTeam(name);
   };
 
+  const resetMasterError = () => {
+    setMasterError(false);
+    setMasterErrorText(null);
+  };
+
   const onSubmit = async (evt) => {
     evt.preventDefault();
-    try {
-      clearArr(errorAudit);
 
+    try {
       const userObj = {
         id: user?.id,
         name,
@@ -191,8 +196,13 @@ const Single_User_Cont = () => {
         return dispatch(updateUser(userObj, history, "admin"));
       }
 
-      const validTiebreaker = Number(tiebreaker) % 1 === 0;
+      groupLetters.forEach((letter) => {
+        const setError = eval(`setGroup${letter}Error`);
 
+        setError(false);
+      });
+
+      const validTiebreaker = Number(tiebreaker) % 1 === 0;
       const tiebreakerAsArray = tiebreaker?.split("");
 
       if (
@@ -202,27 +212,86 @@ const Single_User_Cont = () => {
         tiebreaker === "0" ||
         tiebreaker === null
       ) {
-        return setTiebreakerError(true);
+        setMasterError(true);
+        setMasterErrorText("Invalid Tiebreaker Below");
+
+        return;
       }
 
       userObj.tiebreaker = tiebreaker;
 
+      clearArr(errorAudit);
+
       groupLetters.forEach((letter) => {
         const groupObj = groupSelections[letter];
-        const teams = Object.values(groupObj);
+        const answers = Object.values(groupObj);
         const setError = eval(`setGroup${letter}Error`);
 
-        if (teams.includes(null) || !dupeValInArr(teams)) {
+        if (
+          answers.includes(null) ||
+          answers.includes("not-valid") ||
+          !dupeValInArr(answers)
+        ) {
           setError(true);
           errorAudit.push(1);
         }
       });
+
+      if (errorAudit.length) {
+        setMasterError(true);
+        setMasterErrorText("Invalid Dropdown Picks in the Group(s) below:");
+
+        return;
+      }
+
+      const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
+        a[letter] = groupSelections[letter].thirdPlaceAdvanceToKO ?? null;
+
+        return a;
+      }, {});
+
+      const thirdPlaceToAdvanceAudit = auditThirdPlaceToAdvancePicks(
+        thirdPlaceToAdvanceObj
+      );
+
+      thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
+        const setError = eval(`setGroup${letter}Error`);
+
+        errorAudit.push(1);
+        setError(true);
+      });
+
+      if (errorAudit.length) {
+        setMasterError(true);
+
+        const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
+        const number = thirdPlaceToAdvanceAudit?.outcome[1];
+        const selectText = outcome === "-" ? "select" : "un-select";
+        const more = outcome === "-" ? "more" : "";
+        const team = number === "1" ? "team" : "teams";
+        const advancing = outcome === "-" ? "to advance" : "from advancing";
+        const outFrom = outcome === "-" ? "out" : `from ${number}`;
+
+        let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
+
+        setMasterErrorText(errorText);
+
+        return;
+      }
 
       groupLetters.forEach((letter) => {
         const nums = [1, 2, 3, 4];
 
         nums.forEach((num) => {
           userObj[`group${letter}${num}`] = groupSelections[letter][num];
+
+          if (num === 3) {
+            const key = `thirdPlaceAdvanceToKO_${letter}`;
+            const value = groupSelections[letter].thirdPlaceAdvanceToKO
+              ? groupSelections[letter][num]
+              : null;
+            userObj[key] = value;
+          }
         });
       });
 
@@ -235,45 +304,45 @@ const Single_User_Cont = () => {
         }
       };
 
-      if (joe?.tourneyStage >= 4) {
-        koLetters.forEach((letter) => {
-          switch (letter) {
-            case "Q":
-              Qs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      // if (joe?.tourneyStage >= 4) {
+      //   koLetters.forEach((letter) => {
+      //     switch (letter) {
+      //       case "Q":
+      //         Qs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                koAudit(team, letter, num);
-              });
-              break;
-            case "S":
-              Ss.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           koAudit(team, letter, num);
+      //         });
+      //         break;
+      //       case "S":
+      //         Ss.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                koAudit(team, letter, num);
-              });
-              break;
-            case "F":
-              Fs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+      //           koAudit(team, letter, num);
+      //         });
+      //         break;
+      //       case "F":
+      //         Fs.forEach((num) => {
+      //           const team = eval(`${letter}${num}`);
 
-                koAudit(team, letter, num);
-              });
-              break;
-            case "champ":
-              if (champ.length === 0) {
-                setKoError(true);
-                errorAudit.push(1);
-              } else {
-                userObj.knockChamp = champ;
-              }
-              break;
-            default:
-              break;
-          }
-        });
-      }
+      //           koAudit(team, letter, num);
+      //         });
+      //         break;
+      //       case "champ":
+      //         if (champ.length === 0) {
+      //           setKoError(true);
+      //           errorAudit.push(1);
+      //         } else {
+      //           userObj.knockChamp = champ;
+      //         }
+      //         break;
+      //       default:
+      //         break;
+      //     }
+      //   });
+      // }
 
-      !tiebreakerError &&
+      !masterError &&
         !errorAudit.length &&
         dispatch(updateUser(userObj, history, "admin"));
     } catch (err) {
@@ -291,6 +360,8 @@ const Single_User_Cont = () => {
       onChange: toggleOnlyUpdateTopSection,
     },
   ];
+
+  // console.log("groupSelections", groupSelections);
 
   return (
     <form id="admin-update-user" onSubmit={onSubmit}>
@@ -318,7 +389,11 @@ const Single_User_Cont = () => {
 
       {user?.id && (
         <div className="admin-user-bottom">
-          {joe?.tourneyStage >= 4 && (
+          <div className="master-error-cont-edit-picks">
+            {masterError && <Error error={masterErrorText} />}
+          </div>
+
+          {/* {joe?.tourneyStage >= 4 && (
             <div className="ko-picks-user-admin">
               <div className="error-cont-placeholder">
                 {koError && <Error error="Incomplete Picks Below" />}
@@ -359,7 +434,7 @@ const Single_User_Cont = () => {
                 setChamp={setChamp}
               />
             </div>
-          )}
+          )} */}
 
           <div className="tiebreaker-cont-edit-picks">
             <h3>Tiebreaker - total number of goals scored:</h3>
@@ -368,20 +443,17 @@ const Single_User_Cont = () => {
               defaultValue={tiebreaker}
               onChange={(ev) => {
                 setTiebreaker(ev.target.value);
-                setTiebreakerError(false);
+                resetMasterError();
               }}
             ></input>
           </div>
 
-          <div className="error-cont-placeholder">
-            {tiebreakerError && <Error error="Invalid Tiebreaker Above" />}
-          </div>
-
           <Group_Cont_Admin
-            user={user}
-            groupLetters={groupLetters}
             onChangeGroupSelections={onChangeGroupSelections}
             groupErrorObj={groupErrorObj}
+            user={user}
+            selectionObj={groupSelections}
+            resetMasterError={resetMasterError}
           />
         </div>
       )}

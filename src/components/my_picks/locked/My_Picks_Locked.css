@@ -245,6 +245,10 @@
   background-color: rgb(211, 150, 36);
 }
 
+.pink {
+  background-color: rgb(238, 80, 146);
+}
+
 .total-points-cont {
   padding-top: 0.3rem;
   padding-bottom: 0.1rem;

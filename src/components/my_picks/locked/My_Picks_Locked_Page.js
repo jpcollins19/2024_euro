@@ -88,11 +88,11 @@ const My_Picks_Locked_Page = () => {
               ))}
             </div>
           </div>
-          {/* {joe?.tourneyStage <= 3 && (
+          {joe?.tourneyStage <= 3 && (
             <div className="box right">
               <Total_Points_Cont />
             </div>
-          )} */}
+          )}
         </div>
       )}
     </div>

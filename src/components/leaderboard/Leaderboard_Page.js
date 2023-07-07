@@ -49,7 +49,7 @@ const Leaderboard_Page = () => {
           11/20/22
         </h1>
       ) : user?.tiebreaker ? (
-        <div> 'byah'</div>
+        <div>byah</div>
       ) : (
         // <Leaderboard_Cont joe={joe} rankInfo={rankInfo} />
         ""

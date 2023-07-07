@@ -28,10 +28,10 @@ const Single_Group_Cont_Locked = ({ group, selectedUser }) => {
         <Third_Place_Advance_Locked selectedUser={user} group={group} />
         <Rank_Cont_Locked />
         <Prediction_Cont_Locked group={group} selectedUser={user} />
-        {joe?.tourneyStage >= 3 && <Outcome_Cont_Locked group={group} />}
+        {/* {joe?.tourneyStage >= 3 && <Outcome_Cont_Locked group={group} />}
         {joe?.tourneyStage >= 3 && (
           <Points_Cont_Locked group={group} selectedUser={user} />
-        )}
+        )} */}
         <Third_Place_Advance_Locked selectedUser={user} group={group} />
       </div>
     </div>

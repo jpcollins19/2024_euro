@@ -1,10 +1,12 @@
+import { groupLetters } from "../../../../store";
 import Single_Group_Cont_Admin from "./Single_Group_Cont_Admin";
 
 const Group_Cont_Admin = ({
-  user,
-  groupLetters,
   onChangeGroupSelections,
   groupErrorObj,
+  user,
+  selectionObj,
+  resetMasterError,
 }) => {
   return (
     <div className="predictions-cont-edit">
@@ -20,6 +22,8 @@ const Group_Cont_Admin = ({
             onChangeGroupSelections={onChangeGroupSelections}
             groupError={groupError}
             setGroupError={setGroupError}
+            selectionObj={selectionObj}
+            resetMasterError={resetMasterError}
           />
         );
       })}

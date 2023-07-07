@@ -133,7 +133,7 @@ const users = [
     thirdPlaceAdvanceToKO_F: "Morocco",
 
     tiebreaker: 165,
-    tourneyStage: 1,
+    tourneyStage: 2,
   },
   //stan
   {
@@ -551,60 +551,65 @@ const syncAndSeed = async () => {
     )
   );
   // //////////////////////////////////////////////////
-  // Netherlands.groupFinishingPosition = 1;
-  // Senegal.groupFinishingPosition = 2;
-  // Ecuador.groupFinishingPosition = 3;
-  // Qatar.groupFinishingPosition = 4;
-  // //
-  // England.groupFinishingPosition = 1;
-  // USA.groupFinishingPosition = 2;
-  // Iran.groupFinishingPosition = 3;
-  // Wales.groupFinishingPosition = 4;
+  Netherlands.groupFinishingPosition = 1;
+  Ecuador.groupFinishingPosition = 2;
+  Senegal.groupFinishingPosition = 3;
+  Qatar.groupFinishingPosition = 4;
+  //
+  England.groupFinishingPosition = 1;
+  USA.groupFinishingPosition = 2;
+  Wales.groupFinishingPosition = 3;
+  Iran.groupFinishingPosition = 4;
 
-  // Argentina.groupFinishingPosition = 1;
-  // Poland.groupFinishingPosition = 2;
-  // Mexico.groupFinishingPosition = 3;
-  // Saudi_Arabia.groupFinishingPosition = 4;
+  Argentina.groupFinishingPosition = 1;
+  Mexico.groupFinishingPosition = 2;
+  Poland.groupFinishingPosition = 3;
+  Saudi_Arabia.groupFinishingPosition = 4;
 
-  // France.groupFinishingPosition = 1;
-  // Australia.groupFinishingPosition = 2;
-  // Tunisia.groupFinishingPosition = 3;
-  // Denmark.groupFinishingPosition = 4;
-  // //
-  // Japan.groupFinishingPosition = 1;
-  // Spain.groupFinishingPosition = 2;
-  // Germany.groupFinishingPosition = 3;
-  // Costa_Rica.groupFinishingPosition = 4;
-  // //
-  // Morocco.groupFinishingPosition = 1;
-  // Croatia.groupFinishingPosition = 2;
-  // Belgium.groupFinishingPosition = 3;
-  // Canada.groupFinishingPosition = 4;
+  France.groupFinishingPosition = 1;
+  Denmark.groupFinishingPosition = 2;
+  Australia.groupFinishingPosition = 3;
+  Tunisia.groupFinishingPosition = 4;
+  //
+  Germany.groupFinishingPosition = 1;
+  Spain.groupFinishingPosition = 2;
+  Japan.groupFinishingPosition = 3;
+  Costa_Rica.groupFinishingPosition = 4;
+  //
+  Belgium.groupFinishingPosition = 1;
+  Croatia.groupFinishingPosition = 2;
+  Morocco.groupFinishingPosition = 3;
+  Canada.groupFinishingPosition = 4;
 
-  // Ecuador.groupIsFinished = true;
-  // Netherlands.groupIsFinished = true;
-  // Qatar.groupIsFinished = true;
-  // Senegal.groupIsFinished = true;
-  // England.groupIsFinished = true;
-  // Iran.groupIsFinished = true;
-  // USA.groupIsFinished = true;
-  // Wales.groupIsFinished = true;
-  // Argentina.groupIsFinished = true;
-  // Mexico.groupIsFinished = true;
-  // Poland.groupIsFinished = true;
-  // Saudi_Arabia.groupIsFinished = true;
-  // Denmark.groupIsFinished = true;
-  // France.groupIsFinished = true;
-  // Australia.groupIsFinished = true;
-  // Tunisia.groupIsFinished = true;
-  // Costa_Rica.groupIsFinished = true;
-  // Germany.groupIsFinished = true;
-  // Japan.groupIsFinished = true;
-  // Spain.groupIsFinished = true;
-  // Belgium.groupIsFinished = true;
-  // Canada.groupIsFinished = true;
-  // Croatia.groupIsFinished = true;
-  // Morocco.groupIsFinished = true;
+  Ecuador.groupIsFinished = true;
+  Netherlands.groupIsFinished = true;
+  Qatar.groupIsFinished = true;
+  Senegal.groupIsFinished = true;
+  England.groupIsFinished = true;
+  Iran.groupIsFinished = true;
+  USA.groupIsFinished = true;
+  Wales.groupIsFinished = true;
+  Argentina.groupIsFinished = true;
+  Mexico.groupIsFinished = true;
+  Poland.groupIsFinished = true;
+  Saudi_Arabia.groupIsFinished = true;
+  Denmark.groupIsFinished = true;
+  France.groupIsFinished = true;
+  Australia.groupIsFinished = true;
+  Tunisia.groupIsFinished = true;
+  Costa_Rica.groupIsFinished = true;
+  Germany.groupIsFinished = true;
+  Japan.groupIsFinished = true;
+  Spain.groupIsFinished = true;
+  Belgium.groupIsFinished = true;
+  Canada.groupIsFinished = true;
+  Croatia.groupIsFinished = true;
+  Morocco.groupIsFinished = true;
+
+  Senegal.thirdPlaceAdvanceToKO_Team = true;
+  Wales.thirdPlaceAdvanceToKO_Team = true;
+  Australia.thirdPlaceAdvanceToKO_Team = true;
+  Morocco.thirdPlaceAdvanceToKO_Team = true;
 
   // //////////////////////////////////////////////////
   // Joe.knockQ1 = Netherlands.name;

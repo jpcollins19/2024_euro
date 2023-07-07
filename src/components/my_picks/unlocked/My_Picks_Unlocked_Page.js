@@ -7,6 +7,11 @@ import {
   findJoe,
   loadUsers,
   auditThirdPlaceToAdvancePicks,
+  groupLetters,
+  koLetters,
+  Qs,
+  Ss,
+  Fs,
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
@@ -38,7 +43,7 @@ const My_Picks_Unlocked_Page = () => {
     user?.tiebreaker ? user.tiebreaker.toString() : null
   );
 
-  const [masterError, setMasterError] = useState(true);
+  const [masterError, setMasterError] = useState(false);
   const [masterErrorText, setMasterErrorText] = useState(null);
   const [groupAError, setGroupAError] = useState(false);
   const [groupBError, setGroupBError] = useState(false);
@@ -66,7 +71,7 @@ const My_Picks_Unlocked_Page = () => {
   const [F2, setF2] = useState(user?.knockF2?.name ?? null);
   const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
-  console.log("user", user);
+  // console.log("user", user);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
@@ -122,11 +127,8 @@ const My_Picks_Unlocked_Page = () => {
       selectionObj[group][key] = answer;
     }
 
-    console.log("selectionObj on change", selectionObj);
+    // console.log("selectionObj on change", selectionObj);
   };
-
-  const groupLetters = ["A", "B", "C", "D", "E", "F"];
-  const koLetters = ["Q", "S", "F", "champ"];
 
   const errorAudit = [];
 
@@ -223,7 +225,7 @@ const My_Picks_Unlocked_Page = () => {
         }
 
         const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
-          a[letter] = selectionObj[letter].thirdPlaceAdvanceToKO;
+          a[letter] = selectionObj[letter].thirdPlaceAdvanceToKO ?? null;
 
           return a;
         }, {});
@@ -258,12 +260,18 @@ const My_Picks_Unlocked_Page = () => {
         }
 
         groupLetters.forEach((letter) => {
-          console.log("selectionObj on submit", selectionObj);
-
           const nums = [1, 2, 3, 4];
 
           nums.forEach((num) => {
             userObj[`group${letter}${num}`] = selectionObj[letter][num];
+
+            if (num === 3) {
+              const key = `thirdPlaceAdvanceToKO_${letter}`;
+              const value = selectionObj[letter].thirdPlaceAdvanceToKO
+                ? selectionObj[letter][num]
+                : null;
+              userObj[key] = value;
+            }
           });
         });
       }
@@ -271,9 +279,9 @@ const My_Picks_Unlocked_Page = () => {
       if (joe?.tourneyStage === 4) {
         clearArr(errorAudit);
 
-        const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
-        const Ss = [1, 2, 3, 4];
-        const Fs = [1, 2];
+        // const Qs = [1, 2, 3, 4, 5, 6, 7, 8];
+        // const Ss = [1, 2, 3, 4];
+        // const Fs = [1, 2];
 
         const koAudit = (team, letter, num) => {
           if (!team) {
@@ -321,9 +329,9 @@ const My_Picks_Unlocked_Page = () => {
         });
       }
 
-      // !masterError &&
-      //   !errorAudit.length &&
-      //   dispatch(updateUser(userObj, history, "my_picks"));
+      !masterError &&
+        !errorAudit.length &&
+        dispatch(updateUser(userObj, history, "my_picks"));
     } catch (err) {
       console.log("reeeed error", err);
     }
