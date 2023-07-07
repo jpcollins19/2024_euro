@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation, Route, Redirect } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   formatSelectedUser,
   loadUsers,
   loadTeams,
   findJoe,
   me,
+  groupLetters,
 } from "../../store";
 import Loading from "../Misc/Loading";
 import Dropdown from "../Misc/Dropdown";
@@ -79,7 +80,7 @@ const Pool_Picks_Page = () => {
     }, 500);
   };
 
-  const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  // console.log("selectedUser", selectedUser);
 
   return loading ? (
     <Loading />
@@ -104,10 +105,11 @@ const Pool_Picks_Page = () => {
             </div>
           )}
 
-          {(joe?.tourneyStage === 3 || joe?.tourneyStage === 4) &&
-            user?.tiebreaker && <Point_System_Cont />}
+          {joe?.tourneyStage <= 3 && user?.tiebreaker && (
+            <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+          )}
 
-          {joe?.tourneyStage === 5 && user?.tiebreaker && (
+          {/* {joe?.tourneyStage === 5 && user?.tiebreaker && (
             <div className="top box">
               <div className="box left">
                 <div className="predictions-cont">
@@ -118,15 +120,15 @@ const Pool_Picks_Page = () => {
                 <Total_Points_Cont selectedUser={selectedUser?.value} />
               </div>
             </div>
-          )}
+          )} */}
 
           <div className="top box">
             <div className="box left">
-              {joe?.tourneyStage === 5 && user?.tiebreaker && (
+              {/* {joe?.tourneyStage === 5 && user?.tiebreaker && (
                 <Point_System_Cont />
-              )}
+              )} */}
               <div className="predictions-cont">
-                {letters.map((letter) => (
+                {groupLetters.map((letter) => (
                   <Single_Group_Cont
                     key={letter}
                     group={letter}
@@ -135,11 +137,11 @@ const Pool_Picks_Page = () => {
                 ))}
               </div>
             </div>
-            <div className="box right">
-              {joe?.tourneyStage < 5 && user?.tiebreaker && (
-                <Total_Points_Cont selectedUser={selectedUser?.value} />
-              )}
-            </div>
+            {/* <div className="box right"> */}
+            {joe?.tourneyStage < 5 && user?.tiebreaker && (
+              <Total_Points_Cont selectedUser={selectedUser?.value} />
+            )}
+            {/* </div> */}
           </div>
         </div>
       )}

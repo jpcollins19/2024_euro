@@ -1,46 +1,10 @@
-////RULES ADJUSTMENTS stage 2 -- START
-
-//my Picks - locked
-//on Total_Points_Cont
-
-///Leaderboard
-
-///Pool Picks
-//audit to verify that the third place to advance * is working when you select a user that is not you
-
-///admin - users
-//can just update the top section for paid
-//can just update the top section for pw or name updates
-//can still change group info after stage starts
-
-////RULES ADJUSTMENTS stage 2 -- END
-
-////RULES ADJUSTMENTS stage 3 -- START
-
-//My Picks - locked
-//start on total points funcs - do a retro calc for stage 1 & 2
-//fix css for third place to advance from group containers when it is in this stage
-
-///admin - users
-//can just update the top section for paid
-//can just update the top section for pw or name updates
-//can still change group info after stage starts
-
-///admin - groups
-///My Picks - unlocked
-///Leaderboard
-///Pool Picks
-
-////RULES ADJUSTMENTS stage 3 -- END
-
 ////RULES ADJUSTMENTS stage 4 -- START
 
 ///My Picks - locked
-//continue testing for calculating KO scores
+//figure out how the round of 16 seed placements are going to be done - write tests for determineR16Seeding func
+//continue testing for calculating KO scores on the usersObj in the "Calcs everyone's overall scores" describe block
 
 ///My Picks - unlocked
-///Leaderboard
-///Pool Picks
 
 ///admin - users
 //can just update the top section for paid
@@ -48,15 +12,13 @@
 //can still change group info after stage starts
 //can change KO info during stage
 
+///Leaderboard
+
+///Pool Picks
+
 ////RULES ADJUSTMENTS stage 4 -- END
 
 ////RULES ADJUSTMENTS stage 5 -- START
-
-///admin - teams
-//My Picks - locked
-///My Picks - unlocked
-///Leaderboard
-///Pool Picks
 
 ///admin - users
 //can just update the top section for paid
@@ -64,7 +26,21 @@
 //can still change group info after stage starts
 //can change KO info after stage starts
 
+///admin - teams
+
+//My Picks - locked
+
+///My Picks - unlocked
+
+///Leaderboard
+//resume adjusting test file info for the rankFunc
+
+///Pool Picks
+
 ////RULES ADJUSTMENTS stage 5 -- END
+
+//additional testing to complete:
+//finish off the "Calcs Leaderboard" testing for when the tournament is complete?
 
 //make the last updated text look prettier
 

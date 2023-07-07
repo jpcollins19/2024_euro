@@ -50,18 +50,21 @@ export const formatUserData = (user, teams) => {
   groupKeys.forEach((key) => {
     if (user[key]) {
       const keyArr = key.split("");
-      const groupFinishingPosition = Number(keyArr[keyArr.length - 1]);
       const selectedTeam = teams.find((team) => team.name === user[key]);
-      selectedTeam.thirdPlaceAdvanceToKO_User = false;
+      const groupFinishingPosition = Number(keyArr[keyArr.length - 1]);
 
       if (groupFinishingPosition === 3) {
         const group = keyArr[keyArr.length - 2];
 
         const thirdPlaceAdvanceToKO_TeamName =
-          user[`thirdPlaceAdvanceToKO_${group}`];
+          user[`thirdPlaceAdvanceToKO_Pick_${group}`];
 
-        if (thirdPlaceAdvanceToKO_TeamName) {
-          selectedTeam.thirdPlaceAdvanceToKO_User = true;
+        if (
+          thirdPlaceAdvanceToKO_TeamName &&
+          selectedTeam?.thirdPlaceAndAdvancedToKO
+        ) {
+          const key = `thirdPlaceAdvanceToKO_Result_${group}`;
+          user[key] = true;
         }
       }
 

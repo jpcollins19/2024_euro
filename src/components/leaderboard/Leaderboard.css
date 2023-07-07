@@ -10,7 +10,7 @@
 
 .payout-cont-outside {
   position: absolute;
-  top: 170;
+  top: 200;
   left: 250;
   display: flex;
   flex-direction: column;

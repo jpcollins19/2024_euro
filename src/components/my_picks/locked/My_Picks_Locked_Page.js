@@ -54,7 +54,7 @@ const My_Picks_Locked_Page = () => {
         </Link>
       )}
 
-      {/* {joe?.tourneyStage === 4 && user?.tiebreaker && (
+      {joe?.tourneyStage === 4 && user?.tiebreaker && (
         <Link
           to="/my_picks_edit_ko"
           style={{ textDecoration: "none", color: "black" }}
@@ -63,9 +63,9 @@ const My_Picks_Locked_Page = () => {
             text={`${user?.knockQ1 ? "Adjust" : "Select"} Knockout Picks`}
           />
         </Link>
-      )} */}
+      )}
 
-      {/* {joe?.tourneyStage >= 4 && user?.tiebreaker && (
+      {joe?.tourneyStage >= 4 && user?.tiebreaker && (
         <div className="top box">
           <div className="box left">
             <div className="predictions-cont">
@@ -76,12 +76,14 @@ const My_Picks_Locked_Page = () => {
             <Total_Points_Cont />
           </div>
         </div>
-      )} */}
+      )}
 
       {user?.tiebreaker && (
         <div className="top box">
           <div className="box left">
-            {/* {joe?.tourneyStage >= 4 && <Point_System_Cont tourneyStage={joe?.tourneyStage}/>} */}
+            {joe?.tourneyStage >= 4 && (
+              <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+            )}
             <div className="predictions-cont">
               {letters.map((letter) => (
                 <Single_Group_Cont_Locked key={letter} group={letter} />
@@ -89,9 +91,9 @@ const My_Picks_Locked_Page = () => {
             </div>
           </div>
           {joe?.tourneyStage <= 3 && (
-            <div className="box right">
-              <Total_Points_Cont />
-            </div>
+            // <div className="box right">
+            <Total_Points_Cont />
+            // </div>
           )}
         </div>
       )}

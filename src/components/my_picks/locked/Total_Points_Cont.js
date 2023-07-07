@@ -45,12 +45,12 @@ const Total_Points_Cont = ({ selectedUser }) => {
           <div className="total-points-points-cont">
             <h4>Points</h4>
             <div>{groupTotalCalc(userToUse)}</div>
-            {/* <div>{koRoundCalc(userToUse, "quarters", teams)}</div>
+            <div>{koRoundCalc(userToUse, "quarters", teams)}</div>
             <div>{koRoundCalc(userToUse, "semis", teams)}</div>
             <div>{koRoundCalc(userToUse, "final", teams)}</div>
-            <div>{koRoundCalc(userToUse, "champion", teams)}</div> */}
+            <div>{koRoundCalc(userToUse, "champion", teams)}</div>
 
-            {/* <div className="bold">{userTotalPoints(userToUse, teams)}</div> */}
+            <div className="bold">{userTotalPoints(userToUse)}</div>
           </div>
         </div>
         {

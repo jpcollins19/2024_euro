@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { groupLetters } from "../../../store";
 import Dropdown from "../../Misc/Dropdown";
 import Group_Cont from "./Group_Cont";
 import "./Group_Admin.css";
@@ -6,7 +7,7 @@ import "./Group_Admin.css";
 const Group_Admin_Page = () => {
   const [group, setGroup] = useState(null);
 
-  const letters = ["A", "B", "C", "D", "E", "F", "G", "H"].map((letter) => {
+  const letters = groupLetters.map((letter) => {
     return { value: letter, label: `Group ${letter}` };
   });
 

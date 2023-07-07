@@ -144,11 +144,11 @@
   min-height: 11.5rem;
 }
 
-.single-group-cont-picks > div > div {
+.single-group-cont-picks-pre-ko > div > div {
   padding: 8px 0 8px 0;
 }
 
-.single-group-cont-picks-pre-ko > div > div {
+.single-group-cont-picks > div > div {
   padding: 8px 0 8px 0;
 }
 
@@ -163,13 +163,6 @@
 }
 
 .skinny-black-border > div {
-  margin: 0.1rem;
-  border: solid black 1px;
-  min-height: 1.66rem;
-  border-radius: 0.2rem;
-}
-
-.single-group-cont-picks > div > div > div {
   margin: 0.1rem;
   border: solid black 1px;
   min-height: 1.66rem;

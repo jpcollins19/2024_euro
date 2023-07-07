@@ -70,9 +70,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_A: {
+  thirdPlaceAdvanceToKO_Pick_A: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_A: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   groupB1: {
@@ -91,9 +95,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_B: {
+  thirdPlaceAdvanceToKO_Pick_B: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_B: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   groupC1: {
@@ -112,9 +120,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_C: {
+  thirdPlaceAdvanceToKO_Pick_C: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_C: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   groupD1: {
@@ -133,9 +145,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_D: {
+  thirdPlaceAdvanceToKO_Pick_D: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_D: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   groupE1: {
@@ -154,9 +170,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_E: {
+  thirdPlaceAdvanceToKO_Pick_E: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_E: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   groupF1: {
@@ -175,9 +195,13 @@ const User = db.define("users", {
     type: STRING,
     defaultValue: null,
   },
-  thirdPlaceAdvanceToKO_F: {
+  thirdPlaceAdvanceToKO_Pick_F: {
     type: STRING,
     defaultValue: null,
+  },
+  thirdPlaceAdvanceToKO_Result_F: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 
   knockQ1: {

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { cap1stLetter, updateTeam } from "../../../store";
 import Button from "../../Misc/Button";
 import Column_Group_Admin from "./Column_Group_Admin";
+import CheckBox_Cont from "./CheckBox_Cont";
 
 const Group_Cont = ({ group }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,8 @@ const Group_Cont = ({ group }) => {
   const [GA3, setGA3] = useState(null);
 
   const [groupFinished, setGroupFinished] = useState(null);
+  const [thirdPlaceTeamAdvancedToKO, setThirdPlaceTeamAdvancedToKO] =
+    useState(null);
 
   const entries = ["id", "position", "flag", "name", "W", "D", "L", "GF", "GA"];
 
@@ -62,6 +65,10 @@ const Group_Cont = ({ group }) => {
   useEffect(() => {
     groupTeams.forEach((team, idx) => {
       idx === 0 && setGroupFinished(team.groupIsFinished);
+
+      if (idx === 2) {
+        setThirdPlaceTeamAdvancedToKO(team.thirdPlaceAndAdvancedToKO);
+      }
 
       entries.forEach((entry) => {
         let set;
@@ -87,7 +94,9 @@ const Group_Cont = ({ group }) => {
   const box1Entries = ["position", "flag", "name"];
   const box2Entries = ["W", "D", "L", "GF", "GA"];
 
-  const toggle = () => setGroupFinished((value) => !value);
+  const toggleGroupFinished = () => setGroupFinished((value) => !value);
+  const toggleThirdPlaceTeamAdvancedToKO = () =>
+    setThirdPlaceTeamAdvancedToKO((value) => !value);
 
   const nums = [0, 1, 2, 3];
 
@@ -113,7 +122,13 @@ const Group_Cont = ({ group }) => {
             const answer = eval(`${entry}${idx}`);
 
             if (entry === "position") {
-              a.groupFinishingPosition = Number(answer);
+              const position = Number(answer);
+
+              a.groupFinishingPosition = position;
+
+              if (position === 3 && thirdPlaceTeamAdvancedToKO) {
+                a.thirdPlaceAndAdvancedToKO = true;
+              }
             } else if (entry === "id") {
               a[entry] = answer;
             } else {
@@ -175,15 +190,17 @@ const Group_Cont = ({ group }) => {
           </div>
         </div>
 
-        <div className="group-finished-cont">
-          Group Is Finished:
-          <input
-            type="checkbox"
-            defaultValue={groupFinished}
-            onChange={toggle}
-            checked={groupFinished ? groupFinished : !!groupFinished}
-          ></input>
-        </div>
+        <CheckBox_Cont
+          defaultValue={groupFinished}
+          onChange={toggleGroupFinished}
+          verbiage={"Group Is Finished"}
+        />
+
+        <CheckBox_Cont
+          defaultValue={thirdPlaceTeamAdvancedToKO}
+          onChange={toggleThirdPlaceTeamAdvancedToKO}
+          verbiage={"Third Place Team Advanced To KO"}
+        />
       </div>
       <Button text="Submit" form="submit-group" />
     </form>

@@ -79,42 +79,42 @@ const My_Picks_Unlocked_Page = () => {
       2: user?.groupA2?.name ?? null,
       3: user?.groupA3?.name ?? null,
       4: user?.groupA4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupA3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_A ?? false,
     },
     B: {
       1: user?.groupB1?.name ?? null,
       2: user?.groupB2?.name ?? null,
       3: user?.groupB3?.name ?? null,
       4: user?.groupB4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupB3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_B ?? false,
     },
     C: {
       1: user?.groupC1?.name ?? null,
       2: user?.groupC2?.name ?? null,
       3: user?.groupC3?.name ?? null,
       4: user?.groupC4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupC3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_C ?? false,
     },
     D: {
       1: user?.groupD1?.name ?? null,
       2: user?.groupD2?.name ?? null,
       3: user?.groupD3?.name ?? null,
       4: user?.groupD4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupD3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_D ?? false,
     },
     E: {
       1: user?.groupE1?.name ?? null,
       2: user?.groupE2?.name ?? null,
       3: user?.groupE3?.name ?? null,
       4: user?.groupE4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupE3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_E ?? false,
     },
     F: {
       1: user?.groupF1?.name ?? null,
       2: user?.groupF2?.name ?? null,
       3: user?.groupF3?.name ?? null,
       4: user?.groupF4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.groupF3?.thirdPlaceAdvanceToKO_User,
+      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_F ?? false,
     },
   });
 
@@ -266,7 +266,7 @@ const My_Picks_Unlocked_Page = () => {
             userObj[`group${letter}${num}`] = selectionObj[letter][num];
 
             if (num === 3) {
-              const key = `thirdPlaceAdvanceToKO_${letter}`;
+              const key = `thirdPlaceAdvanceToKO_Pick_${letter}`;
               const value = selectionObj[letter].thirdPlaceAdvanceToKO
                 ? selectionObj[letter][num]
                 : null;
