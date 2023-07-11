@@ -215,63 +215,70 @@ const groupTotalCalc = (user) => {
     }, 0);
 };
 
-const koGameCalc = (user, game, teams) => {
-  // const roundInfoObj = {
-  //   Q: {
-  //     1: ["A1", "B2"],
-  //     2: ["C1", "D2"],
-  //     3: ["E1", "F2"],
-  //     4: ["G1", "H2"],
-  //     5: ["B1", "A2"],
-  //     6: ["D1", "C2"],
-  //     7: ["F1", "E2"],
-  //     8: ["H1", "G2"],
-  //     points: 2,
-  //   },
-  //   S: {
-  //     1: ["A1", "B2", "C1", "D2"],
-  //     2: ["E1", "F2", "G1", "H2"],
-  //     3: ["B1", "A2", "D1", "C2"],
-  //     4: ["F1", "E2", "H1", "G2"],
-  //     points: 4,
-  //   },
-  //   F: {
-  //     1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-  //     2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-  //     points: 6,
-  //   },
-  // };
-  // const round = game.split("")[0];
-  // const number = game.split("")[1];
-  // const usersPick = user[`knock${game}`];
-  // let teamThatAdvanced, points;
-  // if (game === "Champ") {
-  //   teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
-  // } else {
-  //   teamThatAdvanced =
-  //     teams.find(
-  //       (team) =>
-  //         roundInfoObj[round][number].includes(team.knockoutPosition) &&
-  //         team[`advanceTo${round}`]
-  //     ) ?? null;
-  // }
-  // let usersPickClass = "unknown";
-  // const gameIsFinished = teamThatAdvanced?.name ? true : false;
-  // if (gameIsFinished && usersPick?.name) {
-  //   usersPickClass =
-  //     usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
-  // }
-  // if (game === "Champ") {
-  //   points = usersPickClass === "correct" ? 10 : 0;
-  // } else {
-  //   points = usersPickClass === "correct" ? roundInfoObj[round].points : 0;
-  // }
-  // return {
-  //   usersPick,
-  //   teamThatAdvanced,
-  //   usersPickClass,
-  //   points,
-  // };
+const koGameCalc = (user, game) => {
+  const roundInfoObj = {
+    Q: {
+      1: ["A1", "B2"],
+      2: ["C1", "D2"],
+      3: ["E1", "F2"],
+      4: ["G1", "H2"],
+      5: ["B1", "A2"],
+      6: ["D1", "C2"],
+      7: ["F1", "E2"],
+      8: ["H1", "G2"],
+      points: 2,
+    },
+    S: {
+      1: ["A1", "B2", "C1", "D2"],
+      2: ["E1", "F2", "G1", "H2"],
+      3: ["B1", "A2", "D1", "C2"],
+      4: ["F1", "E2", "H1", "G2"],
+      points: 4,
+    },
+    F: {
+      1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+      2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+      points: 6,
+    },
+  };
+
+  const round = game.split("")[0];
+  const number = game.split("")[1];
+  const usersPick = user[`knock${game}`];
+  let teamThatAdvanced, points;
+
+  if (game === "Champ") {
+    teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
+  } else {
+    teamThatAdvanced =
+      teams.find(
+        (team) =>
+          roundInfoObj[round][number].includes(team.knockoutPosition) &&
+          team[`advanceTo${round}`]
+      ) ?? null;
+  }
+
+  let usersPickClass = "unknown";
+
+  const gameIsFinished = teamThatAdvanced?.name ? true : false;
+
+  if (gameIsFinished && usersPick?.name) {
+    usersPickClass =
+      usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
+  }
+
+  if (game === "Champ") {
+    points = usersPickClass === "correct" ? 10 : 0;
+  } else {
+    points = usersPickClass === "correct" ? roundInfoObj[round].points : 0;
+  }
+
+  return {
+    usersPick,
+    teamThatAdvanced,
+    usersPickClass,
+    points,
+  };
 };
 
 const koRoundCalc = (user, round, teams) => {
@@ -301,15 +308,16 @@ const userTotalPoints = (user) => {
   // const userHasKOPicks = user.knockChamp !== null ? true : false;
   const userHasKOPicks = user.knockChamp ? true : false;
 
-  const koTotals = koRounds.reduce((a, round) => {
-    if (userHasKOPicks) {
-      const roundTotal = koRoundCalc(user, round, teams);
-      a += roundTotal;
-    }
-    return a;
-  }, 0);
+  // const koTotals = koRounds.reduce((a, round) => {
+  //   if (userHasKOPicks) {
+  //     const roundTotal = koRoundCalc(user, round, teams);
+  //     a += roundTotal;
+  //   }
+  //   return a;
+  // }, 0);
 
-  return groupTotal + koTotals;
+  // return groupTotal + koTotals;
+  return groupTotal;
 };
 
 const sortNames = (arr) => {

@@ -13,9 +13,21 @@ const {
   determineR16Seeding,
 } = require("./src/store/funcs");
 
-const { groupLetters } = require("./src/store/variables");
+const {
+  groupLetters,
+  koLetters,
+  Qs,
+  Ss,
+  Fs,
+} = require("./src/store/variables");
 
-const { userData, teamData } = require("./testing/data");
+const {
+  userData,
+  teamData,
+  teamDataThroughQs,
+  teamDataThroughSs,
+  teamDataThroughFs,
+} = require("./testing/data");
 
 describe("Cals everthing correctly", () => {
   let users;
@@ -1115,107 +1127,107 @@ describe("Cals everthing correctly", () => {
         midStage3Total: 13,
         groupsFinishedTotal: 74,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "Netherlands" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Switz" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 6,
-        //     },
-        //   },
+        koRounds: {
+          quarters: {
+            Q1: {
+              usersPick: { name: "England" },
+              teamThatAdvanced: { name: "England" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q2: {
+              usersPick: { name: "Mexico" },
+              teamThatAdvanced: { name: "Mexico" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q3: {
+              usersPick: { name: "Belgium" },
+              teamThatAdvanced: { name: "Belgium" },
+              usersPickClass: "wrong",
+              points: 0,
+            },
+            Q4: {
+              usersPick: { name: "Spain" },
+              teamThatAdvanced: { name: "Spain" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q5: {
+              usersPick: { name: "Germany" },
+              teamThatAdvanced: { name: "Germany" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q6: {
+              usersPick: { name: "France" },
+              teamThatAdvanced: { name: "France" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q7: {
+              usersPick: { name: "Argentina" },
+              teamThatAdvanced: { name: "Argentina" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+            Q8: {
+              usersPick: { name: "USA" },
+              teamThatAdvanced: { name: "USA" },
+              usersPickClass: "correct",
+              points: 2,
+            },
+          },
+          // semis: {
+          //   S1: {
+          //     usersPick: { name: "Argentina" },
+          //     teamThatAdvanced: { name: "Argentina" },
+          //     usersPickClass: "correct",
+          //     points: 4,
+          //   },
+          //   S2: {
+          //     usersPick: { name: "Brasil" },
+          //     teamThatAdvanced: { name: "Croatia" },
+          //     usersPickClass: "wrong",
+          //     points: 0,
+          //   },
+          //   S3: {
+          //     usersPick: { name: "France" },
+          //     teamThatAdvanced: { name: "France" },
+          //     usersPickClass: "correct",
+          //     points: 4,
+          //   },
+          //   S4: {
+          //     usersPick: { name: "Spain" },
+          //     teamThatAdvanced: { name: "Morocco" },
+          //     usersPickClass: "wrong",
+          //     points: 0,
+          //   },
+          // },
+          // final: {
+          //   F1: {
+          //     usersPick: { name: "Brasil" },
+          //     teamThatAdvanced: { name: "Argentina" },
+          //     usersPickClass: "wrong",
+          //     points: 0,
+          //   },
+          //   F2: {
+          //     usersPick: { name: "France" },
+          //     teamThatAdvanced: { name: "France" },
+          //     usersPickClass: "correct",
+          //     points: 6,
+          //   },
+          // },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        // },
+          // champion: {
+          //   Champ: {
+          //     usersPick: { name: "France" },
+          //     teamThatAdvanced: { name: "Argentina" },
+          //     usersPickClass: "wrong",
+          //     points: 0,
+          //   },
+          // },
+        },
         // midStage5_Q: 1,
         // midStage5Total_Q: 2,
         // koRoundFinishedTotal_Q: 10,
@@ -1238,835 +1250,835 @@ describe("Cals everthing correctly", () => {
         // koRoundFinished_C_overallTotal: 55,
       },
 
-      Stanley: {
-        groups: {
-          A: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-          B: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-          C: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          D: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-          E: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          F: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-        },
-        midStage3: 2,
-        midStage3Total: 26,
-        groupsFinishedTotal: 74,
+      // Stanley: {
+      //   groups: {
+      //     A: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     B: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     C: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     D: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     E: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     F: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //   },
+      //   midStage3: 2,
+      //   midStage3Total: 26,
+      //   groupsFinishedTotal: 74,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "Netherlands" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Switz" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 6,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 6,
-        //     },
-        //   },
+      //   // koRounds: {
+      //   //   quarters: {
+      //   //     Q1: {
+      //   //       usersPick: { name: "Netherlands" },
+      //   //       teamThatAdvanced: { name: "Netherlands" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q2: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q3: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q4: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Brasil" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q5: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "England" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q6: {
+      //   //       usersPick: { name: "France" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q7: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q8: {
+      //   //       usersPick: { name: "Switz" },
+      //   //       teamThatAdvanced: { name: "Portugal" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   semis: {
+      //   //     S1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S2: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S3: {
+      //   //       usersPick: { name: "France" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S4: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   final: {
+      //   //     F1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 6,
+      //   //     },
+      //   //     F2: {
+      //   //       usersPick: { name: "France" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 6,
+      //   //     },
+      //   //   },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 10,
-        //     },
-        //   },
-        // },
-        // midStage5_Q: 2,
-        // midStage5Total_Q: 4,
-        // koRoundFinishedTotal_Q: 10,
-        // koRoundFinished_Q_overallTotal: 41,
-        // midStage5_Q_overallTotal: 35,
+      //   //   champion: {
+      //   //     Champ: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 10,
+      //   //     },
+      //   //   },
+      //   // },
+      //   // midStage5_Q: 2,
+      //   // midStage5Total_Q: 4,
+      //   // koRoundFinishedTotal_Q: 10,
+      //   // koRoundFinished_Q_overallTotal: 41,
+      //   // midStage5_Q_overallTotal: 35,
 
-        // midStage5_S: 2,
-        // midStage5Total_S: 4,
-        // koRoundFinishedTotal_S: 8,
-        // koRoundFinished_S_overallTotal: 49,
-        // midStage5_S_overallTotal: 45,
+      //   // midStage5_S: 2,
+      //   // midStage5Total_S: 4,
+      //   // koRoundFinishedTotal_S: 8,
+      //   // koRoundFinished_S_overallTotal: 49,
+      //   // midStage5_S_overallTotal: 45,
 
-        // midStage5_F: 2,
-        // midStage5Total_F: 12,
-        // koRoundFinishedTotal_F: 12,
-        // koRoundFinished_F_overallTotal: 61,
-        // midStage5_F_overallTotal: 61,
+      //   // midStage5_F: 2,
+      //   // midStage5Total_F: 12,
+      //   // koRoundFinishedTotal_F: 12,
+      //   // koRoundFinished_F_overallTotal: 61,
+      //   // midStage5_F_overallTotal: 61,
 
-        // koRoundFinishedTotal_C: 10,
-        // koRoundFinished_C_overallTotal: 71,
-      },
+      //   // koRoundFinishedTotal_C: 10,
+      //   // koRoundFinished_C_overallTotal: 71,
+      // },
 
-      Pat: {
-        groups: {
-          A: [
-            { points: 5, className: "blue" },
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 1, className: "green" },
-          ],
-          B: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          C: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          D: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-          E: [
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          F: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-        },
-        midStage3: 4,
-        midStage3Total: 45,
-        groupsFinishedTotal: 60,
+      // Pat: {
+      //   groups: {
+      //     A: [
+      //       { points: 5, className: "blue" },
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     B: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     C: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     D: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     E: [
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     F: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //   },
+      //   midStage3: 4,
+      //   midStage3Total: 45,
+      //   groupsFinishedTotal: 60,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "USA" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Croatia" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Portugal" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
+      //   // koRounds: {
+      //   //   quarters: {
+      //   //     Q1: {
+      //   //       usersPick: { name: "USA" },
+      //   //       teamThatAdvanced: { name: "Netherlands" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q2: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q3: {
+      //   //       usersPick: { name: "Croatia" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q4: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Brasil" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q5: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "England" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q6: {
+      //   //       usersPick: { name: "France" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q7: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q8: {
+      //   //       usersPick: { name: "Portugal" },
+      //   //       teamThatAdvanced: { name: "Portugal" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //   },
+      //   //   semis: {
+      //   //     S1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S2: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S3: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S4: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   final: {
+      //   //     F1: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     F2: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        // },
-        // midStage5_Q: 3,
-        // midStage5Total_Q: 4,
-        // koRoundFinishedTotal_Q: 12,
-        // koRoundFinished_Q_overallTotal: 40,
-        // midStage5_Q_overallTotal: 32,
+      //   //   champion: {
+      //   //     Champ: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   // },
+      //   // midStage5_Q: 3,
+      //   // midStage5Total_Q: 4,
+      //   // koRoundFinishedTotal_Q: 12,
+      //   // koRoundFinished_Q_overallTotal: 40,
+      //   // midStage5_Q_overallTotal: 32,
 
-        // midStage5_S: 3,
-        // midStage5Total_S: 4,
-        // koRoundFinishedTotal_S: 4,
-        // koRoundFinished_S_overallTotal: 44,
-        // midStage5_S_overallTotal: 44,
+      //   // midStage5_S: 3,
+      //   // midStage5Total_S: 4,
+      //   // koRoundFinishedTotal_S: 4,
+      //   // koRoundFinished_S_overallTotal: 44,
+      //   // midStage5_S_overallTotal: 44,
 
-        // midStage5_F: 2,
-        // midStage5Total_F: 0,
-        // koRoundFinishedTotal_F: 0,
-        // koRoundFinished_F_overallTotal: 44,
-        // midStage5_F_overallTotal: 44,
+      //   // midStage5_F: 2,
+      //   // midStage5Total_F: 0,
+      //   // koRoundFinishedTotal_F: 0,
+      //   // koRoundFinished_F_overallTotal: 44,
+      //   // midStage5_F_overallTotal: 44,
 
-        // koRoundFinishedTotal_C: 0,
-        // koRoundFinished_C_overallTotal: 44,
-      },
+      //   // koRoundFinishedTotal_C: 0,
+      //   // koRoundFinished_C_overallTotal: 44,
+      // },
 
-      Kevin: {
-        groups: {
-          A: [
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          B: [
-            { points: 5, className: "blue" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          C: [
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          D: [
-            { points: 0, className: "" },
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-          ],
-          E: [
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-          ],
-          F: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-        },
-        midStage3: 5,
-        midStage3Total: 19,
-        groupsFinishedTotal: 32,
+      // Kevin: {
+      //   groups: {
+      //     A: [
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     B: [
+      //       { points: 5, className: "blue" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     C: [
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     D: [
+      //       { points: 0, className: "" },
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     E: [
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     F: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //   },
+      //   midStage3: 5,
+      //   midStage3Total: 19,
+      //   groupsFinishedTotal: 32,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "USA" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "Poland" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Morocco" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Switz" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "Poland" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Morocco" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "Morocco" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
+      //   // koRounds: {
+      //   //   quarters: {
+      //   //     Q1: {
+      //   //       usersPick: { name: "USA" },
+      //   //       teamThatAdvanced: { name: "Netherlands" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q2: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q3: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q4: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Brasil" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q5: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "England" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q6: {
+      //   //       usersPick: { name: "Poland" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q7: {
+      //   //       usersPick: { name: "Morocco" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q8: {
+      //   //       usersPick: { name: "Switz" },
+      //   //       teamThatAdvanced: { name: "Portugal" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   semis: {
+      //   //     S1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S2: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S3: {
+      //   //       usersPick: { name: "Poland" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S4: {
+      //   //       usersPick: { name: "Morocco" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //   },
+      //   //   final: {
+      //   //     F1: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     F2: {
+      //   //       usersPick: { name: "Morocco" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        // },
-        // midStage5_Q: 4,
-        // midStage5Total_Q: 4,
-        // koRoundFinishedTotal_Q: 8,
-        // koRoundFinished_Q_overallTotal: 29,
-        // midStage5_Q_overallTotal: 25,
+      //   //   champion: {
+      //   //     Champ: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   // },
+      //   // midStage5_Q: 4,
+      //   // midStage5Total_Q: 4,
+      //   // koRoundFinishedTotal_Q: 8,
+      //   // koRoundFinished_Q_overallTotal: 29,
+      //   // midStage5_Q_overallTotal: 25,
 
-        // midStage5_S: 4,
-        // midStage5Total_S: 8,
-        // koRoundFinishedTotal_S: 8,
-        // koRoundFinished_S_overallTotal: 37,
-        // midStage5_S_overallTotal: 37,
+      //   // midStage5_S: 4,
+      //   // midStage5Total_S: 8,
+      //   // koRoundFinishedTotal_S: 8,
+      //   // koRoundFinished_S_overallTotal: 37,
+      //   // midStage5_S_overallTotal: 37,
 
-        // midStage5_F: 1,
-        // midStage5Total_F: 0,
-        // koRoundFinishedTotal_F: 0,
-        // koRoundFinished_F_overallTotal: 37,
-        // midStage5_F_overallTotal: 37,
+      //   // midStage5_F: 1,
+      //   // midStage5Total_F: 0,
+      //   // koRoundFinishedTotal_F: 0,
+      //   // koRoundFinished_F_overallTotal: 37,
+      //   // midStage5_F_overallTotal: 37,
 
-        // koRoundFinishedTotal_C: 0,
-        // koRoundFinished_C_overallTotal: 37,
-      },
+      //   // koRoundFinishedTotal_C: 0,
+      //   // koRoundFinished_C_overallTotal: 37,
+      // },
 
-      Sarah: {
-        groups: {
-          A: [
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-          ],
-          B: [
-            { points: 2, className: "orange" },
-            { points: 4, className: "purple" },
-            { points: 2, className: "orange" },
-            { points: 1, className: "green" },
-          ],
-          C: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          D: [
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          E: [
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          F: [
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 3, className: "pink" },
-            { points: 0, className: "" },
-          ],
-        },
-        midStage3: 3,
-        midStage3Total: 22,
-        groupsFinishedTotal: 35,
+      // Sarah: {
+      //   groups: {
+      //     A: [
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     B: [
+      //       { points: 2, className: "orange" },
+      //       { points: 4, className: "purple" },
+      //       { points: 2, className: "orange" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     C: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     D: [
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     E: [
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     F: [
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 3, className: "pink" },
+      //       { points: 0, className: "" },
+      //     ],
+      //   },
+      //   midStage3: 3,
+      //   midStage3Total: 22,
+      //   groupsFinishedTotal: 35,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "USA" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "Poland" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Switz" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
+      //   // koRounds: {
+      //   //   quarters: {
+      //   //     Q1: {
+      //   //       usersPick: { name: "USA" },
+      //   //       teamThatAdvanced: { name: "Netherlands" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q2: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q3: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q4: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Brasil" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q5: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "England" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q6: {
+      //   //       usersPick: { name: "Poland" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q7: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q8: {
+      //   //       usersPick: { name: "Switz" },
+      //   //       teamThatAdvanced: { name: "Portugal" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   semis: {
+      //   //     S1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S2: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S3: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S4: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   final: {
+      //   //     F1: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     F2: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "Japan" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        // },
-        // midStage5_Q: 6,
-        // midStage5Total_Q: 6,
-        // koRoundFinishedTotal_Q: 6,
-        // koRoundFinished_Q_overallTotal: 20,
-        // midStage5_Q_overallTotal: 20,
+      //   //   champion: {
+      //   //     Champ: {
+      //   //       usersPick: { name: "Japan" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   // },
+      //   // midStage5_Q: 6,
+      //   // midStage5Total_Q: 6,
+      //   // koRoundFinishedTotal_Q: 6,
+      //   // koRoundFinished_Q_overallTotal: 20,
+      //   // midStage5_Q_overallTotal: 20,
 
-        // midStage5_S: 2,
-        // midStage5Total_S: 4,
-        // koRoundFinishedTotal_S: 4,
-        // koRoundFinished_S_overallTotal: 24,
-        // midStage5_S_overallTotal: 24,
+      //   // midStage5_S: 2,
+      //   // midStage5Total_S: 4,
+      //   // koRoundFinishedTotal_S: 4,
+      //   // koRoundFinished_S_overallTotal: 24,
+      //   // midStage5_S_overallTotal: 24,
 
-        // midStage5_F: 2,
-        // midStage5Total_F: 0,
-        // koRoundFinishedTotal_F: 0,
-        // koRoundFinished_F_overallTotal: 24,
-        // midStage5_F_overallTotal: 24,
+      //   // midStage5_F: 2,
+      //   // midStage5Total_F: 0,
+      //   // koRoundFinishedTotal_F: 0,
+      //   // koRoundFinished_F_overallTotal: 24,
+      //   // midStage5_F_overallTotal: 24,
 
-        // koRoundFinishedTotal_C: 0,
-        // koRoundFinished_C_overallTotal: 24,
-      },
+      //   // koRoundFinishedTotal_C: 0,
+      //   // koRoundFinished_C_overallTotal: 24,
+      // },
 
-      Anthony: {
-        groups: {
-          A: [
-            { points: 5, className: "blue" },
-            { points: 2, className: "orange" },
-            { points: 0, className: "" },
-            { points: 1, className: "green" },
-          ],
-          B: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-          C: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          D: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 0, className: "" },
-            { points: 0, className: "" },
-          ],
-          E: [
-            { points: 2, className: "orange" },
-            { points: 2, className: "orange" },
-            { points: 1, className: "green" },
-            { points: 1, className: "green" },
-          ],
-          F: [
-            { points: 5, className: "blue" },
-            { points: 4, className: "purple" },
-            { points: 3, className: "pink" },
-            { points: 1, className: "green" },
-          ],
-        },
-        midStage3: 1,
-        midStage3Total: 8,
-        groupsFinishedTotal: 60,
+      // Anthony: {
+      //   groups: {
+      //     A: [
+      //       { points: 5, className: "blue" },
+      //       { points: 2, className: "orange" },
+      //       { points: 0, className: "" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     B: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     C: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     D: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 0, className: "" },
+      //       { points: 0, className: "" },
+      //     ],
+      //     E: [
+      //       { points: 2, className: "orange" },
+      //       { points: 2, className: "orange" },
+      //       { points: 1, className: "green" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //     F: [
+      //       { points: 5, className: "blue" },
+      //       { points: 4, className: "purple" },
+      //       { points: 3, className: "pink" },
+      //       { points: 1, className: "green" },
+      //     ],
+      //   },
+      //   midStage3: 1,
+      //   midStage3Total: 8,
+      //   groupsFinishedTotal: 60,
 
-        // koRounds: {
-        //   quarters: {
-        //     Q1: {
-        //       usersPick: { name: "USA" },
-        //       teamThatAdvanced: { name: "Netherlands" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q2: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q3: {
-        //       usersPick: { name: "Croatia" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q4: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Brasil" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q5: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "England" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q6: {
-        //       usersPick: { name: "France" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //     Q7: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     Q8: {
-        //       usersPick: { name: "Portugal" },
-        //       teamThatAdvanced: { name: "Portugal" },
-        //       usersPickClass: "correct",
-        //       points: 2,
-        //     },
-        //   },
-        //   semis: {
-        //     S1: {
-        //       usersPick: { name: "Argentina" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "correct",
-        //       points: 4,
-        //     },
-        //     S2: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Croatia" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S3: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     S4: {
-        //       usersPick: { name: "Spain" },
-        //       teamThatAdvanced: { name: "Morocco" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        //   final: {
-        //     F1: {
-        //       usersPick: { name: "Brasil" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //     F2: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "France" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
+      //   // koRounds: {
+      //   //   quarters: {
+      //   //     Q1: {
+      //   //       usersPick: { name: "USA" },
+      //   //       teamThatAdvanced: { name: "Netherlands" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q2: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q3: {
+      //   //       usersPick: { name: "Croatia" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q4: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Brasil" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q5: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "England" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q6: {
+      //   //       usersPick: { name: "France" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //     Q7: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     Q8: {
+      //   //       usersPick: { name: "Portugal" },
+      //   //       teamThatAdvanced: { name: "Portugal" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 2,
+      //   //     },
+      //   //   },
+      //   //   semis: {
+      //   //     S1: {
+      //   //       usersPick: { name: "Argentina" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "correct",
+      //   //       points: 4,
+      //   //     },
+      //   //     S2: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Croatia" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S3: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     S4: {
+      //   //       usersPick: { name: "Spain" },
+      //   //       teamThatAdvanced: { name: "Morocco" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   //   final: {
+      //   //     F1: {
+      //   //       usersPick: { name: "Brasil" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //     F2: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "France" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
 
-        //   champion: {
-        //     Champ: {
-        //       usersPick: { name: "England" },
-        //       teamThatAdvanced: { name: "Argentina" },
-        //       usersPickClass: "wrong",
-        //       points: 0,
-        //     },
-        //   },
-        // },
-        // midStage5_Q: 7,
-        // midStage5Total_Q: 10,
-        // koRoundFinishedTotal_Q: 12,
-        // koRoundFinished_Q_overallTotal: 48,
-        // midStage5_Q_overallTotal: 46,
+      //   //   champion: {
+      //   //     Champ: {
+      //   //       usersPick: { name: "England" },
+      //   //       teamThatAdvanced: { name: "Argentina" },
+      //   //       usersPickClass: "wrong",
+      //   //       points: 0,
+      //   //     },
+      //   //   },
+      //   // },
+      //   // midStage5_Q: 7,
+      //   // midStage5Total_Q: 10,
+      //   // koRoundFinishedTotal_Q: 12,
+      //   // koRoundFinished_Q_overallTotal: 48,
+      //   // midStage5_Q_overallTotal: 46,
 
-        // midStage5_S: 3,
-        // midStage5Total_S: 4,
-        // koRoundFinishedTotal_S: 4,
-        // koRoundFinished_S_overallTotal: 52,
-        // midStage5_S_overallTotal: 52,
+      //   // midStage5_S: 3,
+      //   // midStage5Total_S: 4,
+      //   // koRoundFinishedTotal_S: 4,
+      //   // koRoundFinished_S_overallTotal: 52,
+      //   // midStage5_S_overallTotal: 52,
 
-        // midStage5_F: 2,
-        // midStage5Total_F: 0,
-        // koRoundFinishedTotal_F: 0,
-        // koRoundFinished_F_overallTotal: 52,
-        // midStage5_F_overallTotal: 52,
+      //   // midStage5_F: 2,
+      //   // midStage5Total_F: 0,
+      //   // koRoundFinishedTotal_F: 0,
+      //   // koRoundFinished_F_overallTotal: 52,
+      //   // midStage5_F_overallTotal: 52,
 
-        // koRoundFinishedTotal_C: 0,
-        // koRoundFinished_C_overallTotal: 52,
-      },
+      //   // koRoundFinishedTotal_C: 0,
+      //   // koRoundFinished_C_overallTotal: 52,
+      // },
     };
 
     Object.keys(usersObj).forEach((userName) => {
@@ -2163,219 +2175,223 @@ describe("Cals everthing correctly", () => {
           });
         });
 
-        // describe(`${userName}'s Knockout rounds`, () => {
-        //   Object.keys(usersObj[userName].koRounds).forEach((round) => {
-        //     describe(`${userName}: ${round}`, () => {
-        //       const letter = round.toUpperCase().split("")[0];
+        describe(`${userName}'s Knockout rounds`, () => {
+          Object.keys(usersObj[userName].koRounds).forEach((round) => {
+            describe(`${userName}: ${round}`, () => {
+              const letter = round.toUpperCase().split("")[0];
 
-        //       beforeEach(() => {
-        //         switch (round) {
-        //           case "quarters":
-        //             teams.forEach((team) => {
-        //               team.advanceToS = false;
-        //               team.advanceToF = false;
-        //               team.advanceToChamp = false;
-        //             });
-        //             break;
-        //           case "semis":
-        //             teams.forEach((team) => {
-        //               team.advanceToF = false;
-        //               team.advanceToChamp = false;
-        //             });
-        //             break;
-        //           case "final":
-        //             teams.forEach((team) => {
-        //               team.advanceToChamp = false;
-        //             });
-        //             break;
-        //         }
-        //       });
+              beforeEach(() => {
+                switch (round) {
+                  case "quarters":
+                    // const roundsToAdjust = koLetters.slice(1);
 
-        //       describe(`when ${round} is finished`, () => {
-        //         Object.keys(usersObj[userName].koRounds[round]).forEach(
-        //           (game) => {
-        //             describe(`game: ${game}`, () => {
-        //               beforeEach(() => {
-        //                 gameAnswer = koGameCalc(user, game, teams);
-        //               });
+                    Ss.forEach((game) => {
+                      const key = `knockS${game}`;
 
-        //               it(`pulls in users prediction correctly`, () => {
-        //                 expect(gameAnswer.usersPick.name).to.equal(
-        //                   usersObj[userName].koRounds[round][game].usersPick
-        //                     .name
-        //                 );
-        //               });
+                      const teamToAdjust = user[key];
 
-        //               it(`game: ${game} - pulls in the team that advanced correctly`, () => {
-        //                 expect(gameAnswer.teamThatAdvanced.name).to.equal(
-        //                   usersObj[userName].koRounds[round][game]
-        //                     .teamThatAdvanced.name
-        //                 );
-        //               });
+                      teamToAdjust.advanceToS = false;
+                      teamToAdjust.advanceToF = false;
+                      teamToAdjust.advanceToChamp = false;
+                      teamToAdjust.outOfTourney = false;
 
-        //               it(`game: ${game} - pulls in the users className correctly`, () => {
-        //                 expect(gameAnswer.usersPickClass).to.equal(
-        //                   usersObj[userName].koRounds[round][game]
-        //                     .usersPickClass
-        //                 );
-        //               });
+                      user[key] = teamToAdjust;
+                    });
 
-        //               it(`game: ${game} - calcs users points correctly`, () => {
-        //                 expect(gameAnswer.points).to.equal(
-        //                   usersObj[userName].koRounds[round][game].points
-        //                 );
-        //               });
-        //             });
-        //           }
-        //         );
+                    // Fs.forEach((game) => {
+                    //   userKeysToAdjust.push(`knockF${game}`);
+                    // });
 
-        //         it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
-        //           koRoundTotal = koRoundCalc(user, round, teams);
+                    // userKeysToAdjust.push("knockChamp");
 
-        //           expect(koRoundTotal).to.equal(
-        //             usersObj[userName][`koRoundFinishedTotal_${letter}`]
-        //           );
-        //         });
+                    // teams.forEach((team) => {
+                    //   team.advanceToS = false;
+                    //   team.advanceToF = false;
+                    //   team.advanceToChamp = false;
+                    // });
+                    break;
+                  // case "semis":
+                  //   teams.forEach((team) => {
+                  //     team.advanceToF = false;
+                  //     team.advanceToChamp = false;
+                  //   });
+                  //   break;
+                  // case "final":
+                  //   teams.forEach((team) => {
+                  //     team.advanceToChamp = false;
+                  //   });
+                  //   break;
+                }
+              });
 
-        //         it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
-        //           userOverallTotal = userTotalPoints(user, teams);
+              describe(`when ${round} is finished`, () => {
+                Object.keys(usersObj[userName].koRounds[round]).forEach(
+                  (game) => {
+                    describe(`game: ${game}`, () => {
+                      // beforeEach(() => {
+                      //   gameAnswer = koGameCalc(user, game, teams);
+                      // });
 
-        //           expect(userOverallTotal).to.equal(
-        //             usersObj[userName][`koRoundFinished_${letter}_overallTotal`]
-        //           );
-        //         });
-        //       });
+                      it(`pulls in users prediction correctly`, () => {
+                        console.log("byah", user);
 
-        //       if (round !== "champion") {
-        //         describe(`when ${round} only has ${
-        //           usersObj[userName][`midStage5_${letter}`]
-        //         } game(s) completed`, () => {
-        //           beforeEach(() => {
-        //             const koRoundGames = {
-        //               Q: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
-        //               S: ["S1", "S2", "S3", "S4"],
-        //               F: ["F1", "F2"],
-        //             };
+                        // expect(gameAnswer.usersPick.name).to.equal(
+                        //   usersObj[userName].koRounds[round][game].usersPick
+                        //     .name
+                        // );
+                      });
 
-        //             koNonCompletedGames = koRoundGames[letter].slice(
-        //               usersObj[userName][`midStage5_${letter}`]
-        //             );
+                      // it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+                      //   expect(gameAnswer.teamThatAdvanced.name).to.equal(
+                      //     usersObj[userName].koRounds[round][game]
+                      //       .teamThatAdvanced.name
+                      //   );
+                      // });
 
-        //             koNonCompletedGames.forEach((game) => {
-        //               usersObj[userName].koRounds[round][
-        //                 game
-        //               ].teamThatAdvanced = null;
+                      // it(`game: ${game} - pulls in the users className correctly`, () => {
+                      //   expect(gameAnswer.usersPickClass).to.equal(
+                      //     usersObj[userName].koRounds[round][game]
+                      //       .usersPickClass
+                      //   );
+                      // });
 
-        //               usersObj[userName].koRounds[round][game].usersPickClass =
-        //                 "unknown";
+                      // it(`game: ${game} - calcs users points correctly`, () => {
+                      //   expect(gameAnswer.points).to.equal(
+                      //     usersObj[userName].koRounds[round][game].points
+                      //   );
+                      // });
+                    });
+                  }
+                );
 
-        //               usersObj[userName].koRounds[round][game].points = 0;
-        //             });
+                // it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+                //   koRoundTotal = koRoundCalc(user, round, teams);
+                //   expect(koRoundTotal).to.equal(
+                //     usersObj[userName][`koRoundFinishedTotal_${letter}`]
+                //   );
+                // });
 
-        //             const koRoundGamePositions = {
-        //               Q: {
-        //                 1: ["A1", "B2"],
-        //                 2: ["C1", "D2"],
-        //                 3: ["E1", "F2"],
-        //                 4: ["G1", "H2"],
-        //                 5: ["B1", "A2"],
-        //                 6: ["D1", "C2"],
-        //                 7: ["F1", "E2"],
-        //                 8: ["H1", "G2"],
-        //               },
-        //               S: {
-        //                 1: ["A1", "B2", "C1", "D2"],
-        //                 2: ["E1", "F2", "G1", "H2"],
-        //                 3: ["B1", "A2", "D1", "C2"],
-        //                 4: ["F1", "E2", "H1", "G2"],
-        //               },
-        //               F: {
-        //                 1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-        //                 2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-        //               },
-        //             };
-
-        //             koNonCompletedGames.forEach((game) => {
-        //               const letter = game.split("")[0];
-        //               const number = game.split("")[1];
-
-        //               koRoundGamePositions[letter][number].forEach(
-        //                 (finishingPosition) => {
-        //                   teams.forEach((team) => {
-        //                     if (team.knockoutPosition === finishingPosition) {
-        //                       team[`advanceTo${letter}`] = false;
-        //                       team.outOfTourney = false;
-        //                     }
-        //                   });
-        //                 }
-        //               );
-        //             });
-        //           });
-
-        //           Object.keys(usersObj[userName].koRounds[round]).forEach(
-        //             (game) => {
-        //               describe(`game: ${game}`, () => {
-        //                 beforeEach(() => {
-        //                   gameAnswer = koGameCalc(user, game, teams);
-        //                 });
-
-        //                 it(`pulls in users prediction correctly`, () => {
-        //                   expect(gameAnswer.usersPick.name).to.equal(
-        //                     usersObj[userName].koRounds[round][game].usersPick
-        //                       .name
-        //                   );
-        //                 });
-
-        //                 it(`game: ${game} - pulls in the team that advanced correctly`, () => {
-        //                   if (koNonCompletedGames.includes(game)) {
-        //                     expect(gameAnswer.teamThatAdvanced).to.equal(
-        //                       usersObj[userName].koRounds[round][game]
-        //                         .teamThatAdvanced
-        //                     );
-        //                   } else {
-        //                     expect(gameAnswer.teamThatAdvanced.name).to.equal(
-        //                       usersObj[userName].koRounds[round][game]
-        //                         .teamThatAdvanced.name
-        //                     );
-        //                   }
-        //                 });
-
-        //                 it(`game: ${game} - pulls in the users className correctly`, () => {
-        //                   expect(gameAnswer.usersPickClass).to.equal(
-        //                     usersObj[userName].koRounds[round][game]
-        //                       .usersPickClass
-        //                   );
-        //                 });
-
-        //                 it(`game: ${game} - calcs users points correctly`, () => {
-        //                   expect(gameAnswer.points).to.equal(
-        //                     usersObj[userName].koRounds[round][game].points
-        //                   );
-        //                 });
-        //               });
-        //             }
-        //           );
-
-        //           it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
-        //             koRoundTotal = koRoundCalc(user, round, teams);
-
-        //             expect(koRoundTotal).to.equal(
-        //               usersObj[userName][`midStage5Total_${letter}`]
-        //             );
-        //           });
-
-        //           it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
-        //             userOverallTotal = userTotalPoints(user, teams);
-
-        //             expect(userOverallTotal).to.equal(
-        //               usersObj[userName][`midStage5_${letter}_overallTotal`]
-        //             );
-        //           });
-        //         });
-        //       }
-        //     });
-        //   });
-        // });
+                // it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+                //   userOverallTotal = userTotalPoints(user, teams);
+                //   expect(userOverallTotal).to.equal(
+                //     usersObj[userName][`koRoundFinished_${letter}_overallTotal`]
+                //   );
+                // });
+              });
+              // if (round !== "champion") {
+              //   describe(`when ${round} only has ${
+              //     usersObj[userName][`midStage5_${letter}`]
+              //   } game(s) completed`, () => {
+              //     beforeEach(() => {
+              //       const koRoundGames = {
+              //         Q: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+              //         S: ["S1", "S2", "S3", "S4"],
+              //         F: ["F1", "F2"],
+              //       };
+              //       koNonCompletedGames = koRoundGames[letter].slice(
+              //         usersObj[userName][`midStage5_${letter}`]
+              //       );
+              //       koNonCompletedGames.forEach((game) => {
+              //         usersObj[userName].koRounds[round][
+              //           game
+              //         ].teamThatAdvanced = null;
+              //         usersObj[userName].koRounds[round][game].usersPickClass =
+              //           "unknown";
+              //         usersObj[userName].koRounds[round][game].points = 0;
+              //       });
+              //       const koRoundGamePositions = {
+              //         Q: {
+              //           1: ["A1", "B2"],
+              //           2: ["C1", "D2"],
+              //           3: ["E1", "F2"],
+              //           4: ["G1", "H2"],
+              //           5: ["B1", "A2"],
+              //           6: ["D1", "C2"],
+              //           7: ["F1", "E2"],
+              //           8: ["H1", "G2"],
+              //         },
+              //         S: {
+              //           1: ["A1", "B2", "C1", "D2"],
+              //           2: ["E1", "F2", "G1", "H2"],
+              //           3: ["B1", "A2", "D1", "C2"],
+              //           4: ["F1", "E2", "H1", "G2"],
+              //         },
+              //         F: {
+              //           1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
+              //           2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
+              //         },
+              //       };
+              //       koNonCompletedGames.forEach((game) => {
+              //         const letter = game.split("")[0];
+              //         const number = game.split("")[1];
+              //         koRoundGamePositions[letter][number].forEach(
+              //           (finishingPosition) => {
+              //             teams.forEach((team) => {
+              //               if (team.knockoutPosition === finishingPosition) {
+              //                 team[`advanceTo${letter}`] = false;
+              //                 team.outOfTourney = false;
+              //               }
+              //             });
+              //           }
+              //         );
+              //       });
+              //     });
+              //     Object.keys(usersObj[userName].koRounds[round]).forEach(
+              //       (game) => {
+              //         describe(`game: ${game}`, () => {
+              //           beforeEach(() => {
+              //             gameAnswer = koGameCalc(user, game, teams);
+              //           });
+              //           it(`pulls in users prediction correctly`, () => {
+              //             expect(gameAnswer.usersPick.name).to.equal(
+              //               usersObj[userName].koRounds[round][game].usersPick
+              //                 .name
+              //             );
+              //           });
+              //           it(`game: ${game} - pulls in the team that advanced correctly`, () => {
+              //             if (koNonCompletedGames.includes(game)) {
+              //               expect(gameAnswer.teamThatAdvanced).to.equal(
+              //                 usersObj[userName].koRounds[round][game]
+              //                   .teamThatAdvanced
+              //               );
+              //             } else {
+              //               expect(gameAnswer.teamThatAdvanced.name).to.equal(
+              //                 usersObj[userName].koRounds[round][game]
+              //                   .teamThatAdvanced.name
+              //               );
+              //             }
+              //           });
+              //           it(`game: ${game} - pulls in the users className correctly`, () => {
+              //             expect(gameAnswer.usersPickClass).to.equal(
+              //               usersObj[userName].koRounds[round][game]
+              //                 .usersPickClass
+              //             );
+              //           });
+              //           it(`game: ${game} - calcs users points correctly`, () => {
+              //             expect(gameAnswer.points).to.equal(
+              //               usersObj[userName].koRounds[round][game].points
+              //             );
+              //           });
+              //         });
+              //       }
+              //     );
+              //     it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
+              //       koRoundTotal = koRoundCalc(user, round, teams);
+              //       expect(koRoundTotal).to.equal(
+              //         usersObj[userName][`midStage5Total_${letter}`]
+              //       );
+              //     });
+              //     it(`calcs ${userName}'s overall total correctly (userTotalPoints func)`, () => {
+              //       userOverallTotal = userTotalPoints(user, teams);
+              //       expect(userOverallTotal).to.equal(
+              //         usersObj[userName][`midStage5_${letter}_overallTotal`]
+              //       );
+              //     });
+              //   });
+              // }
+            });
+          });
+        });
       });
     });
   });

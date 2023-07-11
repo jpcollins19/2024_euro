@@ -1,14 +1,10 @@
-////RULES ADJUSTMENTS stage 3 -- START
-
-///Pool Picks
-//color table cont doesnt show
-
-////RULES ADJUSTMENTS stage 3 -- END
-
 ////RULES ADJUSTMENTS stage 4 -- START
 
 ///My Picks - locked
-//continue testing for calculating KO scores on the usersObj in the "Calcs everyone's overall scores" describe block
+//on Q_GAME_L file - current step is writing/fixing tests for the koGameCalc func
+
+///Pool Picks
+//color table cont doesnt show
 
 ///My Picks - unlocked
 
@@ -39,6 +35,7 @@
 ///My Picks - unlocked
 
 ///Leaderboard
+//continue testing for calculating KO scores on the usersObj in the "Calcs everyone's overall scores" describe block
 //resume adjusting test file info for the rankFunc
 
 ///Pool Picks
