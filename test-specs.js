@@ -10,11 +10,12 @@ const {
   userTotalPoints,
   colorDescriptionTableNeeded,
   auditThirdPlaceToAdvancePicks,
+  determineR16Seeding,
 } = require("./src/store/funcs");
 
 const { groupLetters } = require("./src/store/variables");
 
-const { userData } = require("./testing/data");
+const { userData, teamData } = require("./testing/data");
 
 describe("Cals everthing correctly", () => {
   let users;
@@ -2497,6 +2498,294 @@ describe("func testing", () => {
 
         answer.groupErrors.forEach((letter, i) => {
           expect(letter).to.equal(scenario.answer.groupErrors[i]);
+        });
+      });
+    });
+  });
+
+  const determineR16SeedingTesting = [
+    {
+      scenario: "ABCD",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Poland"],
+      expectedMatchups: {
+        Q1: ["B1", "A3"],
+        Q3: ["F1", "C3"],
+        Q5: ["E1", "B3"],
+        Q7: ["C1", "D3"],
+      },
+    },
+    {
+      scenario: "ABCE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Japan", "Poland"],
+      expectedMatchups: {
+        Q1: ["B1", "A3"],
+        Q3: ["F1", "C3"],
+        Q5: ["E1", "B3"],
+        Q7: ["C1", "E3"],
+      },
+    },
+    {
+      scenario: "ABCF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Poland"],
+      expectedMatchups: {
+        Q1: ["B1", "A3"],
+        Q3: ["F1", "C3"],
+        Q5: ["E1", "B3"],
+        Q7: ["C1", "F3"],
+      },
+    },
+    {
+      scenario: "ABDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Japan"],
+      expectedMatchups: {
+        Q1: ["B1", "D3"],
+        Q3: ["F1", "B3"],
+        Q5: ["E1", "A3"],
+        Q7: ["C1", "E3"],
+      },
+    },
+    {
+      scenario: "ABDF",
+      teamAdjustments: false,
+      expectedMatchups: {
+        Q1: ["B1", "D3"],
+        Q3: ["F1", "B3"],
+        Q5: ["E1", "A3"],
+        Q7: ["C1", "F3"],
+      },
+    },
+    {
+      scenario: "ABEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Japan"],
+      expectedMatchups: {
+        Q1: ["B1", "E3"],
+        Q3: ["F1", "A3"],
+        Q5: ["E1", "B3"],
+        Q7: ["C1", "F3"],
+      },
+    },
+    {
+      scenario: "ACDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Japan"],
+      expectedMatchups: {
+        Q1: ["B1", "E3"],
+        Q3: ["F1", "A3"],
+        Q5: ["E1", "C3"],
+        Q7: ["C1", "D3"],
+      },
+    },
+    {
+      scenario: "ACDF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "F3"],
+        Q3: ["F1", "A3"],
+        Q5: ["E1", "C3"],
+        Q7: ["C1", "D3"],
+      },
+    },
+    {
+      scenario: "ACEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Japan", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "E3"],
+        Q3: ["F1", "A3"],
+        Q5: ["E1", "C3"],
+        Q7: ["C1", "F3"],
+      },
+    },
+    {
+      scenario: "ADEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "E3"],
+        Q3: ["F1", "A3"],
+        Q5: ["E1", "D3"],
+        Q7: ["C1", "F3"],
+      },
+    },
+    {
+      scenario: "BCDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Japan"],
+      expectedMatchups: {
+        Q1: ["B1", "E3"],
+        Q3: ["F1", "C3"],
+        Q5: ["E1", "B3"],
+        Q7: ["C1", "D3"],
+      },
+    },
+    {
+      scenario: "BCDF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "F3"],
+        Q3: ["F1", "B3"],
+        Q5: ["E1", "C3"],
+        Q7: ["C1", "D3"],
+      },
+    },
+    {
+      scenario: "BCEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Japan", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "F3"],
+        Q3: ["F1", "B3"],
+        Q5: ["E1", "C3"],
+        Q7: ["C1", "E3"],
+      },
+    },
+    {
+      scenario: "BDEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "F3"],
+        Q3: ["F1", "B3"],
+        Q5: ["E1", "D3"],
+        Q7: ["C1", "E3"],
+      },
+    },
+    {
+      scenario: "CDEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Poland", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        Q1: ["B1", "F3"],
+        Q3: ["F1", "C3"],
+        Q5: ["E1", "D3"],
+        Q7: ["C1", "E3"],
+      },
+    },
+  ];
+
+  describe("determineR16Seeding", () => {
+    let teams;
+
+    const resetTeamFinishingPositions = (teams) => {
+      const teamsToPutBackToThird = [
+        "Senegal",
+        "Wales",
+        "Australia",
+        "Morocco",
+      ];
+
+      const teamsToPutBackToFourth = ["Poland", "Japan"];
+
+      const adjustTeam = (team, position) => {
+        team.thirdPlaceAndAdvancedToKO = position === 3 ? true : false;
+
+        const teamGroup = team.knockoutPosition.split("")[0];
+        const koPos = `${teamGroup}${position}`;
+
+        team.knockoutPosition = koPos;
+        team.groupFinishingPosition = position;
+
+        return team;
+      };
+
+      teams.forEach((team) => {
+        if (teamsToPutBackToThird.includes(team?.name)) {
+          team = adjustTeam(team, 3);
+        }
+
+        if (teamsToPutBackToFourth.includes(team?.name)) {
+          team = adjustTeam(team, 4);
+        }
+      });
+
+      return teams;
+    };
+
+    beforeEach(() => {
+      teams = teamData;
+
+      teams = resetTeamFinishingPositions(teams);
+    });
+
+    const adjustCurrentTeamFinishingPositions = (
+      allTeams,
+      teamsToAdjust,
+      newFinishingPosition
+    ) => {
+      allTeams.forEach((team) => {
+        if (teamsToAdjust.includes(team?.name)) {
+          if (newFinishingPosition === 3) {
+            team.thirdPlaceAndAdvancedToKO = true;
+          }
+
+          const teamGroup = team.knockoutPosition.split("")[0];
+          const newKOPos = `${teamGroup}${newFinishingPosition}`;
+
+          team.knockoutPosition = newKOPos;
+          team.groupFinishingPosition = newFinishingPosition;
+        }
+      });
+
+      return allTeams;
+    };
+
+    determineR16SeedingTesting.forEach((test) => {
+      it(`advancing 3rd place teams are: ${test.scenario}`, () => {
+        if (test.teamAdjustments) {
+          teams.forEach((team) => (team.thirdPlaceAndAdvancedToKO = false));
+
+          teams = adjustCurrentTeamFinishingPositions(
+            teams,
+            ["Senegal", "Wales", "Australia", "Morocco"],
+            4
+          );
+
+          teams = adjustCurrentTeamFinishingPositions(
+            teams,
+            test.teamsToAdjustToThird,
+            3
+          );
+        }
+
+        const answer = determineR16Seeding(teams);
+
+        const staticGames = {
+          Q2: ["A1", "C2"],
+          Q4: ["D2", "E2"],
+          Q6: ["D1", "F2"],
+          Q8: ["A2", "B2"],
+        };
+
+        const expectedMatchups = test.expectedMatchups;
+
+        const correctResults = {
+          ...expectedMatchups,
+          ...staticGames,
+        };
+
+        const correctResultsEntries = Object.entries(correctResults);
+
+        correctResultsEntries.forEach((entry) => {
+          const game = entry[0];
+          const correctMatchup = entry[1];
+
+          const correctTeam1 = correctMatchup[0];
+          const correctTeam2 = correctMatchup[1];
+
+          const answerMatchup = answer[game];
+
+          const answerTeam1 = answerMatchup[0];
+          const answerTeam2 = answerMatchup[1];
+
+          expect(correctTeam1).to.equal(answerTeam1);
+          expect(correctTeam2).to.equal(answerTeam2);
         });
       });
     });

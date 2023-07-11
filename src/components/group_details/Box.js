@@ -15,8 +15,17 @@ const Box = ({ box, group }) => {
     .filter((team) => team.group === group)
     .sort((a, b) => a.groupFinishingPosition - b.groupFinishingPosition);
 
-  const box1Entries = ["flag", "name"];
-  const box2Entries = ["MP", "W", "D", "L", "+/-", "GD", "pts"];
+  const box1Entries = ["thirdPlaceAndAdvancedToKO", "flag", "name"];
+  const box2Entries = [
+    "MP",
+    "W",
+    "D",
+    "L",
+    "+/-",
+    "GD",
+    "pts",
+    "thirdPlaceAndAdvancedToKO",
+  ];
   const entriesToUse = box === 1 ? box1Entries : box2Entries;
 
   return (

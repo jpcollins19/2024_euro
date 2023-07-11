@@ -10,6 +10,9 @@ const Column = ({ entry, groupTeams, box }) => {
     case "+/-":
       headerVerbiage = entry;
       break;
+    case "thirdPlaceAndAdvancedToKO":
+      headerVerbiage = "";
+      break;
     default:
       headerVerbiage = entry !== "name" ? cap1stLetter(entry) : "";
       break;
@@ -24,6 +27,9 @@ const Column = ({ entry, groupTeams, box }) => {
       break;
     case "+/-":
       columnClass = "gd-cc-plus-minus";
+      break;
+    case "thirdPlaceAndAdvancedToKO":
+      columnClass = "gd-cc-advanced";
       break;
     default:
       columnClass = "gd-all-others";
@@ -46,6 +52,10 @@ const Column = ({ entry, groupTeams, box }) => {
           if (answer > 0) gdSymbol = "+";
           if (answer < 0) gdSymbol = "-";
           answer = Math.abs(team[entry]);
+        }
+
+        if (entry === "thirdPlaceAndAdvancedToKO") {
+          answer = answer ? "*" : "";
         }
 
         return entry === "flag" ? (

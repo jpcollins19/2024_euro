@@ -5,6 +5,9 @@
   background-position: center;
   height: 84vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .group-details-container {
@@ -12,6 +15,38 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 2%;
+}
+
+.asterisk-table-cont {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    to bottom right,
+    rgb(159, 159, 147) 0%,
+    rgb(222, 222, 212) 25%,
+    rgb(203, 203, 192) 50%,
+    rgb(222, 222, 212) 75%,
+    rgb(159, 159, 147) 100%
+  );
+  border-radius: 1rem;
+  border: solid 2px black;
+  width: 20rem;
+  margin-top: 2%;
+}
+
+.asterisk-table-cont > div {
+  display: flex;
+  align-items: center;
+  padding: 10px 8px 10px 8px;
+}
+
+.symbol-cont {
+  display: flex;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  margin: 0 5px 0 5px;
 }
 
 .single-group-cont {
@@ -58,10 +93,6 @@
   flex: 0.7;
 }
 
-.box1-gd > div > div {
-  font-size: 20px;
-}
-
 .box2-gd {
   display: flex;
   flex: 0.3;
@@ -73,11 +104,18 @@
   max-width: 45px;
   min-width: 45px;
   align-items: center;
+  margin-left: 5px;
 }
 
 .gd-cc-name {
   display: flex;
   flex: 0.8;
+}
+
+.gd-cc-name > div {
+  display: flex;
+  flex: 0.8;
+  font-size: 100%;
 }
 
 .spacer {
@@ -114,6 +152,19 @@
   height: 3vh;
   padding: 3% 0 3% 0;
   border-bottom: solid 2px rgb(175, 170, 170);
+}
+
+.gd-cc-advanced {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  font-size: 2rem;
+}
+
+.gd-cc-advanced > div {
+  border-bottom: none;
+  margin-top: 2px;
 }
 
 .gd-single-cell {

@@ -4,7 +4,7 @@ import { findR16Teams, determineR16Seeding } from "../../../../../store";
 const R16_Game_L = ({ game }) => {
   const teams = useSelector((state) => state.teams);
 
-  const seedMatchups = determineR16Seeding();
+  const seedMatchups = determineR16Seeding(teams);
 
   const teamsPlayingInMatch = findR16Teams(teams, seedMatchups[game]);
 

@@ -133,7 +133,7 @@ const users = [
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
     tiebreaker: 165,
-    tourneyStage: 4,
+    tourneyStage: 3,
   },
   //stan
   {

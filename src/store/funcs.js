@@ -583,17 +583,127 @@ const auditThirdPlaceToAdvancePicks = (obj) => {
   return answer;
 };
 
-const determineR16Seeding = () => {
-  return {
-    Q1: ["A1", "B2"],
-    Q2: ["C1", "D2"],
-    Q3: ["E1", "F2"],
-    Q4: ["A1", "A2"],
-    Q5: ["B1", "A2"],
-    Q6: ["D1", "C2"],
-    Q7: ["F1", "E2"],
-    Q8: ["A1", "A2"],
+const determineR16Seeding = (teams) => {
+  const staticGames = {
+    Q2: ["A1", "C2"],
+    Q4: ["D2", "E2"],
+    Q6: ["D1", "F2"],
+    Q8: ["A2", "B2"],
   };
+
+  const groupsThatHaveTeamsAdvancingFrom3rd = teams
+    .reduce((a, team) => {
+      if (team.thirdPlaceAndAdvancedToKO) {
+        const teamGroup = team.knockoutPosition.split("")[0];
+        a.push(teamGroup);
+      }
+
+      return a;
+    }, [])
+    .sort()
+    .reduce((a, letter) => {
+      a += letter;
+
+      return a;
+    }, "");
+
+  const correctMatchups = {
+    ABCD: {
+      Q1: ["B1", "A3"],
+      Q3: ["F1", "C3"],
+      Q5: ["E1", "B3"],
+      Q7: ["C1", "D3"],
+    },
+    ABCE: {
+      Q1: ["B1", "A3"],
+      Q3: ["F1", "C3"],
+      Q5: ["E1", "B3"],
+      Q7: ["C1", "E3"],
+    },
+    ABCF: {
+      Q1: ["B1", "A3"],
+      Q3: ["F1", "C3"],
+      Q5: ["E1", "B3"],
+      Q7: ["C1", "F3"],
+    },
+    ABDE: {
+      Q1: ["B1", "D3"],
+      Q3: ["F1", "B3"],
+      Q5: ["E1", "A3"],
+      Q7: ["C1", "E3"],
+    },
+    ABDF: {
+      Q1: ["B1", "D3"],
+      Q3: ["F1", "B3"],
+      Q5: ["E1", "A3"],
+      Q7: ["C1", "F3"],
+    },
+    ABEF: {
+      Q1: ["B1", "E3"],
+      Q3: ["F1", "A3"],
+      Q5: ["E1", "B3"],
+      Q7: ["C1", "F3"],
+    },
+    ACDE: {
+      Q1: ["B1", "E3"],
+      Q3: ["F1", "A3"],
+      Q5: ["E1", "C3"],
+      Q7: ["C1", "D3"],
+    },
+    ACDF: {
+      Q1: ["B1", "F3"],
+      Q3: ["F1", "A3"],
+      Q5: ["E1", "C3"],
+      Q7: ["C1", "D3"],
+    },
+    ACEF: {
+      Q1: ["B1", "E3"],
+      Q3: ["F1", "A3"],
+      Q5: ["E1", "C3"],
+      Q7: ["C1", "F3"],
+    },
+    ADEF: {
+      Q1: ["B1", "E3"],
+      Q3: ["F1", "A3"],
+      Q5: ["E1", "D3"],
+      Q7: ["C1", "F3"],
+    },
+    BCDE: {
+      Q1: ["B1", "E3"],
+      Q3: ["F1", "C3"],
+      Q5: ["E1", "B3"],
+      Q7: ["C1", "D3"],
+    },
+    BCDF: {
+      Q1: ["B1", "F3"],
+      Q3: ["F1", "B3"],
+      Q5: ["E1", "C3"],
+      Q7: ["C1", "D3"],
+    },
+    BCEF: {
+      Q1: ["B1", "F3"],
+      Q3: ["F1", "B3"],
+      Q5: ["E1", "C3"],
+      Q7: ["C1", "E3"],
+    },
+    BDEF: {
+      Q1: ["B1", "F3"],
+      Q3: ["F1", "B3"],
+      Q5: ["E1", "D3"],
+      Q7: ["C1", "E3"],
+    },
+    CDEF: {
+      Q1: ["B1", "F3"],
+      Q3: ["F1", "C3"],
+      Q5: ["E1", "D3"],
+      Q7: ["C1", "E3"],
+    },
+  };
+
+  const remainingMatchups =
+    correctMatchups[groupsThatHaveTeamsAdvancingFrom3rd];
+
+  return { ...staticGames, ...remainingMatchups };
 };
 
 module.exports = {

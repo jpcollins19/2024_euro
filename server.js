@@ -1,7 +1,13 @@
+////RULES ADJUSTMENTS stage 3 -- START
+
+///Pool Picks
+//color table cont doesnt show
+
+////RULES ADJUSTMENTS stage 3 -- END
+
 ////RULES ADJUSTMENTS stage 4 -- START
 
 ///My Picks - locked
-//figure out how the round of 16 seed placements are going to be done - write tests for determineR16Seeding func
 //continue testing for calculating KO scores on the usersObj in the "Calcs everyone's overall scores" describe block
 
 ///My Picks - unlocked
