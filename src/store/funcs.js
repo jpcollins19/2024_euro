@@ -215,36 +215,71 @@ const groupTotalCalc = (user) => {
     }, 0);
 };
 
-const koGameCalc = (user, game) => {
-  const roundInfoObj = {
-    Q: {
-      1: ["A1", "B2"],
-      2: ["C1", "D2"],
-      3: ["E1", "F2"],
-      4: ["G1", "H2"],
-      5: ["B1", "A2"],
-      6: ["D1", "C2"],
-      7: ["F1", "E2"],
-      8: ["H1", "G2"],
-      points: 2,
+const koGameCalc = (user, game, teams) => {
+  // console.log("byah", teams);
+  const koTeamSeeding = determineR16Seeding(teams);
+
+  const roundInfoObj = Object.entries(koTeamSeeding).reduce(
+    (a, entry) => {
+      const number = Number(entry[0][1]);
+
+      a.Q[number] = entry[1];
+
+      const positions = entry[1];
+
+      if (number === 1 || number === 2) {
+        positions.forEach((pos) => {
+          a.S[1].push(pos);
+          a.F[1].push(pos);
+        });
+      }
+
+      if (number === 3 || number === 4) {
+        positions.forEach((pos) => {
+          a.S[2].push(pos);
+          a.F[1].push(pos);
+        });
+      }
+
+      if (number === 5 || number === 6) {
+        positions.forEach((pos) => {
+          a.S[3].push(pos);
+          a.F[2].push(pos);
+        });
+      }
+
+      if (number === 7 || number === 8) {
+        positions.forEach((pos) => {
+          a.S[4].push(pos);
+          a.F[2].push(pos);
+        });
+      }
+
+      return a;
     },
-    S: {
-      1: ["A1", "B2", "C1", "D2"],
-      2: ["E1", "F2", "G1", "H2"],
-      3: ["B1", "A2", "D1", "C2"],
-      4: ["F1", "E2", "H1", "G2"],
-      points: 4,
-    },
-    F: {
-      1: ["A1", "B2", "C1", "D2", "E1", "F2", "G1", "H2"],
-      2: ["B1", "A2", "D1", "C2", "F1", "E2", "H1", "G2"],
-      points: 6,
-    },
-  };
+    {
+      Q: {
+        points: 2,
+      },
+      S: {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        points: 4,
+      },
+      F: {
+        1: [],
+        2: [],
+        points: 6,
+      },
+    }
+  );
 
   const round = game.split("")[0];
   const number = game.split("")[1];
   const usersPick = user[`knock${game}`];
+
   let teamThatAdvanced, points;
 
   if (game === "Champ") {
@@ -282,42 +317,48 @@ const koGameCalc = (user, game) => {
 };
 
 const koRoundCalc = (user, round, teams) => {
-  // const koRoundGames = {
-  //   quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
-  //   semis: ["S1", "S2", "S3", "S4"],
-  //   final: ["F1", "F2"],
-  //   champion: ["Champ"],
-  // };
-  // return koRoundGames[round].reduce((a, game) => {
-  //   const result = koGameCalc(user, game, teams);
-  //   a += result.points;
-  //   return a;
-  // }, 0);
-  return 0;
+  const koRoundGames = {
+    quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+    semis: ["S1", "S2", "S3", "S4"],
+    final: ["F1", "F2"],
+    champion: ["Champ"],
+  };
+
+  return koRoundGames[round].reduce((a, game) => {
+    const result = koGameCalc(user, game, teams);
+
+    // console.log("round", round);
+    // console.log("result", result);
+    a += result.points;
+    return a;
+  }, 0);
 };
 
-const userTotalPoints = (user) => {
+const userTotalPoints = (user, teams) => {
   const groupTotal = groupTotalCalc(user);
-  if (user.name === "Joe") {
-    // console.log("user", user);
-    // console.log("groupTotal", groupTotal);
-  }
+
+  // console.log("groupTotal", groupTotal);
 
   const koRounds = ["quarters", "semis", "final", "champion"]; //change to import KOLetters variable?
 
-  // const userHasKOPicks = user.knockChamp !== null ? true : false;
   const userHasKOPicks = user.knockChamp ? true : false;
 
-  // const koTotals = koRounds.reduce((a, round) => {
-  //   if (userHasKOPicks) {
-  //     const roundTotal = koRoundCalc(user, round, teams);
-  //     a += roundTotal;
-  //   }
-  //   return a;
-  // }, 0);
+  // console.log("userHasKOPicks", userHasKOPicks);
 
-  // return groupTotal + koTotals;
-  return groupTotal;
+  const koTotals = koRounds.reduce((a, round) => {
+    if (userHasKOPicks) {
+      // console.log("userTotalPoints - round", round);
+
+      const roundTotal = koRoundCalc(user, round, teams);
+
+      // console.log("userTotalPoints - roundTotal", roundTotal);
+      a += roundTotal;
+    }
+    return a;
+  }, 0);
+
+  return groupTotal + koTotals;
+  // return groupTotal;
 };
 
 const sortNames = (arr) => {
@@ -433,14 +474,14 @@ const sortRank = (arr) => {
   });
 };
 
-const getCurrentScores = (users, actualGoalsScored = null) => {
+const getCurrentScores = (users, teams, actualGoalsScored = null) => {
   let rank = 1;
 
   // console.log("users-nuggets", users);
 
   const firstAudit = users
     .reduce((a, user) => {
-      const total = userTotalPoints(user);
+      const total = userTotalPoints(user, teams);
 
       const userObj = {
         id: user?.id,

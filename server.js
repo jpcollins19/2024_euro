@@ -1,11 +1,5 @@
 ////RULES ADJUSTMENTS stage 4 -- START
 
-///My Picks - locked
-//on Q_GAME_L file - current step is writing/fixing tests for the koGameCalc func
-
-///Pool Picks
-//color table cont doesnt show
-
 ///My Picks - unlocked
 
 ///admin - users
