@@ -141,29 +141,7 @@ describe("Cals everthing correctly", () => {
                 user[key].groupIsFinished = false;
               });
             }
-
-            // koLetters = ["Q", "S", "F", "Champ"];
-
-            // koObj = {
-            //   Q: 8,
-            //   S: 4,
-            //   F: 2,
-            // };
-
-            // koLetters.forEach((letter) => {
-            //   if (letter !== "Champ") {
-            //     for (let i = 1; i <= koObj[letter]; i++) {
-            //       user[`knock${letter}${i}`] = null;
-            //     }
-            //   } else {
-            //     user.knockChamp = null;
-            //   }
-            // });
           });
-
-          const user = users.filter((user) => user?.name === "Joe");
-          //
-          // console.log(user);
 
           answer = getCurrentScores(users);
 

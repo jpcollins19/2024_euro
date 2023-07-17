@@ -108,7 +108,6 @@ const Single_User_Cont = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
 
-  // const [koError, setKoError] = useState(false);
   const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
   const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
   const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
@@ -298,50 +297,52 @@ const Single_User_Cont = () => {
 
       const koAudit = (team, letter, num) => {
         if (!team) {
-          setKoError(true);
+          setMasterError(true);
+          setMasterErrorText("Incomplete Picks Below");
           errorAudit.push(1);
         } else {
           userObj[`knock${letter}${num}`] = team;
         }
       };
 
-      // if (joe?.tourneyStage >= 4) {
-      //   koLetters.forEach((letter) => {
-      //     switch (letter) {
-      //       case "Q":
-      //         Qs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+      if (joe?.tourneyStage >= 4) {
+        koLetters.forEach((letter) => {
+          switch (letter) {
+            case "Q":
+              Qs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           koAudit(team, letter, num);
-      //         });
-      //         break;
-      //       case "S":
-      //         Ss.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                koAudit(team, letter, num);
+              });
+              break;
+            case "S":
+              Ss.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           koAudit(team, letter, num);
-      //         });
-      //         break;
-      //       case "F":
-      //         Fs.forEach((num) => {
-      //           const team = eval(`${letter}${num}`);
+                koAudit(team, letter, num);
+              });
+              break;
+            case "F":
+              Fs.forEach((num) => {
+                const team = eval(`${letter}${num}`);
 
-      //           koAudit(team, letter, num);
-      //         });
-      //         break;
-      //       case "champ":
-      //         if (champ.length === 0) {
-      //           setKoError(true);
-      //           errorAudit.push(1);
-      //         } else {
-      //           userObj.knockChamp = champ;
-      //         }
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   });
-      // }
+                koAudit(team, letter, num);
+              });
+              break;
+            case "Champ":
+              if (champ.length === 0) {
+                setMasterError(true);
+                setMasterErrorText("Incomplete Picks Below");
+                errorAudit.push(1);
+              } else {
+                userObj.knockChamp = champ;
+              }
+              break;
+            default:
+              break;
+          }
+        });
+      }
 
       !masterError &&
         !errorAudit.length &&
@@ -394,15 +395,11 @@ const Single_User_Cont = () => {
             {masterError && <Error error={masterErrorText} />}
           </div>
 
-          {/* {joe?.tourneyStage >= 4 && (
+          {joe?.tourneyStage >= 4 && (
             <div className="ko-picks-user-admin">
-              <div className="error-cont-placeholder">
-                {koError && <Error error="Incomplete Picks Below" />}
-              </div>
-
               <Knockout_Cont_Unlocked_Admin
                 setTeam={setTeam}
-                setKoError={setKoError}
+                resetMasterError={resetMasterError}
                 Q1={Q1}
                 Q2={Q2}
                 Q3={Q3}
@@ -435,7 +432,7 @@ const Single_User_Cont = () => {
                 setChamp={setChamp}
               />
             </div>
-          )} */}
+          )}
 
           <div className="tiebreaker-cont-edit-picks">
             <h3>Tiebreaker - total number of goals scored:</h3>

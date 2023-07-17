@@ -109,7 +109,7 @@ const Pool_Picks_Page = () => {
             <Point_System_Cont tourneyStage={joe?.tourneyStage} />
           )}
 
-          {/* {joe?.tourneyStage === 5 && user?.tiebreaker && (
+          {joe?.tourneyStage === 5 && user?.tiebreaker && (
             <div className="top box">
               <div className="box left">
                 <div className="predictions-cont">
@@ -120,13 +120,13 @@ const Pool_Picks_Page = () => {
                 <Total_Points_Cont selectedUser={selectedUser?.value} />
               </div>
             </div>
-          )} */}
+          )}
 
           <div className="top box">
             <div className="box left">
-              {/* {joe?.tourneyStage === 5 && user?.tiebreaker && (
-                <Point_System_Cont />
-              )} */}
+              {joe?.tourneyStage === 5 && user?.tiebreaker && (
+                <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+              )}
               <div className="predictions-cont">
                 {groupLetters.map((letter) => (
                   <Single_Group_Cont
@@ -137,11 +137,10 @@ const Pool_Picks_Page = () => {
                 ))}
               </div>
             </div>
-            {/* <div className="box right"> */}
+
             {joe?.tourneyStage < 5 && user?.tiebreaker && (
               <Total_Points_Cont selectedUser={selectedUser?.value} />
             )}
-            {/* </div> */}
           </div>
         </div>
       )}

@@ -6,7 +6,7 @@ import Champ_UL from "./Champ_UL";
 
 const Knockout_Cont_Unlocked = ({
   setTeam,
-  setKoError,
+  resetMasterError,
   Q1,
   Q2,
   Q3,
@@ -44,7 +44,7 @@ const Knockout_Cont_Unlocked = ({
         <R16_UL
           side={"left"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           setQ1={setQ1}
           setQ2={setQ2}
           setQ3={setQ3}
@@ -53,7 +53,7 @@ const Knockout_Cont_Unlocked = ({
         <Q_UL
           side={"left"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           Q1={Q1}
           Q2={Q2}
           Q3={Q3}
@@ -64,7 +64,7 @@ const Knockout_Cont_Unlocked = ({
         <S_UL
           side={"left"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           Q1={Q1}
           Q2={Q2}
           Q3={Q3}
@@ -78,24 +78,18 @@ const Knockout_Cont_Unlocked = ({
         <F_UL
           side={"left"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           S1={S1}
           S2={S2}
           F1={F1}
           setF1={setF1}
           setChamp={setChamp}
         />
-        <Champ_UL
-          champ={champ}
-          setChamp={setChamp}
-          F1={F1}
-          F2={F2}
-          setKoError={setKoError}
-        />
+        <Champ_UL champ={champ} setChamp={setChamp} F1={F1} F2={F2} />
         <F_UL
           side={"right"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           S3={S3}
           S4={S4}
           F2={F2}
@@ -105,7 +99,7 @@ const Knockout_Cont_Unlocked = ({
         <S_UL
           side={"right"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           Q5={Q5}
           Q6={Q6}
           Q7={Q7}
@@ -119,7 +113,7 @@ const Knockout_Cont_Unlocked = ({
         <Q_UL
           side={"right"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           Q5={Q5}
           Q6={Q6}
           Q7={Q7}
@@ -130,7 +124,7 @@ const Knockout_Cont_Unlocked = ({
         <R16_UL
           side={"right"}
           setTeam={setTeam}
-          setKoError={setKoError}
+          resetMasterError={resetMasterError}
           setQ5={setQ5}
           setQ6={setQ6}
           setQ7={setQ7}

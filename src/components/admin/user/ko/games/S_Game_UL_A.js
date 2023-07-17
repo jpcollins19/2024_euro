@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const S_Game_UL_A = ({
   setTeam,
-  setKoError,
+  resetMasterError,
   gameNum,
   game,
   S1,
@@ -54,7 +54,7 @@ const S_Game_UL_A = ({
         }`}
         onClick={() => {
           setTeam(setNextGameVar, teamAnswerObj?.name);
-          setKoError(false);
+          resetMasterError();
         }}
       >
         {teamAnswer.length ? (

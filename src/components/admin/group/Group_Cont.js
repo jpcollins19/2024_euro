@@ -126,8 +126,8 @@ const Group_Cont = ({ group }) => {
 
               a.groupFinishingPosition = position;
 
-              if (position === 3 && thirdPlaceTeamAdvancedToKO) {
-                a.thirdPlaceAndAdvancedToKO = true;
+              if (position === 3) {
+                a.thirdPlaceAndAdvancedToKO = thirdPlaceTeamAdvancedToKO;
               }
             } else if (entry === "id") {
               a[entry] = answer;

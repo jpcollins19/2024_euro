@@ -3,7 +3,7 @@ import F_Game_UL from "./games/F_Game_UL";
 const F_UL = ({
   side,
   setTeam,
-  setKoError,
+  resetMasterError,
   S1,
   S2,
   S3,
@@ -31,7 +31,7 @@ const F_UL = ({
       <h2>Final</h2>
       <F_Game_UL
         setTeam={setTeam}
-        setKoError={setKoError}
+        resetMasterError={resetMasterError}
         game={`F${gameNum}`}
         F1={game}
         F2={game}

@@ -3,7 +3,7 @@ import S_Game_UL from "./games/S_Game_UL";
 const S_UL = ({
   side,
   setTeam,
-  setKoError,
+  resetMasterError,
   Q1,
   Q2,
   Q3,
@@ -54,7 +54,7 @@ const S_UL = ({
           <S_Game_UL
             key={idx}
             setTeam={setTeam}
-            setKoError={setKoError}
+            resetMasterError={resetMasterError}
             gameNum={gameNum}
             game={`S${num}`}
             S1={game}

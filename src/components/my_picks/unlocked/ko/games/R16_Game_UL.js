@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { findR16Teams } from "../../../../../store";
+import { determineR16Seeding, findR16Teams } from "../../../../../store";
 
 const R16_Game_UL = ({
   setTeam,
-  setKoError,
+  resetMasterError,
   game,
   setQ1,
   setQ2,
@@ -18,18 +18,9 @@ const R16_Game_UL = ({
 
   const setGame = eval(`set${game}`);
 
-  const obj = {
-    Q1: ["A1", "B2"],
-    Q2: ["C1", "D2"],
-    Q3: ["E1", "F2"],
-    Q4: ["G1", "H2"],
-    Q5: ["B1", "A2"],
-    Q6: ["D1", "C2"],
-    Q7: ["F1", "E2"],
-    Q8: ["H1", "G2"],
-  };
+  const seedMatchups = determineR16Seeding(teams);
 
-  const teamsPlayingInMatch = findR16Teams(teams, obj[game]);
+  const teamsPlayingInMatch = findR16Teams(teams, seedMatchups[game]);
 
   return (
     <div className="R16-game">
@@ -39,7 +30,7 @@ const R16_Game_UL = ({
           className="team-ko-img-cont reg-input"
           onClick={(ev) => {
             setTeam(setGame, team.name);
-            setKoError(false);
+            resetMasterError();
           }}
         >
           <img className="team-flag-ko" src={team.flag} />

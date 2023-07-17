@@ -3,7 +3,7 @@ import R16_Game_UL_A from "./games/R16_Game_UL_A";
 const R16_UL_A = ({
   side,
   setTeam,
-  setKoError,
+  resetMasterError,
   setQ1,
   setQ2,
   setQ3,
@@ -23,7 +23,7 @@ const R16_UL_A = ({
           <R16_Game_UL_A
             key={idx}
             setTeam={setTeam}
-            setKoError={setKoError}
+            resetMasterError={resetMasterError}
             game={`Q${side === "left" ? num : num + 4}`}
             setQ1={setQ1}
             setQ2={setQ2}

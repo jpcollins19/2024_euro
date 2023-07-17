@@ -3,7 +3,7 @@ import Q_Game_UL from "./games/Q_Game_UL";
 const Q_UL = ({
   side,
   setTeam,
-  setKoError,
+  resetMasterError,
   Q1,
   Q2,
   Q3,
@@ -42,7 +42,7 @@ const Q_UL = ({
             key={idx}
             gameNum={gameNum}
             setTeam={setTeam}
-            setKoError={setKoError}
+            resetMasterError={resetMasterError}
             game={`Q${num}`}
             Q1={game}
             Q2={game}

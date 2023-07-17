@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 const Q_Game_UL = ({
   gameNum,
   setTeam,
-  setKoError,
+  resetMasterError,
   game,
   Q1,
   Q2,
@@ -64,7 +64,7 @@ const Q_Game_UL = ({
         }`}
         onClick={() => {
           setTeam(setNextGameVar, gameVarTeamObj?.name);
-          setKoError(false);
+          resetMasterError();
         }}
       >
         {gameVarTeamObj !== undefined && (
