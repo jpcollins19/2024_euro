@@ -7,6 +7,8 @@
 //adjust to make diff teams advancing in the KOs at each round (Q, S, F & champ) and audit leaderboard calc
 //test each scenario for tiebreakers - scenarios are listed in excel doc
 
+//delete the team-depricated folder in the admin folder
+
 ////RULES ADJUSTMENTS stage 5 -- END
 
 ////F1

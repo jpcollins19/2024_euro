@@ -24,7 +24,9 @@ export const updateTeam = (team, history, route) => {
   return async (dispatch) => {
     team = (await axios.put(`/api/teams/${team.id}`, team)).data;
     const whereToRoute =
-      route === "group_details" ? route : `pool_picks/${route}`;
+      route === "group_details" || route === "my_picks"
+        ? `/${route}`
+        : `pool_picks/${route}`;
 
     history.push(whereToRoute);
   };
