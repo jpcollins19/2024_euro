@@ -22,6 +22,7 @@ import Error from "../../Misc/Error";
 // import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
 // import Knockout_Cont_Teams_A from "./ko/Knockout_Cont_Teams_A";
 import R16_Column_A from "./columns/R16_Column_A";
+import Q_Column_A from "./columns/Q_Column_A";
 import "./Teams_Admin.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -33,6 +34,7 @@ const My_Picks_Unlocked_Page = () => {
   }, []);
 
   const [loading, setLoading] = useState(true);
+  const [teamAdjusted, setTeamAdjusted] = useState(false);
 
   setTimeout(() => {
     setLoading(false);
@@ -57,6 +59,8 @@ const My_Picks_Unlocked_Page = () => {
 
     return a;
   }, {});
+
+  console.log("results", results);
 
   // const results = Object.entries(seedMatchups).reduce((a, entry) => {
   //   const game = entry[0];
@@ -98,25 +102,35 @@ const My_Picks_Unlocked_Page = () => {
 
   //const [editKOData, setEditKOData] = useState(false);
 
-  const adjustResults = (game, teamPos) => {
-    switch (teamPos) {
-      case 1:
-        results[game][0].advanceToQ = true;
-        results[game][0].outOfTourney = false;
+  const adjustResults = (game, round) => {
+    if (round.round === "R16") {
+      switch (round.teamPos) {
+        case 1:
+          results[game][0].advanceToQ = true;
+          results[game][0].outOfTourney = false;
 
-        results[game][1].advanceToQ = false;
-        results[game][1].outOfTourney = true;
-        break;
-      case 2:
-        results[game][1].advanceToQ = true;
-        results[game][1].outOfTourney = false;
+          results[game][1].advanceToQ = false;
+          results[game][1].outOfTourney = true;
+          break;
+        case 2:
+          results[game][1].advanceToQ = true;
+          results[game][1].outOfTourney = false;
 
-        results[game][0].advanceToQ = false;
-        results[game][0].outOfTourney = true;
-        break;
+          results[game][0].advanceToQ = false;
+          results[game][0].outOfTourney = true;
+          break;
+      }
     }
 
-    // console.log("results", results);
+    if (round.round === "Q") {
+      const teamsWhoArePlaying = [];
+
+      console.log("game", round.game);
+    }
+
+    setTeamAdjusted(!teamAdjusted);
+
+    console.log("results", results);
   };
 
   // const errorAudit = [];
@@ -176,18 +190,21 @@ const My_Picks_Unlocked_Page = () => {
                 // setQ3={setQ3}
                 // setQ4={setQ4}
               />
-              {/* <Q_Teams_A
+              <Q_Column_A
                 side={"left"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q1={Q1}
-                Q2={Q2}
-                Q3={Q3}
-                Q4={Q4}
-                setS1={setS1}
-                setS2={setS2}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
+                // setTeam={setTeam}
+                // resetMasterError={resetMasterError}
+                // Q1={Q1}
+                // Q2={Q2}
+                // Q3={Q3}
+                // Q4={Q4}
+                // setS1={setS1}
+                // setS2={setS2}
               />
-              <S_Teams_A
+              {/* <S_Teams_A
                 side={"left"}
                 setTeam={setTeam}
                 resetMasterError={resetMasterError}
@@ -240,18 +257,21 @@ const My_Picks_Unlocked_Page = () => {
                 setS3={setS3}
                 setS4={setS4}
                 setF2={setF2}
-              />
-              <Q_UL
-                side={"right"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q5={Q5}
-                Q6={Q6}
-                Q7={Q7}
-                Q8={Q8}
-                setS3={setS3}
-                setS4={setS4}
               /> */}
+              <Q_Column_A
+                side={"right"}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
+                // setTeam={setTeam}
+                // resetMasterError={resetMasterError}
+                // Q5={Q5}
+                // Q6={Q6}
+                // Q7={Q7}
+                // Q8={Q8}
+                // setS3={setS3}
+                // setS4={setS4}
+              />
               <R16_Column_A
                 side={"right"}
                 results={results}
