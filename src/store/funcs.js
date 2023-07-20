@@ -755,6 +755,25 @@ const determineR16Seeding = (teams) => {
   return { ...staticGames, ...remainingMatchups };
 };
 
+const findWinningSemiTeam = (results, game) => {
+  const semiMatchups = {
+    S1: ["Q1", "Q2"],
+    S2: ["Q3", "Q4"],
+    S3: ["Q5", "Q6"],
+    S4: ["Q7", "Q8"],
+  };
+
+  let targetTeam = undefined;
+
+  semiMatchups[game].forEach((game) => {
+    results[game].forEach((team) => {
+      if (team.advanceToS) targetTeam = team;
+    });
+  });
+
+  return targetTeam;
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -780,4 +799,5 @@ module.exports = {
   isPoolPicksPage,
   auditThirdPlaceToAdvancePicks,
   determineR16Seeding,
+  findWinningSemiTeam,
 };

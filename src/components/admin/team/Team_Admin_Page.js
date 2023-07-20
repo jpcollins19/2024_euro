@@ -23,6 +23,7 @@ import Error from "../../Misc/Error";
 // import Knockout_Cont_Teams_A from "./ko/Knockout_Cont_Teams_A";
 import R16_Column_A from "./columns/R16_Column_A";
 import Q_Column_A from "./columns/Q_Column_A";
+import S_Column_A from "./columns/S_Column_A";
 import "./Teams_Admin.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -102,30 +103,57 @@ const My_Picks_Unlocked_Page = () => {
 
   //const [editKOData, setEditKOData] = useState(false);
 
-  const adjustResults = (game, round) => {
-    if (round.round === "R16") {
-      switch (round.teamPos) {
+  const adjustResults = (a) => {
+    if (a.round === "R16") {
+      switch (a.teamPos) {
         case 1:
-          results[game][0].advanceToQ = true;
-          results[game][0].outOfTourney = false;
+          results[a.game][0].advanceToQ = true;
+          results[a.game][0].outOfTourney = false;
 
-          results[game][1].advanceToQ = false;
-          results[game][1].outOfTourney = true;
+          results[a.game][1].advanceToQ = false;
+          results[a.game][1].advanceToS = false;
+          results[a.game][1].outOfTourney = true;
           break;
         case 2:
-          results[game][1].advanceToQ = true;
-          results[game][1].outOfTourney = false;
+          results[a.game][1].advanceToQ = true;
+          results[a.game][1].outOfTourney = false;
 
-          results[game][0].advanceToQ = false;
-          results[game][0].outOfTourney = true;
+          results[a.game][0].advanceToQ = false;
+          results[a.game][0].advanceToS = false;
+          results[a.game][0].outOfTourney = true;
           break;
       }
     }
 
-    if (round.round === "Q") {
-      const teamsWhoArePlaying = [];
+    if (a.round === "Q") {
+      const teamThatAdvanced = results[a.game].find((team) => team.advanceToQ);
 
-      console.log("game", round.game);
+      const otherTeamGame =
+        a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
+
+      const teamThatGotKnockedOut = results[otherTeamGame].find(
+        (team) => team.advanceToQ
+      );
+
+      teamThatAdvanced.advanceToS = true;
+      teamThatAdvanced.outOfTourney = false;
+
+      teamThatGotKnockedOut.advanceToS = false;
+      teamThatGotKnockedOut.outOfTourney = true;
+    }
+
+    if (a.round === "S") {
+      // const teamThatAdvanced = results[game].find((team) => team.advanceToQ);
+      // const gameNum = Number(game.split("")[1]);
+      // const otherTeamGame =
+      //   gameNum % 2 === 0 ? `Q${gameNum - 1}` : `Q${gameNum + 1}`;
+      // const teamThatGotKnockedOut = results[otherTeamGame].find(
+      //   (team) => team.advanceToQ
+      // );
+      // teamThatAdvanced.advanceToS = true;
+      // teamThatAdvanced.outOfTourney = false;
+      // teamThatGotKnockedOut.advanceToS = false;
+      // teamThatGotKnockedOut.outOfTourney = true;
     }
 
     setTeamAdjusted(!teamAdjusted);
@@ -183,42 +211,20 @@ const My_Picks_Unlocked_Page = () => {
                 side={"left"}
                 results={results}
                 adjustResults={adjustResults}
-                // setTeam={setTeam}
-                // resetMasterError={resetMasterError}
-                // setQ1={setQ1}
-                // setQ2={setQ2}
-                // setQ3={setQ3}
-                // setQ4={setQ4}
               />
               <Q_Column_A
                 side={"left"}
                 results={results}
                 adjustResults={adjustResults}
                 teamAdjusted={teamAdjusted}
-                // setTeam={setTeam}
-                // resetMasterError={resetMasterError}
-                // Q1={Q1}
-                // Q2={Q2}
-                // Q3={Q3}
-                // Q4={Q4}
-                // setS1={setS1}
-                // setS2={setS2}
               />
-              {/* <S_Teams_A
+              <S_Column_A
                 side={"left"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q1={Q1}
-                Q2={Q2}
-                Q3={Q3}
-                Q4={Q4}
-                S1={S1}
-                S2={S2}
-                setS1={setS1}
-                setS2={setS2}
-                setF1={setF1}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
               />
-              <F_Teams_A
+              {/* <F_Teams_A
                 side={"left"}
                 setTeam={setTeam}
                 resetMasterError={resetMasterError}
@@ -243,45 +249,23 @@ const My_Picks_Unlocked_Page = () => {
                 F2={F2}
                 setF2={setF2}
                 setChamp={setChamp}
-              />
-              <S_Teams_A
-                side={"right"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q5={Q5}
-                Q6={Q6}
-                Q7={Q7}
-                Q8={Q8}
-                S3={S3}
-                S4={S4}
-                setS3={setS3}
-                setS4={setS4}
-                setF2={setF2}
               /> */}
+              <S_Column_A
+                side={"right"}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
+              />
               <Q_Column_A
                 side={"right"}
                 results={results}
                 adjustResults={adjustResults}
                 teamAdjusted={teamAdjusted}
-                // setTeam={setTeam}
-                // resetMasterError={resetMasterError}
-                // Q5={Q5}
-                // Q6={Q6}
-                // Q7={Q7}
-                // Q8={Q8}
-                // setS3={setS3}
-                // setS4={setS4}
               />
               <R16_Column_A
                 side={"right"}
                 results={results}
                 adjustResults={adjustResults}
-                // setTeam={setTeam}
-                // resetMasterError={resetMasterError}
-                // setQ5={setQ5}
-                // setQ6={setQ6}
-                // setQ7={setQ7}
-                // setQ8={setQ8}
               />
             </div>
 
