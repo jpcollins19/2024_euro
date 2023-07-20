@@ -1,4 +1,4 @@
-const { groupLetters } = require("./variables");
+const { groupLetters, semiMatchups, finalMatchups } = require("./variables");
 
 const findJoe = (arr) => {
   return arr.find((user) => user?.admin);
@@ -755,19 +755,36 @@ const determineR16Seeding = (teams) => {
   return { ...staticGames, ...remainingMatchups };
 };
 
-const findWinningSemiTeam = (results, game) => {
-  const semiMatchups = {
-    S1: ["Q1", "Q2"],
-    S2: ["Q3", "Q4"],
-    S3: ["Q5", "Q6"],
-    S4: ["Q7", "Q8"],
-  };
-
+const findSemisTeam = (results, game) => {
   let targetTeam = undefined;
 
   semiMatchups[game].forEach((game) => {
     results[game].forEach((team) => {
       if (team.advanceToS) targetTeam = team;
+    });
+  });
+
+  return targetTeam;
+};
+
+const findFinalsTeam = (results, game) => {
+  let targetTeam = undefined;
+
+  finalMatchups[game].forEach((game) => {
+    results[game].forEach((team) => {
+      if (team.advanceToF) targetTeam = team;
+    });
+  });
+
+  return targetTeam;
+};
+
+const findChamp = (results) => {
+  let targetTeam = undefined;
+
+  Object.values(results).forEach((teamArr) => {
+    teamArr.forEach((team) => {
+      if (team.advanceToChamp) targetTeam = team;
     });
   });
 
@@ -799,5 +816,7 @@ module.exports = {
   isPoolPicksPage,
   auditThirdPlaceToAdvancePicks,
   determineR16Seeding,
-  findWinningSemiTeam,
+  findSemisTeam,
+  findFinalsTeam,
+  findChamp,
 };

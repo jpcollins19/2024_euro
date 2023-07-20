@@ -2,28 +2,19 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
-  updateUser,
-  dupeValInArr,
-  findJoe,
   loadTeams,
   determineR16Seeding,
   updateTeam,
-  auditThirdPlaceToAdvancePicks,
-  groupLetters,
-  koLetters,
-  Qs,
-  Ss,
-  Fs,
+  semiMatchups,
+  finalMatchups,
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
-import Cancel from "../../Misc/Cancel";
-import Error from "../../Misc/Error";
-// import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
-// import Knockout_Cont_Teams_A from "./ko/Knockout_Cont_Teams_A";
 import R16_Column_A from "./columns/R16_Column_A";
 import Q_Column_A from "./columns/Q_Column_A";
 import S_Column_A from "./columns/S_Column_A";
+import F_Column_A from "./columns/F_Column_A";
+import Champ_Column_A from "./columns/Champ_Column_A";
 import "./Teams_Admin.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -61,48 +52,6 @@ const My_Picks_Unlocked_Page = () => {
     return a;
   }, {});
 
-  console.log("results", results);
-
-  // const results = Object.entries(seedMatchups).reduce((a, entry) => {
-  //   const game = entry[0];
-
-  //   const teamData = entry[1].map((knockoutPosition) => {
-  //     const team = teams.find(
-  //       (team) => team?.knockoutPosition === knockoutPosition
-  //     );
-
-  //     return team;
-  //   });
-
-  //   a[game] = teamData;
-
-  //   return a;
-  // }, {});
-
-  // console.log("results", results);
-
-  // for (let i = 1; i <= 8; i++) {
-  //   const game = `Q${i}`;
-
-  //   const knockoutPosition1 = results[game][0];
-  //   const knockoutPosition2 = results[game][1];
-
-  // const team1 = teams.find(
-  //   (team) => team?.knockoutPosition === knockoutPosition1
-  // );
-
-  // const team2 = teams.find(
-  //   (team) => team?.knockoutPosition === knockoutPosition2
-  // );
-
-  //   results[game][0] = team1;
-  //   results[game][1] = team2;
-  // }
-
-  // Ss.forEach((num) => (results[`S${num}`] = [null, null]));
-
-  //const [editKOData, setEditKOData] = useState(false);
-
   const adjustResults = (a) => {
     if (a.round === "R16") {
       switch (a.teamPos) {
@@ -112,6 +61,8 @@ const My_Picks_Unlocked_Page = () => {
 
           results[a.game][1].advanceToQ = false;
           results[a.game][1].advanceToS = false;
+          results[a.game][1].advanceToF = false;
+          results[a.game][1].advanceToChamp = false;
           results[a.game][1].outOfTourney = true;
           break;
         case 2:
@@ -120,6 +71,8 @@ const My_Picks_Unlocked_Page = () => {
 
           results[a.game][0].advanceToQ = false;
           results[a.game][0].advanceToS = false;
+          results[a.game][0].advanceToF = false;
+          results[a.game][0].advanceToChamp = false;
           results[a.game][0].outOfTourney = true;
           break;
       }
@@ -139,45 +92,71 @@ const My_Picks_Unlocked_Page = () => {
       teamThatAdvanced.outOfTourney = false;
 
       teamThatGotKnockedOut.advanceToS = false;
+      teamThatGotKnockedOut.advanceToF = false;
+      teamThatGotKnockedOut.advanceToChamp = false;
       teamThatGotKnockedOut.outOfTourney = true;
     }
 
     if (a.round === "S") {
-      // const teamThatAdvanced = results[game].find((team) => team.advanceToQ);
-      // const gameNum = Number(game.split("")[1]);
-      // const otherTeamGame =
-      //   gameNum % 2 === 0 ? `Q${gameNum - 1}` : `Q${gameNum + 1}`;
-      // const teamThatGotKnockedOut = results[otherTeamGame].find(
-      //   (team) => team.advanceToQ
-      // );
-      // teamThatAdvanced.advanceToS = true;
-      // teamThatAdvanced.outOfTourney = false;
-      // teamThatGotKnockedOut.advanceToS = false;
-      // teamThatGotKnockedOut.outOfTourney = true;
+      let teamThatAdvanced, teamThatGotKnockedOut;
+
+      semiMatchups[a.game].forEach((game) => {
+        const targetTeam = results[game].find((team) => team.advanceToS);
+
+        if (targetTeam) teamThatAdvanced = targetTeam;
+      });
+
+      const otherTeamGame =
+        a.gameNum % 2 === 0 ? `S${a.gameNum - 1}` : `S${a.gameNum + 1}`;
+
+      semiMatchups[otherTeamGame].forEach((game) => {
+        const targetTeam = results[game].find((team) => team.advanceToS);
+
+        if (targetTeam) teamThatGotKnockedOut = targetTeam;
+      });
+
+      if (teamThatAdvanced) {
+        teamThatAdvanced.advanceToF = true;
+        teamThatAdvanced.outOfTourney = false;
+      }
+
+      if (teamThatGotKnockedOut) {
+        teamThatGotKnockedOut.advanceToF = false;
+        teamThatGotKnockedOut.advanceToChamp = false;
+        teamThatGotKnockedOut.outOfTourney = true;
+      }
+    }
+
+    if (a.round === "F") {
+      let teamThatAdvanced, teamThatGotKnockedOut;
+
+      finalMatchups[a.game].forEach((game) => {
+        const targetTeam = results[game].find((team) => team.advanceToF);
+
+        if (targetTeam) teamThatAdvanced = targetTeam;
+      });
+
+      const otherTeamGame = a.game === "F1" ? "F2" : "F1";
+
+      finalMatchups[otherTeamGame].forEach((game) => {
+        const targetTeam = results[game].find((team) => team.advanceToF);
+
+        if (targetTeam) teamThatGotKnockedOut = targetTeam;
+      });
+
+      if (teamThatAdvanced) {
+        teamThatAdvanced.advanceToChamp = true;
+        teamThatAdvanced.outOfTourney = false;
+      }
+
+      if (teamThatGotKnockedOut) {
+        teamThatGotKnockedOut.advanceToChamp = false;
+        teamThatGotKnockedOut.outOfTourney = true;
+      }
     }
 
     setTeamAdjusted(!teamAdjusted);
-
-    console.log("results", results);
   };
-
-  // const errorAudit = [];
-
-  // const clearArr = (arr) => {
-  //   while (arr.length) {
-  //     arr.pop();
-  //     return clearArr(arr);
-  //   }
-  // };
-
-  // const setTeam = (setTeam, name) => {
-  //   setTeam(name);
-  // };
-
-  // const resetMasterError = () => {
-  //   setMasterError(false);
-  //   setMasterErrorText(null);
-  // };
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -224,32 +203,19 @@ const My_Picks_Unlocked_Page = () => {
                 adjustResults={adjustResults}
                 teamAdjusted={teamAdjusted}
               />
-              {/* <F_Teams_A
+              <F_Column_A
                 side={"left"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                S1={S1}
-                S2={S2}
-                F1={F1}
-                setF1={setF1}
-                setChamp={setChamp}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
               />
-              <Champ_Teams_A
-                champ={champ}
-                setChamp={setChamp}
-                F1={F1}
-                F2={F2}
-              />
-              <F_Teams_A
+              <Champ_Column_A results={results} teamAdjusted={teamAdjusted} />
+              <F_Column_A
                 side={"right"}
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                S3={S3}
-                S4={S4}
-                F2={F2}
-                setF2={setF2}
-                setChamp={setChamp}
-              /> */}
+                results={results}
+                adjustResults={adjustResults}
+                teamAdjusted={teamAdjusted}
+              />
               <S_Column_A
                 side={"right"}
                 results={results}
@@ -268,50 +234,6 @@ const My_Picks_Unlocked_Page = () => {
                 adjustResults={adjustResults}
               />
             </div>
-
-            {/* {joe?.tourneyStage === 1 && (
-              <Group_Cont_Unlocked
-                onChangeSelectionObj={onChangeSelectionObj}
-                groupErrorObj={groupErrorObj}
-                selectionObj={selectionObj}
-                resetMasterError={resetMasterError}
-              />
-            )} */}
-
-            {/* <Knockout_Cont_Teams_A
-            // setTeam={setTeam}
-            // resetMasterError={resetMasterError}
-            // Q1={Q1}
-            // Q2={Q2}
-            // Q3={Q3}
-            // Q4={Q4}
-            // Q5={Q5}
-            // Q6={Q6}
-            // Q7={Q7}
-            // Q8={Q8}
-            // setQ1={setQ1}
-            // setQ2={setQ2}
-            // setQ3={setQ3}
-            // setQ4={setQ4}
-            // setQ5={setQ5}
-            // setQ6={setQ6}
-            // setQ7={setQ7}
-            // setQ8={setQ8}
-            // S1={S1}
-            // S2={S2}
-            // S3={S3}
-            // S4={S4}
-            // setS1={setS1}
-            // setS2={setS2}
-            // setS3={setS3}
-            // setS4={setS4}
-            // F1={F1}
-            // F2={F2}
-            // setF1={setF1}
-            // setF2={setF2}
-            // champ={champ}
-            // setChamp={setChamp}
-            /> */}
           </div>
         </form>
       )}
