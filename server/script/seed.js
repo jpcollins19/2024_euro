@@ -132,7 +132,7 @@ const users = [
     groupF4: "Canada",
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
-    tiebreaker: 165,
+    tiebreaker: 98,
     tourneyStage: 5,
   },
   //stan
@@ -171,7 +171,7 @@ const users = [
     groupF4: "Canada",
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
-    tiebreaker: 165,
+    tiebreaker: 98,
   },
   //frank
   {
@@ -734,8 +734,8 @@ const syncAndSeed = async () => {
   // France.advanceToF = true;
   // Spain.outOfTourney = true;
   // USA.outOfTourney = true;
-  // // France.advanceToChamp = true;
-  // // England.outOfTourney = true;
+  // France.advanceToChamp = true;
+  // England.outOfTourney = true;
   await Promise.all([
     Ecuador.save(),
     Netherlands.save(),

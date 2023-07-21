@@ -791,6 +791,10 @@ const findChamp = (results) => {
   return targetTeam;
 };
 
+const calcMaxPts = (user) => {
+  return 128;
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -819,4 +823,5 @@ module.exports = {
   findSemisTeam,
   findFinalsTeam,
   findChamp,
+  calcMaxPts,
 };

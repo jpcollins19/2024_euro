@@ -10,7 +10,7 @@
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
     "start:dev": "npm run build:dev & JWT=nugget nodemon server --ignore dist/ --ignore src/",
-    "test": "mocha test-specs.js",
+    "test": "mocha test-specs.js max_pts_testing.js",
     "testing": "npm test -- --watch",
     "start": "node server.js"
   },

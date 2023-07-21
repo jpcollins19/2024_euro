@@ -1,11 +1,3 @@
-////RULES ADJUSTMENTS stage 5 -- START
-
-/////manual leaderboard testing:
-//adjust to make diff teams advancing in the KOs at each round (Q, S, F & champ) and audit leaderboard calc
-//test each scenario for tiebreakers - scenarios are listed in excel doc
-
-////RULES ADJUSTMENTS stage 5 -- END
-
 ////F1
 //make the last updated text look prettier
 

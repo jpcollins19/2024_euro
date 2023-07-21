@@ -22,7 +22,7 @@ const {
 } = require("./src/store/variables");
 
 const {
-  userData,
+  userData_full,
   teamData,
   teamDataThroughQs,
   teamDataThroughSs,
@@ -32,7 +32,7 @@ const {
 describe("Cals everthing correctly", () => {
   let users;
   beforeEach(() => {
-    users = userData;
+    users = userData_full;
   });
 
   const resetGroupIsFinishedToTrueForAll = (user) => {
