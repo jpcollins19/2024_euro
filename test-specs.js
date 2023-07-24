@@ -1,7 +1,6 @@
 const { expect } = require("chai");
 const {
   getCurrentScores,
-  addFakeUser,
   groupCalc,
   groupTotalCalc,
   urlWord,
@@ -23,7 +22,7 @@ const {
 
 const {
   userData_full,
-  teamData,
+  teamData_full,
   teamDataThroughQs,
   teamDataThroughSs,
   teamDataThroughFs,
@@ -61,7 +60,7 @@ describe("Cals everthing correctly", () => {
 
     const usersPick = userChampPicks[user.name];
     //
-    const teamInfo = teamData.find((team) => team.name === usersPick);
+    const teamInfo = teamData_full.find((team) => team.name === usersPick);
 
     user.knockChamp = teamInfo;
   };
@@ -2189,7 +2188,7 @@ describe("Cals everthing correctly", () => {
                             teamsArrToUse = teamDataThroughFs;
                             break;
                           default:
-                            teamsArrToUse = teamData;
+                            teamsArrToUse = teamData_full;
                         }
 
                         gameAnswer = koGameCalc(user, game, teamsArrToUse);
@@ -2226,7 +2225,7 @@ describe("Cals everthing correctly", () => {
                 );
 
                 it(`calcs ${userName}'s overall total for ${round} correctly`, () => {
-                  koRoundTotal = koRoundCalc(user, round, teamData);
+                  koRoundTotal = koRoundCalc(user, round, teamData_full);
                   expect(koRoundTotal).to.equal(
                     usersObj[userName][`koRoundFinishedTotal_${letter}`]
                   );
@@ -2244,7 +2243,7 @@ describe("Cals everthing correctly", () => {
                       teams = teamDataThroughFs;
                       break;
                     default:
-                      teams = teamData;
+                      teams = teamData_full;
                   }
 
                   userOverallTotal = userTotalPoints(user, teams);
@@ -2589,7 +2588,7 @@ describe("func testing", () => {
     };
 
     beforeEach(() => {
-      teams = teamData;
+      teams = teamData_full;
 
       teams = resetTeamFinishingPositions(teams);
     });

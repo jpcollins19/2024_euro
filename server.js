@@ -1,14 +1,19 @@
 ////F1
-//make the last updated text look prettier
+///add maxPts to leaderboard info
+///when testing is complete and data is added to the leaderboard page:
+//manually audit in the UI for when there is only (say) 3 Semi games complete - does the max pts available for each user have the correct #?
 
 ////F2
+//make the last updated text look prettier
+
+////F3
 //setup auto email notifications everytime the site is updated like you did for masters
+
+////F4
+//fix world cup trophy pic on ko stage - it is cut off at the top of the pic
 
 ////G1 - guardrails
 //Should not be able to submit Joe tourney stage to 4 unless all matches are complete
-
-////F3
-//leaderboard & test specs: add a "max pts available" once KO stage starts
 
 //Once tourney is close to starting:
 

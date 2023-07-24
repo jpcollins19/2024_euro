@@ -1,4 +1,12 @@
-const { groupLetters, semiMatchups, finalMatchups } = require("./variables");
+const {
+  groupLetters,
+  semiMatchups,
+  finalMatchups,
+  koLetters,
+  Qs,
+  Ss,
+  Fs,
+} = require("./variables");
 
 const findJoe = (arr) => {
   return arr.find((user) => user?.admin);
@@ -337,9 +345,9 @@ const koRoundCalc = (user, round, teams) => {
 const userTotalPoints = (user, teams) => {
   const groupTotal = groupTotalCalc(user);
 
-  // console.log("groupTotal", groupTotal);
+  //console.log("groupTotal", groupTotal);
 
-  const koRounds = ["quarters", "semis", "final", "champion"]; //change to import KOLetters variable?
+  const koRounds = ["quarters", "semis", "final", "champion"];
 
   const userHasKOPicks = user.knockChamp ? true : false;
 
@@ -791,8 +799,97 @@ const findChamp = (results) => {
   return targetTeam;
 };
 
-const calcMaxPts = (user) => {
-  return 128;
+const calcMaxPts = (user, teams) => {
+  const userCurrentTotal = userTotalPoints(user, teams);
+
+  const KOSeeding = determineR16Seeding(teams);
+
+  const allKOGames = koLetters.reduce((a, letter) => {
+    switch (letter) {
+      case "Q":
+        Qs.forEach((num) => a.push(`${letter}${num}`));
+        break;
+      case "S":
+        Ss.forEach((num) => a.push(`${letter}${num}`));
+        break;
+      case "F":
+        Fs.forEach((num) => a.push(`${letter}${num}`));
+        break;
+      default:
+        a.push("Champ");
+    }
+
+    return a;
+  }, []);
+
+  const findRound = (str) => {
+    return str === "Champ" ? str : str.split("")[0];
+  };
+
+  const gamesToAudit = allKOGames.reduce((a, game) => {
+    const round = findRound(game);
+    let isGameComplete, gamesToLookAt, didATeamAdvance;
+
+    const determineIfAnyTeamsAdvanced = (games, key) => {
+      return games.reduce((a, game) => {
+        const seeds = KOSeeding[game];
+
+        seeds.forEach((seed) => {
+          const team = teams.find((team) => team.knockoutPosition === seed);
+
+          a.push(team[`advanceTo${key}`]);
+        });
+
+        return a;
+      }, []);
+    };
+
+    switch (round) {
+      case "Champ":
+        gamesToLookAt = [...finalMatchups.F1, ...finalMatchups.F2];
+        break;
+      case "F":
+        gamesToLookAt = finalMatchups[game];
+        break;
+      case "S":
+        gamesToLookAt = semiMatchups[game];
+        break;
+      case "Q":
+        gamesToLookAt = [game];
+        break;
+    }
+
+    didATeamAdvance = determineIfAnyTeamsAdvanced(gamesToLookAt, round);
+    isGameComplete = didATeamAdvance.includes(true);
+
+    !isGameComplete && a.push(game);
+
+    return a;
+  }, []);
+
+  const userFuturePoints = gamesToAudit.reduce((a, game) => {
+    const round = findRound(game);
+
+    const usersPick = user[`knock${game}`];
+    const isUsersPickStillInTourney = !usersPick.outOfTourney;
+
+    const pointObj = {
+      Champ: 10,
+      F: 6,
+      S: 4,
+      Q: 2,
+    };
+
+    if (isUsersPickStillInTourney) a += pointObj[round];
+
+    return a;
+  }, 0);
+
+  const isTourneyComplete = teams.find((team) => team.advanceToChamp);
+
+  return isTourneyComplete
+    ? userCurrentTotal
+    : userCurrentTotal + userFuturePoints;
 };
 
 module.exports = {
