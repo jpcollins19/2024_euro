@@ -490,12 +490,14 @@ const getCurrentScores = (users, teams, actualGoalsScored = null) => {
   const firstAudit = users
     .reduce((a, user) => {
       const total = userTotalPoints(user, teams);
+      const maxPts = calcMaxPts(user, teams);
 
       const userObj = {
         id: user?.id,
         name: user.name,
         tiebreaker: user.tiebreaker,
         total,
+        maxPts,
         tieExists: false,
         paid: user.paid,
       };

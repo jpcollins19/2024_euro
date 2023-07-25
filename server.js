@@ -1,8 +1,3 @@
-////F1
-///add maxPts to leaderboard info
-///when testing is complete and data is added to the leaderboard page:
-//manually audit in the UI for when there is only (say) 3 Semi games complete - does the max pts available for each user have the correct #?
-
 ////F2
 //make the last updated text look prettier
 

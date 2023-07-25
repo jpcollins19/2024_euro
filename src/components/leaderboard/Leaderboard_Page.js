@@ -22,7 +22,10 @@ const Leaderboard_Page = () => {
   const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
 
-  const rankInfo = joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : "";
+  const rankInfo =
+    joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : null;
+
+  console.log("rankinfo", rankInfo);
 
   const tourneyStarted = joe?.tourneyStage !== 1;
   const userSubmittedPicks = user?.tiebreaker ?? false;
