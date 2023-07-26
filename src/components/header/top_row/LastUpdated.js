@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeUpdated } from "../../../store";
+import { changeUpdated, loadUpdated } from "../../../store";
 import Text from "./Text";
-import EditText from "./EditText";
+import Admin_Text from "./Admin_Text";
 
 const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
   const dispatch = useDispatch();
@@ -10,17 +10,18 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
   const userHasNoPicksAndTourneyHasStarted =
     !userSubmittedPicks && tourneyStarted;
 
-  const numOfSubmittedPicks = useSelector((state) => state.users).filter(
-    (user) => user.tiebreaker !== null
-  );
   const lastUpdated = useSelector((state) => state.updated)[0];
-  const lastUpdatedAnswer = lastUpdated?.answer;
+
   const [edit, setEdit] = useState(false);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(null);
 
   useEffect(() => {
-    setEdit(false);
+    dispatch(loadUpdated());
   }, []);
+
+  useEffect(() => {
+    setText(lastUpdated?.answer);
+  }, [lastUpdated]);
 
   const onChange = (value) => {
     setText(value);
@@ -30,16 +31,17 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
     evt.preventDefault();
 
     try {
-      const obj = {
-        id: lastUpdated.id,
-        answer: text,
-      };
+      if (!edit) {
+        const obj = {
+          id: lastUpdated.id,
+          answer: text,
+        };
 
-      dispatch(changeUpdated(obj));
-      setEdit(false);
-      setText("");
+        dispatch(changeUpdated(obj));
+        setEdit(false);
+      }
     } catch (err) {
-      console.log(error);
+      console.log(err);
     }
   };
 
@@ -49,21 +51,19 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
       id="submit-last-updated"
       className={user?.id ? "last-updated-cont" : "last-updated-cont-NU"}
     >
-      {user?.id && !userHasNoPicksAndTourneyHasStarted && !edit && (
-        <Text
-          setEdit={setEdit}
-          user={user}
-          lastUpdatedAnswer={lastUpdatedAnswer}
-        />
+      {!user?.admin && !userHasNoPicksAndTourneyHasStarted && (
+        <Text text={text} />
       )}
-      {user?.admin && edit && (
-        <EditText
-          text={text}
-          setEdit={setEdit}
-          onChange={onChange}
-          lastUpdatedAnswer={lastUpdatedAnswer}
-        />
+
+      {user?.admin && (
+        <Admin_Text onChange={onChange} text={text} edit={edit} />
       )}
+
+      {user?.admin && !edit ? (
+        <button onClick={() => setEdit(true)}>Edit</button>
+      ) : user?.admin && edit ? (
+        <button onClick={() => setEdit(false)}>Save</button>
+      ) : null}
     </form>
   );
 };

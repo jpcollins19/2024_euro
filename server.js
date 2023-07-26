@@ -1,6 +1,3 @@
-////F2
-//make the last updated text look prettier
-
 ////F3
 //setup auto email notifications everytime the site is updated like you did for masters
 
@@ -10,14 +7,7 @@
 ////G1 - guardrails
 //Should not be able to submit Joe tourney stage to 4 unless all matches are complete
 
-//Once tourney is close to starting:
-
-/////adjust the date info on the following pages:
-//rules
-//leaderboard
-//pool picks
-
-//////tablet and mobile compatibility --- START
+//////tablet and mobile compatibility --- LOCAL - START
 //sign in
 
 //create account
@@ -56,8 +46,8 @@
 
 //leaderboard
 //stage 1
-//stage 2
-//dont need to do any more stages as 2-5 === same setup
+//stage 2-3
+//stage 4-5
 
 //admin - users
 
@@ -65,19 +55,66 @@
 
 //admin - teams
 
-//////tablet and mobile compatibility --- END
+//////tablet and mobile compatibility --- LOCAL - END
 
-/////when website is live and is in testing ----START
+//Once tourney is close to starting:
 
-////mobile view ---START
+/////adjust the date info on the following pages:
+//rules
+//leaderboard
+//pool picks
 
-//audit every page and stage with the mobile view
+//////tablet and mobile compatibility --- byah-masters-byah - START
+//sign in
 
-////mobile view ---END
+//create account
+
+//forgot pw
+
+//all 3 action confirmation pages
+//1
+//2
+//3
+
+//rules
+
+//group details
+
+//my picks - locked - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//my picks - unlocked - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//pool picks - all 5 stages
+//stage 1
+//stage 2
+//stage 3
+//stage 4
+//stage 5
+
+//leaderboard
+//stage 1
+//stage 2-3
+//stage 4-5
+
+//admin - users
+
+//admin - groups
+
+//admin - teams
 
 ///verify that the forgot pw lifecycle is working
 
-/////when website is live and is in testing ----END
+//////tablet and mobile compatibility --- byah-masters-byah - END
 
 /////////////////////////////////
 // Tourney Stage Info //

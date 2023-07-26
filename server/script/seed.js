@@ -406,7 +406,7 @@ const joeNoPicks = [
 const updated = [
   {
     idd: 1,
-    answer: "Last Updated: 10/31/22 at 10:36 am",
+    answer: "10/31/22 @ 10:36 am",
   },
 ];
 

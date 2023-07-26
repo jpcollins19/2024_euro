@@ -25,8 +25,6 @@ const Leaderboard_Page = () => {
   const rankInfo =
     joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : null;
 
-  console.log("rankinfo", rankInfo);
-
   const tourneyStarted = joe?.tourneyStage !== 1;
   const userSubmittedPicks = user?.tiebreaker ?? false;
 

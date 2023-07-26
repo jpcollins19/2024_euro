@@ -1,12 +1,8 @@
-const Text = ({ setEdit, user, lastUpdatedAnswer }) => {
+const Text = ({ text }) => {
   return (
     <div>
-      {lastUpdatedAnswer && lastUpdatedAnswer}
-      {user?.admin && (
-        <button className="last-updated-button" onClick={() => setEdit(true)}>
-          Edit
-        </button>
-      )}
+      <div>Last Updated:</div>
+      <div>{text}</div>
     </div>
   );
 };
