@@ -894,6 +894,67 @@ const calcMaxPts = (user, teams) => {
     : userCurrentTotal + userFuturePoints;
 };
 
+const getWebsiteUpdatedEmailDateVerbiage = () => {
+  const date = new Date();
+
+  Date.prototype.customFormat = function (formatString) {
+    let YYYY,
+      // MM,
+      M,
+      DDDD,
+      // DD,
+      D,
+      hhh,
+      // hh,
+      h,
+      mm,
+      m,
+      AMPM;
+
+    YYYY = this.getFullYear();
+    // MM = (M = this.getMonth() + 1) < 10 ? "0" + M : M;
+    M = this.getMonth() + 1;
+
+    // DD = (D = this.getDate()) < 10 ? "0" + D : D;
+    D = this.getDate();
+
+    DDDD = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ][this.getDay()];
+
+    formatString = formatString
+      .replace("#YYYY#", YYYY)
+      // .replace("#MM#", MM)
+      .replace("#M#", M)
+      .replace("#DDDD#", DDDD)
+      .replace("#D#", D);
+
+    h = this.getHours();
+    if (h == 0) h = 24;
+    if (h > 12) h -= 12;
+    // hh = h < 10 ? "0" + h : h;
+    AMPM = hhh < 12 ? "AM" : "PM";
+    mm = (m = this.getMinutes()) < 10 ? "0" + m : m;
+
+    return formatString
+      .replace("#h#", h)
+      .replace("#mm#", mm)
+      .replace("#AMPM#", AMPM);
+  };
+
+  const subjectLine = date.customFormat("#DDDD# - #M#/#D#/#YYYY#");
+
+  const emailBody = date.customFormat("#h#:#mm# #AMPM# CT");
+
+  return [subjectLine, emailBody];
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -923,4 +984,5 @@ module.exports = {
   findFinalsTeam,
   findChamp,
   calcMaxPts,
+  getWebsiteUpdatedEmailDateVerbiage,
 };

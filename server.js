@@ -1,5 +1,6 @@
 ////F3
 //setup auto email notifications everytime the site is updated like you did for masters
+//add logic to UI for user to opt into receiving emails
 
 ////F4
 //fix world cup trophy pic on ko stage - it is cut off at the top of the pic
@@ -136,6 +137,7 @@ app.use(express.json());
 
 app.use("/dist", express.static(path.join(__dirname, "dist")));
 
+app.use("/", require("./server/api/sendWebsiteUpdatedEmail"));
 app.use("/", require("./server/api/sendForgotPW"));
 app.use("/", require("./server/api/updated"));
 app.use("/", require("./server/api/users"));

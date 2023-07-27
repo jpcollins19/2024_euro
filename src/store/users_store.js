@@ -1,5 +1,6 @@
 import axios from "axios";
 import { groupLetters, koLetters } from "./variables";
+import { getWebsiteUpdatedEmailDateVerbiage } from "./index.js";
 
 const LOAD_USERS = "LOAD_USERS";
 const ADD_USER = "ADD_USER";
@@ -124,6 +125,40 @@ export const updateUser = (user, history, route = "dont update") => {
 
     route !== "dont update" &&
       history.push(route === "admin" ? `/pool_picks/${userId}` : route);
+  };
+};
+
+const sendWebsiteUpdatedEmail = (user) => {
+  return async (dispatch) => {
+    const data = await axios.post("/api/send-website-updated-email", user);
+  };
+};
+
+export const loadUsersWhoNeedWebsiteUpdatedEmails = () => {
+  return async (dispatch) => {
+    const users = (await axios.get("/api/users")).data;
+
+    const usersWhoNeedAnEmail = users.filter(
+      (user) => user?.emailNotifications && !user?.websiteUpdatedEmailSent
+    );
+
+    usersWhoNeedAnEmail.forEach((user) => {
+      user.websiteUpdatedEmailSent = true;
+
+      dispatch(updateUser(user));
+
+      const emailDateData = getWebsiteUpdatedEmailDateVerbiage();
+
+      console.log("email needed for:", user.email);
+
+      const websiteUpdatedEmailSubject = emailDateData[0];
+      const websiteUpdatedEmailBody = emailDateData[1];
+
+      user.websiteUpdatedEmailSubject = websiteUpdatedEmailSubject;
+      user.websiteUpdatedEmailBody = websiteUpdatedEmailBody;
+
+      dispatch(sendWebsiteUpdatedEmail(user));
+    });
   };
 };
 

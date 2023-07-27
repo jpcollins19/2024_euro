@@ -22,6 +22,14 @@ const User = db.define("users", {
       isEmail: true,
     },
   },
+  emailNotifications: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+  websiteUpdatedEmailSent: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
   password: {
     type: STRING,
     allowNull: false,

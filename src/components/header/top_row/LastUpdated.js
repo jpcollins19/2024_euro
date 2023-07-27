@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeUpdated, loadUpdated } from "../../../store";
+import {
+  changeUpdated,
+  loadUpdated,
+  loadUsersWhoNeedWebsiteUpdatedEmails,
+} from "../../../store";
 import Text from "./Text";
 import Admin_Text from "./Admin_Text";
 
@@ -39,6 +43,7 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
 
         dispatch(changeUpdated(obj));
         setEdit(false);
+        dispatch(loadUsersWhoNeedWebsiteUpdatedEmails());
       }
     } catch (err) {
       console.log(err);

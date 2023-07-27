@@ -97,7 +97,9 @@ teamInfo.forEach((team) => {
 
 const users = [
   {
-    email: "joe@gmail.com",
+    // email: "joe@gmail.com",
+    email: "jpatcollins@gmail.com",
+    emailNotifications: true,
     password: "nugget",
     name: "Joe",
     admin: true,
@@ -137,7 +139,8 @@ const users = [
   },
   //stan
   {
-    email: "jpatcollins@gmail.com",
+    // email: "jpatcollins@gmail.com",
+    email: "stanley@gmail.com",
     password: "stanley",
     name: "Stanley",
     paid: true,
@@ -214,25 +217,6 @@ const users = [
     groupF3: "Morocco",
     groupF4: "Canada",
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
-
-    // knockQ1: "USA",
-    // knockQ2: "Argentina",
-    // knockQ3: "Croatia",
-    // knockQ4: "Brasil",
-    // knockQ5: "England",
-    // knockQ6: "France",
-    // knockQ7: "Spain",
-    // knockQ8: "Portugal",
-
-    // knockS1: "Argentina",
-    // knockS2: "Brasil",
-    // knockS3: "England",
-    // knockS4: "Spain",
-
-    // knockF1: "Brasil",
-    // knockF2: "England",
-
-    // knockChamp: "England",
 
     tiebreaker: 155,
   },
@@ -406,7 +390,7 @@ const joeNoPicks = [
 const updated = [
   {
     idd: 1,
-    answer: "10/31/22 @ 10:36 am",
+    answer: "10/31/22 @ 10:36 am CT",
   },
 ];
 
@@ -511,6 +495,7 @@ const syncAndSeed = async () => {
     users.map((obj) =>
       User.create({
         email: obj.email,
+        emailNotifications: obj.emailNotifications,
         password: obj.password,
         name: obj.name,
         admin: obj.admin,
