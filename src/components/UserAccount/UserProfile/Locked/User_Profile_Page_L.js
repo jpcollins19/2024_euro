@@ -61,6 +61,12 @@ const User_Profile_Page = () => {
       // marginTop: isMobile ? "30px" : "15px",
       marginTop: "15px",
     },
+    {
+      route: "/edit_profile_email_notifications",
+      text: "Edit Email Notifications",
+      // marginTop: isMobile ? "30px" : "5px",
+      marginTop: "15px",
+    },
   ];
 
   return loading ? (

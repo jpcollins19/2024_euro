@@ -163,6 +163,10 @@ const Routes = () => {
         {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
       </Route>
 
+      <Route path="/edit_profile_email_notifications">
+        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      </Route>
+
       <Route path="*">
         <NoMatch />
       </Route>

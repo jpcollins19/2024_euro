@@ -223,6 +223,7 @@ const users = [
   //kevin
   {
     email: "kevin@gmail.com",
+    emailNotifications: true,
     password: "kevin",
     name: "Kevin",
 

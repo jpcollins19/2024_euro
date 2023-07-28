@@ -6,6 +6,7 @@ import {
   loadUsersWhoNeedWebsiteUpdatedEmails,
 } from "../../../store";
 import Text from "./Text";
+import Email_Updates from "./Email_Updates";
 import Admin_Text from "./Admin_Text";
 
 const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
@@ -59,6 +60,8 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
       {!user?.admin && !userHasNoPicksAndTourneyHasStarted && (
         <Text text={text} />
       )}
+
+      {!user?.admin && !userHasNoPicksAndTourneyHasStarted && <Email_Updates />}
 
       {user?.admin && (
         <Admin_Text onChange={onChange} text={text} edit={edit} />

@@ -22,11 +22,12 @@
 }
 
 .last-updated-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   top: 30;
   left: 120;
-  /* padding: 0.9rem 0rem 0rem 1rem; */
-  /* flex-grow: 1; */
   font-weight: bold;
   font-size: 1rem;
 }
@@ -45,14 +46,6 @@
   min-height: 5rem;
 }
 
-/* .luc-last-updated {
-  border: solid 2px red;
-}
-
-.luc-text {
-  border: solid 2px green;
-} */
-
 .last-updated-cont > button {
   position: absolute;
   top: 30;
@@ -64,6 +57,33 @@
   font-size: 1rem;
   width: 15rem;
   text-align: center;
+}
+
+.email-notifications-cont {
+  color: black;
+  text-decoration: none;
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+.email-notifications-cont p {
+  display: none;
+}
+.email-notifications-cont:hover p {
+  display: block;
+  text-align: center;
+  position: fixed;
+  /* top: 15.5%;
+  left: 6.5%; */
+  top: 2%;
+  left: 20%;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+  padding: 10px 20px 10px 20px;
+  color: white;
+  text-shadow: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  max-width: 30rem;
 }
 
 .submitted-picks {

@@ -1,6 +1,9 @@
-////F3
-//setup auto email notifications everytime the site is updated like you did for masters
-//add logic to UI for user to opt into receiving emails
+/////F3
+////email notifications
+///add logic to UI for user to opt into receiving emails
+//work on the UI for the edit_profile_email_notifications page
+//adjust onSubmit to update email notification preferences
+//test out with stanley's email as jpatcollins
 
 ////F4
 //fix world cup trophy pic on ko stage - it is cut off at the top of the pic
