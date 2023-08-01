@@ -6,6 +6,7 @@ import {
   formatEmail,
   updateUser,
   loadUsers,
+  formatPathname,
 } from "../../../../store";
 import Loading from "../../../Misc/Loading";
 import Error from "../../../Misc/Error";
@@ -24,18 +25,7 @@ const User_Profile_Page = () => {
     dispatch(loadUsers());
   }, []);
 
-  const page = pathname
-    .split("/edit_profile_")[1]
-    .split("")
-    .map((letter, idx) => {
-      if (idx === 0) {
-        letter = letter.toUpperCase();
-      }
-      return letter;
-    })
-    .join("");
-
-  if (!user) return null;
+  const page = formatPathname(pathname.split("/edit_profile_")[1]);
 
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState(null);
@@ -44,6 +34,7 @@ const User_Profile_Page = () => {
   const [password, setPassword] = useState(null);
   const [password1, setPassword1] = useState(null);
   const [passwordChanged, setPasswordChanged] = useState(false);
+  const [emailNotifications, setEmailNotifications] = useState(null);
   const [error, setError] = useState(null);
   const [showPW, setShowPW] = useState(false);
 
@@ -55,12 +46,12 @@ const User_Profile_Page = () => {
     name === null && setName(user.name);
     password === null && setPassword(user.password);
     password1 === null && setPassword1(user.password);
+    emailNotifications === null &&
+      setEmailNotifications(user?.emailNotifications);
     setLoading(false);
   }, 1000);
 
   const userNames = getUserNames(useSelector((state) => state.users));
-
-  const classInfo = page === "Password" ? "pw" : "name";
 
   const onChange = (ev) => {
     setError(null);
@@ -69,6 +60,8 @@ const User_Profile_Page = () => {
     if (ev.target.name === "Name") {
       setName(ev.target.value);
       setNameChanged(true);
+    } else if (ev.target.name === "Email Notifications") {
+      setEmailNotifications(!emailNotifications);
     } else {
       setPasswordChanged(true);
       ev.target.name === "Password"
@@ -76,6 +69,8 @@ const User_Profile_Page = () => {
         : setPassword1(ev.target.value);
     }
   };
+
+  const classInfo = page === "Password" ? "pw" : "name";
 
   const onSubmit = async (ev) => {
     ev.preventDefault();
@@ -105,6 +100,8 @@ const User_Profile_Page = () => {
         userObj.password = password;
       }
 
+      userObj.emailNotifications = emailNotifications;
+
       dispatch(updateUser(userObj, history, "my_profile"));
     } catch (err) {
       console.log(err);
@@ -131,7 +128,12 @@ const User_Profile_Page = () => {
           </div>
 
           <form onSubmit={onSubmit} id="update-profile">
-            <Input_Cont user={user} onChange={onChange} showPW={showPW} />
+            <Input_Cont
+              user={user}
+              onChange={onChange}
+              showPW={showPW}
+              emailNotifications={emailNotifications}
+            />
           </form>
 
           {page && page === "Password" && (

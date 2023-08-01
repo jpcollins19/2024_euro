@@ -955,6 +955,23 @@ const getWebsiteUpdatedEmailDateVerbiage = () => {
   return [subjectLine, emailBody];
 };
 
+const formatPathname = (str) => {
+  const split = str.split("_");
+
+  return split.reduce((a, word, idx) => {
+    word = word
+      .split("")
+      .map((letter, idx) => {
+        if (idx === 0) letter = letter.toUpperCase();
+        return letter;
+      })
+      .join("");
+    a += word;
+    if (idx + 1 !== split.length) a += " ";
+    return a;
+  }, "");
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -985,4 +1002,5 @@ module.exports = {
   findChamp,
   calcMaxPts,
   getWebsiteUpdatedEmailDateVerbiage,
+  formatPathname,
 };

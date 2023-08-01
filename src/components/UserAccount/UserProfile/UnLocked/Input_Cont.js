@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Input_Field from "../../Input_Field";
 
-const Input_Cont = ({ onChange, showPW }) => {
+const Input_Cont = ({ user, onChange, showPW, emailNotifications }) => {
   const { pathname } = useLocation();
 
-  const user = useSelector((state) => state.auth);
-
   const path = pathname.split("/edit_profile_")[1];
+
+  // const isMobile = getScreenWidth("max", 65);
 
   const password = {
     label: "Password",
@@ -25,23 +24,58 @@ const Input_Cont = ({ onChange, showPW }) => {
     type: showPW ? "text" : "password",
   };
 
+  const className = `up-input-${
+    path === "name" ? "name" : "email_notifications"
+  }`;
+
   return (
     <div className="input-cont-user-profile">
       {path === "password" ? (
         <Input_Field input={password} onChange={onChange} />
-      ) : (
+      ) : path === "name" ? (
         <input
           onChange={onChange}
           name="Name"
           defaultValue={user?.name}
           type="text"
+          className={className}
         ></input>
+      ) : (
+        <div className="up-edit-email-notifications">
+          <input
+            onChange={onChange}
+            name="Email Notifications"
+            checked={emailNotifications}
+            type="checkbox"
+            className={className}
+          ></input>
+          <div className="white-text">
+            Send me email notifications each time the website is updated
+          </div>
+        </div>
       )}
 
       {path === "password" && (
         <Input_Field input={password1} onChange={onChange} />
       )}
     </div>
+
+    // <div className="input-cont-user-profile">
+    //   {path === "password" ? (
+    //     <Input_Field input={password} onChange={onChange} />
+    //   ) : (
+    //     <input
+    //       onChange={onChange}
+    //       name="Name"
+    //       defaultValue={user?.name}
+    //       type="text"
+    //     ></input>
+    //   )}
+
+    //   {path === "password" && (
+    //     <Input_Field input={password1} onChange={onChange} />
+    //   )}
+    // </div>
   );
 };
 

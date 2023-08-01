@@ -10,6 +10,7 @@ const {
   colorDescriptionTableNeeded,
   auditThirdPlaceToAdvancePicks,
   determineR16Seeding,
+  formatPathname,
 } = require("./src/store/funcs");
 
 const {
@@ -29,9 +30,10 @@ const {
 } = require("./testing/data");
 
 describe("Cals everthing correctly", () => {
-  let users;
+  let users, teams;
   beforeEach(() => {
     users = userData_full;
+    teams = teamData_full;
   });
 
   const resetGroupIsFinishedToTrueForAll = (user) => {
@@ -142,7 +144,7 @@ describe("Cals everthing correctly", () => {
             }
           });
 
-          answer = getCurrentScores(users);
+          answer = getCurrentScores(users, teams);
 
           answer.forEach((user, idx) => {
             expect(user.rank).to.equal(test.correctResults[idx].rank);
@@ -2666,6 +2668,20 @@ describe("func testing", () => {
           expect(correctTeam1).to.equal(answerTeam1);
           expect(correctTeam2).to.equal(answerTeam2);
         });
+      });
+    });
+  });
+
+  const formatPathnameTesting = [
+    { value: "email_notifications", result: "Email Notifications" },
+  ];
+
+  describe("formatPathname", () => {
+    formatPathnameTesting.forEach((test) => {
+      it(`${test.value}`, () => {
+        const result = formatPathname(test.value);
+
+        expect(result).to.equal(test.result);
       });
     });
   });

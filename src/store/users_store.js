@@ -138,6 +138,12 @@ export const loadUsersWhoNeedWebsiteUpdatedEmails = () => {
   return async (dispatch) => {
     const users = (await axios.get("/api/users")).data;
 
+    users.forEach((user) => {
+      user.websiteUpdatedEmailSent = false;
+
+      dispatch(updateUser(user));
+    });
+
     const usersWhoNeedAnEmail = users.filter(
       (user) => user?.emailNotifications && !user?.websiteUpdatedEmailSent
     );

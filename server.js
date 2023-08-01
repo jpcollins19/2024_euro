@@ -1,17 +1,14 @@
-/////F3
-////email notifications
-///add logic to UI for user to opt into receiving emails
-//work on the UI for the edit_profile_email_notifications page
-//adjust onSubmit to update email notification preferences
-//test out with stanley's email as jpatcollins
-
 ////F4
 //fix world cup trophy pic on ko stage - it is cut off at the top of the pic
+
+////my picks and pool picks - stage 5:
+//^^if a team lost, grey their flag/name out
+//^^change the highlight text of a team that advanced to white, not green
 
 ////G1 - guardrails
 //Should not be able to submit Joe tourney stage to 4 unless all matches are complete
 
-//////tablet and mobile compatibility --- LOCAL - START
+//////mobile compatibility --- LOCAL - START
 //sign in
 
 //create account
@@ -22,10 +19,6 @@
 //1
 //2
 //3
-
-//rules
-
-//group details
 
 //my picks - locked - all 5 stages
 //stage 1
@@ -48,6 +41,10 @@
 //stage 4
 //stage 5
 
+//rules
+
+//group details
+
 //leaderboard
 //stage 1
 //stage 2-3
@@ -59,7 +56,7 @@
 
 //admin - teams
 
-//////tablet and mobile compatibility --- LOCAL - END
+//////mobile compatibility --- LOCAL - END
 
 //Once tourney is close to starting:
 
@@ -67,6 +64,8 @@
 //rules
 //leaderboard
 //pool picks
+
+//change the sendgrid email template URLs to byah-masters-byah
 
 //////tablet and mobile compatibility --- byah-masters-byah - START
 //sign in

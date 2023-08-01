@@ -367,6 +367,29 @@
   font-size: 1rem;
 }
 
+.up-input-name {
+  border: solid 2px yellow;
+  text-align: center;
+  background: transparent;
+  min-width: 20rem;
+  color: white;
+  border-radius: 1rem;
+  outline-width: 0;
+  height: 3rem;
+  margin: 15px 0 0 0;
+  font-size: 20px;
+}
+
+.up-edit-email-notifications {
+  display: flex;
+  padding: 5% 0 10% 0;
+}
+
+.up-edit-email-notifications > div {
+  font-size: 13px;
+  margin-left: 10px;
+}
+
 .toaster-email-changed {
   text-align: center;
   margin: 13% 0 0 0;

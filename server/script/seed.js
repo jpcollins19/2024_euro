@@ -97,9 +97,9 @@ teamInfo.forEach((team) => {
 
 const users = [
   {
-    // email: "joe@gmail.com",
-    email: "jpatcollins@gmail.com",
-    emailNotifications: true,
+    email: "joe@gmail.com",
+    // email: "jpatcollins@gmail.com",
+    //emailNotifications: true,
     password: "nugget",
     name: "Joe",
     admin: true,
@@ -139,8 +139,9 @@ const users = [
   },
   //stan
   {
-    // email: "jpatcollins@gmail.com",
-    email: "stanley@gmail.com",
+    email: "jpatcollins@gmail.com",
+    // email: "stanley@gmail.com",
+    emailNotifications: true,
     password: "stanley",
     name: "Stanley",
     paid: true,

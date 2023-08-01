@@ -124,7 +124,7 @@ const Pool_Picks_Page = () => {
 
           <div className="top box">
             <div className="box left">
-              {joe?.tourneyStage === 5 && user?.tiebreaker && (
+              {joe?.tourneyStage >= 4 && user?.tiebreaker && (
                 <Point_System_Cont tourneyStage={joe?.tourneyStage} />
               )}
               <div className="predictions-cont">
