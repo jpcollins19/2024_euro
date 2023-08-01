@@ -14,19 +14,15 @@ const Champ_Game_L = ({ selectedUser, user }) => {
 
   const gameInfo = koGameCalc(userToUse, "Champ", teams);
 
-  const gameIsFinished = gameInfo.teamThatAdvanced?.name ? true : false;
+  const gameIsFinished = gameInfo.teamThatAdvanced ?? false;
 
   return (
     <div className="white-text CL">
-      <div
-        className={`${
-          gameInfo.usersPick?.outOfTourney ? "wrong" : gameInfo.usersPickClass
-        }-box`}
-      >
+      <div className={`${gameInfo.usersPickClass}-box`}>
         <div className="team-ko-img-cont">
           {gameInfo.usersPick?.name && (
             <img
-              className="team-flag-ko-champ"
+              className={`team-flag-ko-champ ${gameInfo.usersPickClass}-flag`}
               src={gameInfo.usersPick?.flag}
             />
           )}
@@ -35,13 +31,7 @@ const Champ_Game_L = ({ selectedUser, user }) => {
             <Correct_Team_Cont gameInfo={gameInfo} champ={true} />
           )}
 
-          <p
-            className={`team-name-ko-champ ${
-              gameInfo.usersPick?.outOfTourney
-                ? "wrong"
-                : gameInfo.usersPickClass
-            }-text`}
-          >
+          <p className={`team-name-ko-champ ${gameInfo.usersPickClass}-text`}>
             {gameInfo.usersPick?.name}
           </p>
         </div>

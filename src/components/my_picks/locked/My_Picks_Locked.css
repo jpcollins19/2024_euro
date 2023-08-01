@@ -389,7 +389,7 @@
   right: 0;
   color: #fff;
   visibility: hidden;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .team-name-ko {
@@ -402,7 +402,13 @@
   right: 0;
   color: #fff;
   visibility: hidden;
-  opacity: 0;
+  /* opacity: 0; */
+}
+
+.unknown-box {
+  border: solid 1px white;
+  width: 7vw;
+  border-radius: 0.5rem;
 }
 
 .wrong-box {
@@ -424,10 +430,11 @@
   position: absolute;
   top: -50;
   bottom: 0;
-  left: -2.3vw;
+  /* left: -2.3vw; */
+  left: -2.5vw;
   right: 0;
   height: 2.5rem;
-  border: solid 4px rgb(11, 238, 11);
+  border: solid 4px white;
   background: linear-gradient(
     to bottom right,
     rgb(159, 159, 147) 0%,
@@ -435,7 +442,7 @@
     rgb(159, 159, 147) 100%
   );
   border-radius: 0.5rem;
-  color: rgb(11, 238, 11);
+  color: white;
   visibility: hidden;
   opacity: 0;
   width: 7.5vw;
@@ -451,7 +458,7 @@
   left: -1.4vw;
   right: 0;
   height: 2.5rem;
-  border: solid 2px rgb(11, 238, 11);
+  border: solid 2px white;
   background: linear-gradient(
     to bottom right,
     rgb(159, 159, 147) 0%,
@@ -459,7 +466,7 @@
     rgb(159, 159, 147) 100%
   );
   border-radius: 0.5rem;
-  color: rgb(11, 238, 11);
+  color: white;
   visibility: hidden;
   opacity: 0;
   width: 8vw;
@@ -536,10 +543,12 @@
   opacity: 0.5;
 }
 
-.unknown-box {
-  border: solid 1px white;
-  width: 7vw;
-  border-radius: 0.5rem;
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.wrong-flag {
+  opacity: 0.6;
 }
 
 .wrong-text {

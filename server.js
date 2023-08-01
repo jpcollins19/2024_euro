@@ -1,60 +1,66 @@
-////F4
-//fix world cup trophy pic on ko stage - it is cut off at the top of the pic
-
-////my picks and pool picks - stage 5:
-//^^if a team lost, grey their flag/name out
-//^^change the highlight text of a team that advanced to white, not green
-
 ////G1 - guardrails
 //Should not be able to submit Joe tourney stage to 4 unless all matches are complete
 
 //////mobile compatibility --- LOCAL - START
-//sign in
+///sign in
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//create account
+///create account
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//forgot pw
+///forgot pw
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//all 3 action confirmation pages
-//1
-//2
-//3
+////all 3 action confirmation pages
+//change everything to % as you minimize the page before it gets to tablet mode
+///1
+///2
+///3
 
-//my picks - locked - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
+////my picks - locked - all 5 stages
+//change everything to % as you minimize the page before it gets to tablet mode
+///stage 1
+///stage 2
+///stage 3
+///stage 4
+///stage 5
 
-//my picks - unlocked - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
+////my picks - unlocked - all 5 stages
+//change everything to % as you minimize the page before it gets to tablet mode
+///stage 1
+///stage 2
+///stage 3
+///stage 4
+///stage 5
 
-//pool picks - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
+////pool picks - all 5 stages
+//change everything to % as you minimize the page before it gets to tablet mode
+///stage 1
+///stage 2
+///stage 3
+///stage 4
+///stage 5
 
-//rules
+////rules
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//group details
+////group details
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//leaderboard
-//stage 1
-//stage 2-3
-//stage 4-5
+////leaderboard
+//change everything to % as you minimize the page before it gets to tablet mode
+///stage 1
+///stage 2-3
+///stage 4-5
 
-//admin - users
+///admin - users
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//admin - groups
+////admin - groups
+//change everything to % as you minimize the page before it gets to tablet mode
 
-//admin - teams
+////admin - teams
+//change everything to % as you minimize the page before it gets to tablet mode
 
 //////mobile compatibility --- LOCAL - END
 

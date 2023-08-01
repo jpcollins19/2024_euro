@@ -14,31 +14,29 @@ const F_Game_L = ({ game, selectedUser, user }) => {
 
   const gameInfo = koGameCalc(userToUse, game, teams);
 
-  const gameIsFinished = gameInfo.teamThatAdvanced?.name ? true : false;
+  const gameIsFinished = gameInfo.teamThatAdvanced ?? false;
+
+  const flagClass =
+    gameInfo.usersPick.outOfTourney && !gameInfo.usersPick.advanceToChamp
+      ? "opacity-60"
+      : "";
 
   return (
     <div className="white-text FL">
-      <div
-        className={`${
-          gameInfo.usersPick?.outOfTourney ? "wrong" : gameInfo.usersPickClass
-        }-box`}
-      >
+      <div className={`${gameInfo.usersPickClass}-box`}>
         <div className="team-ko-img-cont">
           {gameInfo.usersPick?.name && (
-            <img className="team-flag-ko" src={gameInfo.usersPick?.flag} />
+            <img
+              className={`team-flag-ko ${gameInfo.usersPickClass}-flag ${flagClass}`}
+              src={gameInfo.usersPick?.flag}
+            />
           )}
 
           {gameIsFinished && gameInfo.usersPickClass === "wrong" && (
             <Correct_Team_Cont gameInfo={gameInfo} />
           )}
 
-          <p
-            className={`team-name-ko ${
-              gameInfo.usersPick?.outOfTourney
-                ? "wrong"
-                : gameInfo.usersPickClass
-            }-text`}
-          >
+          <p className={`team-name-ko ${gameInfo.usersPickClass}-text`}>
             {gameInfo.usersPick?.name}
           </p>
         </div>

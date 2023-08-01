@@ -303,7 +303,11 @@ const koGameCalc = (user, game, teams) => {
 
   let usersPickClass = "unknown";
 
-  const gameIsFinished = teamThatAdvanced?.name ? true : false;
+  const gameIsFinished = teamThatAdvanced?.name ?? false;
+
+  if (!gameIsFinished && usersPick.outOfTourney) {
+    usersPickClass = "wrong";
+  }
 
   if (gameIsFinished && usersPick?.name) {
     usersPickClass =
