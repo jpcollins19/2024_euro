@@ -57,11 +57,13 @@ const LastUpdated = ({ user, tourneyStarted, userSubmittedPicks }) => {
       id="submit-last-updated"
       className={user?.id ? "last-updated-cont" : "last-updated-cont-NU"}
     >
-      {!user?.admin && !userHasNoPicksAndTourneyHasStarted && (
+      {user?.id && !user?.admin && !userHasNoPicksAndTourneyHasStarted && (
         <Text text={text} />
       )}
 
-      {!user?.admin && !userHasNoPicksAndTourneyHasStarted && <Email_Updates />}
+      {user?.id && !user?.admin && !userHasNoPicksAndTourneyHasStarted && (
+        <Email_Updates />
+      )}
 
       {user?.admin && (
         <Admin_Text onChange={onChange} text={text} edit={edit} />

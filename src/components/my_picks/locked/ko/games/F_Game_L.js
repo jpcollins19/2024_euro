@@ -17,7 +17,7 @@ const F_Game_L = ({ game, selectedUser, user }) => {
   const gameIsFinished = gameInfo.teamThatAdvanced ?? false;
 
   const flagClass =
-    gameInfo.usersPick.outOfTourney && !gameInfo.usersPick.advanceToChamp
+    gameInfo?.usersPick?.outOfTourney && !gameInfo?.usersPick?.advanceToChamp
       ? "opacity-60"
       : "";
 

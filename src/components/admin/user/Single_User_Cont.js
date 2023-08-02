@@ -369,6 +369,7 @@ const Single_User_Cont = () => {
     <form id="admin-update-user" onSubmit={onSubmit}>
       <div className="admin-user-top">
         <Button text="Submit" form="admin-update-user" />
+
         {user?.name && (
           <div className="user-details-cont">
             {inputs.map((input) => (

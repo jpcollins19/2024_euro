@@ -1,5 +1,4 @@
-////G1 - guardrails
-//Should not be able to submit Joe tourney stage to 4 unless all matches are complete
+/////audit each page for each stage and verify all is IGO
 
 //////mobile compatibility --- LOCAL - START
 ///sign in

@@ -32,3 +32,22 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
 }
+
+/* @media (max-height: 45em) {
+  .main-app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-cont {
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+    height: 11vh;
+  }
+
+  .routes-cont {
+    z-index: 1;
+    position: fixed;
+  }
+} */

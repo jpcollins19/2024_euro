@@ -14,8 +14,8 @@ const Q_Game_L = ({ game, gameNum, selectedUser, user }) => {
 
   const gameInfo = koGameCalc(userToUse, game, teams);
 
-  const flagClass =
-    gameInfo.usersPick.outOfTourney && !gameInfo.usersPick.advanceToS
+  let flagClass =
+    gameInfo?.usersPick?.outOfTourney && !gameInfo?.usersPick?.advanceToS
       ? "opacity-60"
       : "";
 

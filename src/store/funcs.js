@@ -224,8 +224,9 @@ const groupTotalCalc = (user) => {
 };
 
 const koGameCalc = (user, game, teams) => {
-  // console.log("byah", teams);
   const koTeamSeeding = determineR16Seeding(teams);
+
+  // console.log("koTeamSeeding", koTeamSeeding);
 
   const roundInfoObj = Object.entries(koTeamSeeding).reduce(
     (a, entry) => {
@@ -288,6 +289,10 @@ const koGameCalc = (user, game, teams) => {
   const number = game.split("")[1];
   const usersPick = user[`knock${game}`];
 
+  // console.log("roundInfoObj", roundInfoObj);
+  // console.log("round", round);
+  // console.log("number", number);
+
   let teamThatAdvanced, points;
 
   if (game === "Champ") {
@@ -305,13 +310,15 @@ const koGameCalc = (user, game, teams) => {
 
   const gameIsFinished = teamThatAdvanced?.name ?? false;
 
-  if (!gameIsFinished && usersPick.outOfTourney) {
-    usersPickClass = "wrong";
-  }
+  if (usersPick) {
+    if (!gameIsFinished && usersPick.outOfTourney) {
+      usersPickClass = "wrong";
+    }
 
-  if (gameIsFinished && usersPick?.name) {
-    usersPickClass =
-      usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
+    if (gameIsFinished && usersPick?.name) {
+      usersPickClass =
+        usersPick.name === teamThatAdvanced.name ? "correct" : "wrong";
+    }
   }
 
   if (game === "Champ") {
@@ -328,7 +335,20 @@ const koGameCalc = (user, game, teams) => {
   };
 };
 
+const areAllGroupsAreFinished = (teams) => {
+  const finishedGroupTeams = teams.reduce((a, team) => {
+    if (team.groupIsFinished) a++;
+    return a;
+  }, 0);
+
+  return finishedGroupTeams === 24 ? true : false;
+};
+
 const koRoundCalc = (user, round, teams) => {
+  // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
+
+  // if (!allGroupsAreFinished) return 0;
+
   const koRoundGames = {
     quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
     semis: ["S1", "S2", "S3", "S4"],
@@ -489,12 +509,19 @@ const sortRank = (arr) => {
 const getCurrentScores = (users, teams, actualGoalsScored = null) => {
   let rank = 1;
 
-  // console.log("users-nuggets", users);
+  // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
 
   const firstAudit = users
     .reduce((a, user) => {
       const total = userTotalPoints(user, teams);
-      const maxPts = calcMaxPts(user, teams);
+
+      let maxPts = 0;
+
+      if (user.knockChamp) {
+        maxPts = calcMaxPts(user, teams);
+      } else {
+        maxPts = total + 54;
+      }
 
       const userObj = {
         id: user?.id,
@@ -806,6 +833,8 @@ const findChamp = (results) => {
 };
 
 const calcMaxPts = (user, teams) => {
+  // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
+
   const userCurrentTotal = userTotalPoints(user, teams);
 
   const KOSeeding = determineR16Seeding(teams);
@@ -877,7 +906,12 @@ const calcMaxPts = (user, teams) => {
     const round = findRound(game);
 
     const usersPick = user[`knock${game}`];
-    const isUsersPickStillInTourney = !usersPick.outOfTourney;
+
+    let isUsersPickStillInTourney = false;
+
+    if (usersPick) {
+      isUsersPickStillInTourney = !usersPick.outOfTourney;
+    }
 
     const pointObj = {
       Champ: 10,
