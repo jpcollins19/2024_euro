@@ -5,7 +5,7 @@ import Input_Field from "./Input_Field";
 const Leaderboard_Cont = ({ joe, rankInfo }) => {
   const inputs = ["rank", "name", "total"];
 
-  joe?.tourneyStage >= 4 && inputs.push("maxPts");
+  joe?.tourneyStage >= 4 && inputs.push("max_Pts");
 
   return (
     <div className="table-cont">

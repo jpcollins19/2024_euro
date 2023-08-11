@@ -1,6 +1,9 @@
-/////audit each page for each stage and verify all is IGO
+////fix testing failures
 
 //////mobile compatibility --- LOCAL - START
+
+////pre-signin
+
 ///sign in
 //change everything to % as you minimize the page before it gets to tablet mode
 
@@ -15,6 +18,8 @@
 ///1
 ///2
 ///3
+
+//fix/adjust menu_chevron when logged in
 
 ////my picks - locked - all 5 stages
 //change everything to % as you minimize the page before it gets to tablet mode

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
 import { groupLetters, koLetters } from "./variables";
 import { getWebsiteUpdatedEmailDateVerbiage } from "./index.js";
 
@@ -166,6 +167,10 @@ export const loadUsersWhoNeedWebsiteUpdatedEmails = () => {
       dispatch(sendWebsiteUpdatedEmail(user));
     });
   };
+};
+
+export const getScreenWidth = (str, num) => {
+  return useMediaQuery({ query: `(${str}-width: ${num}em)` });
 };
 
 export const users = (state = [], action) => {

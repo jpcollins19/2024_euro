@@ -1,13 +1,19 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { findJoe, getCurrentScores } from "../../store";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loadUsers, findJoe, getCurrentScores } from "../../store";
 import Leaderboard_Cont from "./Leaderboard_Cont";
 import Loading from "../Misc/Loading";
 import Payout from "./Payout";
 import "./Leaderboard.css";
 
 const Leaderboard_Page = () => {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
 
   setTimeout(() => {
     setLoading(false);
@@ -23,7 +29,7 @@ const Leaderboard_Page = () => {
   const teams = useSelector((state) => state.teams);
 
   const rankInfo =
-    joe?.tourneyStage > 1 ? getCurrentScores(users, teams) : null;
+    joe?.tourneyStage > 1 ? getCurrentScores(users, teams, joe) : null;
 
   const tourneyStarted = joe?.tourneyStage !== 1;
   const userSubmittedPicks = user?.tiebreaker ?? false;

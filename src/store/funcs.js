@@ -50,9 +50,10 @@ const cap1stLetter = (str) => {
   return str
     .split("")
     .map((letter, idx) => {
-      if (idx === 0) {
-        letter = letter.toUpperCase();
-      }
+      if (idx === 0) letter = letter.toUpperCase();
+
+      if (letter === "_") letter = " ";
+
       return letter;
     })
     .join("");
@@ -223,6 +224,15 @@ const groupTotalCalc = (user) => {
     }, 0);
 };
 
+const areAllGroupsAreFinished = (teams) => {
+  const finishedGroupTeams = teams.reduce((a, team) => {
+    if (team.groupIsFinished) a++;
+    return a;
+  }, 0);
+
+  return finishedGroupTeams === 24 ? true : false;
+};
+
 const koGameCalc = (user, game, teams) => {
   const koTeamSeeding = determineR16Seeding(teams);
 
@@ -295,15 +305,19 @@ const koGameCalc = (user, game, teams) => {
 
   let teamThatAdvanced, points;
 
-  if (game === "Champ") {
-    teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
-  } else {
-    teamThatAdvanced =
-      teams.find(
-        (team) =>
-          roundInfoObj[round][number].includes(team.knockoutPosition) &&
-          team[`advanceTo${round}`]
-      ) ?? null;
+  const allGroupsAreFinished = areAllGroupsAreFinished(teams);
+
+  if (allGroupsAreFinished) {
+    if (game === "Champ") {
+      teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
+    } else {
+      teamThatAdvanced =
+        teams.find(
+          (team) =>
+            roundInfoObj[round][number].includes(team.knockoutPosition) &&
+            team[`advanceTo${round}`]
+        ) ?? null;
+    }
   }
 
   let usersPickClass = "unknown";
@@ -333,15 +347,6 @@ const koGameCalc = (user, game, teams) => {
     usersPickClass,
     points,
   };
-};
-
-const areAllGroupsAreFinished = (teams) => {
-  const finishedGroupTeams = teams.reduce((a, team) => {
-    if (team.groupIsFinished) a++;
-    return a;
-  }, 0);
-
-  return finishedGroupTeams === 24 ? true : false;
 };
 
 const koRoundCalc = (user, round, teams) => {
@@ -506,7 +511,7 @@ const sortRank = (arr) => {
   });
 };
 
-const getCurrentScores = (users, teams, actualGoalsScored = null) => {
+const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
   let rank = 1;
 
   // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
@@ -515,12 +520,16 @@ const getCurrentScores = (users, teams, actualGoalsScored = null) => {
     .reduce((a, user) => {
       const total = userTotalPoints(user, teams);
 
-      let maxPts = 0;
+      let max_Pts = 0;
 
       if (user.knockChamp) {
-        maxPts = calcMaxPts(user, teams);
+        max_Pts = calcMaxPts(user, teams);
       } else {
-        maxPts = total + 54;
+        if (joe.tourneyStage === 5) {
+          max_Pts = total;
+        } else {
+          max_Pts = total + 54;
+        }
       }
 
       const userObj = {
@@ -528,7 +537,7 @@ const getCurrentScores = (users, teams, actualGoalsScored = null) => {
         name: user.name,
         tiebreaker: user.tiebreaker,
         total,
-        maxPts,
+        max_Pts,
         tieExists: false,
         paid: user.paid,
       };
@@ -1010,6 +1019,13 @@ const formatPathname = (str) => {
   }, "");
 };
 
+const formatURL = (str) => {
+  const space = /\s/g;
+  const period = /\./g;
+
+  return str.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1041,4 +1057,5 @@ module.exports = {
   calcMaxPts,
   getWebsiteUpdatedEmailDateVerbiage,
   formatPathname,
+  formatURL,
 };

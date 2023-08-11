@@ -11,6 +11,8 @@ const {
   auditThirdPlaceToAdvancePicks,
   determineR16Seeding,
   formatPathname,
+  cap1stLetter,
+  formatURL,
 } = require("./src/store/funcs");
 
 const {
@@ -2680,6 +2682,39 @@ describe("func testing", () => {
     formatPathnameTesting.forEach((test) => {
       it(`${test.value}`, () => {
         const result = formatPathname(test.value);
+
+        expect(result).to.equal(test.result);
+      });
+    });
+  });
+
+  const cap1stLetterTesting = [
+    { value: "rank", result: "Rank" },
+    { value: "name", result: "Name" },
+    { value: "total", result: "Total" },
+    { value: "max_Pts", result: "Max Pts" },
+  ];
+
+  describe("cap1stLetter", () => {
+    cap1stLetterTesting.forEach((test) => {
+      it(`${test.value}`, () => {
+        const result = cap1stLetter(test.value);
+
+        expect(result).to.equal(test.result);
+      });
+    });
+  });
+
+  const formatURLTesting = [
+    { value: "My Picks v. Your Picks", result: "my_picks_v_your_picks" },
+    { value: "Golfer v. Golfer", result: "golfer_v_golfer" },
+    { value: "Who Picked This Golfer", result: "who_picked_this_golfer" },
+  ];
+
+  describe("formatURL", () => {
+    formatURLTesting.forEach((test) => {
+      it(`${test.value}`, () => {
+        const result = formatURL(test.value);
 
         expect(result).to.equal(test.result);
       });

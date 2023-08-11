@@ -17,8 +17,6 @@ const App = () => {
 
   const users = useSelector((state) => state.users);
 
-  console.log(users);
-
   return (
     <Router>
       <Header />
