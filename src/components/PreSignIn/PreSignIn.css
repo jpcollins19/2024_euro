@@ -1,12 +1,14 @@
-.pre-login-page {
-  height: 84vh;
-}
-
 .trez {
   background-size: cover;
   background-image: url("/public/pics/trez.jpeg");
   height: 84vh;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   width: 100vw;
   background-position: center;
+}
+
+@media (max-width: 65em) {
+  .trez {
+    height: 89vh;
+  }
 }

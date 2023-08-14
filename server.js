@@ -1,11 +1,4 @@
-////fix testing failures
-
 //////mobile compatibility --- LOCAL - START
-
-////pre-signin
-
-///sign in
-//change everything to % as you minimize the page before it gets to tablet mode
 
 ///create account
 //change everything to % as you minimize the page before it gets to tablet mode

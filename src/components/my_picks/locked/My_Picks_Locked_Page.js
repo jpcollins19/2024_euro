@@ -72,9 +72,7 @@ const My_Picks_Locked_Page = () => {
               <Knockout_Cont_Locked user={user} />
             </div>
           </div>
-          <div className="box right">
-            <Total_Points_Cont />
-          </div>
+          <div className="box right">{<Total_Points_Cont />}</div>
         </div>
       )}
 

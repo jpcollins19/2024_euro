@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authenticate, formatEmail, findJoe } from "../../../store";
+import {
+  authenticate,
+  formatEmail,
+  findJoe,
+  getScreenWidth,
+} from "../../../store";
 import Input_Field from "../Input_Field";
 import Sign_In_Options from "../Sign_In_Options";
 import Button from "../../Misc/Button";
@@ -15,7 +20,7 @@ const Sign_In_Page = () => {
   const [showPW, setShowPW] = useState(false);
   const [invalidCredentials, setInvalidCredentials] = useState(false);
 
-  // const isMobileView = getScreenWidth("max", 65);
+  const isMobileView = getScreenWidth("max", 65);
 
   const showPwClick = () => {
     setShowPW(!showPW);
@@ -32,8 +37,7 @@ const Sign_In_Page = () => {
         <div>
           <Error
             color="red"
-            // fontSize={`${isMobileView ? "large" : "medium"}`}
-            fontSize="medium"
+            fontSize={`${isMobileView ? "large" : "medium"}`}
           />
           <div className="invalid-credentials-text">
             Invalid Email Address and/or Password
@@ -95,7 +99,7 @@ const Sign_In_Page = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="sign-in-page">
       {invalidCredentials && (
         <Toaster
           toastOptions={{
@@ -104,34 +108,39 @@ const Sign_In_Page = () => {
         />
       )}
 
-      <div className="login-cont-outside">
-        <div className="login-cont-inside">
-          <h1>Sign In</h1>
-          <form onSubmit={onSubmit} className="login-form" id="sign-in">
-            {inputs.map((input, idx) => (
-              <Input_Field key={idx} input={input} onChange={onChange} />
-            ))}
+      <div className="sign-in-cont-outside">
+        <div className="sign-in-cont-inside">
+          <div className="sign-in-text-cont">
+            <h1>Sign In</h1>
 
-            <div className="view-pw" onClick={() => showPwClick()}>
-              View Password
-            </div>
+            <form onSubmit={onSubmit} id="sign-in">
+              {inputs.map((input, idx) => (
+                <Input_Field key={idx} input={input} onChange={onChange} />
+              ))}
 
-            <Button
-              text="Sign In"
-              disabled={!email || !password}
-              form="sign-in"
-            />
+              <div className="view-pw" onClick={() => showPwClick()}>
+                View Password
+              </div>
 
-            {joe?.tourneyStage > 1
-              ? options
-                  .filter((option) => option.text !== "Create Account")
-                  .map((option, idx) => (
+              <div className="sign-in-button">
+                <Button
+                  text="Sign In"
+                  disabled={!email || !password}
+                  form="sign-in"
+                />
+              </div>
+
+              {joe?.tourneyStage > 1
+                ? options
+                    .filter((option) => option.text !== "Create Account")
+                    .map((option, idx) => (
+                      <Sign_In_Options key={idx} option={option} />
+                    ))
+                : options.map((option, idx) => (
                     <Sign_In_Options key={idx} option={option} />
-                  ))
-              : options.map((option, idx) => (
-                  <Sign_In_Options key={idx} option={option} />
-                ))}
-          </form>
+                  ))}
+            </form>
+          </div>
         </div>
       </div>
     </div>

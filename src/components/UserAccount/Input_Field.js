@@ -1,3 +1,4 @@
+import { getScreenWidth } from "../../store";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 const Input_Field = ({ input, onChange }) => {
   const classes = useStyles();
 
-  // const isMobile = getScreenWidth("max", 65);
+  const isMobile = getScreenWidth("max", 65);
 
   return (
     <TextField
@@ -33,11 +34,9 @@ const Input_Field = ({ input, onChange }) => {
         style: {
           textAlign: "center",
           color: "black",
-          // fontWeight: !isMobile ? "bold" : "",
-          // fontSize: isMobile ? "2rem" : "1rem",
-          // height: isMobile ? "4rem" : "1.5rem",
-          fontSize: "1rem",
-          height: "1.5rem",
+          fontWeight: !isMobile ? "bold" : "",
+          fontSize: isMobile ? "2rem" : "1rem",
+          height: isMobile ? "4rem" : "1.5rem",
         },
       }}
       InputLabelProps={{
@@ -45,8 +44,7 @@ const Input_Field = ({ input, onChange }) => {
           textAlign: "center",
           color: "black",
           marginLeft: input.marginLeft,
-          // fontSize: isMobile ? "2rem" : "1rem",
-          fontSize: "1rem",
+          fontSize: isMobile ? "2rem" : "1rem",
         },
         shrink: true,
       }}

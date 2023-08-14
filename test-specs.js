@@ -70,10 +70,11 @@ describe("Cals everthing correctly", () => {
   };
 
   describe("Calcs leaderboard", () => {
-    let koObj, names, scores, tieExists, answer;
+    let koObj, names, scores, tieExists, answer, joe;
 
     beforeEach(() => {
       users = users.filter((user) => user?.tiebreaker);
+      joe = users.find((user) => user?.name === "Joe");
     });
 
     describe("tournament is active", () => {
@@ -146,7 +147,7 @@ describe("Cals everthing correctly", () => {
             }
           });
 
-          answer = getCurrentScores(users, teams);
+          answer = getCurrentScores(users, teams, joe);
 
           answer.forEach((user, idx) => {
             expect(user.rank).to.equal(test.correctResults[idx].rank);

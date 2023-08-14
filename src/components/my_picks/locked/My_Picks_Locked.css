@@ -71,7 +71,7 @@
 .left {
   display: flex;
   flex: 1.5;
-  width: 83vw;
+  width: 82vw;
   flex-direction: column;
   padding: 0;
   align-items: center;

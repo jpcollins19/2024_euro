@@ -2,7 +2,7 @@
 /*/ ///////Sign In////////*/
 /*///////////////////////*/
 
-.login-page {
+.sign-in-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@
   height: 2rem;
 }
 
-.login-cont-outside {
+.sign-in-cont-outside {
   border-radius: 1rem;
   padding: 1rem;
   background: linear-gradient(to bottom right, #232628 0%, #090909 100%);
@@ -32,7 +32,7 @@
   width: 32rem;
 }
 
-.login-cont-inside {
+.sign-in-cont-inside {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,11 +48,22 @@
   );
 }
 
-.login-cont-inside > h1 {
-  margin: 0 0 5% 0;
+.sign-in-text-cont {
+  min-width: 60%;
 }
 
-.login-form {
+.sign-in-text-cont > h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.sign-in-text-cont > form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+}
+
+.sign-in-form {
   max-width: 50%;
 }
 
@@ -84,6 +95,55 @@
 
 .option-cont > a > h4 {
   margin: 0;
+}
+
+@media (max-width: 65em) {
+  .sign-in-cont-outside {
+    height: 60rem;
+    width: 50rem;
+  }
+
+  .sign-in-cont-inside {
+    height: 58rem;
+  }
+
+  .sign-in-text-cont {
+    max-width: 60%;
+  }
+
+  .sign-in-text-cont > h1 {
+    font-size: 400%;
+    padding: 2% 0 7% 0;
+  }
+
+  .sign-in-text-cont div {
+    font-size: 200%;
+  }
+
+  .sign-in-button {
+    padding: 10% 0 15% 0;
+  }
+
+  .sign-in-button button {
+    height: 250%;
+    width: 50%;
+    font-size: 70%;
+  }
+
+  .toaster-invalid-credentials {
+    margin: 30% 0 0 1%;
+    min-width: 70%;
+    height: 5rem;
+  }
+
+  .toaster-invalid-credentials > div > div {
+    width: 90%;
+  }
+
+  .invalid-credentials-text {
+    font-size: 200%;
+    min-width: 200%;
+  }
 }
 
 /*/ //////////////////////*/
@@ -175,7 +235,7 @@
 }
 
 .soccer-field-inside {
- background-image: url("https://www.sportsadda.com/static-assets/waf-images/06/29/ee/16-9/PbVXFupWPk.jpg?v=1.2&w=420%20420w");
+  background-image: url("https://www.sportsadda.com/static-assets/waf-images/06/29/ee/16-9/PbVXFupWPk.jpg?v=1.2&w=420%20420w");
   height: 100%;
   width: 100%;
   background-size: cover;
@@ -430,19 +490,19 @@
 }
 
 .forgot-pw-inside > h1 {
-  color: white
+  color: white;
 }
 
-#forgot-pw{
+#forgot-pw {
   margin: 1rem;
-  width: 70%
+  width: 70%;
 }
 
 .back-to-sign-in {
   display: flex;
   justify-content: center;
   text-decoration: none;
-  color: white
+  color: white;
 }
 
 /*/ //////////////////////*/
