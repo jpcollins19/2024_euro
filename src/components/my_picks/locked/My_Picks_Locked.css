@@ -1,5 +1,5 @@
 .my-picks-page {
-  background-image: url("https://e0.365dm.com/16/06/2048x1152/euro-2012-zlatan-ibrahimovic-sweden-france_3488865.jpg");
+  background-image: url("/public/pics/zlatan.jpeg");
   background-size: cover;
   overflow: auto;
   height: 84vh;
@@ -81,6 +81,13 @@
   width: 16vw;
   display: flex;
   justify-content: center;
+}
+
+.group-predictions-cont {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .predictions-cont {
@@ -243,35 +250,33 @@
 }
 
 .total-points-cont {
-  padding-top: 0.3rem;
-  padding-bottom: 0.1rem;
   min-width: 15rem;
   max-width: 15rem;
-  margin: 0;
 }
 
-.total-points-cont > div {
+.total-points-cont > div > div {
   display: flex;
   justify-content: center;
   text-align: center;
   max-height: 400px;
   list-style: none;
   overflow: auto;
-  min-width: 10rem;
+  min-width: 1rem;
+  border: solid 2px blue;
 }
 
-.total-points-cont > h3 {
+.total-points-cont h4 {
   text-shadow: 2px 2px black;
   color: white;
   text-align: center;
   font-size: 1.2rem;
 }
 
-.total-points-cont > div > div > h4 {
+.total-points-cont h3 {
   text-shadow: 2px 2px black;
   color: white;
-  margin: 0;
-  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 .total-points-text-cont {
@@ -300,6 +305,50 @@
   margin: 0.5rem 0.2rem 0.5rem 0rem;
   border-radius: 0.2rem;
   color: white;
+}
+
+@media (max-width: 65em) {
+  .my-picks-page {
+    height: 89vh;
+    background-image: url("/public/pics/zlatan-mobile.jpeg");
+  }
+
+  .name-cont > h1 {
+    font-size: 300%;
+  }
+
+  .point-system-table-cont {
+    margin-bottom: 20px;
+  }
+
+  .point-system-table-cont > div {
+    font-size: 200%;
+  }
+
+  .color-cont {
+    margin: 0 5px 15px 5px;
+  }
+
+  .top {
+    justify-content: space-around;
+  }
+
+  .left {
+    flex: 0;
+  }
+
+  .group-predictions-cont {
+    border: solid 2px red;
+    width: 65vw;
+  }
+
+  .total-points-cont > div {
+    width: 20vw;
+  }
+
+  .total-points-cont > div > div {
+    width: 20vw;
+  }
 }
 
 /*/////////////////////////////*/

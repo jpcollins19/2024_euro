@@ -82,7 +82,7 @@ const My_Picks_Locked_Page = () => {
             {joe?.tourneyStage >= 4 && (
               <Point_System_Cont tourneyStage={joe?.tourneyStage} />
             )}
-            <div className="predictions-cont">
+            <div className="group-predictions-cont">
               {letters.map((letter) => (
                 <Single_Group_Cont_Locked key={letter} group={letter} />
               ))}

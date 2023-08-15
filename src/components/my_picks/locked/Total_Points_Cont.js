@@ -30,9 +30,9 @@ const Total_Points_Cont = ({ selectedUser }) => {
   const inputs = ["group", "quarters", "semis", "final", "champion", "total"];
 
   return (
-    <div>
+    <div className="total-points-cont">
       <h2 className="white-text">Points</h2>
-      <div className="total-points-cont">
+      <div>
         <div>
           <div className="total-points-text-cont">
             <h4>Stage</h4>

@@ -1,10 +1,10 @@
 //////mobile compatibility --- LOCAL - START
 
-//fix/adjust menu_chevron when logged in
-
 ////my picks - locked - all 5 stages
-//change everything to % as you minimize the page before it gets to tablet mode
+
 ///stage 1
+//fix total points cont css work on comp screen first, then do mobile view
+//change everything to % as you minimize the page before it gets to tablet mode
 ///stage 2
 ///stage 3
 ///stage 4
@@ -35,8 +35,11 @@
 ////leaderboard
 //change everything to % as you minimize the page before it gets to tablet mode
 ///stage 1
-///stage 2-3
+///stage 2-3 - make it so when you click on someone's name, they are sent to that persons pool picks page
 ///stage 4-5
+
+////my profile
+//add admin routes to menu_chevron when logged in
 
 ///admin - users
 //change everything to % as you minimize the page before it gets to tablet mode
