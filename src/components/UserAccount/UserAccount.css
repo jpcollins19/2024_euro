@@ -161,7 +161,15 @@
   background-color: rgb(248, 219, 219);
   color: rgb(146, 65, 65);
   text-align: center;
-  margin: 10% 0 0 0;
+  margin: 9% 0 0 0;
+}
+
+.toaster-error-create-account > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17rem;
+  height: 2rem;
 }
 
 .create-account-cont-outside {
@@ -189,29 +197,81 @@
   );
 }
 
-.create-account-cont-inside > h1 {
-  margin: 1% 0 2% 0;
-}
-
-.create-account-form {
+.create-account-text-cont {
   display: flex;
   flex-direction: column;
-  max-width: 65%;
+  align-items: center;
 }
 
-.option-cont-create-account {
+.create-account-text-cont > h1 {
+  margin: 1% 0 5% 0;
+}
+
+.create-account-text-cont > form {
   display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-  width: 100%;
+  flex-direction: column;
 }
 
-.option-cont-create-account > div {
-  margin-right: 5px;
+.create-account-sign-in {
+  padding-right: 3px;
 }
 
-.option-cont-create-account > a > h4 {
-  margin: 0;
+@media (max-width: 65em) {
+  .toaster-error-create-account {
+    margin: 25% 0 0 0;
+    min-width: 70%;
+    height: 5rem;
+  }
+
+  .toaster-error-create-account > div > div {
+    width: 90%;
+  }
+
+  .create-account-cont-outside {
+    height: 70rem;
+    width: 55rem;
+  }
+
+  .create-account-cont-inside {
+    height: 68rem;
+    width: 100%;
+  }
+
+  .create-account-text-cont {
+    max-width: 60%;
+  }
+
+  .create-account-text-cont > h1 {
+    padding-top: 5%;
+    font-size: 400%;
+  }
+
+  .create-account-text-cont > form {
+    align-items: center;
+  }
+
+  .create-account-text-cont div {
+    font-size: 200%;
+  }
+
+  .create-account-sign-in {
+    min-width: 85%;
+    padding: 0;
+  }
+
+  .option-cont a {
+    min-width: 40%;
+  }
+
+  .create-account-button {
+    padding: 10% 0 15% 0;
+  }
+
+  .create-account-button button {
+    height: 250%;
+    width: 110%;
+    font-size: 70%;
+  }
 }
 
 /*///////////////////////*/
@@ -235,10 +295,11 @@
 }
 
 .soccer-field-inside {
-  background-image: url("https://www.sportsadda.com/static-assets/waf-images/06/29/ee/16-9/PbVXFupWPk.jpg?v=1.2&w=420%20420w");
+  background-image: url("/public/pics/soccer-field.jpeg");
   height: 100%;
   width: 100%;
   background-size: cover;
+  background-position: center;
   border-radius: 0.2rem;
   text-align: center;
   padding: 5%;
@@ -273,6 +334,33 @@
 .click-to-sign-in > a {
   color: white;
   text-decoration: none;
+}
+
+@media (max-width: 65em) {
+  .soccer-field-outside {
+    height: 65rem;
+    width: 55rem;
+  }
+
+  .soccer-field-inside > h1 {
+    padding: 10% 0 35% 0;
+    font-size: 400%;
+  }
+
+  .soccer-field-inside > h4 {
+    padding-top: 5%;
+    font-size: 220%;
+  }
+
+  .email-instructions {
+    padding-top: 7%;
+    min-width: 80%;
+    font-size: 200%;
+  }
+
+  .click-to-sign-in > a {
+    font-size: 250%;
+  }
 }
 
 /*/ //////////////////////*/
@@ -473,9 +561,6 @@
 }
 
 .forgot-pw-inside {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-radius: 1rem;
   padding: 1rem;
   height: 25rem;
@@ -489,13 +574,20 @@
   );
 }
 
-.forgot-pw-inside > h1 {
-  color: white;
+.forgot-pw-text-cont {
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#forgot-pw {
-  margin: 1rem;
-  width: 70%;
+.forgot-pw-text-cont > form {
+  margin-top: 1%;
+  min-width: 60%;
+}
+
+.error-cont-forgot-pw {
+  margin: 5% 0 5% 0;
 }
 
 .back-to-sign-in {
@@ -503,6 +595,52 @@
   justify-content: center;
   text-decoration: none;
   color: white;
+}
+
+.back-to-sign-in > h4 {
+  margin: 10px;
+}
+
+@media (max-width: 65em) {
+  .forgot-pw-outside {
+    height: 49rem;
+    width: 45rem;
+  }
+
+  .forgot-pw-inside {
+    height: 48rem;
+  }
+
+  .forgot-pw-text-cont > form {
+    min-width: 75%;
+  }
+
+  .forgot-pw-text-cont > h1 {
+    font-size: 400%;
+  }
+
+  .error-cont-forgot-pw {
+    min-height: 6rem;
+  }
+
+  .error-cont-forgot-pw > div {
+    font-size: 200%;
+  }
+
+  .forgot-pw-button {
+    padding: 10% 0 15% 0;
+  }
+
+  .forgot-pw-button button {
+    height: 250%;
+    width: 60%;
+    font-size: 200%;
+  }
+
+  .back-to-sign-in > h4 {
+    margin: 0;
+    font-size: 200%;
+  }
 }
 
 /*/ //////////////////////*/
@@ -521,8 +659,7 @@
 
 .reset-pw-inside {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   border-radius: 1rem;
   padding: 1rem;
   height: 35rem;
@@ -536,11 +673,75 @@
   );
 }
 
-.reset-pw-inside > h1 {
-  color: white;
+.error-cont-reset-pw {
+  min-height: 4rem;
 }
 
-#reset-pw {
+.reset-pw-text-cont {
+  margin-top: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+}
+
+.reset-pw-text-cont > h1 {
+  color: white;
   margin: 1rem;
-  width: 70%;
+}
+
+.reset-pw-text-cont > form {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  min-width: 70%;
+}
+
+@media (max-width: 65em) {
+  .reset-pw-outside {
+    height: 67rem;
+    width: 55rem;
+  }
+
+  .reset-pw-inside {
+    height: 66rem;
+  }
+
+  .reset-pw-text-cont {
+    max-width: 80%;
+  }
+
+  .reset-pw-text-cont > h1 {
+    font-size: 400%;
+  }
+
+  .reset-pw-text-cont > form {
+    align-items: center;
+    min-width: 80%;
+  }
+
+  .error-cont-reset-pw {
+    display: flex;
+    justify-content: center;
+    min-height: 7rem;
+  }
+
+  .error-cont-reset-pw > div {
+    max-height: 5rem;
+    font-size: 170%;
+  }
+
+  .reset-pw-text-cont > form > .view-pw {
+    font-size: 200%;
+  }
+
+  .reset-pw-button {
+    padding: 10% 0 15% 0;
+  }
+
+  .reset-pw-button button {
+    height: 250%;
+    width: 130%;
+    font-size: 250%;
+  }
 }

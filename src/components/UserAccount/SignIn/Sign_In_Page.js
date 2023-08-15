@@ -71,6 +71,10 @@ const Sign_In_Page = () => {
     { route: "/forgot_pw", text: "Forgot Password" },
     { route: "/create_account", text: "Create Account" },
     { route: "/", text: "Cancel" },
+    { route: "/account_created", text: "Account Created" },
+
+    { route: "/forgot_pw_confirmation", text: "forgot pw confirmation" },
+    { route: "/pw_reset_confirmation", text: "pw reset confirmation" },
   ];
 
   const onChange = (ev) => {

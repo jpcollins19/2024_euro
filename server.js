@@ -1,17 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-///create account
-//change everything to % as you minimize the page before it gets to tablet mode
-
-///forgot pw
-//change everything to % as you minimize the page before it gets to tablet mode
-
-////all 3 action confirmation pages
-//change everything to % as you minimize the page before it gets to tablet mode
-///1
-///2
-///3
-
 //fix/adjust menu_chevron when logged in
 
 ////my picks - locked - all 5 stages

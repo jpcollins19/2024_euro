@@ -72,27 +72,35 @@ const Forgot_PW_Page = () => {
     <div className="user-profile-page">
       <div className="forgot-pw-outside">
         <div className="forgot-pw-inside">
-          <h1>Forgot Password</h1>
-          <div className="error-cont-login">
-            {error ? (
-              <Alert message="Email Address not on file" />
-            ) : (
-              <div className="white-text">
-                To reset your password, enter your email address below and reset
-                instructions will be emailed out.
+          <div className="forgot-pw-text-cont">
+            <h1 className="white-text">Forgot Password</h1>
+            <div className="error-cont-forgot-pw">
+              {error ? (
+                <Alert message="Email Address not on file" />
+              ) : (
+                <div className="white-text">
+                  Instructions on how to reset your password will be sent to the
+                  email address entered below.
+                </div>
+              )}
+            </div>
+
+            <form onSubmit={onSubmit} id="forgot-pw">
+              <Input_Field input={forgotPW} onChange={onChange} />
+
+              <div className="forgot-pw-button">
+                <Button
+                  text={"Continue"}
+                  disabled={!email}
+                  form={"forgot-pw"}
+                />
               </div>
-            )}
+
+              <Link to="/sign_in" className="back-to-sign-in">
+                <h4>Back to sign in</h4>
+              </Link>
+            </form>
           </div>
-
-          <form onSubmit={onSubmit} id="forgot-pw">
-            <Input_Field input={forgotPW} onChange={onChange} />
-
-            <Button text={"Continue"} disabled={!email} form={"forgot-pw"} />
-
-            <Link to="/sign_in" className="back-to-sign-in">
-              <h4>Back to sign in</h4>
-            </Link>
-          </form>
         </div>
       </div>
     </div>

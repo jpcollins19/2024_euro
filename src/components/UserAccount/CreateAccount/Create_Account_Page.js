@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -6,11 +6,13 @@ import {
   formatEmail,
   validateEmail,
   getUserNames,
+  getScreenWidth,
 } from "../../../store";
 import toast, { Toaster } from "react-hot-toast";
 import Input_Field from "../Input_Field";
 import Sign_In_Options from "../Sign_In_Options";
 import Button from "../../Misc/Button";
+import Error from "@mui/icons-material/ErrorOutline";
 
 const Create_Account_Page = () => {
   const dispatch = useDispatch();
@@ -22,12 +24,26 @@ const Create_Account_Page = () => {
   const [password1, setPassword1] = useState("");
   const [showPW, setShowPW] = useState(false);
 
+  useEffect(() => {
+    toast.dismiss();
+  }, []);
+
   const showPwClick = () => {
     setShowPW(!showPW);
   };
 
+  const isMobileView = getScreenWidth("max", 65);
+
   const showError = (text) => {
-    toast(text, { duration: 50000 });
+    toast(
+      <div>
+        <Error color="red" fontSize={`${isMobileView ? "large" : "medium"}`} />
+        <div className="invalid-credentials-text">{text}</div>
+      </div>,
+      {
+        duration: 5000,
+      }
+    );
   };
 
   const inputs = [
@@ -109,30 +125,30 @@ const Create_Account_Page = () => {
       />
       <div className="create-account-cont-outside">
         <div className="create-account-cont-inside">
-          <h1> Create Account</h1>
-          <form
-            onSubmit={onSubmit}
-            className="create-account-form"
-            id="create-account"
-          >
-            {inputs.map((input, idx) => (
-              <Input_Field key={idx} input={input} onChange={onChange} />
-            ))}
+          <div className="create-account-text-cont">
+            <h1> Create Account</h1>
+            <form onSubmit={onSubmit} id="create-account">
+              {inputs.map((input, idx) => (
+                <Input_Field key={idx} input={input} onChange={onChange} />
+              ))}
 
-            <div className="view-pw" onClick={() => showPwClick()}>
-              View Password
-            </div>
+              <div className="view-pw" onClick={() => showPwClick()}>
+                View Password
+              </div>
 
-            <Button
-              text="Create Account"
-              disabled={!email || !name || !password || !password1}
-              form="create-account"
-            />
+              <div className="create-account-button">
+                <Button
+                  text="Create Account"
+                  disabled={!email || !name || !password || !password1}
+                  form="create-account"
+                />{" "}
+              </div>
 
-            {options.map((option, idx) => (
-              <Sign_In_Options key={idx} option={option} />
-            ))}
-          </form>
+              {options.map((option, idx) => (
+                <Sign_In_Options key={idx} option={option} />
+              ))}
+            </form>
+          </div>
         </div>
       </div>
     </div>
