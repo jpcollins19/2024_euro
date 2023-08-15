@@ -4,7 +4,7 @@ const Prediction_Cont_Locked = ({ group, selectedUser }) => {
   const nums = [1, 2, 3, 4];
 
   return (
-    <div className="prediction-cont skinny-black-border">
+    <div className="prediction-cont">
       <h5>Prediction</h5>
 
       {nums.map((number) => (

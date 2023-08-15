@@ -338,40 +338,42 @@ const My_Picks_Unlocked_Page = () => {
           id="update-user"
           className="my-picks-container-ul"
         >
-          <h3 className="black-text">
-            {joe?.tourneyStage === 1 &&
-              "Select a country from the dropdowns to rank where you think they will finish in their group. \n Check the box next to the third place team if you think they will advance from the group as well."}
-            {joe?.tourneyStage === 4 &&
-              "Select the country you think will win each game"}
-          </h3>
+          <div className="my-picks-ul-top">
+            <h3 className="black-text">
+              {joe?.tourneyStage === 1 &&
+                "Select a country from the dropdowns to rank where you think they will finish in their group. \n If you think the 3rd place team will advance from the group, check the box."}
+              {joe?.tourneyStage === 4 &&
+                "Select the country you think will win each game"}
+            </h3>
 
-          {joe?.tourneyStage === 1 && (
-            <h4 className="black-text">
-              (must select four 3rd place teams to advance).
-            </h4>
-          )}
+            {joe?.tourneyStage === 1 && (
+              <h4 className="black-text">
+                (must select four 3rd place teams to advance).
+              </h4>
+            )}
 
-          <Button text="Submit Picks" form="update-user" />
+            <Button text="Submit Picks" form="update-user" />
 
-          <Cancel link="my_picks" color="black" bold={true} />
+            <Cancel link="my_picks" color="black" bold={true} />
 
-          <div className="master-error-cont-edit-picks">
-            {masterError && <Error error={masterErrorText} />}
-          </div>
-
-          {joe?.tourneyStage === 1 && (
-            <div className="tiebreaker-cont-edit-picks black-text">
-              <h3>Tiebreaker - total number of goals scored:</h3>
-
-              <input
-                defaultValue={tiebreaker}
-                onChange={(ev) => {
-                  setTiebreaker(ev.target.value);
-                  resetMasterError();
-                }}
-              ></input>
+            <div className="master-error-cont-edit-picks">
+              {masterError && <Error error={masterErrorText} />}
             </div>
-          )}
+
+            {joe?.tourneyStage === 1 && (
+              <div className="tiebreaker-cont-edit-picks black-text">
+                <h3>Tiebreaker - total number of goals scored:</h3>
+
+                <input
+                  defaultValue={tiebreaker}
+                  onChange={(ev) => {
+                    setTiebreaker(ev.target.value);
+                    resetMasterError();
+                  }}
+                ></input>
+              </div>
+            )}
+          </div>
 
           <div className="edit-group-picks">
             {joe?.tourneyStage === 1 && (

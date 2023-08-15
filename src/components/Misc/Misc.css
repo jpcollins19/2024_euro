@@ -67,6 +67,16 @@
   height: 5rem;
 }
 
+@media (max-width: 65em) {
+  .error-cont > div {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    width: fit-content;
+    font-size: 200%;
+  }
+}
+
 /*/ //////////////////////*/
 /*/////////Loading////////*/
 /*/ //////////////////////*/
@@ -117,6 +127,17 @@
   color: #29323c;
   text-decoration: none;
   font-size: 1rem;
+}
+
+@media (max-width: 65em) {
+  .cancel-color-white {
+    font-size: 200%;
+  }
+
+  .cancel-color-black {
+    padding-top: 10px; /* using this on my_picks_group stages only so far*/
+    font-size: 150%;
+  }
 }
 
 /*/ //////////////////////*/

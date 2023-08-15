@@ -47,12 +47,22 @@ const formatSelectedUser = (obj) => {
 };
 
 const cap1stLetter = (str) => {
+  let capLetterNeeded = false;
+
   return str
     .split("")
     .map((letter, idx) => {
       if (idx === 0) letter = letter.toUpperCase();
 
-      if (letter === "_") letter = " ";
+      if (capLetterNeeded) {
+        letter = letter.toUpperCase();
+        capLetterNeeded = false;
+      }
+
+      if (letter === "_") {
+        capLetterNeeded = true;
+        letter = " ";
+      }
 
       return letter;
     })

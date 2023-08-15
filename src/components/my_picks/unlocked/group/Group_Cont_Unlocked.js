@@ -9,7 +9,7 @@ const Group_Cont_Unlocked = ({
   const letters = ["A", "B", "C", "D", "E", "F"];
 
   return (
-    <div className="predictions-cont-edit">
+    <div className="group-predictions-cont-edit">
       {letters.map((letter) => {
         const groupError = groupErrorObj[`group${letter}Error`];
         const setGroupError = groupErrorObj[`setGroup${letter}Error`];

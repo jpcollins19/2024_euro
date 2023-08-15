@@ -31,36 +31,31 @@ const Total_Points_Cont = ({ selectedUser }) => {
 
   return (
     <div className="total-points-cont">
-      <h2 className="white-text">Points</h2>
       <div>
-        <div>
-          <div className="total-points-text-cont">
-            <h4>Stage</h4>
-            {inputs.map((input) => (
-              <div key={input} className={input === "Total" ? "bold" : ""}>
-                {cap1stLetter(input)}
-              </div>
-            ))}
-          </div>
-          <div className="total-points-points-cont">
-            <h4>Points</h4>
-            <div>{groupTotalCalc(userToUse)}</div>
-
-            <div>{koRoundCalc(userToUse, "quarters", teams)}</div>
-            <div>{koRoundCalc(userToUse, "semis", teams)}</div>
-            <div>{koRoundCalc(userToUse, "final", teams)}</div>
-            <div>{koRoundCalc(userToUse, "champion", teams)}</div>
-
-            <div className="bold">{userTotalPoints(userToUse, teams)}</div>
-          </div>
+        <div className="total-points-text-cont">
+          <h4 className="white-text">Stage</h4>
+          {inputs.map((input) => (
+            <div key={input} className={input === "total" ? "bold" : ""}>
+              {cap1stLetter(input)}
+            </div>
+          ))}
         </div>
-        {
-          <h3>
-            Tiebreaker:{" "}
-            {selectedUser ? selectedUser?.tiebreaker : user?.tiebreaker} goals
-          </h3>
-        }
+        <div className="total-points-points-cont">
+          <h4 className="white-text">Pts</h4>
+          <div>{groupTotalCalc(userToUse)}</div>
+
+          <div>{koRoundCalc(userToUse, "quarters", teams)}</div>
+          <div>{koRoundCalc(userToUse, "semis", teams)}</div>
+          <div>{koRoundCalc(userToUse, "final", teams)}</div>
+          <div>{koRoundCalc(userToUse, "champion", teams)}</div>
+
+          <div className="bold">{userTotalPoints(userToUse, teams)}</div>
+        </div>
       </div>
+
+      <h3 className="white-text">
+        Tiebreaker: {selectedUser?.tiebreaker ?? user?.tiebreaker} goals
+      </h3>
     </div>
   );
 };

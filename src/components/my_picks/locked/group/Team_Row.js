@@ -14,12 +14,12 @@ const Team_Row = ({ number, group, selectedUser }) => {
     : user[`group${group}${number}`];
 
   return (
-    <div className="team-row-locked">
+    <div>
       <div className="pred-locked-flag">
         <img src={team.flag}></img>
       </div>
 
-      <div>{team.name}</div>
+      <div className="pred-locked-name">{team.name}</div>
     </div>
   );
 };

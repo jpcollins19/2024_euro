@@ -7,17 +7,16 @@
   flex-direction: column;
 }
 
+.my-picks-ul-top {
+  padding-top: 2rem;
+}
+
 .black-text {
   margin: 0;
   text-align: center;
   text-shadow: 2px 2px white;
   color: #29323c;
   white-space: pre-wrap;
-}
-
-.my-picks-container-ul {
-  margin-top: 2%;
-  width: 90vw;
 }
 
 /* .error-cont-placeholder-tiebreaker {
@@ -58,11 +57,12 @@
 .tiebreaker-cont-edit-picks > input {
   background: transparent;
   border: solid 2px #29323c;
-  max-width: 4rem;
+  width: 4rem;
   height: 2rem;
   font-size: 1.5rem;
   text-align: center;
   color: #29323c;
+  margin-left: 10px;
 }
 
 .edit-group-picks {
@@ -70,7 +70,7 @@
   justify-content: space-around;
 }
 
-.predictions-cont-edit {
+.group-predictions-cont-edit {
   display: flex;
   width: 90%;
   flex-wrap: wrap;
@@ -305,4 +305,48 @@
   height: 10vh;
   font-weight: bold;
   font-size: 2rem;
+}
+
+@media (max-width: 65em) {
+  .my-picks-unlocked-page {
+    height: 89vh;
+  }
+
+  .my-picks-ul-top {
+    width: 100vw;
+    position: absolute;
+    z-index: 11;
+    background: linear-gradient(
+      to bottom right,
+      rgb(159, 159, 147) 0%,
+      rgb(222, 222, 212) 25%,
+      rgb(203, 203, 192) 50%,
+      rgb(222, 222, 212) 75%,
+      rgb(159, 159, 147) 100%
+    );
+    border-bottom: solid 5px rgb(99, 97, 97);
+  }
+
+  .black-text {
+    font-size: 125%;
+  }
+
+  .my-picks-ul-top > h4 {
+    padding-bottom: 20px;
+  }
+
+  .tiebreaker-cont-edit-picks {
+    padding: 20px 0 16px 0;
+    font-size: 200%;
+  }
+
+  .tiebreaker-cont-edit-picks > input {
+    width: 6rem;
+    height: 4rem;
+    font-size: 130%;
+  }
+
+  .edit-group-picks {
+    padding-top: 23vh;
+  }
 }

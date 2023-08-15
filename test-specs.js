@@ -2694,6 +2694,7 @@ describe("func testing", () => {
     { value: "name", result: "Name" },
     { value: "total", result: "Total" },
     { value: "max_Pts", result: "Max Pts" },
+    { value: "pool_picks", result: "Pool Picks" },
   ];
 
   describe("cap1stLetter", () => {

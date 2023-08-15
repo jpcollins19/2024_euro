@@ -7,7 +7,7 @@ const Outcome_Cont_Locked = ({ group }) => {
 
   return (
     teamsInGroup.length && (
-      <div className="outcome-pos-cont skinny-black-border">
+      <div className="outcome-pos-cont">
         <h5>Outcome</h5>
         {teamsInGroup.map((team) => (
           <div key={team.id}>

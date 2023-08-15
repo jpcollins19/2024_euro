@@ -6,7 +6,7 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
 
   const optionWidth = widthNum - 1.2;
 
-  const zIndex = 9999;
+  const zIndex = 10;
 
   const styles = {
     menuPortal: (styles) => {

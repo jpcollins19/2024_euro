@@ -1,22 +1,22 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - all 5 stages
+////my picks - unlocked - stage 1
+//on adjusting the single group containers
+//^^ need to incorporate single cont group error notification too
 
-///stage 1
-//fix total points cont css work on comp screen first, then do mobile view
-//change everything to % as you minimize the page before it gets to tablet mode
-///stage 2
-///stage 3
-///stage 4
-///stage 5
+////my picks - locked - stage 2
+////my picks - unlocked - stage 2
+////my picks - locked - stage 3
+////my picks - unlocked - stage 3
+////my picks - locked - stage 4
+////my picks - unlocked - stage 4
+////my picks - locked - stage 5
+////my picks - unlocked - stage 5
 
-////my picks - unlocked - all 5 stages
-//change everything to % as you minimize the page before it gets to tablet mode
-///stage 1
-///stage 2
-///stage 3
-///stage 4
-///stage 5
+////my picks - locked - remove all uncommented code from css file
+////my picks - unlocked - remove all uncommented code from css file
+
+////404 noMatch Page
 
 ////pool picks - all 5 stages
 //change everything to % as you minimize the page before it gets to tablet mode

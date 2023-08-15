@@ -35,60 +35,60 @@ const My_Picks_Locked_Page = () => {
     <Loading />
   ) : (
     <div className="my-picks-page">
-      <div className="name-cont">
-        <h1 className="white-text">{user?.name}</h1>
+      <div className="top">
+        <div className="name-cont">
+          <h1 className="white-text">{user?.name}</h1>
+        </div>
+
+        {joe?.tourneyStage === 1 && (
+          <Link
+            to="/my_picks_edit_group"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Button
+              text={`${user?.tiebreaker ? "Adjust" : "Select"} Group Picks`}
+            />
+          </Link>
+        )}
+
+        {joe?.tourneyStage === 4 && user?.tiebreaker && (
+          <Link
+            to="/my_picks_edit_ko"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Button
+              text={`${user?.knockQ1 ? "Adjust" : "Select"} Knockout Picks`}
+            />
+          </Link>
+        )}
+
+        {user?.tiebreaker && joe.tourneyStage <= 3 && (
+          <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+        )}
       </div>
-
-      {joe?.tourneyStage <= 3 && user?.tiebreaker && (
-        <Point_System_Cont tourneyStage={joe?.tourneyStage} />
-      )}
-
-      {joe?.tourneyStage === 1 && (
-        <Link
-          to="/my_picks_edit_group"
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <Button
-            text={`${user?.tiebreaker ? "Adjust" : "Select"} Group Picks`}
-          />
-        </Link>
-      )}
-
-      {joe?.tourneyStage === 4 && user?.tiebreaker && (
-        <Link
-          to="/my_picks_edit_ko"
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <Button
-            text={`${user?.knockQ1 ? "Adjust" : "Select"} Knockout Picks`}
-          />
-        </Link>
-      )}
+      {user?.tiebreaker && <Total_Points_Cont />}
 
       {joe?.tourneyStage >= 4 && user?.tiebreaker && (
-        <div className="top box">
-          <div className="box left">
-            <div className="predictions-cont">
-              <Knockout_Cont_Locked user={user} />
-            </div>
+        // <div className="top box">
+        <div className="box">
+          <div className="predictions-cont">
+            <Knockout_Cont_Locked user={user} />
           </div>
-          <div className="box right">{<Total_Points_Cont />}</div>
         </div>
+        // </div>
       )}
 
       {user?.tiebreaker && (
-        <div className="top box">
-          <div className="box left">
-            {joe?.tourneyStage >= 4 && (
-              <Point_System_Cont tourneyStage={joe?.tourneyStage} />
-            )}
-            <div className="group-predictions-cont">
-              {letters.map((letter) => (
-                <Single_Group_Cont_Locked key={letter} group={letter} />
-              ))}
-            </div>
+        <div className="box">
+          {joe.tourneyStage >= 4 && (
+            <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+          )}
+
+          <div className="group-predictions-cont">
+            {letters.map((letter) => (
+              <Single_Group_Cont_Locked key={letter} group={letter} />
+            ))}
           </div>
-          {joe?.tourneyStage <= 3 && <Total_Points_Cont />}
         </div>
       )}
     </div>
