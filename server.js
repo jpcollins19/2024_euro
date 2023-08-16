@@ -1,9 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - unlocked - stage 1
-//on adjusting the single group containers
-//^^ need to incorporate single cont group error notification too
-
 ////my picks - locked - stage 2
 ////my picks - unlocked - stage 2
 ////my picks - locked - stage 3

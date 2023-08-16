@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { getScreenWidth } from "../../store";
 import Select from "react-select";
 
 const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
@@ -7,6 +7,8 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
   const optionWidth = widthNum - 1.2;
 
   const zIndex = 10;
+
+  const isMobileView = getScreenWidth("max", 65);
 
   const styles = {
     menuPortal: (styles) => {
@@ -57,9 +59,9 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
         color: "white",
         border: "solid white 2px",
         cursor: "pointer",
-        width,
+        width: isMobileView ? `${width * 1.35}rem` : `${width}rem`,
         borderRadius: "0.5rem",
-        fontSize: "1.2rem",
+        fontSize: isMobileView ? "2rem" : "1.2rem",
         textAlign: "center",
         "&:hover": {
           border: "solid white 2px",
@@ -73,8 +75,10 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
         color: "white",
         borderBottom: "solid lightGrey 2px",
         cursor: "pointer",
-        width: `${optionWidth}.01rem`,
-        fontSize: "1.2rem",
+        width: isMobileView
+          ? `${optionWidth * 1.45}rem`
+          : `${optionWidth - 1}.01rem`,
+        fontSize: isMobileView ? "1.7rem" : "1.2rem",
         textAlign: "center",
         "&:hover": {
           background: "#5a6d81", //when dropdown option is highlited

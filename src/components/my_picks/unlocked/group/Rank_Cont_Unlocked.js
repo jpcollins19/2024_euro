@@ -1,6 +1,6 @@
 const Rank_Cont_Unlocked = () => {
   return (
-    <div className="rank-cont">
+    <div className="rank-cont-edit">
       <h5>Rank</h5>
       <div>1</div>
       <div>2</div>

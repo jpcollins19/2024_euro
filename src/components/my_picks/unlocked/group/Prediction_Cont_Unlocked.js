@@ -36,7 +36,7 @@ const Prediction_Cont_Unlocked = ({ group, onChange }) => {
               <Dropdown
                 key={idxRank}
                 options={teams}
-                width="14rem"
+                width="14"
                 defaultValue={convertTeamDropdown(usersTeamPick)}
                 set={(value) => onChange(group, idxRank + 1, value.value.name)}
               />
@@ -47,7 +47,7 @@ const Prediction_Cont_Unlocked = ({ group, onChange }) => {
               key={idxRank}
               placeholder="Select Team"
               options={teams}
-              width="14rem"
+              width="14"
               set={(value) => onChange(group, idxRank + 1, value.value.name)}
             />
           ))}

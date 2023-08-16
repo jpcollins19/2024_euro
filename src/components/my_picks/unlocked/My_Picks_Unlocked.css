@@ -112,18 +112,19 @@
 
 .single-group-cont-edit-picks-inside > div > div {
   margin: 0rem 0.17rem 0.5rem 0rem;
-  font-size: 1rem;
+
   height: 2.5rem;
   /* border: solid 2px red; */
 }
 
-.rank-cont > div {
+.rank-cont-edit > div {
   display: flex;
   align-items: center;
   justify-content: center;
   border: solid white 2px;
   width: 2.2rem;
   border-radius: 0.5rem;
+  font-size: 1rem;
 }
 
 .my-picks-unlocked-dropdown-cont {
@@ -145,11 +146,6 @@
   display: flex;
   align-items: center;
 }
-
-/* .third-place-to-advance-cont-edit > div > input {
-  width: 1rem;
-  height: 1rem;
-} */
 
 /*/////////////////////////////*/
 /*/ ///knockout stuff below////*/
@@ -348,5 +344,35 @@
 
   .edit-group-picks {
     padding-top: 23vh;
+  }
+
+  .group-predictions-cont-edit {
+    padding-top: 3vh;
+  }
+
+  .single-group-cont-edit-picks-outside {
+    width: 58%;
+    margin-bottom: 2%;
+  }
+
+  .single-group-cont-edit-picks-outside > h4 {
+    font-size: 250%;
+    margin-top: 1vh;
+  }
+
+  .single-group-cont-edit-picks-inside > div > h5 {
+    font-size: 200%;
+    min-height: 52px;
+  }
+
+  .rank-cont-edit > div {
+    width: 80%;
+    font-size: 200%;
+  }
+
+  .third-place-to-advance-cont-edit input {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
   }
 }

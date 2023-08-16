@@ -212,7 +212,7 @@ const My_Picks_Unlocked_Page = () => {
 
         if (errorAudit.length) {
           setMasterError(true);
-          setMasterErrorText("Invalid Dropdown Picks in the Group(s) below:");
+          setMasterErrorText("Invalid Group Pick(s) - see below");
 
           return;
         }
@@ -239,13 +239,15 @@ const My_Picks_Unlocked_Page = () => {
 
           const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
           const number = thirdPlaceToAdvanceAudit?.outcome[1];
-          const selectText = outcome === "-" ? "select" : "un-select";
-          const more = outcome === "-" ? "more" : "";
-          const team = number === "1" ? "team" : "teams";
-          const advancing = outcome === "-" ? "to advance" : "from advancing";
-          const outFrom = outcome === "-" ? "out" : `from ${number}`;
 
-          let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
+          let errorText;
+
+          if (outcome === "-") {
+            const selection = number > 1 ? "selections" : "selection";
+            errorText = `Need four 3rd place teams to advance, missing ${number} ${selection}`;
+          } else {
+            errorText = `Error: ${number} too many 3rd place teams advancing`;
+          }
 
           setMasterErrorText(errorText);
 
