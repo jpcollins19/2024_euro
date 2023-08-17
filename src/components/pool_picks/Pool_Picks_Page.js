@@ -98,7 +98,7 @@ const Pool_Picks_Page = () => {
               <h1 className="white-text">Picks for:</h1>
               <Dropdown
                 options={users}
-                width="15rem"
+                width="15"
                 defaultValue={selectedUser}
                 set={(value) => onChange(value.value.id)}
               />

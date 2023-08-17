@@ -16,7 +16,7 @@ const Group_Admin_Page = () => {
       <Dropdown
         placeholder="Select Group"
         options={letters}
-        width="19rem"
+        width="19"
         admin-header
         set={(option) => setGroup(option.value)}
       />

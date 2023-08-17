@@ -13,8 +13,6 @@ const Points_Cont_Locked = ({ group, selectedUser }) => {
 
   const groupResults = groupCalc(userToUse, group);
 
-  console.log(groupResults);
-
   const groupIsFinished = userToUse[`group${group}1`].groupIsFinished;
 
   return (

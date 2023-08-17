@@ -229,7 +229,7 @@
   border-radius: 0.2rem;
 }
 
-.predictions-cont {
+.ko-predictions-cont {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -334,21 +334,24 @@
 
   .pstc-2 {
     width: 52%;
+    font-size: 200%;
   }
 
   .pstc-3 {
     width: 90%;
+    font-size: 200%;
   }
 
-  .point-system-table-cont > div {
+  /* .point-system-table-cont > div {
     font-size: 200%;
+  } */
+
+  .pstc-4 {
+    font-size: 125%;
   }
 
   .astrix {
     margin: 0 5px 15px 5px;
-  }
-
-  .color-cont {
   }
 
   .pts-system-description-cont {
@@ -839,4 +842,131 @@
   width: 9vw;
   background-position: center;
   margin: 35% 0% 0% 0%;
+}
+
+@media (max-width: 65em) {
+  .knockout-cont-mobile {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* flex-direction: column; */
+    width: 90%;
+    /* min-height: 60rem; */
+    background: linear-gradient(
+      to bottom right,
+      black 0%,
+      rgb(79, 75, 75) 25%,
+      rgb(93, 89, 89) 50%,
+      rgb(79, 75, 75) 75%,
+      black 100%
+    );
+    margin-top: 40px;
+    border-radius: 1rem;
+  }
+
+  .knockout-cont-mobile > h1 {
+    padding-top: 3%;
+    font-size: 250%;
+  }
+
+  .knockout-cont-mobile > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .ko-cont-half {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .regoin-cont {
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: column; */
+    /* height: 100vh; */
+    width: 200px;
+    /* border: solid 2px red; */
+  }
+
+  .regoin-cont > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px 0 10px 0;
+    height: 150px;
+    /* border: solid 2px rgb(5, 248, 5); */
+  }
+
+  /* .regoin-cont > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px 0 10px 0;
+    height: 150px;
+  } */
+
+  .ko-box-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 50px;
+    width: 50px;
+  }
+
+  .ko-box-medium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 60px;
+    width: 80px;
+  }
+
+  .ko-box-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 100px;
+    width: 140px;
+  }
+
+  .ko-box-wrong {
+    border: solid 2px red;
+  }
+
+  .ko-box-correct {
+    border: solid 2px rgb(5, 248, 5);
+  }
+
+  .final-four-cont {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 20px 0;
+  }
+
+  .semis-mobile-z-out {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* border: solid 2px blue; */
+    height: 150px;
+    margin: 0 10px 0 10px;
+  }
+
+  .finals-mobile-z-out {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .champ-mobile-z-out {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 0 20px 0 20px;
+  }
 }

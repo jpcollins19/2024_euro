@@ -26,11 +26,11 @@ const Point_System_Cont = ({ tourneyStage }) => {
   return (
     <div
       className={`point-system-table-cont ${
-        tourneyStage <= 2 ? "pstc-2" : "pstc-3"
+        tourneyStage <= 2 ? "pstc-2" : tourneyStage === 3 ? "pstc-3" : "pstc-4"
       }`}
     >
       <div className={`ps-top ${tourneyStage <= 2 ? "ps-bottom" : ""}`}>
-        <div className={`color-cont astrix`}>*</div>
+        <div className="color-cont astrix">*</div>
         <div className="pts-system-description-cont">
           3rd place team selected to advance from group
         </div>

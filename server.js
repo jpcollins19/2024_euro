@@ -1,9 +1,9 @@
 //////mobile compatibility --- LOCAL - START
 
-//fix dropdown on admin page
+////my picks - locked - stage 4 - after picks
+//css work complete, need to apply logic based on user picks after each game ends
 
-////my picks - locked - stage 3
-////my picks - locked - stage 4
+////my picks - locked - stage 4 - before picks
 ////my picks - unlocked - stage 4
 ////my picks - locked - stage 5
 

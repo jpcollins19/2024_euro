@@ -61,7 +61,7 @@ const User_Admin_Page = () => {
       <Dropdown
         placeholder="Select User"
         options={users}
-        width="40rem"
+        width="40"
         set={(option) => setSelectedUser(option.value)}
       />
 
