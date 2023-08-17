@@ -24,16 +24,22 @@ const Point_System_Cont = ({ tourneyStage }) => {
   ];
 
   return (
-    <div className="point-system-table-cont">
+    <div
+      className={`point-system-table-cont ${
+        tourneyStage <= 2 ? "pstc-2" : "pstc-3"
+      }`}
+    >
       <div className={`ps-top ${tourneyStage <= 2 ? "ps-bottom" : ""}`}>
-        <div className="color-cont">*</div>
-        <div>3rd place team selected to advance from group</div>
+        <div className={`color-cont astrix`}>*</div>
+        <div className="pts-system-description-cont">
+          3rd place team selected to advance from group
+        </div>
       </div>
       {tourneyStage >= 3 &&
         inputs.map((input, idx) => (
           <div key={idx} className={input.padding}>
             <div className={`color-cont ${input.color}`}></div>
-            <div>{input.text}</div>
+            <div className="pts-system-description-cont">{input.text}</div>
           </div>
         ))}
     </div>

@@ -39,7 +39,7 @@
   color: white;
   border-radius: 1rem;
   border: solid 3px white;
-  width: 25rem;
+  /* width: 25rem; */
 }
 
 .point-system-table-cont > div {
@@ -283,14 +283,17 @@
   color: rgb(225, 225, 211);
 }
 
-.points-cont > div {
+.my-picks-locked-points-cont > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0.1rem;
   border: solid black 1px;
   min-height: 1.66rem;
   border-radius: 0.2rem;
 }
 
-.points-cont > div > h2 {
+.my-picks-locked-points-cont > div > h2 {
   padding: 1rem;
 }
 
@@ -326,15 +329,30 @@
 
   .point-system-table-cont {
     margin: 20px 0 20px 0;
-    width: 75%;
+    width: 90%;
+  }
+
+  .pstc-2 {
+    width: 52%;
+  }
+
+  .pstc-3 {
+    width: 90%;
   }
 
   .point-system-table-cont > div {
     font-size: 200%;
   }
 
-  .color-cont {
+  .astrix {
     margin: 0 5px 15px 5px;
+  }
+
+  .color-cont {
+  }
+
+  .pts-system-description-cont {
+    font-size: 66%;
   }
 
   .total-points-cont {
@@ -361,17 +379,33 @@
     font-size: 175%;
   }
 
+  .total-points-points-cont > div {
+    width: 120%;
+  }
+
   .box {
     width: 65%;
     /* border: solid 2px yellow; */
+  }
+
+  .group-predictions-cont {
+    padding-left: 20px;
   }
 
   .single-group-cont-picks-pre-ko {
     width: 70%;
   }
 
+  .single-group-cont-picks {
+    width: 40rem;
+  }
+
   /* Group A text*/
   .single-group-cont-picks-pre-ko h4 {
+    font-size: 250%;
+  }
+
+  .single-group-cont-picks h4 {
     font-size: 250%;
   }
 
@@ -387,6 +421,12 @@
     margin: 0rem;
     min-height: 45px;
     /* border: solid 2px red; */
+  }
+
+  .single-group-cont-picks > div > div > h5 {
+    font-size: 150%;
+    margin: 0rem;
+    min-height: 45px;
   }
 
   .third-place-to-advance-cont > div {
@@ -459,6 +499,25 @@
   .pred-locked-name {
     display: flex;
     align-items: center;
+  }
+
+  .outcome-pos-cont > div {
+    width: 8rem;
+    min-height: 4rem;
+  }
+
+  .outcome-locked-flag > img {
+    align-items: center;
+    min-width: 60px;
+    max-width: 60px;
+    max-height: 38px;
+    min-height: 38px;
+  }
+
+  .my-picks-locked-points-cont > div {
+    width: 6rem;
+    min-height: 4rem;
+    font-size: 2rem;
   }
 }
 

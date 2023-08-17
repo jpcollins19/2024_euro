@@ -13,10 +13,12 @@ const Points_Cont_Locked = ({ group, selectedUser }) => {
 
   const groupResults = groupCalc(userToUse, group);
 
+  console.log(groupResults);
+
   const groupIsFinished = userToUse[`group${group}1`].groupIsFinished;
 
   return (
-    <div className="points-cont">
+    <div className="my-picks-locked-points-cont">
       <h5>Points</h5>
       {groupResults.map((result, idx) => (
         <div key={idx} className={groupIsFinished ? result.className : ""}>

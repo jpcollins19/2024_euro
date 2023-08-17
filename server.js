@@ -1,13 +1,11 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 2
-////my picks - unlocked - stage 2
+//fix dropdown on admin page
+
 ////my picks - locked - stage 3
-////my picks - unlocked - stage 3
 ////my picks - locked - stage 4
 ////my picks - unlocked - stage 4
 ////my picks - locked - stage 5
-////my picks - unlocked - stage 5
 
 ////my picks - locked - remove all uncommented code from css file
 ////my picks - unlocked - remove all uncommented code from css file
