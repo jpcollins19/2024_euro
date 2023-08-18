@@ -1,6 +1,8 @@
 //////comp
 //ko stage - need to adjust logic of when the box is green/red
 
+//once finished, delete the "comp-old" folder
+
 //////mobile compatibility --- LOCAL - START
 
 ////my picks - locked - stage 4 - after picks
