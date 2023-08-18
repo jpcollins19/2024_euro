@@ -66,16 +66,15 @@ const My_Picks_Locked_Page = () => {
           <Point_System_Cont tourneyStage={joe?.tourneyStage} />
         )}
       </div>
+
       {user?.tiebreaker && <Total_Points_Cont />}
 
       {joe?.tourneyStage >= 4 && user?.tiebreaker && (
-        // <div className="top box">
         <div className="box">
           <div className="ko-predictions-cont">
             <Knockout_Cont_Locked user={user} />
           </div>
         </div>
-        // </div>
       )}
 
       {user?.tiebreaker && (

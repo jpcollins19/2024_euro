@@ -39,8 +39,19 @@
   color: white;
   border-radius: 1rem;
   border: solid 3px white;
-  /* width: 25rem; */
 }
+
+.pstc-2 {
+  width: 25rem;
+}
+
+.pstc-3 {
+  width: 43rem;
+}
+
+/* .pstc-4 {
+  font-size: 125%;
+} */
 
 .point-system-table-cont > div {
   display: flex;
@@ -78,7 +89,7 @@
   justify-content: center;
   text-align: center;
   list-style: none;
-  overflow: auto;
+  /* overflow: auto; */
   min-width: 1rem;
   margin-top: 0.5rem;
 }
@@ -358,8 +369,12 @@
     font-size: 66%;
   }
 
-  .total-points-cont {
-    top: 700;
+  .tpc-mobile {
+    top: 450;
+  }
+
+  .tpc-mobile-3 {
+    top: 600;
   }
 
   .total-points-cont > div {
@@ -588,7 +603,7 @@
 
 .R16 > div > div {
   margin: 0.5rem 0rem 0.5rem 0rem;
-  border: solid 1px white;
+  /* border: solid 1px white; */
   width: 7vw;
 }
 

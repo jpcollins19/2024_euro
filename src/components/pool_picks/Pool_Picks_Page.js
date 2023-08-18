@@ -80,8 +80,6 @@ const Pool_Picks_Page = () => {
     }, 500);
   };
 
-  // console.log("selectedUser", selectedUser);
-
   return loading ? (
     <Loading />
   ) : (
@@ -105,24 +103,43 @@ const Pool_Picks_Page = () => {
             </div>
           )}
 
-          {joe?.tourneyStage <= 3 && user?.tiebreaker && (
-            <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+          <div className="box">
+            {user?.tiebreaker && joe.tourneyStage <= 3 && (
+              <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+            )}
+          </div>
+
+          {user?.tiebreaker && (
+            <Total_Points_Cont selectedUser={selectedUser?.value} />
           )}
 
           {joe?.tourneyStage === 5 && user?.tiebreaker && (
-            <div className="top box">
-              <div className="box left">
-                <div className="predictions-cont">
-                  <Knockout_Cont selectedUser={selectedUser?.value} />
-                </div>
-              </div>
-              <div className="box right">
-                <Total_Points_Cont selectedUser={selectedUser?.value} />
+            <div className="box">
+              <div className="ko-predictions-cont">
+                <Knockout_Cont selectedUser={selectedUser?.value} />
               </div>
             </div>
           )}
 
-          <div className="top box">
+          {user?.tiebreaker && (
+            <div className="box">
+              {joe.tourneyStage >= 4 && (
+                <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+              )}
+
+              <div className="group-predictions-cont">
+                {groupLetters.map((letter) => (
+                  <Single_Group_Cont
+                    key={letter}
+                    group={letter}
+                    selectedUser={selectedUser?.value}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* <div className="top box">
             <div className="box left">
               {joe?.tourneyStage >= 4 && user?.tiebreaker && (
                 <Point_System_Cont tourneyStage={joe?.tourneyStage} />
@@ -141,7 +158,7 @@ const Pool_Picks_Page = () => {
             {joe?.tourneyStage < 5 && user?.tiebreaker && (
               <Total_Points_Cont selectedUser={selectedUser?.value} />
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </div>

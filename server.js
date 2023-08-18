@@ -1,3 +1,6 @@
+//////comp
+//ko stage - need to adjust logic of when the box is green/red
+
 //////mobile compatibility --- LOCAL - START
 
 ////my picks - locked - stage 4 - after picks

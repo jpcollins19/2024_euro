@@ -8,12 +8,15 @@ import {
   userTotalPoints,
   loadUsers,
   isPoolPicksPage,
+  findJoe,
 } from "../../../store";
 
 const Total_Points_Cont = ({ selectedUser }) => {
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
+
+  const joe = findJoe(useSelector((state) => state.users));
 
   const user = useSelector((state) => state.auth);
 
@@ -30,7 +33,11 @@ const Total_Points_Cont = ({ selectedUser }) => {
   const inputs = ["group", "quarters", "semis", "final", "champion", "total"];
 
   return (
-    <div className="total-points-cont">
+    <div
+      className={`total-points-cont ${
+        joe?.tourneyStage === 3 ? "tpc-mobile-3" : "tpc-mobile"
+      }`}
+    >
       <div>
         <div className="total-points-text-cont">
           <h4 className="white-text">Stage</h4>
