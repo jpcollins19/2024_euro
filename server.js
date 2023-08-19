@@ -1,7 +1,13 @@
 //////comp
+//need to re-do func testing
+
+//fix maxPts testing
+
+//need to re-do the format of the Total Pts Container, do it for stage 5 and then audit for stage 1-5
+
 //ko stage - need to adjust logic of when the box is green/red
 
-//once finished, delete the "comp-old" folder
+//^^once the above is finished, delete the "comp-old" folder
 
 //////mobile compatibility --- LOCAL - START
 

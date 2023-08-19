@@ -62,17 +62,16 @@ const Rules_Page = () => {
       <h2>Stage 2 scoring:</h2>
       <ul>
         <li>
-          2 pts for each team you choose correctly to advance to the quarter
-          finals.
+          2 pts for each team you correctly select to advance out of the Round
+          of 16.
         </li>
         <li>
-          4 pts for each team you choose correctly to advance to the semi
-          finals.
+          4 pts for each team you correctly select to advance out of Quarters.
         </li>
         <li>
-          6 pts for each team you choose correctly to advance to the final.
+          6 pts for each team you correctly select to advance out of Semis.
         </li>
-        <li>10 pts if you pick the correct World Cup winner.</li>
+        <li>10 pts for selecting the correct Euro winner.</li>
       </ul>
 
       <h2>Tiebreaker:</h2>

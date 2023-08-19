@@ -246,58 +246,60 @@ const areAllGroupsAreFinished = (teams) => {
 const koGameCalc = (user, game, teams) => {
   const koTeamSeeding = determineR16Seeding(teams);
 
-  // console.log("koTeamSeeding", koTeamSeeding);
-
   const roundInfoObj = Object.entries(koTeamSeeding).reduce(
     (a, entry) => {
-      const number = Number(entry[0][1]);
+      let number = Number(entry[0][1]);
 
-      a.Q[number] = entry[1];
+      if (entry[0][0] === "R") {
+        number = Number(entry[0][4]);
+      }
+
+      a.R16[number] = entry[1];
 
       const positions = entry[1];
 
       if (number === 1 || number === 2) {
         positions.forEach((pos) => {
+          a.Q[1].push(pos);
           a.S[1].push(pos);
-          a.F[1].push(pos);
         });
       }
 
       if (number === 3 || number === 4) {
         positions.forEach((pos) => {
-          a.S[2].push(pos);
-          a.F[1].push(pos);
+          a.Q[2].push(pos);
+          a.S[1].push(pos);
         });
       }
 
       if (number === 5 || number === 6) {
         positions.forEach((pos) => {
-          a.S[3].push(pos);
-          a.F[2].push(pos);
+          a.Q[3].push(pos);
+          a.S[2].push(pos);
         });
       }
 
       if (number === 7 || number === 8) {
         positions.forEach((pos) => {
-          a.S[4].push(pos);
-          a.F[2].push(pos);
+          a.Q[4].push(pos);
+          a.S[2].push(pos);
         });
       }
 
       return a;
     },
     {
-      Q: {
+      R16: {
         points: 2,
       },
-      S: {
+      Q: {
         1: [],
         2: [],
         3: [],
         4: [],
         points: 4,
       },
-      F: {
+      S: {
         1: [],
         2: [],
         points: 6,
@@ -305,13 +307,48 @@ const koGameCalc = (user, game, teams) => {
     }
   );
 
-  const round = game.split("")[0];
-  const number = game.split("")[1];
-  const usersPick = user[`knock${game}`];
+  let roundOG = game.split("")[0];
+  let number = game.split("")[1];
+  let round;
 
-  // console.log("roundInfoObj", roundInfoObj);
-  // console.log("round", round);
-  // console.log("number", number);
+  if (roundOG === "R") {
+    roundOG = "R16";
+    number = game.split("")[4];
+  }
+
+  switch (roundOG) {
+    case "R16":
+      round = "Q";
+      break;
+    case "Q":
+      round = "S";
+      break;
+    case "S":
+      round = "F";
+      break;
+  }
+
+  const gameMapper = {
+    R16_1: "Q1",
+    R16_2: "Q2",
+    R16_3: "Q3",
+    R16_4: "Q4",
+    R16_5: "Q5",
+    R16_6: "Q6",
+    R16_7: "Q7",
+    R16_8: "Q8",
+    Q1: "S1",
+    Q2: "S2",
+    Q3: "S3",
+    Q4: "S4",
+    S1: "F1",
+    S2: "F2",
+    Champ: "Champ",
+  };
+
+  const koGame = gameMapper[game];
+
+  const usersPick = user[`knock${koGame}`];
 
   let teamThatAdvanced, points;
 
@@ -321,14 +358,27 @@ const koGameCalc = (user, game, teams) => {
     if (game === "Champ") {
       teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`]) ?? null;
     } else {
+      // console.log("roundInfoObj", roundInfoObj);
+      // console.log("roundOG", roundOG);
+      // console.log("round", round);
+      // console.log("number", number);
+
+      // console.log("byah", roundInfoObj[roundOG][number]);
+
+      // const nugget = teams.find((team) => team.name === "England");
+
+      // console.log("nugget", nugget);
+
       teamThatAdvanced =
         teams.find(
           (team) =>
-            roundInfoObj[round][number].includes(team.knockoutPosition) &&
+            roundInfoObj[roundOG][number].includes(team.knockoutPosition) &&
             team[`advanceTo${round}`]
         ) ?? null;
     }
   }
+
+  // console.log("teamThatAdvanced", teamThatAdvanced);
 
   let usersPickClass = "unknown";
 
@@ -348,7 +398,7 @@ const koGameCalc = (user, game, teams) => {
   if (game === "Champ") {
     points = usersPickClass === "correct" ? 10 : 0;
   } else {
-    points = usersPickClass === "correct" ? roundInfoObj[round].points : 0;
+    points = usersPickClass === "correct" ? roundInfoObj[roundOG].points : 0;
   }
 
   return {
@@ -364,10 +414,26 @@ const koRoundCalc = (user, round, teams) => {
 
   // if (!allGroupsAreFinished) return 0;
 
+  // const koRoundGames = {
+  //   quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+  //   semis: ["S1", "S2", "S3", "S4"],
+  //   final: ["F1", "F2"],
+  //   champion: ["Champ"],
+  // };
+
   const koRoundGames = {
-    quarters: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
-    semis: ["S1", "S2", "S3", "S4"],
-    final: ["F1", "F2"],
+    R16: [
+      "R16_1",
+      "R16_2",
+      "R16_3",
+      "R16_4",
+      "R16_5",
+      "R16_6",
+      "R16_7",
+      "R16_8",
+    ],
+    quarters: ["Q1", "Q2", "Q3", "Q4"],
+    semis: ["S1", "S2"],
     champion: ["Champ"],
   };
 
@@ -694,10 +760,10 @@ const auditThirdPlaceToAdvancePicks = (obj) => {
 
 const determineR16Seeding = (teams) => {
   const staticGames = {
-    Q2: ["A1", "C2"],
-    Q4: ["D2", "E2"],
-    Q6: ["D1", "F2"],
-    Q8: ["A2", "B2"],
+    R16_2: ["A1", "C2"],
+    R16_4: ["D2", "E2"],
+    R16_6: ["D1", "F2"],
+    R16_8: ["A2", "B2"],
   };
 
   const groupsThatHaveTeamsAdvancingFrom3rd = teams
@@ -718,94 +784,94 @@ const determineR16Seeding = (teams) => {
 
   const correctMatchups = {
     ABCD: {
-      Q1: ["B1", "A3"],
-      Q3: ["F1", "C3"],
-      Q5: ["E1", "B3"],
-      Q7: ["C1", "D3"],
+      R16_1: ["B1", "A3"],
+      R16_3: ["F1", "C3"],
+      R16_5: ["E1", "B3"],
+      R16_7: ["C1", "D3"],
     },
     ABCE: {
-      Q1: ["B1", "A3"],
-      Q3: ["F1", "C3"],
-      Q5: ["E1", "B3"],
-      Q7: ["C1", "E3"],
+      R16_1: ["B1", "A3"],
+      R16_3: ["F1", "C3"],
+      R16_5: ["E1", "B3"],
+      R16_7: ["C1", "E3"],
     },
     ABCF: {
-      Q1: ["B1", "A3"],
-      Q3: ["F1", "C3"],
-      Q5: ["E1", "B3"],
-      Q7: ["C1", "F3"],
+      R16_1: ["B1", "A3"],
+      R16_3: ["F1", "C3"],
+      R16_5: ["E1", "B3"],
+      R16_7: ["C1", "F3"],
     },
     ABDE: {
-      Q1: ["B1", "D3"],
-      Q3: ["F1", "B3"],
-      Q5: ["E1", "A3"],
-      Q7: ["C1", "E3"],
+      R16_1: ["B1", "D3"],
+      R16_3: ["F1", "B3"],
+      R16_5: ["E1", "A3"],
+      R16_7: ["C1", "E3"],
     },
     ABDF: {
-      Q1: ["B1", "D3"],
-      Q3: ["F1", "B3"],
-      Q5: ["E1", "A3"],
-      Q7: ["C1", "F3"],
+      R16_1: ["B1", "D3"],
+      R16_3: ["F1", "B3"],
+      R16_5: ["E1", "A3"],
+      R16_7: ["C1", "F3"],
     },
     ABEF: {
-      Q1: ["B1", "E3"],
-      Q3: ["F1", "A3"],
-      Q5: ["E1", "B3"],
-      Q7: ["C1", "F3"],
+      R16_1: ["B1", "E3"],
+      R16_3: ["F1", "A3"],
+      R16_5: ["E1", "B3"],
+      R16_7: ["C1", "F3"],
     },
     ACDE: {
-      Q1: ["B1", "E3"],
-      Q3: ["F1", "A3"],
-      Q5: ["E1", "C3"],
-      Q7: ["C1", "D3"],
+      R16_1: ["B1", "E3"],
+      R16_3: ["F1", "A3"],
+      R16_5: ["E1", "C3"],
+      R16_7: ["C1", "D3"],
     },
     ACDF: {
-      Q1: ["B1", "F3"],
-      Q3: ["F1", "A3"],
-      Q5: ["E1", "C3"],
-      Q7: ["C1", "D3"],
+      R16_1: ["B1", "F3"],
+      R16_3: ["F1", "A3"],
+      R16_5: ["E1", "C3"],
+      R16_7: ["C1", "D3"],
     },
     ACEF: {
-      Q1: ["B1", "E3"],
-      Q3: ["F1", "A3"],
-      Q5: ["E1", "C3"],
-      Q7: ["C1", "F3"],
+      R16_1: ["B1", "E3"],
+      R16_3: ["F1", "A3"],
+      R16_5: ["E1", "C3"],
+      R16_7: ["C1", "F3"],
     },
     ADEF: {
-      Q1: ["B1", "E3"],
-      Q3: ["F1", "A3"],
-      Q5: ["E1", "D3"],
-      Q7: ["C1", "F3"],
+      R16_1: ["B1", "E3"],
+      R16_3: ["F1", "A3"],
+      R16_5: ["E1", "D3"],
+      R16_7: ["C1", "F3"],
     },
     BCDE: {
-      Q1: ["B1", "E3"],
-      Q3: ["F1", "C3"],
-      Q5: ["E1", "B3"],
-      Q7: ["C1", "D3"],
+      R16_1: ["B1", "E3"],
+      R16_3: ["F1", "C3"],
+      R16_5: ["E1", "B3"],
+      R16_7: ["C1", "D3"],
     },
     BCDF: {
-      Q1: ["B1", "F3"],
-      Q3: ["F1", "B3"],
-      Q5: ["E1", "C3"],
-      Q7: ["C1", "D3"],
+      R16_1: ["B1", "F3"],
+      R16_3: ["F1", "B3"],
+      R16_5: ["E1", "C3"],
+      R16_7: ["C1", "D3"],
     },
     BCEF: {
-      Q1: ["B1", "F3"],
-      Q3: ["F1", "B3"],
-      Q5: ["E1", "C3"],
-      Q7: ["C1", "E3"],
+      R16_1: ["B1", "F3"],
+      R16_3: ["F1", "B3"],
+      R16_5: ["E1", "C3"],
+      R16_7: ["C1", "E3"],
     },
     BDEF: {
-      Q1: ["B1", "F3"],
-      Q3: ["F1", "B3"],
-      Q5: ["E1", "D3"],
-      Q7: ["C1", "E3"],
+      R16_1: ["B1", "F3"],
+      R16_3: ["F1", "B3"],
+      R16_5: ["E1", "D3"],
+      R16_7: ["C1", "E3"],
     },
     CDEF: {
-      Q1: ["B1", "F3"],
-      Q3: ["F1", "C3"],
-      Q5: ["E1", "D3"],
-      Q7: ["C1", "E3"],
+      R16_1: ["B1", "F3"],
+      R16_3: ["F1", "C3"],
+      R16_5: ["E1", "D3"],
+      R16_7: ["C1", "E3"],
     },
   };
 
