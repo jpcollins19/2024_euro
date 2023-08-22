@@ -135,7 +135,7 @@ const users = [
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
     tiebreaker: 98,
-    tourneyStage: 4,
+    tourneyStage: 5,
   },
   //stan
   {
@@ -693,22 +693,22 @@ const syncAndSeed = async () => {
   Pat.knockChamp = France.name;
   // Sarah.knockChamp = Spain.name;
   // //////////////////////////////////////////////////
-  // England.advanceToQ = true;
-  // Mexico.advanceToQ = true;
-  // Belgium.advanceToQ = true;
-  // Spain.advanceToQ = true;
-  // Germany.advanceToQ = true;
-  // France.advanceToQ = true;
-  // Argentina.advanceToQ = true;
-  // // USA.advanceToQ = true;
-  // Australia.outOfTourney = true;
-  // Netherlands.outOfTourney = true;
-  // Wales.outOfTourney = true;
-  // Denmark.outOfTourney = true;
-  // Senegal.outOfTourney = true;
-  // Croatia.outOfTourney = true;
-  // Morocco.outOfTourney = true;
-  // Ecuador.outOfTourney = true;
+  England.advanceToQ = true;
+  Mexico.advanceToQ = true;
+  Belgium.advanceToQ = true;
+  Spain.advanceToQ = true;
+  Germany.advanceToQ = true;
+  France.advanceToQ = true;
+  Argentina.advanceToQ = true;
+  // USA.advanceToQ = true;
+  Australia.outOfTourney = true;
+  Netherlands.outOfTourney = true;
+  Wales.outOfTourney = true;
+  Denmark.outOfTourney = true;
+  Senegal.outOfTourney = true;
+  Croatia.outOfTourney = true;
+  Morocco.outOfTourney = true;
+  Ecuador.outOfTourney = true;
   // England.advanceToS = true;
   // Spain.advanceToS = true;
   // France.advanceToS = true;

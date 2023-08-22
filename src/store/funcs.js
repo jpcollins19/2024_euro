@@ -6,6 +6,9 @@ const {
   Qs,
   Ss,
   Fs,
+  koLetters_maxPts,
+  semiMatchups_maxPts,
+  finalMatchups_maxPts,
 } = require("./variables");
 
 const findJoe = (arr) => {
@@ -452,7 +455,7 @@ const userTotalPoints = (user, teams) => {
 
   //console.log("groupTotal", groupTotal);
 
-  const koRounds = ["quarters", "semis", "final", "champion"];
+  const koRounds = ["R16", "quarters", "semis", "champion"];
 
   const userHasKOPicks = user.knockChamp ? true : false;
 
@@ -918,21 +921,19 @@ const findChamp = (results) => {
 };
 
 const calcMaxPts = (user, teams) => {
-  // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
-
   const userCurrentTotal = userTotalPoints(user, teams);
 
   const KOSeeding = determineR16Seeding(teams);
 
-  const allKOGames = koLetters.reduce((a, letter) => {
+  const allKOGames = koLetters_maxPts.reduce((a, letter) => {
     switch (letter) {
-      case "Q":
+      case "R16_":
         Qs.forEach((num) => a.push(`${letter}${num}`));
         break;
-      case "S":
+      case "Q":
         Ss.forEach((num) => a.push(`${letter}${num}`));
         break;
-      case "F":
+      case "S":
         Fs.forEach((num) => a.push(`${letter}${num}`));
         break;
       default:
@@ -948,16 +949,36 @@ const calcMaxPts = (user, teams) => {
 
   const gamesToAudit = allKOGames.reduce((a, game) => {
     const round = findRound(game);
+
     let isGameComplete, gamesToLookAt, didATeamAdvance;
 
-    const determineIfAnyTeamsAdvanced = (games, key) => {
+    const determineIfAnyTeamsAdvanced = (games, round_OG) => {
       return games.reduce((a, game) => {
-        const seeds = KOSeeding[game];
+        let roundToUse;
 
-        seeds.forEach((seed) => {
-          const team = teams.find((team) => team.knockoutPosition === seed);
+        switch (round_OG) {
+          case "Champ":
+            roundToUse = "Champ";
+            break;
+          case "S":
+            roundToUse = "F";
+            break;
+          case "Q":
+            roundToUse = "S";
+            break;
+          case "R":
+            roundToUse = "Q";
+            break;
+        }
 
-          a.push(team[`advanceTo${key}`]);
+        const finishingPositions = KOSeeding[game];
+
+        finishingPositions.forEach((finishingPosition) => {
+          const team = teams.find(
+            (team) => team.knockoutPosition === finishingPosition
+          );
+
+          a.push(team[`advanceTo${roundToUse}`]);
         });
 
         return a;
@@ -966,15 +987,18 @@ const calcMaxPts = (user, teams) => {
 
     switch (round) {
       case "Champ":
-        gamesToLookAt = [...finalMatchups.F1, ...finalMatchups.F2];
-        break;
-      case "F":
-        gamesToLookAt = finalMatchups[game];
+        gamesToLookAt = [
+          ...finalMatchups_maxPts.S1,
+          ...finalMatchups_maxPts.S2,
+        ];
         break;
       case "S":
-        gamesToLookAt = semiMatchups[game];
+        gamesToLookAt = finalMatchups_maxPts[game];
         break;
       case "Q":
+        gamesToLookAt = semiMatchups_maxPts[game];
+        break;
+      case "R":
         gamesToLookAt = [game];
         break;
     }
@@ -988,6 +1012,15 @@ const calcMaxPts = (user, teams) => {
   }, []);
 
   const userFuturePoints = gamesToAudit.reduce((a, game) => {
+    const startOfStr = game.slice(0, game.length - 1);
+    const lastIdx = game.slice(game.length - 1);
+
+    const gameObjMapper = { S: "F", Q: "S", R16_: "Q" };
+
+    if (game !== "Champ") {
+      game = `${gameObjMapper[startOfStr]}${lastIdx}`;
+    }
+
     const round = findRound(game);
 
     const usersPick = user[`knock${game}`];

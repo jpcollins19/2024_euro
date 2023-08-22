@@ -1,13 +1,14 @@
-//////comp
-//need to re-do func testing
-
-//fix maxPts testing
-
+////my picks page - START
 //need to re-do the format of the Total Pts Container, do it for stage 5 and then audit for stage 1-5
-
+//ko stage - need to adjust logic of when box shows a team's name/flag
 //ko stage - need to adjust logic of when the box is green/red
 
 //^^once the above is finished, delete the "comp-old" folder
+
+////my picks page - END
+
+//////for all stages, starting at stage 1:
+//roll through each tab and verify all is working and there are no page errors
 
 //////mobile compatibility --- LOCAL - START
 
