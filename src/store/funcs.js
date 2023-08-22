@@ -629,6 +629,7 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
     .map((user) => {
       user.rank = rank;
       rank++;
+
       return user;
     });
 
@@ -1167,4 +1168,5 @@ module.exports = {
   getWebsiteUpdatedEmailDateVerbiage,
   formatPathname,
   formatURL,
+  areAllGroupsAreFinished,
 };

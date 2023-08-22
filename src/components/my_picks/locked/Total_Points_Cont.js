@@ -30,7 +30,7 @@ const Total_Points_Cont = ({ selectedUser }) => {
     dispatch(loadUsers());
   }, []);
 
-  const inputs = ["group", "quarters", "semis", "final", "champion", "total"];
+  const inputs = ["group", "R16", "quarters", "semis", "final", "total"];
 
   return (
     <div
@@ -51,9 +51,9 @@ const Total_Points_Cont = ({ selectedUser }) => {
           <h4 className="white-text">Pts</h4>
           <div>{groupTotalCalc(userToUse)}</div>
 
+          <div>{koRoundCalc(userToUse, "R16", teams)}</div>
           <div>{koRoundCalc(userToUse, "quarters", teams)}</div>
           <div>{koRoundCalc(userToUse, "semis", teams)}</div>
-          <div>{koRoundCalc(userToUse, "final", teams)}</div>
           <div>{koRoundCalc(userToUse, "champion", teams)}</div>
 
           <div className="bold">{userTotalPoints(userToUse, teams)}</div>

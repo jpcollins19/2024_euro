@@ -1,14 +1,26 @@
 ////my picks page - START
-//need to re-do the format of the Total Pts Container, do it for stage 5 and then audit for stage 1-5
-//ko stage - need to adjust logic of when box shows a team's name/flag
-//ko stage - need to adjust logic of when the box is green/red
+///ko stage - KO_Box correct/wrong --- START
+///R16 -- START
+//got opacity working, need to get green/red border next
+
+///R16 -- END
+
+///Q
+///S
+///Champ
+
+///ko stage - need to adjust logic of when the box is green/red --- END
 
 //^^once the above is finished, delete the "comp-old" folder
 
 ////my picks page - END
 
-//////for all stages, starting at stage 1:
+//////for all stages, starting at stage 1 ---- START
 //roll through each tab and verify all is working and there are no page errors
+//manually audit the total pts cont for each stage
+//manually audit each user's KO info as stage 5 progresses
+
+//////for all stages, starting at stage 1 ---- END
 
 //////mobile compatibility --- LOCAL - START
 

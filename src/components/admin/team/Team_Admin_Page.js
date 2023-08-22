@@ -7,6 +7,7 @@ import {
   updateTeam,
   semiMatchups,
   finalMatchups,
+  areAllGroupsAreFinished,
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
@@ -33,6 +34,8 @@ const My_Picks_Unlocked_Page = () => {
   }, 500);
 
   const teams = useSelector((state) => state.teams);
+
+  const allGroupsFinished = areAllGroupsAreFinished(teams);
 
   const seedMatchups = determineR16Seeding(teams);
 
@@ -184,57 +187,59 @@ const My_Picks_Unlocked_Page = () => {
         >
           <Button text="Save" form="update-ko-teams" />
 
-          <div className="teams-admin-ko-bracket">
-            <div>
-              <R16_Column_A
-                side={"left"}
-                results={results}
-                adjustResults={adjustResults}
-              />
-              <Q_Column_A
-                side={"left"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <S_Column_A
-                side={"left"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <F_Column_A
-                side={"left"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <Champ_Column_A results={results} teamAdjusted={teamAdjusted} />
-              <F_Column_A
-                side={"right"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <S_Column_A
-                side={"right"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <Q_Column_A
-                side={"right"}
-                results={results}
-                adjustResults={adjustResults}
-                teamAdjusted={teamAdjusted}
-              />
-              <R16_Column_A
-                side={"right"}
-                results={results}
-                adjustResults={adjustResults}
-              />
+          {allGroupsFinished && (
+            <div className="teams-admin-ko-bracket">
+              <div>
+                <R16_Column_A
+                  side={"left"}
+                  results={results}
+                  adjustResults={adjustResults}
+                />
+                <Q_Column_A
+                  side={"left"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <S_Column_A
+                  side={"left"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <F_Column_A
+                  side={"left"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <Champ_Column_A results={results} teamAdjusted={teamAdjusted} />
+                <F_Column_A
+                  side={"right"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <S_Column_A
+                  side={"right"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <Q_Column_A
+                  side={"right"}
+                  results={results}
+                  adjustResults={adjustResults}
+                  teamAdjusted={teamAdjusted}
+                />
+                <R16_Column_A
+                  side={"right"}
+                  results={results}
+                  adjustResults={adjustResults}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </form>
       )}
     </div>
