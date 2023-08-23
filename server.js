@@ -8,12 +8,15 @@
 ///S -- END
 
 ///Champ -- START
-//on figuring out the green/red border
-//then do red/green name
+//figure out why the flag-to-box size changes when the green/red border is applied
 
 ///Champ -- END
 
+//for the champ: when the team is wrong, show the team that won
+
 //roll through many diff scenarios and audit to verify everything is working as planned
+
+//roll through every new file and remove commented out code
 
 ///ko stage - need to adjust logic of when the box is green/red --- END
 

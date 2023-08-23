@@ -1131,17 +1131,11 @@ const formatURL = (str) => {
   return str.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
 };
 
-const formatTeamClass_KO = (
-  usersPicksForGame,
-  boxType,
-  gameInfo,
-  round,
-  test = false
-) => {
-  if (test) {
-    console.log("usersPicksForGame", usersPicksForGame);
-    console.log("gameInfo", gameInfo);
-  }
+const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
+  // if (test) {
+  //   console.log("usersPicksForGame", usersPicksForGame);
+  //   console.log("gameInfo", gameInfo);
+  // }
 
   const userPickGameMapper = {
     Q1: [1, 2],
@@ -1170,10 +1164,6 @@ const formatTeamClass_KO = (
     }
 
     const teamHasAdvanced = gameInfo.teamThatAdvanced?.name ?? false;
-
-    if (test) {
-      console.log("teamHasAdvanced", teamHasAdvanced);
-    }
 
     if (teamHasAdvanced) {
       if (team?.name !== gameInfo.teamThatAdvanced?.name) {
