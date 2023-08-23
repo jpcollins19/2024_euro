@@ -85,7 +85,7 @@ const My_Picks_Unlocked_Page = () => {
       const teamThatAdvanced = results[a.game].find((team) => team.advanceToQ);
 
       const otherTeamGame =
-        a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
+        a.gameNum % 2 === 0 ? `R16_${a.gameNum - 1}` : `R16_${a.gameNum + 1}`;
 
       const teamThatGotKnockedOut = results[otherTeamGame].find(
         (team) => team.advanceToQ
@@ -110,7 +110,7 @@ const My_Picks_Unlocked_Page = () => {
       });
 
       const otherTeamGame =
-        a.gameNum % 2 === 0 ? `S${a.gameNum - 1}` : `S${a.gameNum + 1}`;
+        a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
 
       semiMatchups[otherTeamGame].forEach((game) => {
         const targetTeam = results[game].find((team) => team.advanceToS);
@@ -139,7 +139,7 @@ const My_Picks_Unlocked_Page = () => {
         if (targetTeam) teamThatAdvanced = targetTeam;
       });
 
-      const otherTeamGame = a.game === "F1" ? "F2" : "F1";
+      const otherTeamGame = a.game === "S1" ? "S2" : "S1";
 
       finalMatchups[otherTeamGame].forEach((game) => {
         const targetTeam = results[game].find((team) => team.advanceToF);

@@ -1,14 +1,12 @@
 const {
   groupLetters,
-  semiMatchups,
   finalMatchups,
   koLetters,
   Qs,
   Ss,
   Fs,
   koLetters_maxPts,
-  semiMatchups_maxPts,
-  finalMatchups_maxPts,
+  semiMatchups,
 } = require("./variables");
 
 const findJoe = (arr) => {
@@ -988,16 +986,13 @@ const calcMaxPts = (user, teams) => {
 
     switch (round) {
       case "Champ":
-        gamesToLookAt = [
-          ...finalMatchups_maxPts.S1,
-          ...finalMatchups_maxPts.S2,
-        ];
+        gamesToLookAt = [...finalMatchups.S1, ...finalMatchups.S2];
         break;
       case "S":
-        gamesToLookAt = finalMatchups_maxPts[game];
+        gamesToLookAt = finalMatchups[game];
         break;
       case "Q":
-        gamesToLookAt = semiMatchups_maxPts[game];
+        gamesToLookAt = semiMatchups[game];
         break;
       case "R":
         gamesToLookAt = [game];
@@ -1136,6 +1131,64 @@ const formatURL = (str) => {
   return str.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
 };
 
+const formatTeamClass_KO = (
+  usersPicksForGame,
+  boxType,
+  gameInfo,
+  round,
+  test = false
+) => {
+  if (test) {
+    console.log("usersPicksForGame", usersPicksForGame);
+    console.log("gameInfo", gameInfo);
+  }
+
+  const userPickGameMapper = {
+    Q1: [1, 2],
+  };
+
+  // const usersPicksForGame =
+
+  return usersPicksForGame.map((team) => {
+    team.flagClass =
+      boxType === "small" ? "team-flag-ko" : "team-flag-ko-champ";
+
+    team.nameClass =
+      boxType === "small" ? "team-name-ko" : "team-name-ko-champ";
+
+    team.userClass = "";
+
+    if (round !== "R16") {
+      if (team?.outOfTourney) {
+        // if (team?.name === gameInfo?.usersPick?.name) {
+        team.flagClass += " opacity-60";
+        team.userClass = "wrong";
+        //}
+
+        return team;
+      }
+    }
+
+    const teamHasAdvanced = gameInfo.teamThatAdvanced?.name ?? false;
+
+    if (test) {
+      console.log("teamHasAdvanced", teamHasAdvanced);
+    }
+
+    if (teamHasAdvanced) {
+      if (team?.name !== gameInfo.teamThatAdvanced?.name) {
+        team.flagClass += " opacity-60";
+      }
+
+      if (team?.name === gameInfo.usersPick?.name) {
+        team.userClass = gameInfo?.usersPickClass;
+      }
+    }
+
+    return team;
+  });
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1169,4 +1222,5 @@ module.exports = {
   formatPathname,
   formatURL,
   areAllGroupsAreFinished,
+  formatTeamClass_KO,
 };

@@ -1,19 +1,43 @@
-////my picks page - START
+////my picks page_locked - START
 ///ko stage - KO_Box correct/wrong --- START
-///R16 -- START
-//got opacity working, need to get green/red border next
 
-///R16 -- END
+///S -- START
+//on figuring out the green/red border
+//then do red/green name
 
-///Q
-///S
-///Champ
+///S -- END
+
+///Champ -- START
+//on figuring out the green/red border
+//then do red/green name
+
+///Champ -- END
+
+//roll through many diff scenarios and audit to verify everything is working as planned
 
 ///ko stage - need to adjust logic of when the box is green/red --- END
 
 //^^once the above is finished, delete the "comp-old" folder
 
-////my picks page - END
+//audit that all is working for sarah who has no KO picks
+
+////my picks page_locked- END
+
+////my picks page_unlocked-KO - START
+//mimic my picks page components and re-vamp
+//start by commenting out all css and start from scratch
+
+////my picks page_unlocked-KO - END
+
+////admin-teams - START
+//mimic my_picks_edit work, css included
+
+//audit to make sure that manually adjusting picks is working as expected
+//simotaniously audit my-picks_locked page and roll through many diff scenarios and audit to verify everything is working as planned
+
+////admin-teams - END
+
+////////fix admin user tab during stages 4-5 next
 
 //////for all stages, starting at stage 1 ---- START
 //roll through each tab and verify all is working and there are no page errors
