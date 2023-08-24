@@ -1,5 +1,6 @@
 /////admin - KO ---START
-//re-do the setup to match regoin route
+///re-do the setup to match regoin route
+//on champ file
 
 //roll through every new file and remove un-used and commented out info
 
