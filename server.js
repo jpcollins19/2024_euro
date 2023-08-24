@@ -1,26 +1,4 @@
 ////my picks page_locked - START
-///ko stage - KO_Box correct/wrong --- START
-
-///S -- START
-//on figuring out the green/red border
-//then do red/green name
-
-///S -- END
-
-///Champ -- START
-//figure out why the flag-to-box size changes when the green/red border is applied
-
-///Champ -- END
-
-//for the champ: when the team is wrong, show the team that won
-
-//roll through many diff scenarios and audit to verify everything is working as planned
-
-//roll through every new file and remove commented out code
-
-///ko stage - need to adjust logic of when the box is green/red --- END
-
-//^^once the above is finished, delete the "comp-old" folder
 
 //audit that all is working for sarah who has no KO picks
 
@@ -48,6 +26,8 @@
 //manually audit each user's KO info as stage 5 progresses
 
 //////for all stages, starting at stage 1 ---- END
+
+//^^once the above is finished, delete the "comp-old" folder in the my picks > ko > comp folder
 
 //////mobile compatibility --- LOCAL - START
 

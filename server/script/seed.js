@@ -718,9 +718,9 @@ const syncAndSeed = async () => {
   Germany.outOfTourney = true;
   Argentina.outOfTourney = true;
   England.advanceToF = true;
-  // France.advanceToF = true;
+  France.advanceToF = true;
   Spain.outOfTourney = true;
-  // USA.outOfTourney = true;
+  USA.outOfTourney = true;
   // France.advanceToChamp = true;
   // England.outOfTourney = true;
   await Promise.all([
