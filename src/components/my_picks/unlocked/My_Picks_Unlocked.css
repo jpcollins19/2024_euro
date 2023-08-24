@@ -151,13 +151,13 @@
 /*/ ///knockout stuff below////*/
 /*/////////////////////////////*/
 
-.knockout-cont-edit {
+/* .knockout-cont-edit {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   width: 100%;
-}
-
+} */
+/* 
 .knockout-cont-edit > div {
   display: flex;
   justify-content: space-around;
@@ -194,61 +194,7 @@
   cursor: pointer;
   margin: 0.5rem 0rem 0.5rem 0rem;
   width: 9vw;
-}
-
-.team-name-ko-edit {
-  position: absolute;
-  top: -10;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.team-name-ko-edit-champ {
-  position: absolute;
-  top: 15;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.team-ko-img-cont:hover .team-name-ko-edit {
-  visibility: visible;
-  opacity: 1;
-}
-
-.team-ko-img-cont:hover .team-name-ko-edit-champ {
-  visibility: visible;
-  opacity: 1;
-}
-
-.team-ko-img-cont:hover .team-flag-ko-champ-edit {
-  opacity: 0.5;
-}
-
-.team-flag-ko-champ-edit {
-  width: 6vw;
-  height: 5.5vh;
-}
-
-.R16-game {
-  margin-bottom: 2rem;
-}
-
-.R16-game > div {
-  border: solid 3px white;
-}
-
-.reg-input {
-  height: 3rem;
-  width: 8vw;
-}
+} */
 
 .Q1UL {
   margin-top: 3.5vh;
@@ -284,23 +230,6 @@
 
 .ko-edit {
   border: solid 3px white;
-}
-
-.champ-edit {
-  width: 13vw;
-}
-
-.champ-edit > div {
-  display: flex;
-  justify-content: center;
-  width: 12vw;
-  margin-top: 26vh;
-}
-
-.champ-input {
-  height: 10vh;
-  font-weight: bold;
-  font-size: 2rem;
 }
 
 @media (max-width: 65em) {

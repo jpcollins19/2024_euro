@@ -19,6 +19,7 @@ import Cancel from "../../Misc/Cancel";
 import Error from "../../Misc/Error";
 import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
 import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
+// import KO_Cont_Edit from "../../admin/ko/KO_Cont";
 import "./My_Picks_Unlocked.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -54,6 +55,8 @@ const My_Picks_Unlocked_Page = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
   //
+  const [teamAdjusted, setTeamAdjusted] = useState(false);
+
   const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
   const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
   const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
@@ -387,7 +390,9 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {joe?.tourneyStage === 4 && user?.tiebreaker && (
+            {/* {joe?.tourneyStage === 4 && user?.tiebreaker && <KO_Cont_Edit />} */}
+
+            {/* {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <Knockout_Cont_Unlocked
                 setTeam={setTeam}
                 resetMasterError={resetMasterError}
@@ -422,7 +427,7 @@ const My_Picks_Unlocked_Page = () => {
                 champ={champ}
                 setChamp={setChamp}
               />
-            )}
+            )} */}
           </div>
         </form>
       )}

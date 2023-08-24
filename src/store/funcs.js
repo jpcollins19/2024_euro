@@ -1137,15 +1137,15 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
   //   console.log("gameInfo", gameInfo);
   // }
 
-  const userPickGameMapper = {
-    Q1: [1, 2],
-  };
-
   // const usersPicksForGame =
 
   return usersPicksForGame.map((team) => {
-    team.flagClass =
-      boxType === "small" ? "team-flag-ko" : "team-flag-ko-champ";
+    if (!team) {
+      team = {};
+    } else {
+      team.flagClass =
+        boxType === "small" ? "team-flag-ko" : "team-flag-ko-champ";
+    }
 
     team.nameClass =
       boxType === "small" ? "team-name-ko" : "team-name-ko-champ";
@@ -1163,7 +1163,7 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
       }
     }
 
-    const teamHasAdvanced = gameInfo.teamThatAdvanced?.name ?? false;
+    const teamHasAdvanced = gameInfo?.teamThatAdvanced?.name ?? false;
 
     if (teamHasAdvanced) {
       if (team?.name !== gameInfo.teamThatAdvanced?.name) {
@@ -1177,6 +1177,112 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
 
     return team;
   });
+};
+
+const adjustPicks_KO = (a) => {
+  if (a.round === "R16") {
+    switch (a.teamPos) {
+      case 1:
+        results[a.game][0].advanceToQ = true;
+        results[a.game][0].outOfTourney = false;
+
+        results[a.game][1].advanceToQ = false;
+        results[a.game][1].advanceToS = false;
+        results[a.game][1].advanceToF = false;
+        results[a.game][1].advanceToChamp = false;
+        results[a.game][1].outOfTourney = true;
+        break;
+      case 2:
+        results[a.game][1].advanceToQ = true;
+        results[a.game][1].outOfTourney = false;
+
+        results[a.game][0].advanceToQ = false;
+        results[a.game][0].advanceToS = false;
+        results[a.game][0].advanceToF = false;
+        results[a.game][0].advanceToChamp = false;
+        results[a.game][0].outOfTourney = true;
+        break;
+    }
+  }
+
+  if (a.round === "Q") {
+    const teamThatAdvanced = results[a.game].find((team) => team.advanceToQ);
+
+    const otherTeamGame =
+      a.gameNum % 2 === 0 ? `R16_${a.gameNum - 1}` : `R16_${a.gameNum + 1}`;
+
+    const teamThatGotKnockedOut = results[otherTeamGame].find(
+      (team) => team.advanceToQ
+    );
+
+    teamThatAdvanced.advanceToS = true;
+    teamThatAdvanced.outOfTourney = false;
+
+    teamThatGotKnockedOut.advanceToS = false;
+    teamThatGotKnockedOut.advanceToF = false;
+    teamThatGotKnockedOut.advanceToChamp = false;
+    teamThatGotKnockedOut.outOfTourney = true;
+  }
+
+  if (a.round === "S") {
+    let teamThatAdvanced, teamThatGotKnockedOut;
+
+    semiMatchups[a.game].forEach((game) => {
+      const targetTeam = results[game].find((team) => team.advanceToS);
+
+      if (targetTeam) teamThatAdvanced = targetTeam;
+    });
+
+    const otherTeamGame =
+      a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
+
+    semiMatchups[otherTeamGame].forEach((game) => {
+      const targetTeam = results[game].find((team) => team.advanceToS);
+
+      if (targetTeam) teamThatGotKnockedOut = targetTeam;
+    });
+
+    if (teamThatAdvanced) {
+      teamThatAdvanced.advanceToF = true;
+      teamThatAdvanced.outOfTourney = false;
+    }
+
+    if (teamThatGotKnockedOut) {
+      teamThatGotKnockedOut.advanceToF = false;
+      teamThatGotKnockedOut.advanceToChamp = false;
+      teamThatGotKnockedOut.outOfTourney = true;
+    }
+  }
+
+  if (a.round === "F") {
+    let teamThatAdvanced, teamThatGotKnockedOut;
+
+    finalMatchups[a.game].forEach((game) => {
+      const targetTeam = results[game].find((team) => team.advanceToF);
+
+      if (targetTeam) teamThatAdvanced = targetTeam;
+    });
+
+    const otherTeamGame = a.game === "S1" ? "S2" : "S1";
+
+    finalMatchups[otherTeamGame].forEach((game) => {
+      const targetTeam = results[game].find((team) => team.advanceToF);
+
+      if (targetTeam) teamThatGotKnockedOut = targetTeam;
+    });
+
+    if (teamThatAdvanced) {
+      teamThatAdvanced.advanceToChamp = true;
+      teamThatAdvanced.outOfTourney = false;
+    }
+
+    if (teamThatGotKnockedOut) {
+      teamThatGotKnockedOut.advanceToChamp = false;
+      teamThatGotKnockedOut.outOfTourney = true;
+    }
+  }
+
+  setTeamAdjusted(!teamAdjusted);
 };
 
 module.exports = {
@@ -1213,4 +1319,5 @@ module.exports = {
   formatURL,
   areAllGroupsAreFinished,
   formatTeamClass_KO,
+  adjustPicks_KO,
 };

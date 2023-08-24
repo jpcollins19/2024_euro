@@ -19,7 +19,7 @@ import User_Profile_Page_L from "./components/UserAccount/UserProfile/Locked/Use
 import User_Profile_Page_UL from "./components/UserAccount/UserProfile/UnLocked/User_Profile_Page_UL";
 import User_Admin_Page from "./components/admin/user/User_Admin_Page";
 import Group_Admin_Page from "./components/admin/group/Group_Admin_Page";
-import Team_Admin_Page from "./components/admin/team/Team_Admin_Page";
+import KO_Admin_Page from "./components/admin/ko/KO_Admin_Page";
 import Team_Admin_Page_D from "./components/admin/team-depricated/Team_Admin_Page_D";
 import NoMatch from "./components/Misc/No_Match";
 
@@ -112,13 +112,13 @@ const Routes = () => {
       )}
 
       {user?.admin && (
-        <Route path="/admin/teams">
-          {!user?.id ? <Redirect to="/" /> : <Team_Admin_Page />}
+        <Route path="/admin/ko">
+          {!user?.id ? <Redirect to="/" /> : <KO_Admin_Page />}
         </Route>
       )}
 
       {user?.admin && (
-        <Route path="/admin/teams-depricated">
+        <Route path="/admin/ko-depricated">
           {!user?.id ? <Redirect to="/" /> : <Team_Admin_Page_D />}
         </Route>
       )}

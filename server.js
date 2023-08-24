@@ -1,12 +1,17 @@
-////my picks page_locked - START
+/////admin - KO ---START
+//re-do the setup to match regoin route
 
-//audit that all is working for sarah who has no KO picks
+//roll through every new file and remove un-used and commented out info
 
-////my picks page_locked- END
+//delete depricated folder
+
+/////admin - KO ---END
 
 ////my picks page_unlocked-KO - START
 //mimic my picks page components and re-vamp
 //start by commenting out all css and start from scratch
+
+//remove all un-used and commented out code
 
 ////my picks page_unlocked-KO - END
 
@@ -27,7 +32,8 @@
 
 //////for all stages, starting at stage 1 ---- END
 
-//^^once the above is finished, delete the "comp-old" folder in the my picks > ko > comp folder
+//^^once the above is finished:
+// delete all depricated folders
 
 //////mobile compatibility --- LOCAL - START
 
@@ -41,7 +47,19 @@
 ////my picks - locked - remove all uncommented code from css file
 ////my picks - unlocked - remove all uncommented code from css file
 
-////404 noMatch Page
+////404 noMatch Page ----START
+///comp -- START
+//make the "Go Home" verbiage bigger
+//anything else?
+
+///comp -- END
+
+///mobile -- START
+//make it prettier
+
+///mobile -- END
+
+////404 noMatch Page ----END
 
 ////pool picks - all 5 stages
 //change everything to % as you minimize the page before it gets to tablet mode
