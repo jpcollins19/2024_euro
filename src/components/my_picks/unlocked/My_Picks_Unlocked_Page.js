@@ -18,8 +18,8 @@ import Button from "../../Misc/Button";
 import Cancel from "../../Misc/Cancel";
 import Error from "../../Misc/Error";
 import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
-import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
-// import KO_Cont_Edit from "../../admin/ko/KO_Cont";
+// import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
+import KO_Cont_Edit from "../../admin/ko/KO_Cont_Edit";
 import "./My_Picks_Unlocked.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -37,7 +37,7 @@ const My_Picks_Unlocked_Page = () => {
   }, 500);
 
   const user = useSelector((state) => state.auth);
-
+  const teams = useSelector((state) => state.teams);
   const joe = findJoe(useSelector((state) => state.users));
 
   const [tiebreaker, setTiebreaker] = useState(
@@ -55,23 +55,22 @@ const My_Picks_Unlocked_Page = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
   //
-  const [teamAdjusted, setTeamAdjusted] = useState(false);
 
-  const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
-  const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
-  const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
-  const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
-  const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
-  const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
-  const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
-  const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
-  const [S1, setS1] = useState(user?.knockS1?.name ?? null);
-  const [S2, setS2] = useState(user?.knockS2?.name ?? null);
-  const [S3, setS3] = useState(user?.knockS3?.name ?? null);
-  const [S4, setS4] = useState(user?.knockS4?.name ?? null);
-  const [F1, setF1] = useState(user?.knockF1?.name ?? null);
-  const [F2, setF2] = useState(user?.knockF2?.name ?? null);
-  const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
+  // const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
+  // const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
+  // const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
+  // const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
+  // const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
+  // const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
+  // const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
+  // const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
+  // const [S1, setS1] = useState(user?.knockS1?.name ?? null);
+  // const [S2, setS2] = useState(user?.knockS2?.name ?? null);
+  // const [S3, setS3] = useState(user?.knockS3?.name ?? null);
+  // const [S4, setS4] = useState(user?.knockS4?.name ?? null);
+  // const [F1, setF1] = useState(user?.knockF1?.name ?? null);
+  // const [F2, setF2] = useState(user?.knockF2?.name ?? null);
+  // const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
@@ -118,6 +117,45 @@ const My_Picks_Unlocked_Page = () => {
     },
   });
 
+  const userPicks = getKOResults(teams);
+
+  koLetters.forEach((letter) => {
+    switch (letter) {
+      case "Q":
+        Qs.forEach((num) => {
+          koAudit(team, letter, num);
+        });
+        break;
+      // case "S":
+      //   Ss.forEach((num) => {
+      //     const team = eval(`${letter}${num}`);
+
+      //     koAudit(team, letter, num);
+      //   });
+      //   break;
+      // case "F":
+      //   Fs.forEach((num) => {
+      //     const team = eval(`${letter}${num}`);
+
+      //     koAudit(team, letter, num);
+      //   });
+      //   break;
+      // case "Champ":
+      //   if (champ.length === 0) {
+      //     setMasterError(true);
+      //     setMasterErrorText("Incomplete Picks Below");
+      //     errorAudit.push(1);
+      //   } else {
+      //     userObj.knockChamp = champ;
+      //   }
+      //   break;
+      default:
+        break;
+    }
+  });
+
+  console.log("userPicks", userPicks);
+
   const onChangeSelectionObj = (group, key, answer) => {
     if (key === "thirdPlaceAdvanceToKO") {
       selectionObj[group][key] = !selectionObj[group][key];
@@ -154,9 +192,9 @@ const My_Picks_Unlocked_Page = () => {
     setGroupHError: setGroupHError,
   };
 
-  const setTeam = (setTeam, name) => {
-    setTeam(name);
-  };
+  // const setTeam = (setTeam, name) => {
+  //   setTeam(name);
+  // };
 
   const resetMasterError = () => {
     setMasterError(false);

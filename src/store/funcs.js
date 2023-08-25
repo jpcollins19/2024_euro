@@ -1285,6 +1285,26 @@ const adjustPicks_KO = (a) => {
   setTeamAdjusted(!teamAdjusted);
 };
 
+const getKOResults = (teams) => {
+  const seedMatchups = determineR16Seeding(teams);
+
+  return Object.entries(seedMatchups).reduce((a, entry) => {
+    const game = entry[0];
+
+    const teamData = entry[1].map((knockoutPosition) => {
+      const team = teams.find(
+        (team) => team?.knockoutPosition === knockoutPosition
+      );
+
+      return team;
+    });
+
+    a[game] = teamData;
+
+    return a;
+  }, {});
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1320,4 +1340,5 @@ module.exports = {
   areAllGroupsAreFinished,
   formatTeamClass_KO,
   adjustPicks_KO,
+  getKOResults,
 };

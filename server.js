@@ -1,32 +1,14 @@
-/////admin - KO ---START
-///re-do the setup to match regoin route
-//on champ file
-
-//roll through every new file and remove un-used and commented out info
-
-//delete depricated folder
-
-/////admin - KO ---END
-
 ////my picks page_unlocked-KO - START
 //mimic my picks page components and re-vamp
 //start by commenting out all css and start from scratch
 
-//remove all un-used and commented out code
+//roll through MyPicks_Unlocked page and delete any un-used and commented out code
 
 ////my picks page_unlocked-KO - END
 
-////admin-teams - START
-//mimic my_picks_edit work, css included
-
-//audit to make sure that manually adjusting picks is working as expected
-//simotaniously audit my-picks_locked page and roll through many diff scenarios and audit to verify everything is working as planned
-
-////admin-teams - END
-
 ////////fix admin user tab during stages 4-5 next
 
-//////for all stages, starting at stage 1 ---- START
+//////for all stages on a comp, starting at stage 1 ---- START
 //roll through each tab and verify all is working and there are no page errors
 //manually audit the total pts cont for each stage
 //manually audit each user's KO info as stage 5 progresses
@@ -39,11 +21,16 @@
 //////mobile compatibility --- LOCAL - START
 
 ////my picks - locked - stage 4 - after picks
-//css work complete, need to apply logic based on user picks after each game ends
+//css work complete for zoomed-out view, need to apply logic based on user picks after each game ends
+
+///css work for zoomed in -- after user picks
+
+///css work for zoomed out -- after user picks
 
 ////my picks - locked - stage 4 - before picks
+////my picks - locked - stage 5 - shoulnt have a "make/edit picks" link
+
 ////my picks - unlocked - stage 4
-////my picks - locked - stage 5
 
 ////my picks - locked - remove all uncommented code from css file
 ////my picks - unlocked - remove all uncommented code from css file
