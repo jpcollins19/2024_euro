@@ -12,14 +12,14 @@ import {
   Qs,
   Ss,
   Fs,
+  getKOResults,
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
 import Cancel from "../../Misc/Cancel";
 import Error from "../../Misc/Error";
 import Group_Cont_Unlocked from "./group/Group_Cont_Unlocked";
-// import Knockout_Cont_Unlocked from "./ko/Knockout_Cont_Unlocked";
-import KO_Cont_Edit from "../../admin/ko/KO_Cont_Edit";
+import KO_Cont_UP_Edit from "./ko/KO_Cont_UP_Edit";
 import "./My_Picks_Unlocked.css";
 
 const My_Picks_Unlocked_Page = () => {
@@ -32,13 +32,15 @@ const My_Picks_Unlocked_Page = () => {
 
   const [loading, setLoading] = useState(true);
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 500);
-
   const user = useSelector((state) => state.auth);
   const teams = useSelector((state) => state.teams);
   const joe = findJoe(useSelector((state) => state.users));
+
+  const userPicks = getKOResults(teams);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 500);
 
   const [tiebreaker, setTiebreaker] = useState(
     user?.tiebreaker ? user.tiebreaker.toString() : null
@@ -117,44 +119,171 @@ const My_Picks_Unlocked_Page = () => {
     },
   });
 
-  const userPicks = getKOResults(teams);
+  const [userClick, setUserClick] = useState(false);
 
   koLetters.forEach((letter) => {
+    console.log("REEEEEEEED");
+
     switch (letter) {
       case "Q":
         Qs.forEach((num) => {
-          koAudit(team, letter, num);
+          const key = `knock${letter}${num}`;
+
+          const userPick = user[key];
+          userPicks[key] = userPick;
         });
         break;
-      // case "S":
-      //   Ss.forEach((num) => {
-      //     const team = eval(`${letter}${num}`);
+      case "S":
+        Ss.forEach((num) => {
+          const key = `knock${letter}${num}`;
 
-      //     koAudit(team, letter, num);
-      //   });
-      //   break;
-      // case "F":
-      //   Fs.forEach((num) => {
-      //     const team = eval(`${letter}${num}`);
+          const userPick = user[key];
+          userPicks[key] = userPick;
+        });
+        break;
+      case "F":
+        Fs.forEach((num) => {
+          const key = `knock${letter}${num}`;
 
-      //     koAudit(team, letter, num);
-      //   });
-      //   break;
-      // case "Champ":
-      //   if (champ.length === 0) {
-      //     setMasterError(true);
-      //     setMasterErrorText("Incomplete Picks Below");
-      //     errorAudit.push(1);
-      //   } else {
-      //     userObj.knockChamp = champ;
-      //   }
-      //   break;
+          const userPick = user[key];
+          userPicks[key] = userPick;
+        });
+        break;
+      case "Champ":
+        const userPick = user.knockChamp;
+        userPicks.knockChamp = userPick;
+
+        break;
       default:
         break;
     }
+
+    console.log("userPicks after ko forEach run", userPicks?.knockQ1?.name);
   });
 
-  console.log("userPicks", userPicks);
+  const adjustUserPicks = (a) => {
+    if (a.round === "R16") {
+      console.log("a", a);
+
+      let team;
+      switch (a.teamPos) {
+        case 1:
+          team = userPicks[a.game][0];
+
+          // userPicks[a.game][0].outOfTourney = false;
+
+          // userPicks[a.game][1].advanceToQ = false;
+          // userPicks[a.game][1].advanceToS = false;
+          // userPicks[a.game][1].advanceToF = false;
+          // userPicks[a.game][1].advanceToChamp = false;
+          // userPicks[a.game][1].outOfTourney = true;
+          break;
+        case 2:
+          team = userPicks[a.game][1];
+
+          // results[a.game][1].advanceToQ = true;
+          // results[a.game][1].outOfTourney = false;
+
+          // results[a.game][0].advanceToQ = false;
+          // results[a.game][0].advanceToS = false;
+          // results[a.game][0].advanceToF = false;
+          // results[a.game][0].advanceToChamp = false;
+          // results[a.game][0].outOfTourney = true;
+          break;
+      }
+
+      console.log("team in adjustUserPicks func:", team?.name);
+
+      const gameNum = findGameNum(a.game);
+
+      userPicks[`knockQ${gameNum}`] = team;
+    }
+
+    // if (a.round === "Q") {
+    //   const teamToAdvance = results[a.game].find((team) => team.advanceToQ);
+
+    //   const round16Game = findRound16Game(a.game);
+
+    //   const otherGame = a.teamPos % 2 === 0 ? round16Game - 1 : round16Game + 1;
+
+    //   const losingTeam = results[`R16_${otherGame}`].find(
+    //     (team) => team.advanceToQ
+    //   );
+
+    //   teamToAdvance.advanceToS = true;
+    //   teamToAdvance.outOfTourney = false;
+
+    //   losingTeam.advanceToS = false;
+    //   losingTeam.advanceToF = false;
+    //   losingTeam.advanceToChamp = false;
+    //   losingTeam.outOfTourney = true;
+    // }
+
+    // if (a.round === "S") {
+    //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
+
+    //   const round16Game = findRound16Game(a.game);
+
+    //   const gamesToAudit = findGamesToAudit(round16Game);
+
+    //   let losingTeam;
+
+    //   gamesToAudit.forEach((gameNum) => {
+    //     if (gameNum !== round16Game) {
+    //       const game = `R16_${gameNum}`;
+
+    //       const targetTeam = results[game].find((team) => team.advanceToS);
+
+    //       if (targetTeam) losingTeam = targetTeam;
+    //     }
+    //   });
+
+    //   if (teamToAdvance) {
+    //     teamToAdvance.advanceToF = true;
+    //     teamToAdvance.outOfTourney = false;
+    //   }
+
+    //   if (losingTeam) {
+    //     losingTeam.advanceToF = false;
+    //     losingTeam.advanceToChamp = false;
+    //     losingTeam.outOfTourney = true;
+    //   }
+    // }
+
+    // if (a.round === "F") {
+    //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
+
+    //   const round16Game = findRound16Game(a.game);
+
+    //   const gamesToAudit = findGamesToAudit(round16Game, true);
+
+    //   let losingTeam;
+
+    //   gamesToAudit.forEach((gameNum) => {
+    //     if (gameNum !== round16Game) {
+    //       const game = `R16_${gameNum}`;
+
+    //       const targetTeam = results[game].find((team) => team.advanceToChamp);
+
+    //       if (targetTeam) losingTeam = targetTeam;
+    //     }
+    //   });
+
+    //   if (teamToAdvance) {
+    //     teamToAdvance.advanceToChamp = true;
+    //     teamToAdvance.outOfTourney = false;
+    //   }
+
+    //   if (losingTeam) {
+    //     losingTeam.advanceToChamp = false;
+    //     losingTeam.outOfTourney = true;
+    //   }
+    // }
+
+    console.log("userPicks in adjustUserPicks func:", userPicks?.knockQ1?.name);
+
+    setUserClick(!userClick);
+  };
 
   const onChangeSelectionObj = (group, key, answer) => {
     if (key === "thirdPlaceAdvanceToKO") {
@@ -162,6 +291,11 @@ const My_Picks_Unlocked_Page = () => {
     } else {
       selectionObj[group][key] = answer;
     }
+  };
+
+  const findGameNum = (game) => {
+    const arr = game.split("");
+    return Number(arr[arr.length - 1]);
   };
 
   const errorAudit = [];
@@ -428,7 +562,13 @@ const My_Picks_Unlocked_Page = () => {
               />
             )}
 
-            {/* {joe?.tourneyStage === 4 && user?.tiebreaker && <KO_Cont_Edit />} */}
+            {joe?.tourneyStage === 4 && user?.tiebreaker && (
+              <KO_Cont_UP_Edit
+                userPicks={userPicks}
+                adjustUserPicks={adjustUserPicks}
+                userClick={userClick}
+              />
+            )}
 
             {/* {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <Knockout_Cont_Unlocked

@@ -566,13 +566,15 @@
 .team-name-ko {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: absolute;
-  top: -17;
+  top: -2;
   bottom: 0;
   left: 0;
   right: 0;
   color: #fff;
   visibility: hidden;
+  font-size: 90%;
 }
 
 .wrong-box {
