@@ -26,17 +26,19 @@ const My_Picks_Unlocked_Page = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const user = useSelector((state) => state.auth);
+  const teams = useSelector((state) => state.teams);
+  const joe = findJoe(useSelector((state) => state.users));
+
+  const [userClick, setUserClick] = useState(false);
+
+  const toggleUserClick = () => setUserClick(!userClick);
+
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
 
   const [loading, setLoading] = useState(true);
-
-  const user = useSelector((state) => state.auth);
-  const teams = useSelector((state) => state.teams);
-  const joe = findJoe(useSelector((state) => state.users));
-
-  const userPicks = getKOResults(teams);
 
   setTimeout(() => {
     setLoading(false);
@@ -58,21 +60,21 @@ const My_Picks_Unlocked_Page = () => {
   const [groupHError, setGroupHError] = useState(false);
   //
 
-  // const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
-  // const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
-  // const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
-  // const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
-  // const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
-  // const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
-  // const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
-  // const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
-  // const [S1, setS1] = useState(user?.knockS1?.name ?? null);
-  // const [S2, setS2] = useState(user?.knockS2?.name ?? null);
-  // const [S3, setS3] = useState(user?.knockS3?.name ?? null);
-  // const [S4, setS4] = useState(user?.knockS4?.name ?? null);
-  // const [F1, setF1] = useState(user?.knockF1?.name ?? null);
-  // const [F2, setF2] = useState(user?.knockF2?.name ?? null);
-  // const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
+  const [Q1, setQ1] = useState(user?.knockQ1 ?? null);
+  const [Q2, setQ2] = useState(user?.knockQ2 ?? null);
+  const [Q3, setQ3] = useState(user?.knockQ3 ?? null);
+  const [Q4, setQ4] = useState(user?.knockQ4 ?? null);
+  const [Q5, setQ5] = useState(user?.knockQ5 ?? null);
+  const [Q6, setQ6] = useState(user?.knockQ6 ?? null);
+  const [Q7, setQ7] = useState(user?.knockQ7 ?? null);
+  const [Q8, setQ8] = useState(user?.knockQ8 ?? null);
+  const [S1, setS1] = useState(user?.knockS1 ?? null);
+  const [S2, setS2] = useState(user?.knockS2 ?? null);
+  const [S3, setS3] = useState(user?.knockS3 ?? null);
+  const [S4, setS4] = useState(user?.knockS4 ?? null);
+  const [F1, setF1] = useState(user?.knockF1 ?? null);
+  const [F2, setF2] = useState(user?.knockF2 ?? null);
+  const [champ, setChamp] = useState(user?.knockChamp ?? null);
 
   const [selectionObj, setSelectionObj] = useState({
     A: {
@@ -119,171 +121,219 @@ const My_Picks_Unlocked_Page = () => {
     },
   });
 
-  const [userClick, setUserClick] = useState(false);
+  const userPicks = getKOResults(teams);
 
   koLetters.forEach((letter) => {
-    console.log("REEEEEEEED");
-
     switch (letter) {
       case "Q":
         Qs.forEach((num) => {
-          const key = `knock${letter}${num}`;
+          const key = `${letter}${num}`;
+          const value = eval(key);
 
-          const userPick = user[key];
-          userPicks[key] = userPick;
+          const key_set = `set${key}`;
+          const value_set = eval(key_set);
+
+          userPicks[key] = value;
+          userPicks[key_set] = value_set;
         });
         break;
       case "S":
         Ss.forEach((num) => {
-          const key = `knock${letter}${num}`;
+          const key = `${letter}${num}`;
+          const value = eval(key);
 
-          const userPick = user[key];
-          userPicks[key] = userPick;
+          const key_set = `set${key}`;
+          const value_set = eval(key_set);
+
+          userPicks[key] = value;
+          userPicks[key_set] = value_set;
         });
         break;
       case "F":
         Fs.forEach((num) => {
-          const key = `knock${letter}${num}`;
+          const key = `${letter}${num}`;
+          const value = eval(key);
 
-          const userPick = user[key];
-          userPicks[key] = userPick;
+          const key_set = `set${key}`;
+          const value_set = eval(key_set);
+
+          userPicks[key] = value;
+          userPicks[key_set] = value_set;
         });
         break;
       case "Champ":
-        const userPick = user.knockChamp;
-        userPicks.knockChamp = userPick;
-
+        userPicks.champ = champ;
+        userPicks.setChamp = setChamp;
         break;
       default:
         break;
     }
-
-    console.log("userPicks after ko forEach run", userPicks?.knockQ1?.name);
   });
 
-  const adjustUserPicks = (a) => {
-    if (a.round === "R16") {
-      console.log("a", a);
+  useEffect(() => {
+    console.log("byah");
 
-      let team;
-      switch (a.teamPos) {
-        case 1:
-          team = userPicks[a.game][0];
+    const teams_quarters = Qs.map((num) => {
+      const team = eval(`Q${num}`);
+      return team?.name ?? null;
+    });
 
-          // userPicks[a.game][0].outOfTourney = false;
+    const teams_semis = Ss.map((num) => {
+      const team = eval(`S${num}`);
+      return team?.name ?? null;
+    });
 
-          // userPicks[a.game][1].advanceToQ = false;
-          // userPicks[a.game][1].advanceToS = false;
-          // userPicks[a.game][1].advanceToF = false;
-          // userPicks[a.game][1].advanceToChamp = false;
-          // userPicks[a.game][1].outOfTourney = true;
-          break;
-        case 2:
-          team = userPicks[a.game][1];
+    const finals = [F1?.name, F2?.name];
 
-          // results[a.game][1].advanceToQ = true;
-          // results[a.game][1].outOfTourney = false;
+    const isTeamInQs = (team) => {
+      return teams_semis.includes(team);
+    };
 
-          // results[a.game][0].advanceToQ = false;
-          // results[a.game][0].advanceToS = false;
-          // results[a.game][0].advanceToF = false;
-          // results[a.game][0].advanceToChamp = false;
-          // results[a.game][0].outOfTourney = true;
-          break;
+    teams_semis.forEach((team, idx) => {
+      if (!isTeamInQs(team)) {
+        const set = eval(`setS${idx + 1}`);
+
+        set(null);
       }
+    });
 
-      console.log("team in adjustUserPicks func:", team?.name);
+    finals.forEach((team, idx) => {
+      if (!isTeamInQs(team)) {
+        console.log("team", team);
+        const set = eval(`setF${idx + 1}`);
 
-      const gameNum = findGameNum(a.game);
+        set(null);
+      }
+    });
+  }, [userClick]);
 
-      userPicks[`knockQ${gameNum}`] = team;
-    }
+  // const adjustUserPicks = (a) => {
+  //   if (a.round === "R16") {
+  //     console.log("a", a);
 
-    // if (a.round === "Q") {
-    //   const teamToAdvance = results[a.game].find((team) => team.advanceToQ);
+  //     let team;
+  //     switch (a.teamPos) {
+  //       case 1:
+  //         team = userPicks[a.game][0];
 
-    //   const round16Game = findRound16Game(a.game);
+  //         // userPicks[a.game][0].outOfTourney = false;
 
-    //   const otherGame = a.teamPos % 2 === 0 ? round16Game - 1 : round16Game + 1;
+  //         // userPicks[a.game][1].advanceToQ = false;
+  //         // userPicks[a.game][1].advanceToS = false;
+  //         // userPicks[a.game][1].advanceToF = false;
+  //         // userPicks[a.game][1].advanceToChamp = false;
+  //         // userPicks[a.game][1].outOfTourney = true;
+  //         break;
+  //       case 2:
+  //         team = userPicks[a.game][1];
 
-    //   const losingTeam = results[`R16_${otherGame}`].find(
-    //     (team) => team.advanceToQ
-    //   );
+  //         // results[a.game][1].advanceToQ = true;
+  //         // results[a.game][1].outOfTourney = false;
 
-    //   teamToAdvance.advanceToS = true;
-    //   teamToAdvance.outOfTourney = false;
+  //         // results[a.game][0].advanceToQ = false;
+  //         // results[a.game][0].advanceToS = false;
+  //         // results[a.game][0].advanceToF = false;
+  //         // results[a.game][0].advanceToChamp = false;
+  //         // results[a.game][0].outOfTourney = true;
+  //         break;
+  //     }
 
-    //   losingTeam.advanceToS = false;
-    //   losingTeam.advanceToF = false;
-    //   losingTeam.advanceToChamp = false;
-    //   losingTeam.outOfTourney = true;
-    // }
+  //     console.log("team in adjustUserPicks func:", team?.name);
 
-    // if (a.round === "S") {
-    //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
+  //     const gameNum = findGameNum(a.game);
 
-    //   const round16Game = findRound16Game(a.game);
+  //     userPicks[`Q${gameNum}`] = team;
+  //   }
 
-    //   const gamesToAudit = findGamesToAudit(round16Game);
+  //   // if (a.round === "Q") {
+  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToQ);
 
-    //   let losingTeam;
+  //   //   const round16Game = findRound16Game(a.game);
 
-    //   gamesToAudit.forEach((gameNum) => {
-    //     if (gameNum !== round16Game) {
-    //       const game = `R16_${gameNum}`;
+  //   //   const otherGame = a.teamPos % 2 === 0 ? round16Game - 1 : round16Game + 1;
 
-    //       const targetTeam = results[game].find((team) => team.advanceToS);
+  //   //   const losingTeam = results[`R16_${otherGame}`].find(
+  //   //     (team) => team.advanceToQ
+  //   //   );
 
-    //       if (targetTeam) losingTeam = targetTeam;
-    //     }
-    //   });
+  //   //   teamToAdvance.advanceToS = true;
+  //   //   teamToAdvance.outOfTourney = false;
 
-    //   if (teamToAdvance) {
-    //     teamToAdvance.advanceToF = true;
-    //     teamToAdvance.outOfTourney = false;
-    //   }
+  //   //   losingTeam.advanceToS = false;
+  //   //   losingTeam.advanceToF = false;
+  //   //   losingTeam.advanceToChamp = false;
+  //   //   losingTeam.outOfTourney = true;
+  //   // }
 
-    //   if (losingTeam) {
-    //     losingTeam.advanceToF = false;
-    //     losingTeam.advanceToChamp = false;
-    //     losingTeam.outOfTourney = true;
-    //   }
-    // }
+  //   // if (a.round === "S") {
+  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
 
-    // if (a.round === "F") {
-    //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
+  //   //   const round16Game = findRound16Game(a.game);
 
-    //   const round16Game = findRound16Game(a.game);
+  //   //   const gamesToAudit = findGamesToAudit(round16Game);
 
-    //   const gamesToAudit = findGamesToAudit(round16Game, true);
+  //   //   let losingTeam;
 
-    //   let losingTeam;
+  //   //   gamesToAudit.forEach((gameNum) => {
+  //   //     if (gameNum !== round16Game) {
+  //   //       const game = `R16_${gameNum}`;
 
-    //   gamesToAudit.forEach((gameNum) => {
-    //     if (gameNum !== round16Game) {
-    //       const game = `R16_${gameNum}`;
+  //   //       const targetTeam = results[game].find((team) => team.advanceToS);
 
-    //       const targetTeam = results[game].find((team) => team.advanceToChamp);
+  //   //       if (targetTeam) losingTeam = targetTeam;
+  //   //     }
+  //   //   });
 
-    //       if (targetTeam) losingTeam = targetTeam;
-    //     }
-    //   });
+  //   //   if (teamToAdvance) {
+  //   //     teamToAdvance.advanceToF = true;
+  //   //     teamToAdvance.outOfTourney = false;
+  //   //   }
 
-    //   if (teamToAdvance) {
-    //     teamToAdvance.advanceToChamp = true;
-    //     teamToAdvance.outOfTourney = false;
-    //   }
+  //   //   if (losingTeam) {
+  //   //     losingTeam.advanceToF = false;
+  //   //     losingTeam.advanceToChamp = false;
+  //   //     losingTeam.outOfTourney = true;
+  //   //   }
+  //   // }
 
-    //   if (losingTeam) {
-    //     losingTeam.advanceToChamp = false;
-    //     losingTeam.outOfTourney = true;
-    //   }
-    // }
+  //   // if (a.round === "F") {
+  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
 
-    console.log("userPicks in adjustUserPicks func:", userPicks?.knockQ1?.name);
+  //   //   const round16Game = findRound16Game(a.game);
 
-    setUserClick(!userClick);
-  };
+  //   //   const gamesToAudit = findGamesToAudit(round16Game, true);
+
+  //   //   let losingTeam;
+
+  //   //   gamesToAudit.forEach((gameNum) => {
+  //   //     if (gameNum !== round16Game) {
+  //   //       const game = `R16_${gameNum}`;
+
+  //   //       const targetTeam = results[game].find((team) => team.advanceToChamp);
+
+  //   //       if (targetTeam) losingTeam = targetTeam;
+  //   //     }
+  //   //   });
+
+  //   //   if (teamToAdvance) {
+  //   //     teamToAdvance.advanceToChamp = true;
+  //   //     teamToAdvance.outOfTourney = false;
+  //   //   }
+
+  //   //   if (losingTeam) {
+  //   //     losingTeam.advanceToChamp = false;
+  //   //     losingTeam.outOfTourney = true;
+  //   //   }
+  //   // }
+
+  //   console.log("userPicks in adjustUserPicks func:", userPicks?.Q1?.name);
+
+  //   //setUserClick(!userClick);
+
+  //   userClick = !userClick;
+
+  //   console.log("userClick", userClick);
+  // };
 
   const onChangeSelectionObj = (group, key, answer) => {
     if (key === "thirdPlaceAdvanceToKO") {
@@ -334,6 +384,41 @@ const My_Picks_Unlocked_Page = () => {
     setMasterError(false);
     setMasterErrorText(null);
   };
+
+  // const userPicks = {
+  //   // setTeam: setTeam,
+  //   // resetMasterError: resetMasterError,
+  //   Q1: Q1,
+  //   Q2: Q2,
+  //   Q3: Q3,
+  //   Q4: Q4,
+  //   Q5: Q5,
+  //   Q6: Q6,
+  //   Q7: Q7,
+  //   Q8: Q8,
+  //   setQ1: setQ1,
+  //   setQ2: setQ2,
+  //   setQ3: setQ3,
+  //   setQ4: setQ4,
+  //   setQ5: setQ5,
+  //   setQ6: setQ6,
+  //   setQ7: setQ7,
+  //   setQ8: setQ8,
+  //   S1: S1,
+  //   S2: S2,
+  //   S3: S3,
+  //   S4: S4,
+  //   setS1: setS1,
+  //   setS2: setS2,
+  //   setS3: setS3,
+  //   setS4: setS4,
+  //   F1: F1,
+  //   F2: F2,
+  //   setF1: setF1,
+  //   setF2: setF2,
+  //   champ: champ,
+  //   setChamp: setChamp,
+  // };
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -565,8 +650,9 @@ const My_Picks_Unlocked_Page = () => {
             {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <KO_Cont_UP_Edit
                 userPicks={userPicks}
-                adjustUserPicks={adjustUserPicks}
-                userClick={userClick}
+                toggleUserClick={toggleUserClick}
+                // adjustUserPicks={adjustUserPicks}
+                // userClick={userClick}
               />
             )}
 
