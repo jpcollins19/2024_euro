@@ -1,23 +1,15 @@
-const KO_Box_UP_Edit = ({
-  side,
-  champ,
-  team,
-  setTeam,
-  toggleUserClick,
-  // teamPos,
-  // adjustUserPicks,
-  // game,
-  // round,
-}) => {
+const KO_Box_UP_Edit = ({ side, champ, team, setTeam, setMasterError }) => {
+  const teamClass = !team ? "missing" : "edit";
+
   return (
     <div
-      className={`ko-box-edit ko-box-${side} ko-box-${
+      className={` ko-box-${teamClass} ko-box-${side} ko-box-${
         champ ? "large" : "small"
       }`}
       onClick={() => {
         if (!champ) {
+          setMasterError(false);
           setTeam(team);
-          toggleUserClick();
         }
       }}
     >

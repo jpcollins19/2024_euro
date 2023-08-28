@@ -8,11 +8,10 @@ import {
   loadUsers,
   auditThirdPlaceToAdvancePicks,
   groupLetters,
-  koLetters,
-  Qs,
-  Ss,
-  Fs,
   getKOResults,
+  games_Q,
+  games_S,
+  games_F,
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
@@ -123,217 +122,87 @@ const My_Picks_Unlocked_Page = () => {
 
   const userPicks = getKOResults(teams);
 
-  koLetters.forEach((letter) => {
-    switch (letter) {
-      case "Q":
-        Qs.forEach((num) => {
-          const key = `${letter}${num}`;
-          const value = eval(key);
+  const addToUserPicks = (game) => {
+    const value = eval(game);
 
-          const key_set = `set${key}`;
-          const value_set = eval(key_set);
+    const key_set = `set${game}`;
+    const value_set = eval(key_set);
 
-          userPicks[key] = value;
-          userPicks[key_set] = value_set;
-        });
-        break;
-      case "S":
-        Ss.forEach((num) => {
-          const key = `${letter}${num}`;
-          const value = eval(key);
+    userPicks[game] = value;
+    userPicks[key_set] = value_set;
+  };
 
-          const key_set = `set${key}`;
-          const value_set = eval(key_set);
-
-          userPicks[key] = value;
-          userPicks[key_set] = value_set;
-        });
-        break;
-      case "F":
-        Fs.forEach((num) => {
-          const key = `${letter}${num}`;
-          const value = eval(key);
-
-          const key_set = `set${key}`;
-          const value_set = eval(key_set);
-
-          userPicks[key] = value;
-          userPicks[key_set] = value_set;
-        });
-        break;
-      case "Champ":
-        userPicks.champ = champ;
-        userPicks.setChamp = setChamp;
-        break;
-      default:
-        break;
-    }
+  games_Q.forEach((game) => {
+    addToUserPicks(game);
   });
 
+  games_S.forEach((game) => {
+    addToUserPicks(game);
+  });
+
+  games_F.forEach((game) => {
+    addToUserPicks(game);
+  });
+
+  userPicks.champ = champ;
+  userPicks.setChamp = setChamp;
+
+  const findTeam = (game) => {
+    const team = eval(game);
+    return team?.name ?? null;
+  };
+
   useEffect(() => {
-    console.log("byah");
+    const teams_R16 = Object.values(getKOResults(teams)).reduce(
+      (a, matchup) => {
+        matchup.forEach((team) => {
+          a.push(team?.name);
+        });
 
-    const teams_quarters = Qs.map((num) => {
-      const team = eval(`Q${num}`);
-      return team?.name ?? null;
+        return a;
+      },
+      []
+    );
+
+    const teams_quarters = games_Q.map((game) => {
+      return findTeam(game);
     });
 
-    const teams_semis = Ss.map((num) => {
-      const team = eval(`S${num}`);
-      return team?.name ?? null;
+    const teams_semis = games_S.map((game) => {
+      return findTeam(game);
     });
 
-    const finals = [F1?.name, F2?.name];
+    const finals = games_F.map((game) => {
+      return findTeam(game);
+    });
 
-    const isTeamInQs = (team) => {
-      return teams_semis.includes(team);
-    };
+    const champion = champ?.name;
+
+    teams_quarters.forEach((team, idx) => {
+      if (!teams_R16.includes(team)) {
+        const set = eval(`setQ${idx + 1}`);
+        set(null);
+      }
+    });
 
     teams_semis.forEach((team, idx) => {
-      if (!isTeamInQs(team)) {
+      if (!teams_quarters.includes(team)) {
         const set = eval(`setS${idx + 1}`);
-
         set(null);
       }
     });
 
     finals.forEach((team, idx) => {
-      if (!isTeamInQs(team)) {
-        console.log("team", team);
+      if (!teams_semis.includes(team)) {
         const set = eval(`setF${idx + 1}`);
-
         set(null);
       }
     });
-  }, [userClick]);
 
-  // const adjustUserPicks = (a) => {
-  //   if (a.round === "R16") {
-  //     console.log("a", a);
-
-  //     let team;
-  //     switch (a.teamPos) {
-  //       case 1:
-  //         team = userPicks[a.game][0];
-
-  //         // userPicks[a.game][0].outOfTourney = false;
-
-  //         // userPicks[a.game][1].advanceToQ = false;
-  //         // userPicks[a.game][1].advanceToS = false;
-  //         // userPicks[a.game][1].advanceToF = false;
-  //         // userPicks[a.game][1].advanceToChamp = false;
-  //         // userPicks[a.game][1].outOfTourney = true;
-  //         break;
-  //       case 2:
-  //         team = userPicks[a.game][1];
-
-  //         // results[a.game][1].advanceToQ = true;
-  //         // results[a.game][1].outOfTourney = false;
-
-  //         // results[a.game][0].advanceToQ = false;
-  //         // results[a.game][0].advanceToS = false;
-  //         // results[a.game][0].advanceToF = false;
-  //         // results[a.game][0].advanceToChamp = false;
-  //         // results[a.game][0].outOfTourney = true;
-  //         break;
-  //     }
-
-  //     console.log("team in adjustUserPicks func:", team?.name);
-
-  //     const gameNum = findGameNum(a.game);
-
-  //     userPicks[`Q${gameNum}`] = team;
-  //   }
-
-  //   // if (a.round === "Q") {
-  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToQ);
-
-  //   //   const round16Game = findRound16Game(a.game);
-
-  //   //   const otherGame = a.teamPos % 2 === 0 ? round16Game - 1 : round16Game + 1;
-
-  //   //   const losingTeam = results[`R16_${otherGame}`].find(
-  //   //     (team) => team.advanceToQ
-  //   //   );
-
-  //   //   teamToAdvance.advanceToS = true;
-  //   //   teamToAdvance.outOfTourney = false;
-
-  //   //   losingTeam.advanceToS = false;
-  //   //   losingTeam.advanceToF = false;
-  //   //   losingTeam.advanceToChamp = false;
-  //   //   losingTeam.outOfTourney = true;
-  //   // }
-
-  //   // if (a.round === "S") {
-  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
-
-  //   //   const round16Game = findRound16Game(a.game);
-
-  //   //   const gamesToAudit = findGamesToAudit(round16Game);
-
-  //   //   let losingTeam;
-
-  //   //   gamesToAudit.forEach((gameNum) => {
-  //   //     if (gameNum !== round16Game) {
-  //   //       const game = `R16_${gameNum}`;
-
-  //   //       const targetTeam = results[game].find((team) => team.advanceToS);
-
-  //   //       if (targetTeam) losingTeam = targetTeam;
-  //   //     }
-  //   //   });
-
-  //   //   if (teamToAdvance) {
-  //   //     teamToAdvance.advanceToF = true;
-  //   //     teamToAdvance.outOfTourney = false;
-  //   //   }
-
-  //   //   if (losingTeam) {
-  //   //     losingTeam.advanceToF = false;
-  //   //     losingTeam.advanceToChamp = false;
-  //   //     losingTeam.outOfTourney = true;
-  //   //   }
-  //   // }
-
-  //   // if (a.round === "F") {
-  //   //   const teamToAdvance = results[a.game].find((team) => team.advanceToS);
-
-  //   //   const round16Game = findRound16Game(a.game);
-
-  //   //   const gamesToAudit = findGamesToAudit(round16Game, true);
-
-  //   //   let losingTeam;
-
-  //   //   gamesToAudit.forEach((gameNum) => {
-  //   //     if (gameNum !== round16Game) {
-  //   //       const game = `R16_${gameNum}`;
-
-  //   //       const targetTeam = results[game].find((team) => team.advanceToChamp);
-
-  //   //       if (targetTeam) losingTeam = targetTeam;
-  //   //     }
-  //   //   });
-
-  //   //   if (teamToAdvance) {
-  //   //     teamToAdvance.advanceToChamp = true;
-  //   //     teamToAdvance.outOfTourney = false;
-  //   //   }
-
-  //   //   if (losingTeam) {
-  //   //     losingTeam.advanceToChamp = false;
-  //   //     losingTeam.outOfTourney = true;
-  //   //   }
-  //   // }
-
-  //   console.log("userPicks in adjustUserPicks func:", userPicks?.Q1?.name);
-
-  //   //setUserClick(!userClick);
-
-  //   userClick = !userClick;
-
-  //   console.log("userClick", userClick);
-  // };
+    if (!finals.includes(champion)) {
+      setChamp(null);
+    }
+  }, [userPicks]);
 
   const onChangeSelectionObj = (group, key, answer) => {
     if (key === "thirdPlaceAdvanceToKO") {
@@ -341,11 +210,6 @@ const My_Picks_Unlocked_Page = () => {
     } else {
       selectionObj[group][key] = answer;
     }
-  };
-
-  const findGameNum = (game) => {
-    const arr = game.split("");
-    return Number(arr[arr.length - 1]);
   };
 
   const errorAudit = [];
@@ -376,49 +240,10 @@ const My_Picks_Unlocked_Page = () => {
     setGroupHError: setGroupHError,
   };
 
-  // const setTeam = (setTeam, name) => {
-  //   setTeam(name);
-  // };
-
   const resetMasterError = () => {
     setMasterError(false);
     setMasterErrorText(null);
   };
-
-  // const userPicks = {
-  //   // setTeam: setTeam,
-  //   // resetMasterError: resetMasterError,
-  //   Q1: Q1,
-  //   Q2: Q2,
-  //   Q3: Q3,
-  //   Q4: Q4,
-  //   Q5: Q5,
-  //   Q6: Q6,
-  //   Q7: Q7,
-  //   Q8: Q8,
-  //   setQ1: setQ1,
-  //   setQ2: setQ2,
-  //   setQ3: setQ3,
-  //   setQ4: setQ4,
-  //   setQ5: setQ5,
-  //   setQ6: setQ6,
-  //   setQ7: setQ7,
-  //   setQ8: setQ8,
-  //   S1: S1,
-  //   S2: S2,
-  //   S3: S3,
-  //   S4: S4,
-  //   setS1: setS1,
-  //   setS2: setS2,
-  //   setS3: setS3,
-  //   setS4: setS4,
-  //   F1: F1,
-  //   F2: F2,
-  //   setF1: setF1,
-  //   setF2: setF2,
-  //   champ: champ,
-  //   setChamp: setChamp,
-  // };
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
@@ -534,52 +359,35 @@ const My_Picks_Unlocked_Page = () => {
       if (joe?.tourneyStage === 4) {
         clearArr(errorAudit);
 
-        const koAudit = (team, letter, num) => {
+        const koAudit = (team, game) => {
           if (!team) {
             setMasterError(true);
             setMasterErrorText("Incomplete Picks Below");
             errorAudit.push(1);
           } else {
-            userObj[`knock${letter}${num}`] = team;
+            userObj[`knock${game}`] = team;
           }
         };
 
-        koLetters.forEach((letter) => {
-          switch (letter) {
-            case "Q":
-              Qs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
+        games_Q.forEach((game) => {
+          const team = eval(game);
 
-                koAudit(team, letter, num);
-              });
-              break;
-            case "S":
-              Ss.forEach((num) => {
-                const team = eval(`${letter}${num}`);
-
-                koAudit(team, letter, num);
-              });
-              break;
-            case "F":
-              Fs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
-
-                koAudit(team, letter, num);
-              });
-              break;
-            case "Champ":
-              if (champ.length === 0) {
-                setMasterError(true);
-                setMasterErrorText("Incomplete Picks Below");
-                errorAudit.push(1);
-              } else {
-                userObj.knockChamp = champ;
-              }
-              break;
-            default:
-              break;
-          }
+          koAudit(team?.name, game);
         });
+
+        games_S.forEach((game) => {
+          const team = eval(game);
+
+          koAudit(team?.name, game);
+        });
+
+        games_F.forEach((game) => {
+          const team = eval(game);
+
+          koAudit(team?.name, game);
+        });
+
+        koAudit(champ?.name, "Champ");
       }
 
       !masterError &&
@@ -651,47 +459,9 @@ const My_Picks_Unlocked_Page = () => {
               <KO_Cont_UP_Edit
                 userPicks={userPicks}
                 toggleUserClick={toggleUserClick}
-                // adjustUserPicks={adjustUserPicks}
-                // userClick={userClick}
+                setMasterError={setMasterError}
               />
             )}
-
-            {/* {joe?.tourneyStage === 4 && user?.tiebreaker && (
-              <Knockout_Cont_Unlocked
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q1={Q1}
-                Q2={Q2}
-                Q3={Q3}
-                Q4={Q4}
-                Q5={Q5}
-                Q6={Q6}
-                Q7={Q7}
-                Q8={Q8}
-                setQ1={setQ1}
-                setQ2={setQ2}
-                setQ3={setQ3}
-                setQ4={setQ4}
-                setQ5={setQ5}
-                setQ6={setQ6}
-                setQ7={setQ7}
-                setQ8={setQ8}
-                S1={S1}
-                S2={S2}
-                S3={S3}
-                S4={S4}
-                setS1={setS1}
-                setS2={setS2}
-                setS3={setS3}
-                setS4={setS4}
-                F1={F1}
-                F2={F2}
-                setF1={setF1}
-                setF2={setF2}
-                champ={champ}
-                setChamp={setChamp}
-              />
-            )} */}
           </div>
         </form>
       )}

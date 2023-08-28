@@ -1,8 +1,6 @@
-// import { useState, useEffect } from "react";
-// import { koGameMapper } from "../../../../store";
 import KO_Box_UP_Edit from "../KO_Box_UP_Edit";
 
-const R4_Column_UP_Edit = ({ side, regoin, userPicks, toggleUserClick }) => {
+const R4_Column_UP_Edit = ({ side, regoin, userPicks, setMasterError }) => {
   const game = `S${regoin}`;
 
   const team = userPicks[game];
@@ -18,10 +16,7 @@ const R4_Column_UP_Edit = ({ side, regoin, userPicks, toggleUserClick }) => {
           side={side}
           team={team}
           setTeam={setTeam}
-          toggleUserClick={toggleUserClick}
-          // game={game}
-          // adjustResults={adjustResults}
-          // round={"S"}
+          setMasterError={setMasterError}
         />
       </div>
     </div>

@@ -1,11 +1,3 @@
-////my picks page_unlocked-KO - START
-//mimic my picks page components and re-vamp
-//start by commenting out all css and start from scratch
-
-//roll through MyPicks_Unlocked page and delete any un-used and commented out code
-
-////my picks page_unlocked-KO - END
-
 ////////fix admin user tab during stages 4-5 next
 
 //////for all stages on a comp, starting at stage 1 ---- START

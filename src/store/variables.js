@@ -45,6 +45,10 @@ const koGameMapper = {
   right: { 3: ["R16_5", "R16_6"], 4: ["R16_7", "R16_8"] },
 };
 
+const games_Q = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"];
+const games_S = ["S1", "S2", "S3", "S4"];
+const games_F = ["F1", "F2"];
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -57,4 +61,7 @@ module.exports = {
   semiMatchups,
   regoinMapper,
   koGameMapper,
+  games_Q,
+  games_S,
+  games_F,
 };
