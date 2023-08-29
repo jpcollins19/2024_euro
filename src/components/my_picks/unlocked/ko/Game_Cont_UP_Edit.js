@@ -5,7 +5,7 @@ const Game_Cont_UP_Edit = ({
   userPicks,
   regoin,
   gameNum,
-  setMasterError,
+  resetMasterError,
 }) => {
   const gameMapper = {
     left: { 1: { 1: "R16_1", 2: "R16_2" }, 2: { 1: "R16_3", 2: "R16_4" } },
@@ -31,7 +31,7 @@ const Game_Cont_UP_Edit = ({
           side={side}
           team={team}
           setTeam={setTeam}
-          setMasterError={setMasterError}
+          resetMasterError={resetMasterError}
         />
       ))}
     </div>

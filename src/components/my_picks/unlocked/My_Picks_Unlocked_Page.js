@@ -136,7 +136,7 @@ const My_Picks_Unlocked_Page = () => {
     addToUserPicks(game);
   });
 
-  games_S.forEach((game) => {
+  games_Q.forEach((game) => {
     addToUserPicks(game);
   });
 
@@ -458,8 +458,7 @@ const My_Picks_Unlocked_Page = () => {
             {joe?.tourneyStage === 4 && user?.tiebreaker && (
               <KO_Cont_UP_Edit
                 userPicks={userPicks}
-                toggleUserClick={toggleUserClick}
-                setMasterError={setMasterError}
+                resetMasterError={resetMasterError}
               />
             )}
           </div>

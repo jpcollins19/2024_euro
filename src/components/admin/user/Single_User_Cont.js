@@ -10,17 +10,17 @@ import {
   findJoe,
   groupLetters,
   auditThirdPlaceToAdvancePicks,
-  koLetters,
-  Qs,
-  Ss,
-  Fs,
+  games_Q,
+  games_S,
+  games_F,
+  getKOResults,
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Checkbox_Cont from "./Checkbox_Cont";
 import Group_Cont_Admin from "./group/Group_Cont_Admin";
-import Knockout_Cont_Unlocked_Admin from "./ko/Knockout_Cont_Unlocked_Admin";
+import KO_Cont_UP_Edit from "../../my_picks/unlocked/ko/KO_Cont_UP_Edit";
 
 const Single_User_Cont = () => {
   const dispatch = useDispatch();
@@ -37,8 +37,7 @@ const Single_User_Cont = () => {
     (user) => user.id === userId
   );
 
-  // console.log(user);
-
+  const teams = useSelector((state) => state.teams);
   const joe = findJoe(useSelector((state) => state.users));
 
   const [name, setName] = useState(user?.name);
@@ -108,21 +107,21 @@ const Single_User_Cont = () => {
   const [groupGError, setGroupGError] = useState(false);
   const [groupHError, setGroupHError] = useState(false);
 
-  const [Q1, setQ1] = useState(user?.knockQ1?.name ?? null);
-  const [Q2, setQ2] = useState(user?.knockQ2?.name ?? null);
-  const [Q3, setQ3] = useState(user?.knockQ3?.name ?? null);
-  const [Q4, setQ4] = useState(user?.knockQ4?.name ?? null);
-  const [Q5, setQ5] = useState(user?.knockQ5?.name ?? null);
-  const [Q6, setQ6] = useState(user?.knockQ6?.name ?? null);
-  const [Q7, setQ7] = useState(user?.knockQ7?.name ?? null);
-  const [Q8, setQ8] = useState(user?.knockQ8?.name ?? null);
-  const [S1, setS1] = useState(user?.knockS1?.name ?? null);
-  const [S2, setS2] = useState(user?.knockS2?.name ?? null);
-  const [S3, setS3] = useState(user?.knockS3?.name ?? null);
-  const [S4, setS4] = useState(user?.knockS4?.name ?? null);
-  const [F1, setF1] = useState(user?.knockF1?.name ?? null);
-  const [F2, setF2] = useState(user?.knockF2?.name ?? null);
-  const [champ, setChamp] = useState(user?.knockChamp?.name ?? null);
+  const [Q1, setQ1] = useState(user?.knockQ1 ?? null);
+  const [Q2, setQ2] = useState(user?.knockQ2 ?? null);
+  const [Q3, setQ3] = useState(user?.knockQ3 ?? null);
+  const [Q4, setQ4] = useState(user?.knockQ4 ?? null);
+  const [Q5, setQ5] = useState(user?.knockQ5 ?? null);
+  const [Q6, setQ6] = useState(user?.knockQ6 ?? null);
+  const [Q7, setQ7] = useState(user?.knockQ7 ?? null);
+  const [Q8, setQ8] = useState(user?.knockQ8 ?? null);
+  const [S1, setS1] = useState(user?.knockS1 ?? null);
+  const [S2, setS2] = useState(user?.knockS2 ?? null);
+  const [S3, setS3] = useState(user?.knockS3 ?? null);
+  const [S4, setS4] = useState(user?.knockS4 ?? null);
+  const [F1, setF1] = useState(user?.knockF1 ?? null);
+  const [F2, setF2] = useState(user?.knockF2 ?? null);
+  const [champ, setChamp] = useState(user?.knockChamp ?? null);
 
   const groupErrorObj = {
     groupAError: groupAError,
@@ -142,6 +141,40 @@ const Single_User_Cont = () => {
     setGroupGError: setGroupGError,
     setGroupHError: setGroupHError,
   };
+
+  const userPicks = getKOResults(teams);
+
+  const addToUserPicks = (game) => {
+    const value = eval(game);
+
+    const key_set = `set${game}`;
+    const value_set = eval(key_set);
+
+    userPicks[game] = value;
+    userPicks[key_set] = value_set;
+  };
+
+  games_Q.forEach((game) => {
+    addToUserPicks(game);
+  });
+
+  games_S.forEach((game) => {
+    addToUserPicks(game);
+  });
+
+  games_F.forEach((game) => {
+    addToUserPicks(game);
+  });
+
+  userPicks.champ = champ;
+  userPicks.setChamp = setChamp;
+
+  const findTeam = (game) => {
+    const team = eval(game);
+    return team?.name ?? null;
+  };
+
+  console.log("userPicks", userPicks);
 
   const togglePaid = () => setPaid((value) => !value);
 
@@ -166,9 +199,57 @@ const Single_User_Cont = () => {
     }
   };
 
-  const setTeam = (setTeam, name) => {
-    setTeam(name);
-  };
+  useEffect(() => {
+    const teams_R16 = Object.values(getKOResults(teams)).reduce(
+      (a, matchup) => {
+        matchup.forEach((team) => {
+          a.push(team?.name);
+        });
+
+        return a;
+      },
+      []
+    );
+
+    const teams_quarters = games_Q.map((game) => {
+      return findTeam(game);
+    });
+
+    const teams_semis = games_S.map((game) => {
+      return findTeam(game);
+    });
+
+    const finals = games_F.map((game) => {
+      return findTeam(game);
+    });
+
+    const champion = champ?.name;
+
+    teams_quarters.forEach((team, idx) => {
+      if (!teams_R16.includes(team)) {
+        const set = eval(`setQ${idx + 1}`);
+        set(null);
+      }
+    });
+
+    teams_semis.forEach((team, idx) => {
+      if (!teams_quarters.includes(team)) {
+        const set = eval(`setS${idx + 1}`);
+        set(null);
+      }
+    });
+
+    finals.forEach((team, idx) => {
+      if (!teams_semis.includes(team)) {
+        const set = eval(`setF${idx + 1}`);
+        set(null);
+      }
+    });
+
+    if (!finals.includes(champion)) {
+      setChamp(null);
+    }
+  }, [userPicks]);
 
   const resetMasterError = () => {
     setMasterError(false);
@@ -295,53 +376,38 @@ const Single_User_Cont = () => {
         });
       });
 
-      const koAudit = (team, letter, num) => {
-        if (!team) {
-          setMasterError(true);
-          setMasterErrorText("Incomplete Picks Below");
-          errorAudit.push(1);
-        } else {
-          userObj[`knock${letter}${num}`] = team;
-        }
-      };
+      if (joe?.tourneyStage === 4) {
+        clearArr(errorAudit);
 
-      if (joe?.tourneyStage >= 4) {
-        koLetters.forEach((letter) => {
-          switch (letter) {
-            case "Q":
-              Qs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
-
-                koAudit(team, letter, num);
-              });
-              break;
-            case "S":
-              Ss.forEach((num) => {
-                const team = eval(`${letter}${num}`);
-
-                koAudit(team, letter, num);
-              });
-              break;
-            case "F":
-              Fs.forEach((num) => {
-                const team = eval(`${letter}${num}`);
-
-                koAudit(team, letter, num);
-              });
-              break;
-            case "Champ":
-              if (champ.length === 0) {
-                setMasterError(true);
-                setMasterErrorText("Incomplete Picks Below");
-                errorAudit.push(1);
-              } else {
-                userObj.knockChamp = champ;
-              }
-              break;
-            default:
-              break;
+        const koAudit = (team, game) => {
+          if (!team) {
+            setMasterError(true);
+            setMasterErrorText("Incomplete Picks Below");
+            errorAudit.push(1);
+          } else {
+            userObj[`knock${game}`] = team;
           }
+        };
+
+        games_Q.forEach((game) => {
+          const team = eval(game);
+
+          koAudit(team?.name, game);
         });
+
+        games_S.forEach((game) => {
+          const team = eval(game);
+
+          koAudit(team?.name, game);
+        });
+
+        games_F.forEach((game) => {
+          const team = eval(game);
+
+          koAudit(team?.name, game);
+        });
+
+        koAudit(champ?.name, "Champ");
       }
 
       !masterError &&
@@ -362,8 +428,6 @@ const Single_User_Cont = () => {
       onChange: toggleOnlyUpdateTopSection,
     },
   ];
-
-  // console.log("groupSelections", groupSelections);
 
   return (
     <form id="admin-update-user" onSubmit={onSubmit}>
@@ -397,42 +461,10 @@ const Single_User_Cont = () => {
           </div>
 
           {joe?.tourneyStage >= 4 && (
-            <div className="ko-picks-user-admin">
-              <Knockout_Cont_Unlocked_Admin
-                setTeam={setTeam}
-                resetMasterError={resetMasterError}
-                Q1={Q1}
-                Q2={Q2}
-                Q3={Q3}
-                Q4={Q4}
-                Q5={Q5}
-                Q6={Q6}
-                Q7={Q7}
-                Q8={Q8}
-                setQ1={setQ1}
-                setQ2={setQ2}
-                setQ3={setQ3}
-                setQ4={setQ4}
-                setQ5={setQ5}
-                setQ6={setQ6}
-                setQ7={setQ7}
-                setQ8={setQ8}
-                S1={S1}
-                S2={S2}
-                S3={S3}
-                S4={S4}
-                setS1={setS1}
-                setS2={setS2}
-                setS3={setS3}
-                setS4={setS4}
-                F1={F1}
-                F2={F2}
-                setF1={setF1}
-                setF2={setF2}
-                champ={champ}
-                setChamp={setChamp}
-              />
-            </div>
+            <KO_Cont_UP_Edit
+              userPicks={userPicks}
+              resetMasterError={resetMasterError}
+            />
           )}
 
           <div className="tiebreaker-cont-edit-picks">
@@ -446,7 +478,6 @@ const Single_User_Cont = () => {
               }}
             ></input>
           </div>
-
           <Group_Cont_Admin
             onChangeGroupSelections={onChangeGroupSelections}
             groupErrorObj={groupErrorObj}

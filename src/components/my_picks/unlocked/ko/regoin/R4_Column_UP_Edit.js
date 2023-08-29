@@ -1,6 +1,6 @@
 import KO_Box_UP_Edit from "../KO_Box_UP_Edit";
 
-const R4_Column_UP_Edit = ({ side, regoin, userPicks, setMasterError }) => {
+const R4_Column_UP_Edit = ({ side, regoin, userPicks, resetMasterError }) => {
   const game = `S${regoin}`;
 
   const team = userPicks[game];
@@ -16,7 +16,7 @@ const R4_Column_UP_Edit = ({ side, regoin, userPicks, setMasterError }) => {
           side={side}
           team={team}
           setTeam={setTeam}
-          setMasterError={setMasterError}
+          resetMasterError={resetMasterError}
         />
       </div>
     </div>

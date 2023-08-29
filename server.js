@@ -1,5 +1,3 @@
-////////fix admin user tab during stages 4-5 next
-
 //////for all stages on a comp, starting at stage 1 ---- START
 //roll through each tab and verify all is working and there are no page errors
 //manually audit the total pts cont for each stage
@@ -7,25 +5,42 @@
 
 //////for all stages, starting at stage 1 ---- END
 
-//^^once the above is finished:
-// delete all depricated folders
-
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 4 - after picks
-//css work complete for zoomed-out view, need to apply logic based on user picks after each game ends
+////my picks - locked - stage 4 - after picks -- START
+//add a note of green text saying "submitted" under the "Knockout" verbiage
 
-///css work for zoomed in -- after user picks
+//should be all blanks (not red x or green checkmark)
+//css work for zoomed in:
+//start with how it will work with navigating to each diff regoin/champ box (if you click on the top right regoin, you should be taken there, aka you should not be auto taken to the final frou cont)
+//add link to edit picks
 
-///css work for zoomed out -- after user picks
+////my picks - locked - stage 4 - after picks -- END
 
-////my picks - locked - stage 4 - before picks
-////my picks - locked - stage 5 - shoulnt have a "make/edit picks" link
+////my picks - locked - stage 4 - before picks --- START
+//should make it known to user with red boxes/text/border that their picks are not submitted
 
-////my picks - unlocked - stage 4
+////my picks - locked - stage 4 - before picks --- END
 
-////my picks - locked - remove all uncommented code from css file
-////my picks - unlocked - remove all uncommented code from css file
+////my picks - locked - stage 5 -- user has picks -- START
+//shouldnt have a "make/edit picks" link
+//zoomed-out view: need to apply logic based on user picks after each game ends
+//zoomed-in view: need to apply logic based on user picks after each game ends
+
+////my picks - locked - stage 5 -- user has picks -- END
+
+////my picks - locked - stage 5 -- user does not have picks -- START
+//figure it out and make a gameplan
+
+////my picks - locked - stage 5 -- user does not have picks -- END
+
+////my picks - locked:
+//remove all depricated files
+// remove all uncommented code from css file
+
+////my picks - unlocked
+//remove all depricated files
+// remove all uncommented code from css file
 
 ////404 noMatch Page ----START
 ///comp -- START

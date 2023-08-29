@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import KO_Box_UP_Edit from "../KO_Box_UP_Edit";
 
-const R8_Column_UP_Edit = ({ side, regoin, userPicks, setMasterError }) => {
+const R8_Column_UP_Edit = ({ side, regoin, userPicks, resetMasterError }) => {
   const koGameMapper_userPicks = {
     left: { 1: ["Q1", "Q2"], 2: ["Q3", "Q4"] },
     right: { 3: ["Q5", "Q6"], 4: ["Q7", "Q8"] },
@@ -48,7 +48,7 @@ const R8_Column_UP_Edit = ({ side, regoin, userPicks, setMasterError }) => {
             team={x.team}
             game={x.game}
             setTeam={setTeam}
-            setMasterError={setMasterError}
+            resetMasterError={resetMasterError}
           />
         </div>
       ))}

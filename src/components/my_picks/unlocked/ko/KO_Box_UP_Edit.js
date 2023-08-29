@@ -1,4 +1,4 @@
-const KO_Box_UP_Edit = ({ side, champ, team, setTeam, setMasterError }) => {
+const KO_Box_UP_Edit = ({ side, champ, team, setTeam, resetMasterError }) => {
   const teamClass = !team ? "missing" : "edit";
 
   return (
@@ -8,7 +8,7 @@ const KO_Box_UP_Edit = ({ side, champ, team, setTeam, setMasterError }) => {
       }`}
       onClick={() => {
         if (!champ) {
-          setMasterError(false);
+          resetMasterError();
           setTeam(team);
         }
       }}
