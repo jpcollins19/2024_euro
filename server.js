@@ -1,9 +1,6 @@
-/////admin - users - stage 1 - fix the format of how the groups are displayed
-
 //////mobile compatibility --- LOCAL - START
 
 ////my picks - locked - stage 4 - after picks -- START
-//add a note of green text saying "submitted" under the "Knockout" verbiage
 
 //should be all blanks (not red x or green checkmark)
 //css work for zoomed in:
@@ -13,6 +10,7 @@
 ////my picks - locked - stage 4 - after picks -- END
 
 ////my picks - locked - stage 4 - before picks --- START
+//add a note of red text saying "not submitted" under the "Knockout" verbiage
 //should make it known to user with red boxes/text/border that their picks are not submitted
 
 ////my picks - locked - stage 4 - before picks --- END
@@ -28,6 +26,16 @@
 //figure it out and make a gameplan
 
 ////my picks - locked - stage 5 -- user does not have picks -- END
+
+////my picks - unlocked - stage 4 - after picks --- START
+//do it
+
+////my picks - unlocked - stage 4 - after picks --- END
+
+////my picks - unlocked - stage 4 - before picks --- START
+//do it
+
+////my picks - unlocked - stage 4 - before picks --- END
 
 ////my picks - locked:
 //remove all depricated files

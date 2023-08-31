@@ -1,23 +1,11 @@
-import Regoin_Left from "./regoin/Regoin_Left";
-import Regoin_Right from "./regoin/Regoin_Right";
-import KO_Final_Four_Cont from "./final_four/KO_Final_Four_Cont";
+import KO_Main_Cont_Out from "./zoomed_out/KO_Main_Cont_Out";
+import KO_Main_Cont_In from "./zoomed_in/KO_Main_Cont_In";
 
-const KO_Locked_Mobile = ({ user }) => {
-  return (
-    <div className="knockout-cont-mobile">
-      <h1 className="white-text">Knockout</h1>
-      <div>
-        <div className="ko-cont-half">
-          <Regoin_Left />
-          <Regoin_Right />
-        </div>
-        <KO_Final_Four_Cont />
-        <div className="ko-cont-half">
-          <Regoin_Left />
-          <Regoin_Right />
-        </div>
-      </div>
-    </div>
+const KO_Locked_Mobile = ({ user, zoomData }) => {
+  return zoomData.zoomedOut ? (
+    <KO_Main_Cont_Out user={user} zoomData={zoomData} />
+  ) : (
+    <KO_Main_Cont_In user={user} zoomData={zoomData} />
   );
 };
 

@@ -19,7 +19,8 @@ import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Checkbox_Cont from "./Checkbox_Cont";
-import Group_Cont_Admin from "./group/Group_Cont_Admin";
+import Group_Cont_Unlocked from "../../my_picks/unlocked/group/Group_Cont_Unlocked";
+//import Group_Cont_Admin from "./group/Group_Cont_Admin";
 import KO_Cont_UP_Edit from "../../my_picks/unlocked/ko/KO_Cont_UP_Edit";
 
 const Single_User_Cont = () => {
@@ -457,14 +458,12 @@ const Single_User_Cont = () => {
           <div className="master-error-cont-edit-picks">
             {masterError && <Error error={masterErrorText} />}
           </div>
-
           {joe?.tourneyStage >= 4 && (
             <KO_Cont_UP_Edit
               userPicks={userPicks}
               resetMasterError={resetMasterError}
             />
           )}
-
           <div className="tiebreaker-cont-edit-picks">
             <h3>Tiebreaker - total number of goals scored:</h3>
 
@@ -476,13 +475,21 @@ const Single_User_Cont = () => {
               }}
             ></input>
           </div>
-          <Group_Cont_Admin
-            onChangeGroupSelections={onChangeGroupSelections}
-            groupErrorObj={groupErrorObj}
-            user={user}
-            selectionObj={groupSelections}
-            resetMasterError={resetMasterError}
-          />
+          <div className="edit-group-picks">
+            {/* <Group_Cont_Admin
+              onChangeGroupSelections={onChangeGroupSelections}
+              groupErrorObj={groupErrorObj}
+              user={user}
+              selectionObj={groupSelections}
+              resetMasterError={resetMasterError}
+            /> */}
+            <Group_Cont_Unlocked
+              onChangeSelectionObj={onChangeGroupSelections}
+              groupErrorObj={groupErrorObj}
+              selectionObj={groupSelections}
+              resetMasterError={resetMasterError}
+            />
+          </div>
         </div>
       )}
 

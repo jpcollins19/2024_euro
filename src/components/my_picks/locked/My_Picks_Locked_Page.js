@@ -14,6 +14,15 @@ const My_Picks_Locked_Page = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
+  const [zoomedOut, setZoomedOut] = useState(true);
+  const [zoomedInRegoin, setZoomedInRegoin] = useState(null);
+
+  const zoomData = {
+    zoomedOut: zoomedOut,
+    setZoomedOut: setZoomedOut,
+    zoomedInRegoin: zoomedInRegoin,
+    setZoomedInRegoin: setZoomedInRegoin,
+  };
 
   useEffect(() => {
     dispatch(me());
@@ -33,7 +42,7 @@ const My_Picks_Locked_Page = () => {
 
   return loading ? (
     <Loading />
-  ) : (
+  ) : zoomedOut ? (
     <div className="my-picks-page">
       <div className="top">
         <div className="name-cont">
@@ -72,7 +81,7 @@ const My_Picks_Locked_Page = () => {
       {joe?.tourneyStage >= 4 && user?.tiebreaker && (
         <div className="box">
           <div className="ko-predictions-cont">
-            <Knockout_Cont_Locked user={user} />
+            <Knockout_Cont_Locked user={user} zoomData={zoomData} />
           </div>
         </div>
       )}
@@ -90,6 +99,10 @@ const My_Picks_Locked_Page = () => {
           </div>
         </div>
       )}
+    </div>
+  ) : (
+    <div className="ko-predictions-cont">
+      <Knockout_Cont_Locked user={user} zoomData={zoomData} />
     </div>
   );
 };
