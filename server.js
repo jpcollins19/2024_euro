@@ -1,9 +1,4 @@
-//////for all stages on a comp, starting at stage 1 ---- START
-//roll through each tab and verify all is working and there are no page errors
-//manually audit the total pts cont for each stage
-//manually audit each user's KO info as stage 5 progresses
-
-//////for all stages, starting at stage 1 ---- END
+/////admin - users - stage 1 - fix the format of how the groups are displayed
 
 //////mobile compatibility --- LOCAL - START
 

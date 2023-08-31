@@ -136,7 +136,7 @@ const My_Picks_Unlocked_Page = () => {
     addToUserPicks(game);
   });
 
-  games_Q.forEach((game) => {
+  games_S.forEach((game) => {
     addToUserPicks(game);
   });
 

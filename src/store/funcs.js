@@ -1152,16 +1152,35 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
 
     team.userClass = "";
 
-    if (round !== "R16") {
-      if (team?.outOfTourney) {
-        // if (team?.name === gameInfo?.usersPick?.name) {
-        team.flagClass += " opacity-60";
-        team.userClass = "wrong";
-        //}
-
-        return team;
-      }
+    if (team?.name === gameInfo.usersPick?.name) {
+      team.userClass = gameInfo?.usersPickClass;
     }
+
+    if (team?.outOfTourney) {
+      team.flagClass += " opacity-60";
+
+      switch (round) {
+        case "Q":
+          if (!team?.advanceToQ) team.userClass = "wrong";
+          break;
+        case "S":
+          if (!team?.advanceToS) team.userClass = "wrong";
+          break;
+        case "F":
+          if (!team?.advanceToF) team.userClass = "wrong";
+          break;
+      }
+      return team;
+    }
+
+    // if (round !== "R16") {
+    //   if (team?.outOfTourney) {
+    //     team.flagClass += " opacity-60";
+    //     team.userClass = "wrong";
+
+    //     return team;
+    //   }
+    // }
 
     const teamHasAdvanced = gameInfo?.teamThatAdvanced?.name ?? false;
 
@@ -1170,9 +1189,9 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
         team.flagClass += " opacity-60";
       }
 
-      if (team?.name === gameInfo.usersPick?.name) {
-        team.userClass = gameInfo?.usersPickClass;
-      }
+      // if (team?.name === gameInfo.usersPick?.name) {
+      //   team.userClass = gameInfo?.usersPickClass;
+      // }
     }
 
     return team;

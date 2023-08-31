@@ -135,7 +135,7 @@ const users = [
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
     tiebreaker: 98,
-    tourneyStage: 4,
+    tourneyStage: 5,
   },
   //stan
   {
@@ -562,7 +562,7 @@ const syncAndSeed = async () => {
   Spain.groupFinishingPosition = 2;
   Japan.groupFinishingPosition = 3;
   Costa_Rica.groupFinishingPosition = 4;
-  //
+  // //
   Belgium.groupFinishingPosition = 1;
   Croatia.groupFinishingPosition = 2;
   Morocco.groupFinishingPosition = 3;
@@ -693,34 +693,34 @@ const syncAndSeed = async () => {
   Pat.knockChamp = France.name;
   // Sarah.knockChamp = Spain.name;
   // //////////////////////////////////////////////////
-  England.advanceToQ = true;
-  Mexico.advanceToQ = true;
-  Belgium.advanceToQ = true;
-  Spain.advanceToQ = true;
-  Germany.advanceToQ = true;
-  France.advanceToQ = true;
-  Argentina.advanceToQ = true;
-  USA.advanceToQ = true;
-  Australia.outOfTourney = true;
-  Netherlands.outOfTourney = true;
-  Wales.outOfTourney = true;
-  Denmark.outOfTourney = true;
-  Senegal.outOfTourney = true;
-  Croatia.outOfTourney = true;
-  Morocco.outOfTourney = true;
-  Ecuador.outOfTourney = true;
-  England.advanceToS = true;
-  Spain.advanceToS = true;
-  France.advanceToS = true;
-  USA.advanceToS = true;
-  Mexico.outOfTourney = true;
-  Belgium.outOfTourney = true;
-  Germany.outOfTourney = true;
-  Argentina.outOfTourney = true;
-  England.advanceToF = true;
-  France.advanceToF = true;
-  Spain.outOfTourney = true;
-  USA.outOfTourney = true;
+  // England.advanceToQ = true;
+  // Mexico.advanceToQ = true;
+  // Belgium.advanceToQ = true;
+  // Spain.advanceToQ = true;
+  // Germany.advanceToQ = true;
+  // France.advanceToQ = true;
+  // Argentina.advanceToQ = true;
+  // USA.advanceToQ = true;
+  // Australia.outOfTourney = true;
+  // Netherlands.outOfTourney = true;
+  // Wales.outOfTourney = true;
+  // Denmark.outOfTourney = true;
+  // Senegal.outOfTourney = true;
+  // Croatia.outOfTourney = true;
+  // Morocco.outOfTourney = true;
+  // Ecuador.outOfTourney = true;
+  // England.advanceToS = true;
+  // Spain.advanceToS = true;
+  // France.advanceToS = true;
+  // USA.advanceToS = true;
+  // Mexico.outOfTourney = true;
+  // Belgium.outOfTourney = true;
+  // Germany.outOfTourney = true;
+  // Argentina.outOfTourney = true;
+  // England.advanceToF = true;
+  // France.advanceToF = true;
+  // Spain.outOfTourney = true;
+  // USA.outOfTourney = true;
   // France.advanceToChamp = true;
   // England.outOfTourney = true;
   await Promise.all([

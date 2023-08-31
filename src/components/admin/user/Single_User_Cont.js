@@ -174,8 +174,6 @@ const Single_User_Cont = () => {
     return team?.name ?? null;
   };
 
-  console.log("userPicks", userPicks);
-
   const togglePaid = () => setPaid((value) => !value);
 
   const toggleOnlyUpdateTopSection = () => {
@@ -376,7 +374,7 @@ const Single_User_Cont = () => {
         });
       });
 
-      if (joe?.tourneyStage === 4) {
+      if (joe?.tourneyStage >= 4) {
         clearArr(errorAudit);
 
         const koAudit = (team, game) => {

@@ -21,7 +21,12 @@ const R4_Column_C = ({ side, regoin, user }) => {
 
   const gameInfo = userHasKOPicks ? koGameCalc(user, game, teams) : null;
 
-  usersPicksForGame = formatTeamClass_KO(usersPicksForGame, "small", gameInfo);
+  usersPicksForGame = formatTeamClass_KO(
+    usersPicksForGame,
+    "small",
+    gameInfo,
+    "S"
+  );
 
   return (
     <div>

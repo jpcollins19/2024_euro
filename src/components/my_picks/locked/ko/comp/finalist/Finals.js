@@ -17,7 +17,12 @@ const Finals = ({ side, user }) => {
 
   const gameInfo = userHasKOPicks ? koGameCalc(user, game, teams) : null;
 
-  usersPicksForGame = formatTeamClass_KO(usersPicksForGame, "small", gameInfo);
+  usersPicksForGame = formatTeamClass_KO(
+    usersPicksForGame,
+    "small",
+    gameInfo,
+    "F"
+  );
 
   return <KO_Box_C side={side} team={userPickForThisSide} />;
 };

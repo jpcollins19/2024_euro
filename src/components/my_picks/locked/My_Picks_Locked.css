@@ -579,13 +579,13 @@
 
 .wrong-box {
   border: solid 4px red;
-  width: 7.5vw;
+  /* width: 7.5vw; */
   border-radius: 0.7rem;
 }
 
 .correct-box {
   border: solid 4px rgb(11, 238, 11);
-  width: 7.5vw;
+  /* width: 7.5vw; */
   border-radius: 0.7rem;
 }
 
