@@ -813,7 +813,11 @@
       rgb(79, 75, 75) 75%,
       black 100%
     );
-    padding-top: 30px;
+    /* padding-top: 30px; */
+  }
+
+  .ko-cont-zommed-in > h1 {
+    margin: 30px 0 30px 0;
   }
 
   .ko-data-cont-outside-z-in {
@@ -822,7 +826,7 @@
     margin-top: 30px;
     width: 90vw;
     height: 90%;
-    border: solid 2px red;
+    /* border: solid 2px red; */
   }
 
   .arrow-up-down-cont {
@@ -852,7 +856,7 @@
   .ko-data-cont-middle-z-in {
     display: flex;
     flex: 0.94;
-    border: solid 2px orange;
+    /* border: solid 2px orange; */
   }
 
   .arrow-left-right-cont {
@@ -860,7 +864,7 @@
     justify-content: center;
     align-items: center;
     flex: 0.03;
-    border: solid 2px blue;
+    /* border: solid 2px blue; */
   }
 
   .arrow-cont-placeholder {
@@ -892,6 +896,92 @@
     transform: scale(3) rotate(315deg);
     color: white;
   }
+
+  .regoin-cont-c {
+    border: solid 2px red;
+  }
+
+  .regoin-cont-c > div {
+    border: solid 2px rgb(11, 234, 11);
+  }
+
+  .regoin-cont-c > div > div {
+    border: solid 2px dodgerblue;
+    /* margin: 10px 0 10px 0;
+    height: 150px; */
+  }
+
+  /* .ko-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      to bottom right,
+      rgb(159, 159, 147) 0%,
+      rgb(11, 11, 11) 50%,
+      rgb(159, 159, 147) 100%
+    );
+
+    border-radius: 0.5rem;
+    border: solid 2px white;
+  } */
+
+  /* .ko-box-left {
+    margin-right: 1vw;
+  }
+
+  .ko-box-right {
+    margin-left: 1vw;
+  }
+
+  .ko-box-small-z-in {
+    font-size: 17px;
+    height: 50px;
+    width: 8vw;
+  }
+
+  .ko-box-large-z-in {
+    font-size: 17px;
+    height: 5.5rem;
+    width: 9vw;
+  } */
+  /* 
+  .correct-box {
+    border: solid 4px rgb(11, 238, 11);
+    border-radius: 0.7rem;
+  }
+
+  .wrong-box {
+    border: solid 4px red;
+    border-radius: 0.7rem;
+  }
+
+  .team-ko-img-cont {
+    position: relative;
+  } */
+
+  /* .team-ko-img-cont:hover .team-name-ko {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .team-ko-img-cont:hover .correct-team-cont {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .team-ko-img-cont:hover .team-flag-ko {
+    opacity: 0.5;
+  }
+
+  .team-ko-img-cont:hover .team-name-ko-champ {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .team-ko-img-cont:hover .team-flag-ko-champ {
+    opacity: 0.5;
+  } */
 }
 
 /*OG MOBILE CSS*/
