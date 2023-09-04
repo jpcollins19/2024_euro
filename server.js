@@ -1,17 +1,15 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 4 - after picks -- START
-
-//should be all blanks (not red x or green checkmark)
-//css work for zoomed in:
-//start with how it will work with navigating to each diff regoin/champ box (if you click on the top right regoin, you should be taken there, aka you should not be auto taken to the final frou cont)
-//add link to edit picks
-
-////my picks - locked - stage 4 - after picks -- END
-
 ////my picks - locked - stage 4 - before picks --- START
+////zoomed-out -- START
 //add a note of red text saying "not submitted" under the "Knockout" verbiage
-//should make it known to user with red boxes/text/border that their picks are not submitted
+//make border red
+////zoomed-out -- END
+
+////zoomed-in -- START
+//border should all be red around each game
+//all arrows should be red
+////zoomed-in -- END
 
 ////my picks - locked - stage 4 - before picks --- END
 
@@ -28,14 +26,20 @@
 ////my picks - locked - stage 5 -- user does not have picks -- END
 
 ////my picks - unlocked - stage 4 - after picks --- START
-//do it
+//all games shoudl default to the users picks
+//once the above is complete, pause this and move onto before user has picks
 
 ////my picks - unlocked - stage 4 - after picks --- END
 
 ////my picks - unlocked - stage 4 - before picks --- START
-//do it
+//arrows should be red/green based on the users picks being completed
 
 ////my picks - unlocked - stage 4 - before picks --- END
+
+////my picks - unlocked - stage 4 - after picks --- START
+//make sure you can change games and are not able to submit if any games are incomplete
+
+////my picks - unlocked - stage 4 - after picks --- END
 
 ////my picks - locked:
 //remove all depricated files

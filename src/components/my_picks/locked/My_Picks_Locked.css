@@ -788,13 +788,11 @@
 
   .finals-mobile-z-out {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
   }
 
   .champ-mobile-z-out {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     margin: 0 20px 0 20px;
   }
@@ -813,7 +811,6 @@
       rgb(79, 75, 75) 75%,
       black 100%
     );
-    /* padding-top: 30px; */
   }
 
   .ko-cont-zommed-in > h1 {
@@ -826,7 +823,6 @@
     margin-top: 30px;
     width: 90vw;
     height: 90%;
-    /* border: solid 2px red; */
   }
 
   .arrow-up-down-cont {
@@ -836,19 +832,6 @@
     justify-content: space-between;
   }
 
-  /* .arrow-up-down-cont > svg {
-    min-height: 1vh;
-  } */
-
-  /* .arrow-up-down-cont > div {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  */
-
   .audc-normal {
     justify-content: center;
   }
@@ -856,7 +839,6 @@
   .ko-data-cont-middle-z-in {
     display: flex;
     flex: 0.94;
-    /* border: solid 2px orange; */
   }
 
   .arrow-left-right-cont {
@@ -864,7 +846,6 @@
     justify-content: center;
     align-items: center;
     flex: 0.03;
-    /* border: solid 2px blue; */
   }
 
   .arrow-cont-placeholder {
@@ -879,7 +860,6 @@
     justify-content: center;
     align-items: center;
     flex: 0.94;
-    border: solid 2px greenyellow;
   }
 
   .svg-icons-normal {
@@ -898,48 +878,56 @@
   }
 
   .regoin-cont-c {
-    border: solid 2px red;
+    width: 70%;
+    height: 80%;
   }
 
   .regoin-cont-c > div {
-    border: solid 2px rgb(11, 234, 11);
+    min-width: 45%;
   }
 
   .regoin-cont-c > div > div {
-    border: solid 2px dodgerblue;
-    /* margin: 10px 0 10px 0;
-    height: 150px; */
+    margin: 10px 0 10px 0;
+    height: 250px;
   }
 
-  /* .ko-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(
-      to bottom right,
-      rgb(159, 159, 147) 0%,
-      rgb(11, 11, 11) 50%,
-      rgb(159, 159, 147) 100%
-    );
-
-    border-radius: 0.5rem;
-    border: solid 2px white;
-  } */
-
-  /* .ko-box-left {
-    margin-right: 1vw;
+  .ko-box-left {
+    margin-right: 4vw;
   }
 
   .ko-box-right {
-    margin-left: 1vw;
+    margin-left: 4vw;
   }
 
   .ko-box-small-z-in {
-    font-size: 17px;
-    height: 50px;
-    width: 8vw;
+    font-size: 100%;
+    height: 40%;
   }
 
+  .ko-box-large-z-in {
+    height: 110%;
+  }
+
+  .ko-finalist-cont {
+    width: 90%;
+    height: 30%;
+    /* border: solid 2px red; */
+  }
+
+  .ko-finalist-cont > div {
+    width: 50%;
+    height: 30%;
+    /* border: solid 2px blue; */
+  }
+
+  /* .team-flag-ko {
+    min-width: 75px;
+    max-width: 75px;
+    max-height: 40px;
+    min-height: 40px;
+  } */
+
+  /*
   .ko-box-large-z-in {
     font-size: 17px;
     height: 5.5rem;
@@ -956,32 +944,19 @@
     border-radius: 0.7rem;
   }
 
-  .team-ko-img-cont {
-    position: relative;
-  } */
+  */
 
-  /* .team-ko-img-cont:hover .team-name-ko {
-    visibility: visible;
-    opacity: 1;
+  .team-name-ko-z-in {
+    color: #fff;
+    font-size: 200%;
   }
 
-  .team-ko-img-cont:hover .correct-team-cont {
-    visibility: visible;
-    opacity: 1;
+  .team-name-ko-champ-z-in {
+    color: #fff;
+    font-size: 300%;
+    width: 180%;
+    margin: 0 40px 0 40px;
   }
-
-  .team-ko-img-cont:hover .team-flag-ko {
-    opacity: 0.5;
-  }
-
-  .team-ko-img-cont:hover .team-name-ko-champ {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .team-ko-img-cont:hover .team-flag-ko-champ {
-    opacity: 0.5;
-  } */
 }
 
 /*OG MOBILE CSS*/
