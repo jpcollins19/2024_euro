@@ -1132,13 +1132,6 @@ const formatURL = (str) => {
 };
 
 const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
-  // if (test) {
-  //   console.log("usersPicksForGame", usersPicksForGame);
-  //   console.log("gameInfo", gameInfo);
-  // }
-
-  // const usersPicksForGame =
-
   return usersPicksForGame.map((team) => {
     if (!team) {
       team = {};
@@ -1152,8 +1145,15 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
 
     team.userClass = "";
 
-    if (team?.name === gameInfo.usersPick?.name) {
-      team.userClass = gameInfo?.usersPickClass;
+    if (!gameInfo && round !== "R16") {
+      team.userClass = "not-submitted";
+      team.name = ".";
+    }
+
+    if (gameInfo?.usersPick) {
+      if (team?.name === gameInfo.usersPick?.name) {
+        team.userClass = gameInfo?.usersPickClass;
+      }
     }
 
     if (team?.outOfTourney) {
@@ -1173,25 +1173,12 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
       return team;
     }
 
-    // if (round !== "R16") {
-    //   if (team?.outOfTourney) {
-    //     team.flagClass += " opacity-60";
-    //     team.userClass = "wrong";
-
-    //     return team;
-    //   }
-    // }
-
     const teamHasAdvanced = gameInfo?.teamThatAdvanced?.name ?? false;
 
     if (teamHasAdvanced) {
       if (team?.name !== gameInfo.teamThatAdvanced?.name) {
         team.flagClass += " opacity-60";
       }
-
-      // if (team?.name === gameInfo.usersPick?.name) {
-      //   team.userClass = gameInfo?.usersPickClass;
-      // }
     }
 
     return team;

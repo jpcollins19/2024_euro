@@ -583,6 +583,12 @@
   border-radius: 0.7rem;
 }
 
+.not-submitted-box {
+  border: solid 2px red;
+  /* width: 7.5vw; */
+  border-radius: 0.7rem;
+}
+
 .correct-box {
   border: solid 4px rgb(11, 238, 11);
   /* width: 7.5vw; */
@@ -820,7 +826,7 @@
   .ko-data-cont-outside-z-in {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin: 30px 0 50px 0;
     width: 90vw;
     height: 90%;
   }
@@ -905,18 +911,23 @@
   }
 
   .ko-box-large-z-in {
-    height: 110%;
+    height: 200%;
+    font-size: 200%;
+    width: 100%;
   }
 
   .ko-finalist-cont {
-    width: 90%;
-    height: 30%;
+    width: 95%;
+    height: 50%;
     /* border: solid 2px red; */
   }
 
   .ko-finalist-cont > div {
-    width: 50%;
-    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 15%;
     /* border: solid 2px blue; */
   }
 
@@ -953,9 +964,16 @@
 
   .team-name-ko-champ-z-in {
     color: #fff;
-    font-size: 300%;
+    font-size: 250%;
     width: 180%;
     margin: 0 40px 0 40px;
+  }
+
+  .hide-text-ko {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
   }
 }
 

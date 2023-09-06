@@ -30,7 +30,7 @@ const Champ = ({ side, user }) => {
     <div>
       <KO_Box_C
         champ={true}
-        team={userPickForThisGame}
+        team={userPickForThisGame ? userPickForThisGame : usersPicksForGame[0]}
         showCorrectTeam={showCorrectTeam}
         worldCupWinner={worldCupWinner}
       />

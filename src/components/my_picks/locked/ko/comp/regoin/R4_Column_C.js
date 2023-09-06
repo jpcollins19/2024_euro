@@ -31,7 +31,13 @@ const R4_Column_C = ({ side, regoin, user }) => {
   return (
     <div>
       <div>
-        <KO_Box_C side={side} team={usersRegoinalWinner} regoin={regoin} />
+        <KO_Box_C
+          side={side}
+          team={
+            usersRegoinalWinner ? usersRegoinalWinner : usersPicksForGame[0]
+          }
+          regoin={regoin}
+        />
       </div>
     </div>
   );

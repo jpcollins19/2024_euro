@@ -1,18 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 4 - before picks --- START
-////zoomed-out -- START
-//add a note of red text saying "not submitted" under the "Knockout" verbiage
-//make border red
-////zoomed-out -- END
-
-////zoomed-in -- START
-//border should all be red around each game
-//all arrows should be red
-////zoomed-in -- END
-
-////my picks - locked - stage 4 - before picks --- END
-
 ////my picks - locked - stage 5 -- user has picks -- START
 //shouldnt have a "make/edit picks" link
 //zoomed-out view: need to apply logic based on user picks after each game ends

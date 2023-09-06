@@ -24,7 +24,12 @@ const Finals = ({ side, user }) => {
     "F"
   );
 
-  return <KO_Box_C side={side} team={userPickForThisSide} />;
+  return (
+    <KO_Box_C
+      side={side}
+      team={userPickForThisSide ? userPickForThisSide : usersPicksForGame[0]}
+    />
+  );
 };
 
 export default Finals;
