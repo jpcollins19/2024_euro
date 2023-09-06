@@ -49,6 +49,8 @@ const games_Q = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"];
 const games_S = ["S1", "S2", "S3", "S4"];
 const games_F = ["F1", "F2"];
 
+const validKoResults = ["correct", "wrong"];
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -64,4 +66,5 @@ module.exports = {
   games_Q,
   games_S,
   games_F,
+  validKoResults,
 };

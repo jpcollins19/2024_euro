@@ -677,7 +677,7 @@
     flex-direction: column;
     /* justify-content: space-between; */
     /* flex-direction: column; */
-    width: 90%;
+    width: 95%;
     /* min-height: 60rem; */
     background: linear-gradient(
       to bottom right,
@@ -760,6 +760,15 @@
     width: 50px;
   }
 
+  .ko-box-medium-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 55px;
+    width: 55px;
+  }
+
   .ko-box-medium {
     display: flex;
     align-items: center;
@@ -789,7 +798,13 @@
   .final-four-cont {
     display: flex;
     justify-content: center;
-    margin: 20px 0 20px 0;
+    margin: 80px 0 80px 0;
+  }
+
+  .final-four-mobile-z-out {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 30px 50px 30px;
   }
 
   .finals-mobile-z-out {
@@ -916,19 +931,36 @@
     width: 100%;
   }
 
-  .ko-finalist-cont {
-    width: 95%;
-    height: 50%;
-    /* border: solid 2px red; */
+  .ko-final-four-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 95%;
+    border: solid 2px dodgerblue;
   }
 
-  .ko-finalist-cont > div {
+  .ko-final-four-cont-z-in {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: solid 2px rgb(3, 243, 3);
+  }
+
+  .ko-final-four-cont > div > div {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 90%;
     height: 15%;
-    /* border: solid 2px blue; */
+    border: solid 2px orange;
+  }
+
+  .ko-finals-cont-z-in {
+    display: flex;
+    width: 100%;
+    border: solid 2px rgb(236, 12, 236);
   }
 
   /* .team-flag-ko {
