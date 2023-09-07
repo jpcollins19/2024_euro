@@ -7,6 +7,7 @@ const {
   Fs,
   koLetters_maxPts,
   semiMatchups,
+  validKoResults,
 } = require("./variables");
 
 const findJoe = (arr) => {
@@ -1153,6 +1154,7 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
     if (gameInfo?.usersPick) {
       if (team?.name === gameInfo.usersPick?.name) {
         team.userClass = gameInfo?.usersPickClass;
+        team.usersPickForThisGame = true;
       }
     }
 
@@ -1311,6 +1313,21 @@ const getKOResults = (teams) => {
   }, {});
 };
 
+const getUserKoResult = (userPicks) => {
+  let result = "";
+
+  userPicks.forEach((team) => {
+    if (
+      team?.usersPickForThisGame &&
+      validKoResults.includes(team?.userClass)
+    ) {
+      result = team.userClass;
+    }
+  });
+
+  return result;
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1347,4 +1364,5 @@ module.exports = {
   formatTeamClass_KO,
   adjustPicks_KO,
   getKOResults,
+  getUserKoResult,
 };

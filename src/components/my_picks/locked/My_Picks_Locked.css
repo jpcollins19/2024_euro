@@ -926,9 +926,9 @@
   }
 
   .ko-box-large-z-in {
-    height: 200%;
-    font-size: 200%;
-    width: 100%;
+    height: 180%;
+    font-size: 2vw;
+    min-width: 150%;
   }
 
   .ko-final-four-cont {
@@ -938,29 +938,33 @@
     align-items: center;
     width: 100%;
     height: 95%;
-    border: solid 2px dodgerblue;
   }
 
   .ko-final-four-cont-z-in {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border: solid 2px rgb(3, 243, 3);
+    height: 20%;
+  }
+
+  .koffczi-bottom {
+    align-items: end;
   }
 
   .ko-final-four-cont > div > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    height: 15%;
-    border: solid 2px orange;
+    width: 27%;
+    height: 46%;
   }
 
   .ko-finals-cont-z-in {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    border: solid 2px rgb(236, 12, 236);
+    height: 20%;
   }
 
   /* .team-flag-ko {
@@ -998,7 +1002,8 @@
     color: #fff;
     font-size: 250%;
     width: 180%;
-    margin: 0 40px 0 40px;
+    margin: 0 20px 0 20px;
+    text-align: center;
   }
 
   .hide-text-ko {

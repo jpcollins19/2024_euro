@@ -1,17 +1,9 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 4 -- user has picks -- START
-//remove the final four from the regoin and add it to the finals cont
-
-////my picks - locked - stage 4 -- user has picks -- END
-
-////my picks - locked - stage 4 -- user does not have picks -- START
-///make sure all is working as expected w/ sarah
-
-////my picks - locked - stage 4 -- user does not have picks -- END
-
 ////my picks - locked - stage 5 -- user has picks -- START
 ///zoomed-out view: need to apply logic based on user picks after each game ends
+///roll through all rounds up to the finals to verify all is IGO - adjust teams advancing to try and break logic
+//next up === adding logic to the Finals component
 
 ///zoomed-in view: need to apply logic based on user picks after each game ends
 
