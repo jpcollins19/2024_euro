@@ -2,8 +2,7 @@
 
 ////my picks - locked - stage 5 -- user has picks -- START
 ///zoomed-out view: need to apply logic based on user picks after each game ends
-///roll through all rounds up to the finals to verify all is IGO - adjust teams advancing to try and break logic
-//next up === adding logic to the Finals component
+//next up === do a full audit of the ko stage, started with no teams advancing
 
 ///zoomed-in view: need to apply logic based on user picks after each game ends
 
