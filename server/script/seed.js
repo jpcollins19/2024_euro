@@ -693,7 +693,7 @@ const syncAndSeed = async () => {
   Pat.knockChamp = France.name;
   // Sarah.knockChamp = Spain.name;
   // //////////////////////////////////////////////////
-  // England.advanceToQ = true;
+  England.advanceToQ = true;
   // Mexico.advanceToQ = true;
   // Belgium.advanceToQ = true;
   // Spain.advanceToQ = true;
@@ -701,7 +701,7 @@ const syncAndSeed = async () => {
   // France.advanceToQ = true;
   // Argentina.advanceToQ = true;
   // USA.advanceToQ = true;
-  // Australia.outOfTourney = true;
+  Australia.outOfTourney = true;
   // Netherlands.outOfTourney = true;
   // Wales.outOfTourney = true;
   // Denmark.outOfTourney = true;

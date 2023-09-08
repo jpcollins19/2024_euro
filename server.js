@@ -1,10 +1,8 @@
 //////mobile compatibility --- LOCAL - START
 
 ////my picks - locked - stage 5 -- user has picks -- START
-///zoomed-out view: need to apply logic based on user picks after each game ends
-//next up === do a full audit of the ko stage, started with no teams advancing
-
-///zoomed-in view: need to apply logic based on user picks after each game ends
+////zoomed-in view: need to apply logic based on user picks after each game ends
+///next up === what R16 looks like when the team loses
 
 ////my picks - locked - stage 5 -- user has picks -- END
 
