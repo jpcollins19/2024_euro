@@ -2,12 +2,13 @@
 
 ////my picks - locked - stage 5 -- user has picks -- START
 ////zoomed-in view: need to apply logic based on user picks after each game ends
-///next up === what R16 looks like when the team loses
+///next up === audit R16 and R8 viewing once each game ends, then start on final four cont
 
 ////my picks - locked - stage 5 -- user has picks -- END
 
 ////my picks - locked - stage 5 -- user does not have picks -- START
 //figure it out and make a gameplan
+//bug - zoomed out view has a breaking change
 
 ////my picks - locked - stage 5 -- user does not have picks -- END
 

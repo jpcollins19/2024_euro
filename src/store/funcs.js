@@ -1328,6 +1328,47 @@ const getUserKoResult = (userPicks) => {
   return result;
 };
 
+const checkForOpacity_Z_In = (usersPicks, gameInfo, round) => {
+  return usersPicks.map((team) => {
+    if (team.outOfTourney) {
+      switch (round) {
+        case "R16":
+          if (!team.advanceToQ) team.opacity = "opacity-60";
+          break;
+        case "Q":
+          if (!team.advanceToS) team.opacity = "opacity-60";
+          break;
+      }
+    }
+
+    return team;
+  });
+};
+
+const findPreviousGameWinners = (user, teams, usersPicks, gamesToAudit) => {
+  const userHasKOPicks = user?.knockChamp ? true : false;
+
+  const regoinPrevoiusGameWinners = gamesToAudit.map((game) => {
+    const previousGameInfo = userHasKOPicks
+      ? koGameCalc(user, game, teams)
+      : null;
+
+    return previousGameInfo?.teamThatAdvanced?.name;
+  });
+
+  return usersPicks.map((team, idx) => {
+    const previousRegoinWinner = regoinPrevoiusGameWinners[idx];
+
+    if (previousRegoinWinner && team?.name !== previousRegoinWinner) {
+      idx === 0
+        ? (team.showPreviousWinnerTop = previousRegoinWinner)
+        : (team.showPreviousWinnerBottom = previousRegoinWinner);
+    }
+
+    return team;
+  });
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1365,4 +1406,6 @@ module.exports = {
   adjustPicks_KO,
   getKOResults,
   getUserKoResult,
+  checkForOpacity_Z_In,
+  findPreviousGameWinners,
 };
