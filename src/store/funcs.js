@@ -1148,7 +1148,7 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
 
     if (!gameInfo && round !== "R16") {
       team.userClass = "not-submitted";
-      team.name = ".";
+      team.name = " ";
     }
 
     if (gameInfo?.usersPick) {
@@ -1176,6 +1176,65 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
     }
 
     const teamHasAdvanced = gameInfo?.teamThatAdvanced?.name ?? false;
+
+    if (teamHasAdvanced) {
+      if (team?.name !== gameInfo.teamThatAdvanced?.name) {
+        team.flagClass += " opacity-60";
+      }
+    }
+
+    return team;
+  });
+};
+
+const formatTeamClass_KO_Z_In_Final_Four = (usersPicksForGame, boxType) => {
+  return usersPicksForGame.map((team) => {
+    const gameInfo = team?.gameInfo;
+
+    if (!team) {
+      team = {};
+    } else {
+      team.flagClass =
+        boxType === "small" ? "team-flag-ko" : "team-flag-ko-champ";
+    }
+
+    team.nameClass =
+      boxType === "small" ? "team-name-ko" : "team-name-ko-champ";
+
+    team.userClass = "";
+
+    if (!gameInfo) {
+      team.userClass = "not-submitted";
+      team.name = " ";
+    }
+
+    if (team?.gameInfo?.usersPick) {
+      if (team?.name === gameInfo.usersPick?.name) {
+        team.userClass = gameInfo?.usersPickClass;
+        team.usersPickForThisGame = true;
+      }
+    }
+
+    if (team?.outOfTourney) {
+      team.flagClass += " opacity-60";
+
+      if (!team?.advanceToS) team.userClass = "wrong";
+
+      // switch (round) {
+      //   case "Q":
+      //     if (!team?.advanceToQ) team.userClass = "wrong";
+      //     break;
+      //   case "S":
+      //     if (!team?.advanceToS) team.userClass = "wrong";
+      //     break;
+      //   case "F":
+      //     if (!team?.advanceToF) team.userClass = "wrong";
+      //     break;
+      // }
+      return team;
+    }
+
+    const teamHasAdvanced = team?.gameInfo?.teamThatAdvanced?.name ?? false;
 
     if (teamHasAdvanced) {
       if (team?.name !== gameInfo.teamThatAdvanced?.name) {
@@ -1328,7 +1387,7 @@ const getUserKoResult = (userPicks) => {
   return result;
 };
 
-const checkForOpacity_Z_In = (usersPicks, gameInfo, round) => {
+const checkForOpacity_Z_In = (usersPicks, round) => {
   return usersPicks.map((team) => {
     if (team.outOfTourney) {
       switch (round) {
@@ -1338,6 +1397,9 @@ const checkForOpacity_Z_In = (usersPicks, gameInfo, round) => {
         case "Q":
           if (!team.advanceToS) team.opacity = "opacity-60";
           break;
+        case "S":
+          if (!team.advanceToS) team.opacity = "opacity-60";
+          break;
       }
     }
 
@@ -1345,28 +1407,67 @@ const checkForOpacity_Z_In = (usersPicks, gameInfo, round) => {
   });
 };
 
-const findPreviousGameWinners = (user, teams, usersPicks, gamesToAudit) => {
-  const userHasKOPicks = user?.knockChamp ? true : false;
+const findPreviousGameWinners = (
+  user,
+  teams,
+  usersPicks,
+  gamesToAudit,
+  round
+) => {
+  if (!user?.knockChamp) return usersPicks;
 
-  const regoinPrevoiusGameWinners = gamesToAudit.map((game) => {
-    const previousGameInfo = userHasKOPicks
-      ? koGameCalc(user, game, teams)
-      : null;
+  switch (round) {
+    case "Q":
+      const regoinPreviousGameWinners = gamesToAudit.map((game) => {
+        const previousGameInfo = koGameCalc(user, game, teams);
 
-    return previousGameInfo?.teamThatAdvanced?.name;
+        return previousGameInfo?.teamThatAdvanced?.name;
+      });
+
+      return usersPicks.map((team, idx) => {
+        team.showPreviousWinnerTop = null;
+        team.showPreviousWinnerBottom = null;
+
+        const previousRegoinWinner = regoinPreviousGameWinners[idx];
+
+        if (previousRegoinWinner && team?.name !== previousRegoinWinner) {
+          idx === 0
+            ? (team.showPreviousWinnerTop = previousRegoinWinner)
+            : (team.showPreviousWinnerBottom = previousRegoinWinner);
+        }
+
+        return team;
+      });
+      break;
+  }
+};
+
+const findPreviousGameWinner_FF = (teams, usersPick, gamesToAudit, side) => {
+  const seedMatchups = determineR16Seeding(teams);
+
+  let regoinWinner = null;
+
+  gamesToAudit.forEach((game) => {
+    const groupFinishingPositions = seedMatchups[game];
+
+    groupFinishingPositions.forEach((finishingPosition) => {
+      const team = teams.find(
+        (team) => team.knockoutPosition === finishingPosition
+      );
+
+      if (team.advanceToS) regoinWinner = team.name;
+    });
   });
 
-  return usersPicks.map((team, idx) => {
-    const previousRegoinWinner = regoinPrevoiusGameWinners[idx];
-
-    if (previousRegoinWinner && team?.name !== previousRegoinWinner) {
-      idx === 0
-        ? (team.showPreviousWinnerTop = previousRegoinWinner)
-        : (team.showPreviousWinnerBottom = previousRegoinWinner);
+  if (regoinWinner && usersPick?.name !== regoinWinner) {
+    if (side === "top") {
+      usersPick.showPreviousWinnerTop = regoinWinner;
+    } else {
+      usersPick.showPreviousWinnerBottom = regoinWinner;
     }
+  }
 
-    return team;
-  });
+  return usersPick;
 };
 
 module.exports = {
@@ -1408,4 +1509,6 @@ module.exports = {
   getUserKoResult,
   checkForOpacity_Z_In,
   findPreviousGameWinners,
+  formatTeamClass_KO_Z_In_Final_Four,
+  findPreviousGameWinner_FF,
 };

@@ -2,7 +2,7 @@
 
 ////my picks - locked - stage 5 -- user has picks -- START
 ////zoomed-in view: need to apply logic based on user picks after each game ends
-///next up === audit R16 and R8 viewing once each game ends, then start on final four cont
+///next up === audit R16 - R4 viewing once each game ends, then start on finals cont
 
 ////my picks - locked - stage 5 -- user has picks -- END
 
@@ -12,29 +12,74 @@
 
 ////my picks - locked - stage 5 -- user does not have picks -- END
 
+//////my picks locked from stage 1 - stage 5 ----START
+///manually go through each stage and also manually udpate teams during each stage to verify how everything looks
+
+///stage 1 --- START
+//user w no picks
+//user makes picks
+//user w picks
+
+///stage 1 --- END
+
+///stage 2 --- START
+//user w no picks - incognito window
+//user w picks
+
+///stage 2 --- END
+
+///stage 3 --- START
+//user w no picks - incognito window
+//user w picks
+
+//manually update teams and mark that groupIsFinished as you would during the tourney
+
+///stage 3 --- END
+
+///stage 4 --- START
+//user w no group picks - incognito window
+//user w group picks, but no ko picks
+//user w group picks and ko picks
+
+///stage 4 --- END
+
+///stage 5 --- START
+//user w no group picks - incognito window --- just verify that nothing shows and then move onto when user has group picks but no ko picks
+//user w group picks, but no ko picks - incognito window
+//user w group picks and ko picks
+
+//manually update teams and mark that groupIsFinished as you would during the tourney
+
+///stage 5 --- END
+
+//////my picks locked from stage 1 - stage 5 ----END
+
 ////my picks - unlocked - stage 4 - after picks --- START
-//all games shoudl default to the users picks
+//all games should default to the users picks
 //once the above is complete, pause this and move onto before user has picks
 
-////my picks - unlocked - stage 4 - after picks --- END
+////my picks - unlocked - stage 4 - after picks --- PAUSE
 
 ////my picks - unlocked - stage 4 - before picks --- START
+//ko_box should be red if there is no team selected
 //arrows should be red/green based on the users picks being completed
 
 ////my picks - unlocked - stage 4 - before picks --- END
 
-////my picks - unlocked - stage 4 - after picks --- START
+////my picks - unlocked - stage 4 - after picks --- RESUME
 //make sure you can change games and are not able to submit if any games are incomplete
 
 ////my picks - unlocked - stage 4 - after picks --- END
 
 ////my picks - locked:
-//remove all depricated files
-// remove all uncommented code from css file
+//go file by file
+//1. remove all depricated files
+//2. remove all uncommented code from css file
 
 ////my picks - unlocked
-//remove all depricated files
-// remove all uncommented code from css file
+//go file by file
+//1. remove all depricated files
+//2. remove all uncommented code from css file
 
 ////404 noMatch Page ----START
 ///comp -- START

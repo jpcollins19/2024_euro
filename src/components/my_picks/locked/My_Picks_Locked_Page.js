@@ -15,7 +15,7 @@ const My_Picks_Locked_Page = () => {
 
   const [loading, setLoading] = useState(true);
   const [zoomedOut, setZoomedOut] = useState(false);
-  const [zoomedInRegoin, setZoomedInRegoin] = useState(1);
+  const [zoomedInRegoin, setZoomedInRegoin] = useState(5);
 
   const zoomData = {
     zoomedOut: zoomedOut,

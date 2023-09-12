@@ -33,6 +33,13 @@ const regoinMapper = {
   4: { 1: "R16_7", 2: "R16_8" },
 };
 
+const userPickMapper_FF = {
+  1: ["R16_1", "R16_2"],
+  2: ["R16_3", "R16_4"],
+  3: ["R16_5", "R16_6"],
+  4: ["R16_7", "R16_8"],
+};
+
 // const koGameMapper = {
 //   1: { 1: "R16_1", 2: "R16_2" },
 //   2: { 1: "R16_3", 2: "R16_4" },
@@ -43,6 +50,11 @@ const regoinMapper = {
 const koGameMapper = {
   left: { 1: ["R16_1", "R16_2"], 2: ["R16_3", "R16_4"] },
   right: { 3: ["R16_5", "R16_6"], 4: ["R16_7", "R16_8"] },
+};
+
+const finalsMapper_Z_In = {
+  left: ["R16_1", "R16_2", "R16_3", "R16_4"],
+  right: ["R16_5", "R16_6", "R16_7", "R16_8"],
 };
 
 const games_Q = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"];
@@ -67,4 +79,6 @@ module.exports = {
   games_S,
   games_F,
   validKoResults,
+  userPickMapper_FF,
+  finalsMapper_Z_In,
 };
