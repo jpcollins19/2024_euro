@@ -8,7 +8,7 @@
 
 ////my picks - locked - stage 5 -- user does not have picks -- START
 //figure it out and make a gameplan
-//bug - zoomed out view has a breaking change
+//bug - zoomed out view has a breaking change when you go from zoomed in to zoomed out
 
 ////my picks - locked - stage 5 -- user does not have picks -- END
 

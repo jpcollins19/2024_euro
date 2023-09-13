@@ -1187,7 +1187,7 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
   });
 };
 
-const formatTeamClass_KO_Z_In_Final_Four = (usersPicksForGame, boxType) => {
+const formatTeamClass_KO_Z_In_FF = (usersPicksForGame, boxType) => {
   return usersPicksForGame.map((team) => {
     const gameInfo = team?.gameInfo;
 
@@ -1220,17 +1220,6 @@ const formatTeamClass_KO_Z_In_Final_Four = (usersPicksForGame, boxType) => {
 
       if (!team?.advanceToS) team.userClass = "wrong";
 
-      // switch (round) {
-      //   case "Q":
-      //     if (!team?.advanceToQ) team.userClass = "wrong";
-      //     break;
-      //   case "S":
-      //     if (!team?.advanceToS) team.userClass = "wrong";
-      //     break;
-      //   case "F":
-      //     if (!team?.advanceToF) team.userClass = "wrong";
-      //     break;
-      // }
       return team;
     }
 
@@ -1407,39 +1396,29 @@ const checkForOpacity_Z_In = (usersPicks, round) => {
   });
 };
 
-const findPreviousGameWinners = (
-  user,
-  teams,
-  usersPicks,
-  gamesToAudit,
-  round
-) => {
+const findPreviousGameWinners_R16 = (user, teams, usersPicks, gamesToAudit) => {
   if (!user?.knockChamp) return usersPicks;
 
-  switch (round) {
-    case "Q":
-      const regoinPreviousGameWinners = gamesToAudit.map((game) => {
-        const previousGameInfo = koGameCalc(user, game, teams);
+  const regoinPreviousGameWinners = gamesToAudit.map((game) => {
+    const previousGameInfo = koGameCalc(user, game, teams);
 
-        return previousGameInfo?.teamThatAdvanced?.name;
-      });
+    return previousGameInfo?.teamThatAdvanced?.name;
+  });
 
-      return usersPicks.map((team, idx) => {
-        team.showPreviousWinnerTop = null;
-        team.showPreviousWinnerBottom = null;
+  return usersPicks.map((team, idx) => {
+    team.showPreviousWinnerTop = null;
+    team.showPreviousWinnerBottom = null;
 
-        const previousRegoinWinner = regoinPreviousGameWinners[idx];
+    const previousRegoinWinner = regoinPreviousGameWinners[idx];
 
-        if (previousRegoinWinner && team?.name !== previousRegoinWinner) {
-          idx === 0
-            ? (team.showPreviousWinnerTop = previousRegoinWinner)
-            : (team.showPreviousWinnerBottom = previousRegoinWinner);
-        }
+    if (previousRegoinWinner && team?.name !== previousRegoinWinner) {
+      idx === 0
+        ? (team.showPreviousWinnerTop = previousRegoinWinner)
+        : (team.showPreviousWinnerBottom = previousRegoinWinner);
+    }
 
-        return team;
-      });
-      break;
-  }
+    return team;
+  });
 };
 
 const findPreviousGameWinner_FF = (teams, usersPick, gamesToAudit, side) => {
@@ -1465,6 +1444,44 @@ const findPreviousGameWinner_FF = (teams, usersPick, gamesToAudit, side) => {
     } else {
       usersPick.showPreviousWinnerBottom = regoinWinner;
     }
+  }
+
+  return usersPick;
+};
+
+const findPreviousGameWinner_Finals = (
+  user,
+  teams,
+  usersPick,
+  gamesToAudit,
+  game // 'F' or 'Champ'
+) => {
+  if (!user?.knockChamp) return usersPick;
+
+  console.log("usersPick", usersPick.name);
+
+  const seedMatchups = determineR16Seeding(teams);
+
+  console.log("seedMatchups", seedMatchups);
+
+  let finalist = null;
+
+  gamesToAudit.forEach((game) => {
+    const groupFinishingPositions = seedMatchups[game];
+
+    groupFinishingPositions.forEach((finishingPosition) => {
+      const team = teams.find(
+        (team) => team.knockoutPosition === finishingPosition
+      );
+
+      if (team.advanceToF) finalist = team.name;
+    });
+  });
+
+  console.log("finalist", finalist);
+
+  if (finalist && usersPick?.name !== finalist) {
+    usersPick.showPreviousWinnerTop = finalist;
   }
 
   return usersPick;
@@ -1508,7 +1525,8 @@ module.exports = {
   getKOResults,
   getUserKoResult,
   checkForOpacity_Z_In,
-  findPreviousGameWinners,
-  formatTeamClass_KO_Z_In_Final_Four,
+  findPreviousGameWinners_R16,
+  formatTeamClass_KO_Z_In_FF,
   findPreviousGameWinner_FF,
+  findPreviousGameWinner_Finals,
 };
