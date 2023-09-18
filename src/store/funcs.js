@@ -1454,17 +1454,13 @@ const findPreviousGameWinner_Finals = (
   teams,
   usersPick,
   gamesToAudit,
-  game // 'F' or 'Champ'
+  gameToAudit // 'F' or 'Champ'
 ) => {
   if (!user?.knockChamp) return usersPick;
 
-  console.log("usersPick", usersPick.name);
-
   const seedMatchups = determineR16Seeding(teams);
 
-  console.log("seedMatchups", seedMatchups);
-
-  let finalist = null;
+  let winningTeam = null;
 
   gamesToAudit.forEach((game) => {
     const groupFinishingPositions = seedMatchups[game];
@@ -1474,14 +1470,12 @@ const findPreviousGameWinner_Finals = (
         (team) => team.knockoutPosition === finishingPosition
       );
 
-      if (team.advanceToF) finalist = team.name;
+      if (team[`advanceTo${gameToAudit}`]) winningTeam = team.name;
     });
   });
 
-  console.log("finalist", finalist);
-
-  if (finalist && usersPick?.name !== finalist) {
-    usersPick.showPreviousWinnerTop = finalist;
+  if (winningTeam && usersPick?.name !== winningTeam) {
+    usersPick.showPreviousWinnerTop = winningTeam;
   }
 
   return usersPick;

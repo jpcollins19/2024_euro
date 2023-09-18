@@ -2,12 +2,17 @@
 
 ////my picks - locked - stage 5 -- user has picks -- START
 ////zoomed-in view: need to apply logic based on user picks after each game ends
-///next up === audit R16 - R4 viewing once each game ends, then start on finals cont
+///next up === audit R16 - Champ viewing once each game ends
 
 ////my picks - locked - stage 5 -- user has picks -- END
 
 ////my picks - locked - stage 5 -- user does not have picks -- START
-//figure it out and make a gameplan
+//adjust seed file so no teams have advanced yet
+//start when zommedOut === false
+//roll through navigating from each regoin to another regoin to verify all is IGO
+
+//start to advance certain teams, audit with a user who has picks, and simotaniously audit sarah at the same time to verify all is IGO for both
+
 //bug - zoomed out view has a breaking change when you go from zoomed in to zoomed out
 
 ////my picks - locked - stage 5 -- user does not have picks -- END
