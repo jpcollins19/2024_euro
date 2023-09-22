@@ -19,35 +19,18 @@
   white-space: pre-wrap;
 }
 
-/* .error-cont-placeholder-tiebreaker {
-  margin-top: -3.7rem;
-  margin-left: 52rem;
-  min-height: 5.2rem;
-  width: 40rem;
-} */
-
 .error-cont-placeholder {
   min-height: 5.2rem;
 }
 
 .master-error-cont-edit-picks {
   min-height: 5.2rem;
-  /* border: solid 2px red; */
 }
-
-/* .tiebreaker-cont-edit-picks-outer {
-  display: flex;
-  justify-content: column;
-  justify-content: center;
-  align-items: center;
-  border: solid 2px red;
-} */
 
 .tiebreaker-cont-edit-picks {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: solid 2px blue; */
 }
 
 .tiebreaker-cont-edit-picks > h3 {
@@ -112,9 +95,7 @@
 
 .single-group-cont-edit-picks-inside > div > div {
   margin: 0rem 0.17rem 0.5rem 0rem;
-
   height: 2.5rem;
-  /* border: solid 2px red; */
 }
 
 .rank-cont-edit > div {
@@ -138,7 +119,6 @@
 }
 
 .third-place-to-advance-cont-edit {
-  /* width: 1rem; */
   height: 2.5rem;
 }
 
@@ -168,4 +148,83 @@
 }
 
 @media (max-width: 65em) {
+  .my-picks-ul-top > .black-text {
+    padding-bottom: 15px;
+  }
+
+  .black-text {
+    font-size: 125%;
+  }
+
+  .tiebreaker-cont-edit-picks {
+    margin-top: 4%;
+    font-size: 180%;
+  }
+
+  .tiebreaker-cont-edit-picks > input {
+    width: 10%;
+    height: 20%;
+    font-size: 150%;
+  }
+
+  .group-predictions-cont-edit {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .single-group-cont-edit-picks-outside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 90vw;
+    height: 35vh;
+  }
+
+  .single-group-cont-edit-picks-outside > h4 {
+    margin: 0;
+    font-size: 200%;
+  }
+
+  .single-group-cont-edit-picks-inside {
+    width: 50vw;
+  }
+
+  .single-group-cont-edit-picks-inside > div > h5 {
+    font-size: 150%;
+    min-height: 40px;
+  }
+
+  .single-group-cont-edit-picks-inside > div > div {
+    min-height: 4rem;
+  }
+
+  .rank-cont-edit > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 2px 0 2px 0;
+    width: 7vw;
+  }
+
+  .prediction-cont-edit {
+    margin: 0 20px 0 20px;
+  }
+
+  .prediction-cont-edit > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .third-place-to-advance-cont-edit {
+    height: 100%;
+  }
+
+  .third-place-to-advance-cont-edit > div > input {
+    transform: scale(2);
+  }
 }

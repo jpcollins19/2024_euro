@@ -409,7 +409,7 @@ const My_Picks_Unlocked_Page = () => {
           className="my-picks-container-ul"
         >
           <div className="my-picks-ul-top">
-            <h3 className="black-text">
+            <h3 className="black-text ">
               {joe?.tourneyStage === 1 &&
                 "Select a country from the dropdowns to rank where you think they will finish in their group. \n If you think the 3rd place team will advance from the group, check the box."}
               {joe?.tourneyStage === 4 &&

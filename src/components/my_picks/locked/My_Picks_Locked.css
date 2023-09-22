@@ -303,7 +303,6 @@
 
 @media (max-width: 65em) {
   .my-picks-page {
-    height: 89vh;
     background-image: url("/public/pics/zlatan-mobile.jpeg");
   }
 
@@ -339,7 +338,7 @@
   }
 
   .tpc-mobile {
-    top: 450;
+    top: 520;
   }
 
   .tpc-mobile-3 {

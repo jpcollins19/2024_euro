@@ -26,7 +26,7 @@ const Prediction_Cont_Unlocked = ({ group, onChange }) => {
   const user = useSelector((state) => state.auth);
 
   return (
-    <div>
+    <div className="prediction-cont-edit">
       <h5 className="prediction-verbiage-unlocked">Prediction</h5>
       {user?.groupA1
         ? teams.map((team, idxRank) => {

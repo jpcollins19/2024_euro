@@ -60,6 +60,7 @@ const Dropdown = ({ placeholder, options, width, defaultValue, set }) => {
         border: "solid white 2px",
         cursor: "pointer",
         width: isMobileView ? `${width * 1.35}rem` : `${width}rem`,
+        height: isMobileView ? "64px" : "43px",
         borderRadius: "0.5rem",
         fontSize: isMobileView ? "2rem" : "1.2rem",
         textAlign: "center",

@@ -1,60 +1,91 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - locked - stage 5 -- user has picks -- START
-////zoomed-in view: need to apply logic based on user picks after each game ends
-///next up === audit R16 - Champ viewing once each game ends
-
-////my picks - locked - stage 5 -- user has picks -- END
-
-////my picks - locked - stage 5 -- user does not have picks -- START
-//adjust seed file so no teams have advanced yet
-//start when zommedOut === false
-//roll through navigating from each regoin to another regoin to verify all is IGO
-
-//start to advance certain teams, audit with a user who has picks, and simotaniously audit sarah at the same time to verify all is IGO for both
-
-//bug - zoomed out view has a breaking change when you go from zoomed in to zoomed out
-
-////my picks - locked - stage 5 -- user does not have picks -- END
-
 //////my picks locked from stage 1 - stage 5 ----START
 ///manually go through each stage and also manually udpate teams during each stage to verify how everything looks
 
 ///stage 1 --- START
+
+//mobile view ---- START
 //user w no picks
 //user makes picks
 //user w picks
 
+//mobile view ---- END
+
 ///stage 1 --- END
 
 ///stage 2 --- START
+//comp view ---- START
 //user w no picks - incognito window
 //user w picks
+
+//comp view ---- END
+
+//mobile view ---- START
+//user w no picks - incognito window
+//user w picks
+
+//mobile view ---- END
 
 ///stage 2 --- END
 
 ///stage 3 --- START
+//comp view ---- START
 //user w no picks - incognito window
 //user w picks
 
 //manually update teams and mark that groupIsFinished as you would during the tourney
 
+//comp view ---- END
+
+//mobile view ---- START
+//user w no picks - incognito window
+//user w picks
+
+//manually update teams and mark that groupIsFinished as you would during the tourney
+
+//mobile view ---- END
+
 ///stage 3 --- END
 
 ///stage 4 --- START
+//comp view ---- END
+
 //user w no group picks - incognito window
 //user w group picks, but no ko picks
 //user w group picks and ko picks
 
+//comp view ---- END
+
+//mobile view ---- END
+
+//user w no group picks - incognito window
+//user w group picks, but no ko picks
+//user w group picks and ko picks
+
+//mobile view ---- END
 ///stage 4 --- END
 
 ///stage 5 --- START
+//comp view ---- END
+
 //user w no group picks - incognito window --- just verify that nothing shows and then move onto when user has group picks but no ko picks
 //user w group picks, but no ko picks - incognito window
 //user w group picks and ko picks
 
 //manually update teams and mark that groupIsFinished as you would during the tourney
 
+//comp view ---- END
+
+//mobile view ---- END
+
+//user w no group picks - incognito window --- just verify that nothing shows and then move onto when user has group picks but no ko picks
+//user w group picks, but no ko picks - incognito window
+//user w group picks and ko picks
+
+//manually update teams and mark that groupIsFinished as you would during the tourney
+
+//mobile view ---- END
 ///stage 5 --- END
 
 //////my picks locked from stage 1 - stage 5 ----END

@@ -111,6 +111,7 @@
   display: flex;
   justify-content: center;
   min-height: 2rem;
+  margin-top: 2%;
 }
 
 .cancel-cont > a {
@@ -155,4 +156,10 @@
 .dropdown {
   background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   border-radius: 0.5rem;
+}
+
+@media (max-width: 65em) {
+  /* .dropdown-cont > div {
+    height: 10vh;
+  } */
 }
