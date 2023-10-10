@@ -17,7 +17,7 @@ const Point_System_Cont = ({ tourneyStage }) => {
       color: "orange",
     },
     {
-      text: "picked correct country for the 3/4 position - 3rd place team did not advance from group",
+      text: "picked correct country for the 3/4 position without team advancing from group",
       padding: "ps-bottom",
       color: "green",
     },

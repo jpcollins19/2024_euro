@@ -31,6 +31,16 @@ const My_Picks_Unlocked_Page = () => {
 
   const [userClick, setUserClick] = useState(false);
 
+  const [zoomedOut, setZoomedOut] = useState(true);
+  const [zoomedInRegoin, setZoomedInRegoin] = useState(1);
+
+  const zoomData = {
+    zoomedOut: zoomedOut,
+    setZoomedOut: setZoomedOut,
+    zoomedInRegoin: zoomedInRegoin,
+    setZoomedInRegoin: setZoomedInRegoin,
+  };
+
   const toggleUserClick = () => setUserClick(!userClick);
 
   useEffect(() => {
@@ -459,6 +469,7 @@ const My_Picks_Unlocked_Page = () => {
               <KO_Cont_UP_Edit
                 userPicks={userPicks}
                 resetMasterError={resetMasterError}
+                zoomData={zoomData}
               />
             )}
           </div>

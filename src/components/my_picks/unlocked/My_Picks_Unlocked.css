@@ -227,4 +227,70 @@
   .third-place-to-advance-cont-edit > div > input {
     transform: scale(2);
   }
+
+  /*/////////////////////////////*/
+  /*/ ///knockout mobile stuff below////*/
+  /*/////////////////////////////*/
+
+  .ko-cont-unlocked-main-m {
+    /* border: solid 2px dodgerblue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65vh;
+    width: 90vw;
+  }
+
+  .ko-cont-half-unlocked-m {
+    display: flex;
+    /* border: solid 2px red; */
+  }
+
+  .final-four-cont-unlocked-m {
+    display: flex;
+    height: 30vh;
+    justify-content: center;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    /* border: solid 2px blue; */
+  }
+
+  .final-four-cont-unlocked-m > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border: solid 2px red; */
+  }
+
+  .ko-box-mobile-unlocked {
+    border-radius: 10px;
+    background: linear-gradient(
+      to bottom right,
+      rgb(20, 19, 19) 0%,
+      rgb(54, 51, 51) 25%,
+      rgb(67, 64, 64) 50%,
+      rgb(54, 51, 51) 75%,
+      rgb(20, 19, 19) 100%
+    );
+  }
+
+  .ko-b-small-m {
+    width: 100px;
+    height: 50px;
+  }
+
+  .ko-b-medium-small-m {
+    width: 130px;
+    height: 70px;
+  }
+
+  .ko-b-medium-m {
+    width: 170px;
+    height: 70px;
+  }
+
+  .ko-b-large-m {
+    width: 200px;
+    height: 100px;
+  }
 }
