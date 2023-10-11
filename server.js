@@ -1,14 +1,7 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - unlocked - stage 4 - after picks --- START
-//all games should default to the users picks - on the KO_Unlocked_M file - zoomed out work temporarily complete, need to start on zoomed in work when user has picks
-//once the above is complete, pause this and move onto before user has picks
-
-////my picks - unlocked - stage 4 - after picks --- PAUSE
-
 ////my picks - unlocked - stage 4 - before picks --- START
-//there should be a "submit button"
-//there should be a'back to overview' link that takes the user to the zoomed out view
+//test w sarah
 //ko_box should be red if there is no team selected
 //arrows should be red/green based on the users picks being completed
 ///zoomed in view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere

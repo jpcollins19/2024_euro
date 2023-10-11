@@ -75,6 +75,16 @@ const koGameMapper_EditUserPicks_R16 = {
   4: { 1: "Q7", 2: "Q8" },
 };
 
+const gameMapper_ko_edit = {
+  left: { 1: { 1: "R16_1", 2: "R16_2" }, 2: { 1: "R16_3", 2: "R16_4" } },
+  right: { 3: { 1: "R16_5", 2: "R16_6" }, 4: { 1: "R16_7", 2: "R16_8" } },
+};
+
+const setTeamMapper_ko_edit = {
+  left: { 1: { 1: "Q1", 2: "Q2" }, 2: { 1: "Q3", 2: "Q4" } },
+  right: { 3: { 1: "Q5", 2: "Q6" }, 4: { 1: "Q7", 2: "Q8" } },
+};
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -94,4 +104,6 @@ module.exports = {
   userPickMapper_FF,
   finalsMapper_Z_In,
   koGameMapper_EditUserPicks_R16,
+  gameMapper_ko_edit,
+  setTeamMapper_ko_edit,
 };

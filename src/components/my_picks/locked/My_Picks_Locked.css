@@ -886,19 +886,20 @@
     flex: 0.94;
   }
 
+  .ko-data-cont-outside-z-in svg {
+    color: white;
+  }
+
   .svg-icons-normal {
     transform: scale(3);
-    color: white;
   }
 
   .svg-icons-rotate-45 {
     transform: scale(3) rotate(45deg);
-    color: white;
   }
 
   .svg-icons-rotate-315 {
     transform: scale(3) rotate(315deg);
-    color: white;
   }
 
   .regoin-cont-c {
