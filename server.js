@@ -7,8 +7,12 @@
 ////my picks - unlocked - stage 4 - after picks --- PAUSE
 
 ////my picks - unlocked - stage 4 - before picks --- START
+//there should be a "submit button"
+//there should be a'back to overview' link that takes the user to the zoomed out view
 //ko_box should be red if there is no team selected
 //arrows should be red/green based on the users picks being completed
+///zoomed in view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
+///zoomed out view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
 
 ////my picks - unlocked - stage 4 - before picks --- END
 

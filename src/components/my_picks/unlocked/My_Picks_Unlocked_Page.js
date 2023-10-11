@@ -47,6 +47,10 @@ const My_Picks_Unlocked_Page = () => {
     dispatch(loadUsers());
   }, []);
 
+  useEffect(() => {
+    console.log("zoomedInRegoin", zoomedInRegoin);
+  }, [zoomedInRegoin]);
+
   const [loading, setLoading] = useState(true);
 
   setTimeout(() => {

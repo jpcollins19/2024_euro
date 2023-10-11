@@ -63,6 +63,18 @@ const games_F = ["F1", "F2"];
 
 const validKoResults = ["correct", "wrong"];
 
+// const koGameMapper_EditUserPicks_R16 = {
+//   left: { 1: { 1: "Q1", 2: "Q2" }, 2: { 1: "Q3", 2: "Q4" } },
+//   right: { 1: { 1: "Q5", 2: "Q6" }, 2: { 1: "Q7", 2: "Q8" } },
+// };
+
+const koGameMapper_EditUserPicks_R16 = {
+  1: { 1: "Q1", 2: "Q2" },
+  2: { 1: "Q3", 2: "Q4" },
+  3: { 1: "Q5", 2: "Q6" },
+  4: { 1: "Q7", 2: "Q8" },
+};
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -81,4 +93,5 @@ module.exports = {
   validKoResults,
   userPickMapper_FF,
   finalsMapper_Z_In,
+  koGameMapper_EditUserPicks_R16,
 };
