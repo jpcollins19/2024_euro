@@ -2,8 +2,7 @@
 
 ////my picks - unlocked - stage 4 - before picks --- START
 //test w sarah
-//ko_box should be red if there is no team selected
-//arrows should be red/green based on the users picks being completed
+//when you click on a team, they advance to the next round
 ///zoomed in view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
 ///zoomed out view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
 

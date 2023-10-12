@@ -16,11 +16,6 @@ const semiMatchups = {
   Q4: ["R16_7", "R16_8"],
 };
 
-// const finalMatchups = {
-//   F1: ["Q1", "Q2", "Q3", "Q4"],
-//   F2: ["Q5", "Q6", "Q7", "Q8"],
-// };
-
 const finalMatchups = {
   S1: ["R16_1", "R16_2", "R16_3", "R16_4"],
   S2: ["R16_5", "R16_6", "R16_7", "R16_8"],
@@ -40,13 +35,6 @@ const userPickMapper_FF = {
   4: ["R16_7", "R16_8"],
 };
 
-// const koGameMapper = {
-//   1: { 1: "R16_1", 2: "R16_2" },
-//   2: { 1: "R16_3", 2: "R16_4" },
-//   3: { 1: "R16_5", 2: "R16_6" },
-//   4: { 1: "R16_7", 2: "R16_8" },
-// };
-
 const koGameMapper = {
   left: { 1: ["R16_1", "R16_2"], 2: ["R16_3", "R16_4"] },
   right: { 3: ["R16_5", "R16_6"], 4: ["R16_7", "R16_8"] },
@@ -62,11 +50,6 @@ const games_S = ["S1", "S2", "S3", "S4"];
 const games_F = ["F1", "F2"];
 
 const validKoResults = ["correct", "wrong"];
-
-// const koGameMapper_EditUserPicks_R16 = {
-//   left: { 1: { 1: "Q1", 2: "Q2" }, 2: { 1: "Q3", 2: "Q4" } },
-//   right: { 1: { 1: "Q5", 2: "Q6" }, 2: { 1: "Q7", 2: "Q8" } },
-// };
 
 const koGameMapper_EditUserPicks_R16 = {
   1: { 1: "Q1", 2: "Q2" },
@@ -85,13 +68,20 @@ const setTeamMapper_ko_edit = {
   right: { 3: { 1: "Q5", 2: "Q6" }, 4: { 1: "Q7", 2: "Q8" } },
 };
 
+const regoinToAuditMapper = {
+  1: ["Q1", "Q2", "S1"],
+  2: ["Q3", "Q4", "S2"],
+  3: ["Q5", "Q6", "S3"],
+  4: ["Q7", "Q8", "S4"],
+  5: ["S1", "S2", "S3", "S4", "F1", "F2", "champ"],
+};
+
 module.exports = {
   groupLetters,
   koLetters,
   Qs,
   Ss,
   Fs,
-  // semiMatchups,
   finalMatchups,
   koLetters_maxPts,
   semiMatchups,
@@ -106,4 +96,5 @@ module.exports = {
   koGameMapper_EditUserPicks_R16,
   gameMapper_ko_edit,
   setTeamMapper_ko_edit,
+  regoinToAuditMapper,
 };

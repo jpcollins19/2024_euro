@@ -339,6 +339,7 @@
   .ko-box-small-edit {
     height: 40%;
     min-width: 45%;
+    margin: 0 10px 0 10px;
   }
 
   .ko-box-small-medium-edit {
@@ -354,5 +355,13 @@
   .ko-box-large-edit {
     height: 100%;
     min-width: 30vw;
+  }
+
+  .svg-arrow-picks-missing {
+    color: red;
+  }
+
+  .svg-arrow-picks-igo {
+    color: rgb(3, 193, 3);
   }
 }
