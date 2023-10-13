@@ -76,6 +76,11 @@ const regoinToAuditMapper = {
   5: ["S1", "S2", "S3", "S4", "F1", "F2", "champ"],
 };
 
+const koGameMapper_userPicks = {
+  left: { 1: ["Q1", "Q2"], 2: ["Q3", "Q4"] },
+  right: { 3: ["Q5", "Q6"], 4: ["Q7", "Q8"] },
+};
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -97,4 +102,5 @@ module.exports = {
   gameMapper_ko_edit,
   setTeamMapper_ko_edit,
   regoinToAuditMapper,
+  koGameMapper_userPicks,
 };
