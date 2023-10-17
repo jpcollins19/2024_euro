@@ -14,8 +14,6 @@ const KO_Data_Cont = ({ user, zoomData, resetMasterError }) => {
 
   const regoin = zoomData.zoomedInRegoin;
 
-  console.log("user", user);
-
   return (
     <div className="ko-data-cont-middle-z-in">
       {showArrow_left ? (

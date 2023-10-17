@@ -367,7 +367,13 @@ const My_Picks_Unlocked_Page = () => {
       }
 
       if (joe?.tourneyStage === 4) {
+        setLoading(true);
         clearArr(errorAudit);
+
+        setTimeout(() => {
+          setZoomedOut(true);
+          setLoading(false);
+        }, 100);
 
         const koAudit = (team, game) => {
           if (!team) {

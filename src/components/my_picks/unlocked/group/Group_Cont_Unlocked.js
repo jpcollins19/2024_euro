@@ -1,3 +1,4 @@
+import { groupLetters } from "../../../../store";
 import Single_Group_Cont_Unlocked from "./Single_Group_Cont_Unlocked";
 
 const Group_Cont_Unlocked = ({
@@ -6,11 +7,9 @@ const Group_Cont_Unlocked = ({
   selectionObj,
   resetMasterError,
 }) => {
-  const letters = ["A", "B", "C", "D", "E", "F"];
-
   return (
     <div className="group-predictions-cont-edit">
-      {letters.map((letter) => {
+      {groupLetters.map((letter) => {
         const groupError = groupErrorObj[`group${letter}Error`];
         const setGroupError = groupErrorObj[`setGroup${letter}Error`];
 

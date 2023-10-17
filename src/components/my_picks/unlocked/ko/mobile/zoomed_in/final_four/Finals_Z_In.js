@@ -5,7 +5,9 @@ const Finals_Z_In = ({ side, user }) => {
 
   const usersPick = user[`F${gameNum}`];
 
-  return <KO_Box_Z_In size="medium" team={usersPick} />;
+  const setTeam = user.setChamp;
+
+  return <KO_Box_Z_In size="medium" team={usersPick} setTeam={setTeam} />;
 };
 
 export default Finals_Z_In;

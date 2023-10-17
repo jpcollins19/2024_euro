@@ -2,10 +2,13 @@ import Final_Four from "./Final_Four";
 import Finals from "./Finals";
 import Champ from "./Champ";
 
-const KO_Final_Four_Cont = ({ regoin, zoomData, user }) => {
+const KO_Final_Four_Cont = ({ regoin, zoomData, user, resetMasterError }) => {
   return (
     <div
-      onClick={() => zoomData.setZoomedInRegoin(regoin)}
+      onClick={() => {
+        resetMasterError();
+        zoomData.setZoomedInRegoin(regoin);
+      }}
       className="final-four-cont-unlocked-m"
     >
       <Final_Four user={user} side="left" />

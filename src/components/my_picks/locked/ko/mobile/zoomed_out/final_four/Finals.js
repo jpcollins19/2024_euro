@@ -1,9 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  koGameCalc,
-  formatTeamClass_KO,
-  getUserKoResult,
-} from "../../../../../../../store";
+import { koGameCalc, formatTeamClass_KO } from "../../../../../../../store";
 import KO_Box from "../KO_Box";
 
 const Finals = ({ user, side }) => {
@@ -42,8 +38,6 @@ const Finals = ({ user, side }) => {
       }
 
       if (team.outOfTourney) result = "wrong";
-
-      // if (!team.outOfTourney && team.advanceToF)
     }
   });
 

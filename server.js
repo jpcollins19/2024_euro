@@ -1,29 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-////my picks - unlocked - stage 4 - before picks --- START
-//test w sarah
-//when you click on a team, they advance to the next round
-//^^on round where you click on final 4 cont info - audit that everything is IGO before resuming future work
-///zoomed in view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
-///zoomed out view - on submission, zoomed out view is set to true and error shows if there are invalid picks somewhere
-
-////my picks - unlocked - stage 4 - before picks --- END
-
-////my picks - unlocked - stage 4 - after picks --- RESUME
-//make sure you can change games and are not able to submit if any games are incomplete
-
-////my picks - unlocked - stage 4 - after picks --- END
-
-////my picks - locked:
-//go file by file
-//1. remove all depricated files
-//2. remove all uncommented code from css file
-
-////my picks - unlocked
-//go file by file
-//1. remove all depricated files
-//2. remove all uncommented code from css file
-
 ////404 noMatch Page ----START
 ///comp -- START
 //make the "Go Home" verbiage bigger

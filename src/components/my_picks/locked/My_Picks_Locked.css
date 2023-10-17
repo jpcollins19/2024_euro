@@ -584,13 +584,11 @@
 
 .not-submitted-box {
   border: solid 2px red;
-  /* width: 7.5vw; */
   border-radius: 0.7rem;
 }
 
 .correct-box {
   border: solid 4px rgb(11, 238, 11);
-  /* width: 7.5vw; */
   border-radius: 0.7rem;
 }
 
@@ -674,10 +672,7 @@
   .knockout-cont-mobile {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* flex-direction: column; */
     width: 95%;
-    /* min-height: 60rem; */
     background: linear-gradient(
       to bottom right,
       rgb(57, 54, 54) 0%,
@@ -789,14 +784,6 @@
     height: 80px;
     width: 120px;
   }
-
-  /* .ko-box-wrong {
-    border: solid 2px red;
-  } */
-
-  /* .ko-box-correct {
-    border: solid 2px rgb(5, 248, 5);
-  } */
 
   .final-four-cont {
     display: flex;
@@ -979,32 +966,6 @@
     height: 20%;
   }
 
-  /* .team-flag-ko {
-    min-width: 75px;
-    max-width: 75px;
-    max-height: 40px;
-    min-height: 40px;
-  } */
-
-  /*
-  .ko-box-large-z-in {
-    font-size: 17px;
-    height: 5.5rem;
-    width: 9vw;
-  } */
-  /* 
-  .correct-box {
-    border: solid 4px rgb(11, 238, 11);
-    border-radius: 0.7rem;
-  }
-
-  .wrong-box {
-    border: solid 4px red;
-    border-radius: 0.7rem;
-  }
-
-  */
-
   .team-name-ko-z-in {
     color: #fff;
     font-size: 200%;
@@ -1023,7 +984,6 @@
   }
 
   .correct-box {
-    /* border: solid 2px white; */
     background: linear-gradient(
       to bottom right,
       rgb(24, 94, 8) 0%,
@@ -1034,7 +994,6 @@
   }
 
   .wrong-box {
-    /* border: solid 2px white; */
     background: linear-gradient(
       to bottom right,
       rgb(96, 18, 5) 0%,
@@ -1055,115 +1014,3 @@
     color: black;
   }
 }
-
-/*OG MOBILE CSS*/
-/* @media (max-width: 65em) {
-  .knockout-cont-mobile {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    background: linear-gradient(
-      to bottom right,
-      black 0%,
-      rgb(79, 75, 75) 25%,
-      rgb(93, 89, 89) 50%,
-      rgb(79, 75, 75) 75%,
-      black 100%
-    );
-    margin-top: 40px;
-    border-radius: 1rem;
-  }
-
-  .knockout-cont-mobile > h1 {
-    padding-top: 3%;
-    font-size: 250%;
-  }
-
-  .knockout-cont-mobile > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .ko-cont-half {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .regoin-cont {
-    display: flex;
-    justify-content: space-around;
-
-    width: 200px;
-  }
-
-  .regoin-cont > div > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 10px 0 10px 0;
-    height: 150px;
-  }
-
-  .ko-box-small {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 50px;
-    width: 50px;
-  }
-
-  .ko-box-medium {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 60px;
-    width: 80px;
-  }
-
-  .ko-box-large {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 100px;
-    width: 140px;
-  }
-
-  .ko-box-wrong {
-    border: solid 2px red;
-  }
-
-  .ko-box-correct {
-    border: solid 2px rgb(5, 248, 5);
-  }
-
-  .final-four-cont {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0 20px 0;
-  }
-
-  .semis-mobile-z-out {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  
-    height: 150px;
-    margin: 0 10px 0 10px;
-  }
-
-  .finals-mobile-z-out {
-    display: flex;
-    align-items: center;
-  }
-
-  .champ-mobile-z-out {
-    display: flex;
-    align-items: center;
-    margin: 0 20px 0 20px;
-  }
-} */

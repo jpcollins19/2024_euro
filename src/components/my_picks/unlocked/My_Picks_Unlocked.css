@@ -233,7 +233,6 @@
   /*/ ////////////////////////////*/
 
   .ko-cont-unlocked-main-m {
-    /* border: solid 2px dodgerblue; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -243,7 +242,6 @@
 
   .ko-cont-half-unlocked-m {
     display: flex;
-    /* border: solid 2px red; */
   }
 
   .final-four-cont-unlocked-m {
@@ -252,14 +250,12 @@
     justify-content: center;
     border-top: solid 2px black;
     border-bottom: solid 2px black;
-    /* border: solid 2px blue; */
   }
 
   .final-four-cont-unlocked-m > div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* border: solid 2px red; */
   }
 
   .ko-box-mobile-unlocked {

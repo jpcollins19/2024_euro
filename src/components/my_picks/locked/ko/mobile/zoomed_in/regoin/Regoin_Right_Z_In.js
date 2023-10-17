@@ -1,11 +1,9 @@
 import R16_Column_Z_In from "./R16_Column_Z_In";
 import R8_Column_Z_In from "./R8_Column_Z_In";
-// import R4_Column_Z_In from "./R4_Column_Z_In";
 
 const Regoin_Right_Z_In = ({ regoin, user }) => {
   return (
     <div className="regoin-cont-c">
-      {/* <R4_Column_Z_In side="right" regoin={regoin} user={user} /> */}
       <R8_Column_Z_In side="right" regoin={regoin} user={user} />
       <R16_Column_Z_In side="right" regoin={regoin} user={user} />
     </div>
