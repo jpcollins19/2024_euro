@@ -1,11 +1,14 @@
-import Link from "@mui/material/Link";
+import Link_MUI from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import User_Profile_Dropdown from "../../../UserAccount/User_Profile_Dropdown";
 import LastUpdated from "./LastUpdated";
 
 const Top_Row = ({ user, tourneyStarted, userSubmittedPicks }) => {
   return (
     <div className="top-row-navbar">
-      <h1>2024 Euros</h1>
+      <Link to="/leaderboard">
+        <h1>2024 Euros</h1>
+      </Link>
 
       <LastUpdated
         user={user}
@@ -17,12 +20,12 @@ const Top_Row = ({ user, tourneyStarted, userSubmittedPicks }) => {
         {user?.id ? (
           <User_Profile_Dropdown />
         ) : (
-          <Link
+          <Link_MUI
             href="#/sign_in"
             style={{ textDecoration: "none", color: "blue" }}
           >
             Sign In
-          </Link>
+          </Link_MUI>
         )}
       </div>
     </div>

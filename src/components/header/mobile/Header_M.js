@@ -13,11 +13,6 @@ const Header_M = () => {
 
   const user = useSelector((state) => state.auth);
 
-  const joe = findJoe(useSelector((state) => state.users));
-
-  // const tourneyStarted = joe?.tourneyStage !== 1;
-  // const userSubmittedPicks = user?.tiebreaker ?? false;
-
   let verbiageNeeded = "";
 
   if (user?.name) {
@@ -30,7 +25,7 @@ const Header_M = () => {
 
   return (
     <div className="navbar-cont-mobile">
-      <Link to="/" className="mobile-header-title">
+      <Link to="/">
         <CssBaseline />
         2024 Euros
       </Link>

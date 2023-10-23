@@ -14,12 +14,12 @@ const No_Match = () => {
     <Loading />
   ) : (
     <div className="no-match-page">
-      <h1>404 Error, page not found</h1>
-      <h2>Lost your way? </h2>
-      <h2>Let's take you home.</h2>
-      <Link to="/leaderboard" style={{ textDecoration: "none" }}>
-        <h4>Go Home</h4>
-      </Link>
+      <div>
+        <h1>404 Error</h1>
+        <Link to="/leaderboard">
+          <h2>Click here for the Home Page</h2>
+        </Link>
+      </div>
     </div>
   );
 };

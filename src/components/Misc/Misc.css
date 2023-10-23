@@ -5,21 +5,60 @@
 /*/ //////////////////////*/
 
 .no-match-page {
+  /* background-image: url("/public/pics/monkey-taking-shirt-off.gif"); */
+  background-image: url("/public/pics/monkey-404.jpeg");
+  background-size: 100% 100%;
+  height: 84vh;
+  background-repeat: no-repeat;
+  display: grid;
+  overflow: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  cursor: default;
-  overflow: auto;
-  padding-top: 3%;
 }
 
-.no-match-page > h1 {
-  margin: 10% 0% 3% 0%;
+.no-match-page > div {
+  position: absolute;
+  top: 250;
+  left: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
 }
 
-.no-match-page > h2 {
+.no-match-page > div > h1 {
+  margin: 3% 0% 3% 0%;
+  font-size: 5vw;
+}
+
+.no-match-page > div > h2 {
   margin: 0;
+}
+
+.no-match-page > div > a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 65em) {
+  .no-match-page {
+    background-image: url("/public/pics/monkey-404-mobile.jpeg");
+    background-size: cover;
+  }
+
+  .no-match-page > div {
+    top: 900;
+    left: 40;
+  }
+
+  .no-match-page > div > h1 {
+    font-size: 400%;
+  }
+
+  .no-match-page > div > a {
+    font-size: 150%;
+  }
 }
 
 /*/ //////////////////////*/
@@ -156,10 +195,4 @@
 .dropdown {
   background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
   border-radius: 0.5rem;
-}
-
-@media (max-width: 65em) {
-  /* .dropdown-cont > div {
-    height: 10vh;
-  } */
 }
