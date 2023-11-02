@@ -22,8 +22,16 @@ const Pool_Picks_Page = () => {
   const { pathname } = useLocation();
 
   const [loading, setLoading] = useState(true);
-
   const [selectedUser, setSelectedUser] = useState(null);
+  const [zoomedOut, setZoomedOut] = useState(true);
+  const [zoomedInRegoin, setZoomedInRegoin] = useState(1);
+
+  const zoomData = {
+    zoomedOut: zoomedOut,
+    setZoomedOut: setZoomedOut,
+    zoomedInRegoin: zoomedInRegoin,
+    setZoomedInRegoin: setZoomedInRegoin,
+  };
 
   setTimeout(() => {
     setLoading(false);
@@ -89,9 +97,9 @@ const Pool_Picks_Page = () => {
           Pool Picks will not be viewable until the tournament commences on
           11/20/22
         </h1>
-      ) : (
-        <div className="pool-picks-container">
-          {user?.tiebreaker && (
+      ) : zoomedOut ? (
+        user?.tiebreaker && (
+          <div className="pool-picks-container">
             <div className="pool-picks-header">
               <h1 className="white-text">Picks for:</h1>
               <Dropdown
@@ -101,64 +109,47 @@ const Pool_Picks_Page = () => {
                 set={(value) => onChange(value.value.id)}
               />
             </div>
-          )}
 
-          <div className="box">
-            {user?.tiebreaker && joe.tourneyStage <= 3 && (
-              <Point_System_Cont tourneyStage={joe?.tourneyStage} />
-            )}
-          </div>
-
-          {user?.tiebreaker && (
             <Total_Points_Cont selectedUser={selectedUser?.value} />
-          )}
 
-          {joe?.tourneyStage === 5 && user?.tiebreaker && (
-            <div className="box">
-              <div className="ko-predictions-cont">
-                <Knockout_Cont selectedUser={selectedUser?.value} />
-              </div>
-            </div>
-          )}
-
-          {user?.tiebreaker && (
-            <div className="box">
-              {joe.tourneyStage >= 4 && (
-                <Point_System_Cont tourneyStage={joe?.tourneyStage} />
-              )}
-
-              <div className="group-predictions-cont">
-                {groupLetters.map((letter) => (
-                  <Single_Group_Cont
-                    key={letter}
-                    group={letter}
+            {joe?.tourneyStage === 5 && (
+              <div className="box">
+                <div className="ko-predictions-cont">
+                  <Knockout_Cont
                     selectedUser={selectedUser?.value}
+                    zoomData={zoomData}
                   />
-                ))}
+                </div>
               </div>
-            </div>
-          )}
-
-          {/* <div className="top box">
-            <div className="box left">
-              {joe?.tourneyStage >= 4 && user?.tiebreaker && (
-                <Point_System_Cont tourneyStage={joe?.tourneyStage} />
-              )}
-              <div className="predictions-cont">
-                {groupLetters.map((letter) => (
-                  <Single_Group_Cont
-                    key={letter}
-                    group={letter}
-                    selectedUser={selectedUser?.value}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {joe?.tourneyStage < 5 && user?.tiebreaker && (
-              <Total_Points_Cont selectedUser={selectedUser?.value} />
             )}
-          </div> */}
+
+            <div className="pool-picks-points-cont">
+              <Point_System_Cont tourneyStage={joe?.tourneyStage} />
+            </div>
+
+            <div className="box">
+              <div
+                className={`group-predictions-cont ${
+                  joe?.tourneyStage <= 2 ? "gpc-2" : ""
+                }`}
+              >
+                {groupLetters.map((letter) => (
+                  <Single_Group_Cont
+                    key={letter}
+                    group={letter}
+                    selectedUser={selectedUser?.value}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      ) : (
+        <div className="ko-predictions-cont">
+          <Knockout_Cont
+            selectedUser={selectedUser?.value}
+            zoomData={zoomData}
+          />
         </div>
       )}
     </div>

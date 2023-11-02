@@ -35,7 +35,7 @@ const Total_Points_Cont = ({ selectedUser }) => {
   return (
     <div
       className={`total-points-cont ${
-        joe?.tourneyStage === 3 ? "tpc-mobile-3" : "tpc-mobile"
+        joe?.tourneyStage >= 3 ? "tpc-mobile-3" : "tpc-mobile"
       }`}
     >
       <div>

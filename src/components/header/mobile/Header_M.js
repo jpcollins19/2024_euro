@@ -3,8 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { findJoe, cap1stLetter } from "../../../store";
 import CssBaseline from "@mui/material/CssBaseline";
 import Menu_Chevron from "./Menu_Chevron";
-// import Top_Row from "./top_row/Top_Row";
-// import Bottom_Row from "./bottom_row/Bottom_Row";
+import LastUpdated from "../LastUpdated";
 
 const Header_M = () => {
   const { pathname } = useLocation();
@@ -12,6 +11,11 @@ const Header_M = () => {
   const currentPage = cap1stLetter(pathname.split("/")[1]);
 
   const user = useSelector((state) => state.auth);
+
+  const joe = findJoe(useSelector((state) => state.users));
+
+  const tourneyStarted = joe?.tourneyStage !== 1;
+  const userSubmittedPicks = user?.tiebreaker ?? false;
 
   let verbiageNeeded = "";
 
@@ -25,6 +29,12 @@ const Header_M = () => {
 
   return (
     <div className="navbar-cont-mobile">
+      <LastUpdated
+        user={user}
+        tourneyStarted={tourneyStarted}
+        userSubmittedPicks={userSubmittedPicks}
+      />
+
       <Link to="/">
         <CssBaseline />
         2024 Euros

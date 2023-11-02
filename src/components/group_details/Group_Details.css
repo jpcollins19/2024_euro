@@ -1,13 +1,11 @@
 .group-details-page {
-  overflow: auto;
-  background-image: url("/public/pics/spain-champs.webp");
-  background-size: cover;
-  background-position: center;
+  background-image: url("/public/pics/greece-champs.jpeg");
   height: 84vh;
-  width: 100vw;
+  background-size: cover;
+  overflow: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 .group-details-container {
@@ -178,4 +176,10 @@
   max-width: 45px;
   padding: 10% 0 10% 0;
   border-bottom: solid 2px rgb(175, 170, 170);
+}
+
+@media (max-width: 65em) {
+  .group-details-page {
+    background-image: url("/public/pics/greece-champs-mobile.jpeg");
+  }
 }

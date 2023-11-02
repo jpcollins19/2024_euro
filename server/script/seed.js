@@ -135,7 +135,7 @@ const users = [
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
     tiebreaker: 98,
-    tourneyStage: 4,
+    tourneyStage: 5,
   },
   //stan
   {
@@ -542,7 +542,7 @@ const syncAndSeed = async () => {
   Ecuador.groupFinishingPosition = 2;
   Senegal.groupFinishingPosition = 3;
   Qatar.groupFinishingPosition = 4;
-  //
+
   England.groupFinishingPosition = 1;
   USA.groupFinishingPosition = 2;
   Wales.groupFinishingPosition = 3;

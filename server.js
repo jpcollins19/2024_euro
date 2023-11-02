@@ -1,16 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-//my picks locked - stage 4 and 5 - make the poitns system cont larger w larger text, also center the group result containers below it.
-//audit to make sure all is IGO during stages 1-3 as well
-
-////pool picks - all 5 stages
-//change everything to % as you minimize the page before it gets to tablet mode
-///stage 1
-///stage 2
-///stage 3
-///stage 4
-///stage 5
-
 ////rules
 //change everything to % as you minimize the page before it gets to tablet mode
 

@@ -1,7 +1,7 @@
 import Link_MUI from "@mui/material/Link";
 import { Link } from "react-router-dom";
 import User_Profile_Dropdown from "../../../UserAccount/User_Profile_Dropdown";
-import LastUpdated from "./LastUpdated";
+import LastUpdated from "../../LastUpdated";
 
 const Top_Row = ({ user, tourneyStarted, userSubmittedPicks }) => {
   return (

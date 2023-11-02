@@ -233,4 +233,24 @@
     background-color: rgb(238, 233, 233);
     border-radius: 0;
   }
+
+  .last-updated-cont {
+    left: 20;
+  }
+
+  .last-updated-cont > div > div {
+    font-size: 140%;
+  }
+
+  .email-notifications-cont {
+    padding-top: 5%;
+    font-size: 120%;
+  }
+
+  .last-updated-cont > button {
+    position: absolute;
+    top: 110;
+    left: 100;
+    font-size: 170%;
+  }
 }

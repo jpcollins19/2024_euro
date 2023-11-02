@@ -26,7 +26,7 @@ const Point_System_Cont = ({ tourneyStage }) => {
   return (
     <div
       className={`point-system-table-cont ${
-        tourneyStage <= 2 ? "pstc-2" : tourneyStage === 3 ? "pstc-3" : "pstc-4"
+        tourneyStage <= 2 ? "pstc-2" : "pstc-3"
       }`}
     >
       <div className={`ps-top ${tourneyStage <= 2 ? "ps-bottom" : ""}`}>

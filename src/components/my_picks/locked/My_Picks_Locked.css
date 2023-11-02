@@ -74,10 +74,11 @@
 }
 
 .total-points-cont {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   right: 30;
   top: 400;
+  background: transparent;
 }
 
 .total-points-cont > div {
@@ -115,6 +116,15 @@
   align-items: center;
   left: 0;
   width: 85vw;
+  padding-bottom: 4rem;
+}
+
+.stage-4-group-cont-outside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0;
+  width: 99vw;
   padding-bottom: 4rem;
 }
 
@@ -325,10 +335,6 @@
     font-size: 200%;
   }
 
-  .pstc-4 {
-    font-size: 125%;
-  }
-
   .astrix {
     margin: 0 5px 15px 5px;
   }
@@ -375,6 +381,11 @@
 
   .group-predictions-cont {
     padding-left: 20px;
+    justify-content: start;
+  }
+
+  .gpc-2 {
+    justify-content: center;
   }
 
   .single-group-cont-picks-pre-ko {
@@ -808,11 +819,11 @@
     margin: 0 20px 0 20px;
   }
 
-  .ko-cont-zommed-in {
+  .ko-cont-zoomed-in {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
+    height: 89vh;
     width: 100vw;
     background: linear-gradient(
       to bottom right,
@@ -824,8 +835,9 @@
     );
   }
 
-  .ko-cont-zommed-in > h1 {
+  .ko-cont-zoomed-in > h1 {
     margin: 30px 0 30px 0;
+    padding-top: 10px;
   }
 
   .ko-data-cont-outside-z-in {

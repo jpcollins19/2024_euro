@@ -87,12 +87,20 @@ const My_Picks_Locked_Page = () => {
       )}
 
       {user?.tiebreaker && (
-        <div className="box">
+        <div
+          className={
+            joe.tourneyStage >= 4 ? "stage-4-group-cont-outside" : "box"
+          }
+        >
           {joe.tourneyStage >= 4 && (
             <Point_System_Cont tourneyStage={joe?.tourneyStage} />
           )}
 
-          <div className="group-predictions-cont">
+          <div
+            className={`group-predictions-cont ${
+              joe?.tourneyStage <= 2 ? "gpc-2" : ""
+            }`}
+          >
             {letters.map((letter) => (
               <Single_Group_Cont_Locked key={letter} group={letter} />
             ))}
