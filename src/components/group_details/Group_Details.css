@@ -74,6 +74,7 @@
   font-size: 1.7rem;
   text-align: center;
   border-bottom: solid 2px rgb(175, 170, 170);
+  padding-bottom: 8px;
 }
 
 .group-table-cont {
@@ -179,7 +180,96 @@
 }
 
 @media (max-width: 65em) {
-  .group-details-page {
-    background-image: url("/public/pics/greece-champs-mobile.jpeg");
+  .group-details-container {
+    margin-bottom: 5%;
+  }
+
+  .asterisk-table-cont {
+    margin: 4% 0 4% 0;
+    width: 60vw;
+  }
+
+  .asterisk-table-cont > div {
+    font-size: 200%;
+  }
+
+  .symbol-cont {
+    margin-bottom: 10px;
+  }
+
+  .single-group-cont {
+    min-width: 80vw;
+    min-height: 24vh;
+    margin-bottom: 5%;
+  }
+
+  .single-group-cont > h3 {
+    font-size: 190%;
+  }
+
+  .gd-column-header {
+    min-height: 50px;
+  }
+
+  .box1-gd {
+    flex: 0.4;
+  }
+
+  .box2-gd {
+    display: flex;
+    flex: 0.6;
+    justify-content: space-around;
+  }
+
+  .box1-gd > div {
+    display: flex;
+    flex: 0.5;
+  }
+
+  .group-table-cont > div > div > h4 {
+    font-size: 130%;
+  }
+
+  .group-table-cont > div > div > div {
+    min-height: 55.4px;
+    max-height: 55.4px;
+    font-size: 130%;
+  }
+
+  .group-table-cont > div > div > img {
+    min-height: 55px;
+    max-height: 55px;
+  }
+
+  .gd-cc-advanced {
+    max-width: 30px;
+    padding-top: 5px;
+  }
+
+  .gd-cc-flag {
+    flex: 0.4;
+    margin-left: 15px;
+  }
+
+  .gd-flag {
+    min-width: 8vw;
+    max-height: 0.4vh;
+  }
+
+  .spacer {
+    min-width: 25px;
+  }
+
+  .gd-cc-name {
+    flex: 0.6;
+    font-size: 150%;
+  }
+
+  .gd-cc-name > div {
+    width: 155%;
+  }
+
+  .gd-all-others {
+    min-width: 14%;
   }
 }

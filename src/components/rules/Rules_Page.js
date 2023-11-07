@@ -103,8 +103,9 @@ const Rules_Page = () => {
           site now, so $20 in juice is going to be taken out of the pot. That
           said, 3rd place no longer gets their $ back.
         </li>
-        <li>Winner gets 75% of remaining $.</li>
-        <li>2nd gets 25% of remaining $.</li>
+        <li>Third place gets their money back.</li>
+        <li>Winner gets 75% of remaining pot.</li>
+        <li>2nd place gets 25% of remaining pot.</li>
       </ul>
       <div>&nbsp;</div>
     </div>

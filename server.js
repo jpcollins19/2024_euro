@@ -1,11 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-////rules
-//change everything to % as you minimize the page before it gets to tablet mode
-
-////group details
-//change everything to % as you minimize the page before it gets to tablet mode
-
 ////leaderboard
 //change everything to % as you minimize the page before it gets to tablet mode
 ///stage 1

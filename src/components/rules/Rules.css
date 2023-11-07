@@ -4,16 +4,16 @@
   overflow: auto;
 }
 
-.rules-page > div > h2 {
+.rules-page > h2 {
   padding-top: 1%;
   margin-left: 2%;
 }
 
-.rules-page > div > ul {
+.rules-page > ul {
   padding-right: 9rem;
 }
 
-.rules-page > div > ul > li {
+.rules-page > ul > li {
   padding-left: 4%;
   font-size: 1rem;
 }
@@ -28,4 +28,14 @@
 
 .to-do {
   color: red;
+}
+
+@media (max-width: 65em) {
+  .rules-page > h2 {
+    font-size: 250%;
+  }
+
+  .rules-page > ul > li {
+    font-size: 140%;
+  }
 }
