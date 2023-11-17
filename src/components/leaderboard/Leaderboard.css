@@ -29,7 +29,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* border: solid 2px blue; */
   padding: 5% 0 5% 0;
 }
 
@@ -74,8 +73,8 @@
   display: flex;
   flex: 0.25;
   flex-direction: column;
-  min-width: 3rem;
-  max-width: 3rem;
+  min-width: 48px;
+  max-width: 48px;
   border: solid 1px white;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -256,4 +255,80 @@
   align-items: center;
   min-width: 3rem;
   padding-left: 20px;
+}
+
+@media (max-width: 65em) {
+  .payout-cont-outside {
+    position: relative;
+    top: 40;
+    left: 295;
+    width: 40%; /**/ /**/ /**/
+  }
+
+  .payout-cont-inside > h4 {
+    font-size: 170%;
+  }
+
+  .payout {
+    margin: 0 0 10px 0;
+    font-size: 100%;
+  }
+
+  .payout-text-cont {
+    width: 150%;
+  }
+
+  .payout-text-cont > div > div {
+    font-size: 150%;
+  }
+
+  .place-col-cont {
+    flex: 0.35;
+    min-width: 70px;
+    max-width: 70px;
+  }
+
+  .dollar-col-cont {
+    flex: 0.65;
+  }
+
+  .submitted {
+    font-size: 150%;
+  }
+
+  .pre-tourney-header {
+    margin-top: 70%;
+    font-size: 250%;
+  }
+
+  .table-cont {
+    margin-top: 5%;
+  }
+
+  .color-description-table-cont {
+    padding: 15px;
+    font-size: 190%;
+  }
+
+  .rankInfo > div {
+    font-size: 200%;
+  }
+
+  .rankInfo > div > div > div {
+    font-size: 100%;
+  }
+
+  .rankInfo > div > a > div {
+    font-size: 100%;
+  }
+
+  .small-box {
+    width: 5rem;
+    min-height: 55px;
+  }
+
+  .name-box {
+    width: 20rem;
+    min-height: 55px;
+  }
 }

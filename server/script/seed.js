@@ -135,7 +135,7 @@ const users = [
     thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
     tiebreaker: 98,
-    tourneyStage: 1,
+    tourneyStage: 3,
   },
   //stan
   {
@@ -538,44 +538,44 @@ const syncAndSeed = async () => {
     )
   );
   // //////////////////////////////////////////////////
-  // Netherlands.groupFinishingPosition = 1;
-  // Ecuador.groupFinishingPosition = 2;
-  // Senegal.groupFinishingPosition = 3;
-  // Qatar.groupFinishingPosition = 4;
+  Netherlands.groupFinishingPosition = 1;
+  Ecuador.groupFinishingPosition = 2;
+  Senegal.groupFinishingPosition = 3;
+  Qatar.groupFinishingPosition = 4;
 
-  // England.groupFinishingPosition = 1;
-  // USA.groupFinishingPosition = 2;
-  // Wales.groupFinishingPosition = 3;
-  // Iran.groupFinishingPosition = 4;
+  England.groupFinishingPosition = 1;
+  USA.groupFinishingPosition = 2;
+  Wales.groupFinishingPosition = 3;
+  Iran.groupFinishingPosition = 4;
 
-  // Argentina.groupFinishingPosition = 1;
-  // Mexico.groupFinishingPosition = 2;
-  // Poland.groupFinishingPosition = 3;
-  // Saudi_Arabia.groupFinishingPosition = 4;
+  Argentina.groupFinishingPosition = 1;
+  Mexico.groupFinishingPosition = 2;
+  Poland.groupFinishingPosition = 3;
+  Saudi_Arabia.groupFinishingPosition = 4;
 
-  // France.groupFinishingPosition = 1;
-  // Denmark.groupFinishingPosition = 2;
-  // Australia.groupFinishingPosition = 3;
-  // Tunisia.groupFinishingPosition = 4;
+  France.groupFinishingPosition = 1;
+  Denmark.groupFinishingPosition = 2;
+  Australia.groupFinishingPosition = 3;
+  Tunisia.groupFinishingPosition = 4;
+  //
+  Germany.groupFinishingPosition = 1;
+  Spain.groupFinishingPosition = 2;
+  Japan.groupFinishingPosition = 3;
+  Costa_Rica.groupFinishingPosition = 4;
   // //
-  // Germany.groupFinishingPosition = 1;
-  // Spain.groupFinishingPosition = 2;
-  // Japan.groupFinishingPosition = 3;
-  // Costa_Rica.groupFinishingPosition = 4;
-  // // //
-  // Belgium.groupFinishingPosition = 1;
-  // Croatia.groupFinishingPosition = 2;
-  // Morocco.groupFinishingPosition = 3;
-  // Canada.groupFinishingPosition = 4;
+  Belgium.groupFinishingPosition = 1;
+  Croatia.groupFinishingPosition = 2;
+  Morocco.groupFinishingPosition = 3;
+  Canada.groupFinishingPosition = 4;
 
-  // Ecuador.groupIsFinished = true;
-  // Netherlands.groupIsFinished = true;
-  // Qatar.groupIsFinished = true;
-  // Senegal.groupIsFinished = true;
-  // England.groupIsFinished = true;
-  // Iran.groupIsFinished = true;
-  // USA.groupIsFinished = true;
-  // Wales.groupIsFinished = true;
+  Ecuador.groupIsFinished = true;
+  Netherlands.groupIsFinished = true;
+  Qatar.groupIsFinished = true;
+  Senegal.groupIsFinished = true;
+  England.groupIsFinished = true;
+  Iran.groupIsFinished = true;
+  USA.groupIsFinished = true;
+  Wales.groupIsFinished = true;
   // Argentina.groupIsFinished = true;
   // Mexico.groupIsFinished = true;
   // Poland.groupIsFinished = true;

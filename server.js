@@ -1,11 +1,5 @@
 //////mobile compatibility --- LOCAL - START
 
-////leaderboard
-//change everything to % as you minimize the page before it gets to tablet mode
-///stage 1
-///stage 2-3 - make it so when you click on someone's name, they are sent to that persons pool picks page
-///stage 4-5
-
 ////my profile
 //add admin routes to menu_chevron when logged in
 
