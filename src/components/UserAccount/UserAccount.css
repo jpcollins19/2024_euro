@@ -342,6 +342,7 @@
   .soccer-field-outside {
     height: 65rem;
     width: 55rem;
+    margin-top: 23%;
   }
 
   .soccer-field-inside > h1 {
@@ -434,6 +435,7 @@
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
+  padding-top: 2rem;
 }
 
 .name-cont > div {
@@ -451,7 +453,6 @@
 }
 
 .user-profile-options > a {
-  margin-top: 5px;
   text-decoration: none;
   color: white;
 }
@@ -478,7 +479,7 @@
   font-size: 1rem;
   text-shadow: none;
   cursor: pointer;
-  padding: 25px 0 5px 0;
+  padding: 10px 0 5px 0;
 }
 
 .user-profile-edit-cancel-cont > div > a {
@@ -546,6 +547,89 @@
   min-width: 25rem;
   font-weight: bold;
   border: solid 2px black;
+}
+
+@media (max-width: 65em) {
+  .user-profile-outside {
+    height: 40vh;
+    width: 70vw;
+  }
+
+  .user-profile-inside {
+    height: 39vh;
+    width: 68vw;
+  }
+
+  .user-profile-inside > h1 {
+    font-size: 300%;
+  }
+
+  .edit-profile-button {
+    padding: 15% 0 15% 0;
+  }
+
+  .edit-profile-button button {
+    height: 250%;
+    width: 50%;
+    font-size: 190%;
+  }
+
+  .input-cont-user-profile > input {
+    margin: 10% 0 0 0;
+    min-width: 50vw;
+    font-size: 300%;
+    height: 5vh;
+  }
+
+  .view-pw-user-profile {
+    font-size: 200%;
+  }
+
+  .user-profile-edit-cancel-cont > div > a {
+    font-size: 200%;
+  }
+
+  .input-cont-user-profile > div {
+    margin-top: 5%;
+    min-width: 50vw;
+  }
+
+  .up-edit-email-notifications {
+    padding: 10% 0 10% 0;
+    max-width: 25vw;
+  }
+
+  .up-edit-email-notifications > div {
+    font-size: 170%;
+    margin: 0 3% 0 3%;
+    width: 90vw;
+  }
+  .up-input-email_notifications {
+    height: 5vh;
+    width: 5vw;
+  }
+
+  .user-profile-edit-error-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 8vh;
+  }
+
+  .name-cont {
+    font-size: 300%;
+    padding-top: 5vh;
+  }
+
+  .user-profile-options > a {
+    font-size: 200%;
+  }
+
+  .toaster-email-changed {
+    margin: 35% 0 0 0;
+    min-width: 60vw;
+    font-size: 200%;
+  }
 }
 
 /*/ //////////////////////*/

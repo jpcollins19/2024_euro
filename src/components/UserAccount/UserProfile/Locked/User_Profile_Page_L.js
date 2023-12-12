@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { me } from "../../../../store";
+import { me, getScreenWidth } from "../../../../store";
 import Loading from "../../../Misc/Loading";
 import Name from "./Name";
 import toast, { Toaster } from "react-hot-toast";
@@ -13,10 +13,12 @@ const User_Profile_Page = () => {
 
   const user = useSelector((state) => state.auth);
 
+  const isMobile = getScreenWidth("max", 65);
+
   if (!user) return null;
 
   const pwUpdated = () => {
-    toast("Your password has been updated!", { duration: 5000 });
+    toast("Your password has been updated!", { duration: 50000 });
   };
 
   useEffect(() => {
@@ -44,7 +46,10 @@ const User_Profile_Page = () => {
     const timeNow = new Date().getTime();
 
     if (month === monthNow && date === dateNow) {
-      if (timeNow - time < 2000) pwUpdated();
+      if (timeNow - time < 2000) {
+        toast.dismiss();
+        pwUpdated();
+      }
     }
   }, 1000);
 
@@ -52,20 +57,17 @@ const User_Profile_Page = () => {
     {
       route: "/edit_profile_name",
       text: "Edit Name",
-      // marginTop: isMobile ? "80px" : "20px",
-      marginTop: "20px",
+      marginTop: isMobile ? "50px" : "20px",
     },
     {
       route: "/edit_profile_password",
       text: "Change Password",
-      // marginTop: isMobile ? "30px" : "15px",
-      marginTop: "15px",
+      marginTop: isMobile ? "30px" : "15px",
     },
     {
       route: "/edit_profile_email_notifications",
       text: "Edit Email Notifications",
-      // marginTop: isMobile ? "30px" : "5px",
-      marginTop: "15px",
+      marginTop: isMobile ? "30px" : "15px",
     },
   ];
 

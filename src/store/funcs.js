@@ -1126,11 +1126,11 @@ const formatPathname = (str) => {
   }, "");
 };
 
-const formatURL = (str) => {
+const formatURL = (route) => {
   const space = /\s/g;
   const period = /\./g;
 
-  return str.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
+  return route.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
 };
 
 const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {

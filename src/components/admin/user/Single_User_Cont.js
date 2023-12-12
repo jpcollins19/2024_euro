@@ -20,7 +20,6 @@ import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Checkbox_Cont from "./Checkbox_Cont";
 import Group_Cont_Unlocked from "../../my_picks/unlocked/group/Group_Cont_Unlocked";
-//import Group_Cont_Admin from "./group/Group_Cont_Admin";
 import KO_Cont_UP_Edit from "../../my_picks/unlocked/ko/KO_Cont_UP_Edit";
 
 const Single_User_Cont = () => {
@@ -40,6 +39,16 @@ const Single_User_Cont = () => {
 
   const teams = useSelector((state) => state.teams);
   const joe = findJoe(useSelector((state) => state.users));
+
+  const [zoomedOut, setZoomedOut] = useState(true);
+  const [zoomedInRegoin, setZoomedInRegoin] = useState(1);
+
+  const zoomData = {
+    zoomedOut: zoomedOut,
+    setZoomedOut: setZoomedOut,
+    zoomedInRegoin: zoomedInRegoin,
+    setZoomedInRegoin: setZoomedInRegoin,
+  };
 
   const [name, setName] = useState(user?.name);
   const [password, setPassword] = useState(user?.password);
@@ -431,7 +440,9 @@ const Single_User_Cont = () => {
   return (
     <form id="admin-update-user" onSubmit={onSubmit}>
       <div className="admin-user-top">
-        <Button text="Submit" form="admin-update-user" />
+        <div className="admin-user-submit-button">
+          <Button text="Submit" form="admin-update-user" />
+        </div>
 
         {user?.name && (
           <div className="user-details-cont">
@@ -462,6 +473,7 @@ const Single_User_Cont = () => {
             <KO_Cont_UP_Edit
               userPicks={userPicks}
               resetMasterError={resetMasterError}
+              zoomData={zoomData}
             />
           )}
           <div className="tiebreaker-cont-edit-picks">
@@ -476,13 +488,6 @@ const Single_User_Cont = () => {
             ></input>
           </div>
           <div className="edit-group-picks">
-            {/* <Group_Cont_Admin
-              onChangeGroupSelections={onChangeGroupSelections}
-              groupErrorObj={groupErrorObj}
-              user={user}
-              selectionObj={groupSelections}
-              resetMasterError={resetMasterError}
-            /> */}
             <Group_Cont_Unlocked
               onChangeSelectionObj={onChangeGroupSelections}
               groupErrorObj={groupErrorObj}

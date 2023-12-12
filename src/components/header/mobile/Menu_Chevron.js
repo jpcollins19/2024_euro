@@ -11,8 +11,6 @@ const Navbar_Routes_M = () => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  // const isTablet = getScreenWidth("min", 65);
-
   let ref = useRef();
 
   useEffect(() => {
@@ -35,7 +33,7 @@ const Navbar_Routes_M = () => {
 
   const routes = ["Leaderboard", "My Picks", "Pool Picks", "Group Details"];
 
-  // const admin = { title: "Admin", icon: <Admin />, path: "/admin" };
+  const adminSubRoutes = ["users", "groups", "ko"];
 
   return (
     <div>
@@ -45,13 +43,16 @@ const Navbar_Routes_M = () => {
       </div>
       {click && (
         <ul className={click ? "dropdown-menu active" : "dropdown-menu"}>
-          {/* {user?.isAdmin && (
-            <List_Route_M
-              route={"Admin"}
-              closeMobileMenu={closeMobileMenu}
-              user={user}
-            />
-          )} */}
+          {user?.admin &&
+            adminSubRoutes.map((subRoute, idx) => (
+              <List_Route_M
+                key={idx}
+                route="Admin"
+                subRoute={subRoute}
+                closeMobileMenu={closeMobileMenu}
+                user={user}
+              />
+            ))}
 
           {user?.id &&
             routes.map((route, idx) => (

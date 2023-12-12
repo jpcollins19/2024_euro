@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { groupLetters } from "../../../store";
 import Dropdown from "../../Misc/Dropdown";
-import Group_Cont from "./Group_Cont";
+import Single_Cont from "./Single_Cont";
 import "./Group_Admin.css";
 
 const Group_Admin_Page = () => {
-  const [group, setGroup] = useState(null);
+  const [group, setGroup] = useState("A");
 
   const letters = groupLetters.map((letter) => {
     return { value: letter, label: `Group ${letter}` };
@@ -21,7 +21,7 @@ const Group_Admin_Page = () => {
         set={(option) => setGroup(option.value)}
       />
 
-      {group && <Group_Cont group={group} />}
+      {group && <Single_Cont group={group} />}
     </div>
   );
 };

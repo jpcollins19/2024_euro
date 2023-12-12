@@ -119,11 +119,13 @@ const User_Profile_Page = () => {
             {error ? (
               <Error error={error} />
             ) : (
-              <Button
-                text={"Submit"}
-                form={"update-profile"}
-                disabled={!inputChanged}
-              />
+              <div className="edit-profile-button">
+                <Button
+                  text={"Submit"}
+                  form={"update-profile"}
+                  disabled={!inputChanged}
+                />
+              </div>
             )}
           </div>
 

@@ -1,19 +1,3 @@
-//////mobile compatibility --- LOCAL - START
-
-////my profile
-//add admin routes to menu_chevron when logged in
-
-///admin - users
-//change everything to % as you minimize the page before it gets to tablet mode
-
-////admin - groups
-//change everything to % as you minimize the page before it gets to tablet mode
-
-////admin - teams
-//change everything to % as you minimize the page before it gets to tablet mode
-
-//////mobile compatibility --- LOCAL - END
-
 //Once tourney is close to starting:
 
 /////adjust the date info on the following pages:
@@ -21,7 +5,13 @@
 //leaderboard
 //pool picks
 
+////////once the site is live on byah-masters-byah ----START
+
 //change the sendgrid email template URLs to byah-masters-byah
+
+///verify that the forgot pw lifecycle is working
+
+//verify that the "opt into receive email notifications" setting is working as expected
 
 //////tablet and mobile compatibility --- byah-masters-byah - START
 //sign in
@@ -37,43 +27,67 @@
 
 //rules
 
+////stage 1 --- START
+//my profile
 //group details
-
-//my picks - locked - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
-
-//my picks - unlocked - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
-
-//pool picks - all 5 stages
-//stage 1
-//stage 2
-//stage 3
-//stage 4
-//stage 5
-
+//my picks - locked
+//my picks - unlocked
+//pool picks
 //leaderboard
-//stage 1
-//stage 2-3
-//stage 4-5
-
 //admin - users
-
 //admin - groups
-
 //admin - teams
 
-///verify that the forgot pw lifecycle is working
+////stage 1 --- END
+
+////stage 2 --- START
+//group details
+//my picks - locked
+//pool picks
+//leaderboard
+//admin - users
+//admin - groups
+//admin - teams
+
+////stage 2 --- END
+
+////stage 3 --- START
+//group details
+//my picks - locked
+//pool picks
+//leaderboard
+//admin - users
+//admin - groups
+//admin - teams
+
+////stage 3 --- END
+
+////stage 4 --- START
+//group details
+//my picks - locked
+//my picks - unlocked
+//pool picks
+//leaderboard
+//admin - users
+//admin - groups
+//admin - teams
+
+////stage 4 --- END
+
+////stage 5 --- START
+//group details
+//my picks - locked
+//pool picks
+//leaderboard
+//admin - users
+//admin - groups
+//admin - teams
+
+////stage 5 --- END
 
 //////tablet and mobile compatibility --- byah-masters-byah - END
+
+////////once the site is live on byah-masters-byah ----END
 
 /////////////////////////////////
 // Tourney Stage Info //

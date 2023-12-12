@@ -4,9 +4,10 @@ import {
   formatURL,
   logout,
   resetUserWantsToViewProfileKeys,
+  cap1stLetter,
 } from "../../../store";
 
-const List_Route_M = ({ route, closeMobileMenu, user }) => {
+const List_Route_M = ({ route, closeMobileMenu, user, subRoute }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -17,7 +18,12 @@ const List_Route_M = ({ route, closeMobileMenu, user }) => {
       ? "sign_in"
       : route === "Pool Picks"
       ? `pool_picks/${user?.id}`
+      : route === "Admin"
+      ? `admin/${subRoute}`
       : formatURL(route);
+
+  const verbiage =
+    route === "Admin" ? `Admin - ${cap1stLetter(subRoute)}` : route;
 
   return (
     <li>
@@ -31,7 +37,7 @@ const List_Route_M = ({ route, closeMobileMenu, user }) => {
           // resetUserWantsToViewProfileKeys(user?.id);
         }}
       >
-        {route}
+        {verbiage}
       </Link>
     </li>
   );

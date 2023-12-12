@@ -27,6 +27,11 @@ const Header_M = () => {
     verbiageNeeded = "Rules / General Information";
   }
 
+  if (currentPage === "Admin") {
+    const subRoute = pathname.split("/")[2];
+    verbiageNeeded = `${currentPage} - ${cap1stLetter(subRoute)}`;
+  }
+
   return (
     <div className="navbar-cont-mobile">
       <LastUpdated
