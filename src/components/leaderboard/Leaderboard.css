@@ -32,6 +32,46 @@
   padding: 5% 0 5% 0;
 }
 
+.payout-cont-m {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 9.3vh;
+  width: 20%;
+  position: fixed;
+  opacity: 1;
+}
+
+.payout-cont-m.active {
+  background: #ffffff;
+  left: 150;
+  opacity: 1;
+  transition: top 0.2s ease-out;
+  list-style: none;
+  padding: 0;
+  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.payout-cont-m > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10% 0 5% 0;
+}
+
+.payout-cont-m {
+  top: 10.1vh;
+  width: 40%;
+}
+
+.payout-cont-m.active {
+  left: 10;
+}
+
 .verbiage {
   text-align: center;
   text-shadow: 1.5px 1.5px black;

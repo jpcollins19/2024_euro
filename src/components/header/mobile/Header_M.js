@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
-import { findJoe, cap1stLetter } from "../../../store";
+import { cap1stLetter } from "../../../store";
 import CssBaseline from "@mui/material/CssBaseline";
 import Menu_Chevron from "./Menu_Chevron";
-import LastUpdated from "../LastUpdated";
+import Misc_Header_Data from "../Misc_Header_Data";
 
 const Header_M = () => {
   const { pathname } = useLocation();
@@ -11,11 +11,6 @@ const Header_M = () => {
   const currentPage = cap1stLetter(pathname.split("/")[1]);
 
   const user = useSelector((state) => state.auth);
-
-  const joe = findJoe(useSelector((state) => state.users));
-
-  const tourneyStarted = joe?.tourneyStage !== 1;
-  const userSubmittedPicks = user?.tiebreaker ?? false;
 
   let verbiageNeeded = "";
 
@@ -34,11 +29,7 @@ const Header_M = () => {
 
   return (
     <div className="navbar-cont-mobile">
-      <LastUpdated
-        user={user}
-        tourneyStarted={tourneyStarted}
-        userSubmittedPicks={userSubmittedPicks}
-      />
+      <Misc_Header_Data user={user} />
 
       <Link to="/">
         <CssBaseline />

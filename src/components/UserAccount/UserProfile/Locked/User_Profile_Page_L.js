@@ -18,7 +18,7 @@ const User_Profile_Page = () => {
   if (!user) return null;
 
   const pwUpdated = () => {
-    toast("Your password has been updated!", { duration: 50000 });
+    toast("Your password has been updated!", { duration: 5000 });
   };
 
   useEffect(() => {

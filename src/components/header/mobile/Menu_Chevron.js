@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { getScreenWidth } from "../../../store";
-import Admin from "@mui/icons-material/SettingsAccessibility";
 import MenuItemIcon from "@mui/icons-material/List";
 import List_Route_M from "./List_Route_M";
 

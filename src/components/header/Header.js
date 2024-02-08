@@ -12,9 +12,9 @@ const Header = () => {
     dispatch(me());
   }, []);
 
-  const mobileViewNeeded = getScreenWidth("max", 65);
+  const isMobile = getScreenWidth("max", 65);
 
-  return mobileViewNeeded ? <Header_M /> : <Header_C />;
+  return isMobile ? <Header_M /> : <Header_C />;
 };
 
 export default Header;

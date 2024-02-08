@@ -1,6 +1,14 @@
+///adjust payout data for mobile view to mimic how you did it for the masters: shouldPayoutShow func
+
+///add feature for updating email preferences - email is sent when this preference is adjusted.
+
+//group details = adjust the group containers to be a little darker than the background
+//group details = adjust the "3rd place team advanced from group" container at the top to be a little darker than the background
+
 //Once tourney is close to starting:
 
 /////adjust the date info on the following pages:
+//create a local variable and apply it to these pages - see masters App
 //rules
 //leaderboard
 //pool picks

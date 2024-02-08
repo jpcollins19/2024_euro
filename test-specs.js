@@ -13,6 +13,8 @@ const {
   formatPathname,
   cap1stLetter,
   formatURL,
+  shouldPayoutShow,
+  calcPayout,
 } = require("./src/store/funcs");
 
 const {
@@ -1336,498 +1338,612 @@ describe("Cals everthing correctly", () => {
   });
 });
 
-describe("func testing", () => {
-  describe("determineR16Seeding", () => {
-    const determineR16SeedingTesting = [
-      {
-        scenario: "ABCD",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Poland"],
-        expectedMatchups: {
-          R16_1: ["B1", "A3"],
-          R16_3: ["F1", "C3"],
-          R16_5: ["E1", "B3"],
-          R16_7: ["C1", "D3"],
-        },
+describe("determineR16Seeding", () => {
+  const determineR16SeedingTesting = [
+    {
+      scenario: "ABCD",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Poland"],
+      expectedMatchups: {
+        R16_1: ["B1", "A3"],
+        R16_3: ["F1", "C3"],
+        R16_5: ["E1", "B3"],
+        R16_7: ["C1", "D3"],
       },
-      {
-        scenario: "ABCE",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Wales", "Japan", "Poland"],
-        expectedMatchups: {
-          R16_1: ["B1", "A3"],
-          R16_3: ["F1", "C3"],
-          R16_5: ["E1", "B3"],
-          R16_7: ["C1", "E3"],
-        },
+    },
+    {
+      scenario: "ABCE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Japan", "Poland"],
+      expectedMatchups: {
+        R16_1: ["B1", "A3"],
+        R16_3: ["F1", "C3"],
+        R16_5: ["E1", "B3"],
+        R16_7: ["C1", "E3"],
       },
-      {
-        scenario: "ABCF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Poland"],
-        expectedMatchups: {
-          R16_1: ["B1", "A3"],
-          R16_3: ["F1", "C3"],
-          R16_5: ["E1", "B3"],
-          R16_7: ["C1", "F3"],
-        },
+    },
+    {
+      scenario: "ABCF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Poland"],
+      expectedMatchups: {
+        R16_1: ["B1", "A3"],
+        R16_3: ["F1", "C3"],
+        R16_5: ["E1", "B3"],
+        R16_7: ["C1", "F3"],
       },
-      {
-        scenario: "ABDE",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Japan"],
-        expectedMatchups: {
-          R16_1: ["B1", "D3"],
-          R16_3: ["F1", "B3"],
-          R16_5: ["E1", "A3"],
-          R16_7: ["C1", "E3"],
-        },
+    },
+    {
+      scenario: "ABDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Australia", "Japan"],
+      expectedMatchups: {
+        R16_1: ["B1", "D3"],
+        R16_3: ["F1", "B3"],
+        R16_5: ["E1", "A3"],
+        R16_7: ["C1", "E3"],
       },
-      {
-        scenario: "ABDF",
-        teamAdjustments: false,
-        expectedMatchups: {
-          R16_1: ["B1", "D3"],
-          R16_3: ["F1", "B3"],
-          R16_5: ["E1", "A3"],
-          R16_7: ["C1", "F3"],
-        },
+    },
+    {
+      scenario: "ABDF",
+      teamAdjustments: false,
+      expectedMatchups: {
+        R16_1: ["B1", "D3"],
+        R16_3: ["F1", "B3"],
+        R16_5: ["E1", "A3"],
+        R16_7: ["C1", "F3"],
       },
-      {
-        scenario: "ABEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Japan"],
-        expectedMatchups: {
-          R16_1: ["B1", "E3"],
-          R16_3: ["F1", "A3"],
-          R16_5: ["E1", "B3"],
-          R16_7: ["C1", "F3"],
-        },
+    },
+    {
+      scenario: "ABEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Wales", "Morocco", "Japan"],
+      expectedMatchups: {
+        R16_1: ["B1", "E3"],
+        R16_3: ["F1", "A3"],
+        R16_5: ["E1", "B3"],
+        R16_7: ["C1", "F3"],
       },
-      {
-        scenario: "ACDE",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Japan"],
-        expectedMatchups: {
-          R16_1: ["B1", "E3"],
-          R16_3: ["F1", "A3"],
-          R16_5: ["E1", "C3"],
-          R16_7: ["C1", "D3"],
-        },
+    },
+    {
+      scenario: "ACDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Japan"],
+      expectedMatchups: {
+        R16_1: ["B1", "E3"],
+        R16_3: ["F1", "A3"],
+        R16_5: ["E1", "C3"],
+        R16_7: ["C1", "D3"],
       },
-      {
-        scenario: "ACDF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "F3"],
-          R16_3: ["F1", "A3"],
-          R16_5: ["E1", "C3"],
-          R16_7: ["C1", "D3"],
-        },
+    },
+    {
+      scenario: "ACDF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Australia", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "F3"],
+        R16_3: ["F1", "A3"],
+        R16_5: ["E1", "C3"],
+        R16_7: ["C1", "D3"],
       },
-      {
-        scenario: "ACEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Poland", "Japan", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "E3"],
-          R16_3: ["F1", "A3"],
-          R16_5: ["E1", "C3"],
-          R16_7: ["C1", "F3"],
-        },
+    },
+    {
+      scenario: "ACEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Poland", "Japan", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "E3"],
+        R16_3: ["F1", "A3"],
+        R16_5: ["E1", "C3"],
+        R16_7: ["C1", "F3"],
       },
-      {
-        scenario: "ADEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Senegal", "Australia", "Japan", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "E3"],
-          R16_3: ["F1", "A3"],
-          R16_5: ["E1", "D3"],
-          R16_7: ["C1", "F3"],
-        },
+    },
+    {
+      scenario: "ADEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Senegal", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "E3"],
+        R16_3: ["F1", "A3"],
+        R16_5: ["E1", "D3"],
+        R16_7: ["C1", "F3"],
       },
-      {
-        scenario: "BCDE",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Japan"],
-        expectedMatchups: {
-          R16_1: ["B1", "E3"],
-          R16_3: ["F1", "C3"],
-          R16_5: ["E1", "B3"],
-          R16_7: ["C1", "D3"],
-        },
+    },
+    {
+      scenario: "BCDE",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Japan"],
+      expectedMatchups: {
+        R16_1: ["B1", "E3"],
+        R16_3: ["F1", "C3"],
+        R16_5: ["E1", "B3"],
+        R16_7: ["C1", "D3"],
       },
-      {
-        scenario: "BCDF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "F3"],
-          R16_3: ["F1", "B3"],
-          R16_5: ["E1", "C3"],
-          R16_7: ["C1", "D3"],
-        },
+    },
+    {
+      scenario: "BCDF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Australia", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "F3"],
+        R16_3: ["F1", "B3"],
+        R16_5: ["E1", "C3"],
+        R16_7: ["C1", "D3"],
       },
-      {
-        scenario: "BCEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Wales", "Poland", "Japan", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "F3"],
-          R16_3: ["F1", "B3"],
-          R16_5: ["E1", "C3"],
-          R16_7: ["C1", "E3"],
-        },
+    },
+    {
+      scenario: "BCEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Poland", "Japan", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "F3"],
+        R16_3: ["F1", "B3"],
+        R16_5: ["E1", "C3"],
+        R16_7: ["C1", "E3"],
       },
-      {
-        scenario: "BDEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Wales", "Australia", "Japan", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "F3"],
-          R16_3: ["F1", "B3"],
-          R16_5: ["E1", "D3"],
-          R16_7: ["C1", "E3"],
-        },
+    },
+    {
+      scenario: "BDEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Wales", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "F3"],
+        R16_3: ["F1", "B3"],
+        R16_5: ["E1", "D3"],
+        R16_7: ["C1", "E3"],
       },
-      {
-        scenario: "CDEF",
-        teamAdjustments: true,
-        teamsToAdjustToThird: ["Poland", "Australia", "Japan", "Morocco"],
-        expectedMatchups: {
-          R16_1: ["B1", "F3"],
-          R16_3: ["F1", "C3"],
-          R16_5: ["E1", "D3"],
-          R16_7: ["C1", "E3"],
-        },
+    },
+    {
+      scenario: "CDEF",
+      teamAdjustments: true,
+      teamsToAdjustToThird: ["Poland", "Australia", "Japan", "Morocco"],
+      expectedMatchups: {
+        R16_1: ["B1", "F3"],
+        R16_3: ["F1", "C3"],
+        R16_5: ["E1", "D3"],
+        R16_7: ["C1", "E3"],
       },
-    ];
-    let teams;
-    const resetTeamFinishingPositions = (teams) => {
-      const teamsToPutBackToThird = [
-        "Senegal",
-        "Wales",
-        "Australia",
-        "Morocco",
-      ];
-      const teamsToPutBackToFourth = ["Poland", "Japan"];
-      const adjustTeam = (team, position) => {
-        team.thirdPlaceAndAdvancedToKO = position === 3 ? true : false;
+    },
+  ];
+  let teams;
+  const resetTeamFinishingPositions = (teams) => {
+    const teamsToPutBackToThird = ["Senegal", "Wales", "Australia", "Morocco"];
+    const teamsToPutBackToFourth = ["Poland", "Japan"];
+    const adjustTeam = (team, position) => {
+      team.thirdPlaceAndAdvancedToKO = position === 3 ? true : false;
+      const teamGroup = team.knockoutPosition.split("")[0];
+      const koPos = `${teamGroup}${position}`;
+      team.knockoutPosition = koPos;
+      team.groupFinishingPosition = position;
+      return team;
+    };
+    teams.forEach((team) => {
+      if (teamsToPutBackToThird.includes(team?.name)) {
+        team = adjustTeam(team, 3);
+      }
+      if (teamsToPutBackToFourth.includes(team?.name)) {
+        team = adjustTeam(team, 4);
+      }
+    });
+    return teams;
+  };
+  beforeEach(() => {
+    teams = teamData_full;
+    teams = resetTeamFinishingPositions(teams);
+  });
+  const adjustCurrentTeamFinishingPositions = (
+    allTeams,
+    teamsToAdjust,
+    newFinishingPosition
+  ) => {
+    allTeams.forEach((team) => {
+      if (teamsToAdjust.includes(team?.name)) {
+        if (newFinishingPosition === 3) {
+          team.thirdPlaceAndAdvancedToKO = true;
+        }
         const teamGroup = team.knockoutPosition.split("")[0];
-        const koPos = `${teamGroup}${position}`;
-        team.knockoutPosition = koPos;
-        team.groupFinishingPosition = position;
-        return team;
+        const newKOPos = `${teamGroup}${newFinishingPosition}`;
+        team.knockoutPosition = newKOPos;
+        team.groupFinishingPosition = newFinishingPosition;
+      }
+    });
+    return allTeams;
+  };
+  determineR16SeedingTesting.forEach((test) => {
+    it(`advancing 3rd place teams are: ${test.scenario}`, () => {
+      if (test.teamAdjustments) {
+        teams.forEach((team) => (team.thirdPlaceAndAdvancedToKO = false));
+        teams = adjustCurrentTeamFinishingPositions(
+          teams,
+          ["Senegal", "Wales", "Australia", "Morocco"],
+          4
+        );
+        teams = adjustCurrentTeamFinishingPositions(
+          teams,
+          test.teamsToAdjustToThird,
+          3
+        );
+      }
+      const answer = determineR16Seeding(teams);
+      const staticGames = {
+        R16_2: ["A1", "C2"],
+        R16_4: ["D2", "E2"],
+        R16_6: ["D1", "F2"],
+        R16_8: ["A2", "B2"],
       };
-      teams.forEach((team) => {
-        if (teamsToPutBackToThird.includes(team?.name)) {
-          team = adjustTeam(team, 3);
-        }
-        if (teamsToPutBackToFourth.includes(team?.name)) {
-          team = adjustTeam(team, 4);
-        }
-      });
-      return teams;
-    };
-    beforeEach(() => {
-      teams = teamData_full;
-      teams = resetTeamFinishingPositions(teams);
-    });
-    const adjustCurrentTeamFinishingPositions = (
-      allTeams,
-      teamsToAdjust,
-      newFinishingPosition
-    ) => {
-      allTeams.forEach((team) => {
-        if (teamsToAdjust.includes(team?.name)) {
-          if (newFinishingPosition === 3) {
-            team.thirdPlaceAndAdvancedToKO = true;
-          }
-          const teamGroup = team.knockoutPosition.split("")[0];
-          const newKOPos = `${teamGroup}${newFinishingPosition}`;
-          team.knockoutPosition = newKOPos;
-          team.groupFinishingPosition = newFinishingPosition;
-        }
-      });
-      return allTeams;
-    };
-    determineR16SeedingTesting.forEach((test) => {
-      it(`advancing 3rd place teams are: ${test.scenario}`, () => {
-        if (test.teamAdjustments) {
-          teams.forEach((team) => (team.thirdPlaceAndAdvancedToKO = false));
-          teams = adjustCurrentTeamFinishingPositions(
-            teams,
-            ["Senegal", "Wales", "Australia", "Morocco"],
-            4
-          );
-          teams = adjustCurrentTeamFinishingPositions(
-            teams,
-            test.teamsToAdjustToThird,
-            3
-          );
-        }
-        const answer = determineR16Seeding(teams);
-        const staticGames = {
-          R16_2: ["A1", "C2"],
-          R16_4: ["D2", "E2"],
-          R16_6: ["D1", "F2"],
-          R16_8: ["A2", "B2"],
-        };
-        const expectedMatchups = test.expectedMatchups;
-        const correctResults = {
-          ...expectedMatchups,
-          ...staticGames,
-        };
-        const correctResultsEntries = Object.entries(correctResults);
-        correctResultsEntries.forEach((entry) => {
-          const game = entry[0];
-          const correctMatchup = entry[1];
-          const correctTeam1 = correctMatchup[0];
-          const correctTeam2 = correctMatchup[1];
-          const answerMatchup = answer[game];
-          const answerTeam1 = answerMatchup[0];
-          const answerTeam2 = answerMatchup[1];
-          expect(correctTeam1).to.equal(answerTeam1);
-          expect(correctTeam2).to.equal(answerTeam2);
-        });
+      const expectedMatchups = test.expectedMatchups;
+      const correctResults = {
+        ...expectedMatchups,
+        ...staticGames,
+      };
+      const correctResultsEntries = Object.entries(correctResults);
+      correctResultsEntries.forEach((entry) => {
+        const game = entry[0];
+        const correctMatchup = entry[1];
+        const correctTeam1 = correctMatchup[0];
+        const correctTeam2 = correctMatchup[1];
+        const answerMatchup = answer[game];
+        const answerTeam1 = answerMatchup[0];
+        const answerTeam2 = answerMatchup[1];
+        expect(correctTeam1).to.equal(answerTeam1);
+        expect(correctTeam2).to.equal(answerTeam2);
       });
     });
   });
-  describe("colorDescriptionTableNeeded func", () => {
-    const colorDescriptionTableNeededFuncTesting = [
-      {
-        paid: false,
-        ties: false,
-        result: true,
-        testCases: [
-          { paidNames: ["Bunda"] },
-          { paidNames: ["Frank", "Jill", "Aboona", "Jill"] },
-          {
-            paidNames: [
-              "Frank",
-              "Jill",
-              "Aboona",
-              "Jill",
-              "Joe",
-              "Kelly",
-              "Stanley",
-              "Coach",
-            ],
-          },
-        ],
-      },
-      {
-        paid: false,
-        ties: true,
-        result: true,
-        testCases: [
-          { paidNames: ["Bunda"], tieNames: ["Bunda", "Aboona"] },
-          {
-            paidNames: ["Bunda", "Jill", "Coach"],
-            tieNames: ["Joe", "Kelly"],
-          },
-        ],
-      },
-      {
-        paid: true,
-        ties: true,
-        result: true,
-        testCases: [
-          { tieNames: ["Aboona", "Jill"] },
-          { tieNames: ["Coach", "Joe", "Kelly"] },
-        ],
-      },
-      {
-        paid: true,
-        ties: false,
-        result: false,
-        testCases: [],
-      },
-    ];
-    describe("returns correct boolean based on leaderboard rankings", () => {
-      colorDescriptionTableNeededFuncTesting.forEach((scenario) => {
-        it(`all users paid = ${scenario.paid}; tie exists = ${scenario.ties}`, () => {
-          scenario.testCases.forEach((testCase) => {
-            users = [
-              { name: "Aboona", tieExists: false, paid: true },
-              { name: "Bunda", tieExists: false, paid: true },
-              { name: "Coach", tieExists: false, paid: true },
-              { name: "Frank", tieExists: false, paid: true },
-              { name: "Jill", tieExists: false, paid: true },
-              { name: "Joe", tieExists: false, paid: true },
-              { name: "Kelly", tieExists: false, paid: true },
-              { name: "Stanley", tieExists: false, paid: true },
-            ];
-            users.forEach((user) => {
-              scenario.ties &&
-                testCase.tieNames.forEach((name) => {
-                  if (user.name === name) user.tieExists = true;
-                });
-              !scenario.paid &&
-                testCase.paidNames.forEach((name) => {
-                  if (user.name === name) user.paid = false;
-                });
-            });
-            answer = colorDescriptionTableNeeded(users);
-            expect(answer).to.equal(scenario.result);
+});
+
+describe("colorDescriptionTableNeeded func", () => {
+  const colorDescriptionTableNeededFuncTesting = [
+    {
+      paid: false,
+      ties: false,
+      result: true,
+      testCases: [
+        { paidNames: ["Bunda"] },
+        { paidNames: ["Frank", "Jill", "Aboona", "Jill"] },
+        {
+          paidNames: [
+            "Frank",
+            "Jill",
+            "Aboona",
+            "Jill",
+            "Joe",
+            "Kelly",
+            "Stanley",
+            "Coach",
+          ],
+        },
+      ],
+    },
+    {
+      paid: false,
+      ties: true,
+      result: true,
+      testCases: [
+        { paidNames: ["Bunda"], tieNames: ["Bunda", "Aboona"] },
+        {
+          paidNames: ["Bunda", "Jill", "Coach"],
+          tieNames: ["Joe", "Kelly"],
+        },
+      ],
+    },
+    {
+      paid: true,
+      ties: true,
+      result: true,
+      testCases: [
+        { tieNames: ["Aboona", "Jill"] },
+        { tieNames: ["Coach", "Joe", "Kelly"] },
+      ],
+    },
+    {
+      paid: true,
+      ties: false,
+      result: false,
+      testCases: [],
+    },
+  ];
+  describe("returns correct boolean based on leaderboard rankings", () => {
+    colorDescriptionTableNeededFuncTesting.forEach((scenario) => {
+      it(`all users paid = ${scenario.paid}; tie exists = ${scenario.ties}`, () => {
+        scenario.testCases.forEach((testCase) => {
+          users = [
+            { name: "Aboona", tieExists: false, paid: true },
+            { name: "Bunda", tieExists: false, paid: true },
+            { name: "Coach", tieExists: false, paid: true },
+            { name: "Frank", tieExists: false, paid: true },
+            { name: "Jill", tieExists: false, paid: true },
+            { name: "Joe", tieExists: false, paid: true },
+            { name: "Kelly", tieExists: false, paid: true },
+            { name: "Stanley", tieExists: false, paid: true },
+          ];
+          users.forEach((user) => {
+            scenario.ties &&
+              testCase.tieNames.forEach((name) => {
+                if (user.name === name) user.tieExists = true;
+              });
+            !scenario.paid &&
+              testCase.paidNames.forEach((name) => {
+                if (user.name === name) user.paid = false;
+              });
           });
+          answer = colorDescriptionTableNeeded(users);
+          expect(answer).to.equal(scenario.result);
         });
       });
     });
   });
-  describe("urlWord", () => {
-    it("works", () => {
-      const group = urlWord("group");
-      const leaderboard = urlWord("leaderboard");
-      const my_picks = urlWord("my picks");
-      const pool_picks = urlWord("pool picks");
-      const group_details = urlWord("group details");
-      expect(group).to.equal("group");
-      expect(leaderboard).to.equal("leaderboard");
-      expect(my_picks).to.equal("my_picks");
-      expect(pool_picks).to.equal("pool_picks");
-      expect(group_details).to.equal("group_details");
-    });
+});
+
+describe("urlWord", () => {
+  it("works", () => {
+    const group = urlWord("group");
+    const leaderboard = urlWord("leaderboard");
+    const my_picks = urlWord("my picks");
+    const pool_picks = urlWord("pool picks");
+    const group_details = urlWord("group details");
+    expect(group).to.equal("group");
+    expect(leaderboard).to.equal("leaderboard");
+    expect(my_picks).to.equal("my_picks");
+    expect(pool_picks).to.equal("pool_picks");
+    expect(group_details).to.equal("group_details");
   });
-  describe("auditThirdPlaceToAdvancePicks", () => {
-    const auditThirdPlaceToAdvancePicksTesting = [
-      {
-        scenario: "no",
-        obj: {
-          A: false,
-          B: false,
-          C: false,
-          D: false,
-          E: false,
-          F: false,
-        },
-        answer: { outcome: "-4", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+});
+
+describe("auditThirdPlaceToAdvancePicks", () => {
+  const auditThirdPlaceToAdvancePicksTesting = [
+    {
+      scenario: "no",
+      obj: {
+        A: false,
+        B: false,
+        C: false,
+        D: false,
+        E: false,
+        F: false,
       },
-      {
-        scenario: 1,
-        obj: {
-          A: false,
-          B: true,
-          C: false,
-          D: false,
-          E: false,
-          F: false,
-        },
-        answer: { outcome: "-3", groupErrors: ["A", "C", "D", "E", "F"] },
+      answer: { outcome: "-4", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+    },
+    {
+      scenario: 1,
+      obj: {
+        A: false,
+        B: true,
+        C: false,
+        D: false,
+        E: false,
+        F: false,
       },
-      {
-        scenario: 2,
-        obj: {
-          A: false,
-          B: true,
-          C: false,
-          D: false,
-          E: true,
-          F: false,
-        },
-        answer: { outcome: "-2", groupErrors: ["A", "C", "D", "F"] },
+      answer: { outcome: "-3", groupErrors: ["A", "C", "D", "E", "F"] },
+    },
+    {
+      scenario: 2,
+      obj: {
+        A: false,
+        B: true,
+        C: false,
+        D: false,
+        E: true,
+        F: false,
       },
-      {
-        scenario: 3,
-        obj: {
-          A: true,
-          B: false,
-          C: false,
-          D: true,
-          E: false,
-          F: true,
-        },
-        answer: { outcome: "-1", groupErrors: ["B", "C", "E"] },
+      answer: { outcome: "-2", groupErrors: ["A", "C", "D", "F"] },
+    },
+    {
+      scenario: 3,
+      obj: {
+        A: true,
+        B: false,
+        C: false,
+        D: true,
+        E: false,
+        F: true,
       },
-      {
-        scenario: 4,
-        obj: {
-          A: true,
-          B: true,
-          C: false,
-          D: true,
-          E: true,
-          F: false,
-        },
-        answer: { outcome: "=", groupErrors: [] },
+      answer: { outcome: "-1", groupErrors: ["B", "C", "E"] },
+    },
+    {
+      scenario: 4,
+      obj: {
+        A: true,
+        B: true,
+        C: false,
+        D: true,
+        E: true,
+        F: false,
       },
-      {
-        scenario: 5,
-        obj: {
-          A: true,
-          B: true,
-          C: true,
-          D: true,
-          E: false,
-          F: true,
-        },
-        answer: { outcome: "+1", groupErrors: ["A", "B", "C", "D", "F"] },
+      answer: { outcome: "=", groupErrors: [] },
+    },
+    {
+      scenario: 5,
+      obj: {
+        A: true,
+        B: true,
+        C: true,
+        D: true,
+        E: false,
+        F: true,
       },
-      {
-        scenario: 6,
-        obj: {
-          A: true,
-          B: true,
-          C: true,
-          D: true,
-          E: true,
-          F: true,
-        },
-        answer: { outcome: "+2", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+      answer: { outcome: "+1", groupErrors: ["A", "B", "C", "D", "F"] },
+    },
+    {
+      scenario: 6,
+      obj: {
+        A: true,
+        B: true,
+        C: true,
+        D: true,
+        E: true,
+        F: true,
       },
-    ];
-    auditThirdPlaceToAdvancePicksTesting.forEach((scenario) => {
-      it(`with ${scenario.scenario} picks`, () => {
-        const answer = auditThirdPlaceToAdvancePicks(scenario.obj);
-        expect(scenario.answer.outcome).to.equal(answer.outcome);
-        scenario.answer.groupErrors.forEach((letter, i) => {
-          expect(letter).to.equal(answer.groupErrors[i]);
-        });
-        answer.groupErrors.forEach((letter, i) => {
-          expect(letter).to.equal(scenario.answer.groupErrors[i]);
-        });
+      answer: { outcome: "+2", groupErrors: ["A", "B", "C", "D", "E", "F"] },
+    },
+  ];
+  auditThirdPlaceToAdvancePicksTesting.forEach((scenario) => {
+    it(`with ${scenario.scenario} picks`, () => {
+      const answer = auditThirdPlaceToAdvancePicks(scenario.obj);
+      expect(scenario.answer.outcome).to.equal(answer.outcome);
+      scenario.answer.groupErrors.forEach((letter, i) => {
+        expect(letter).to.equal(answer.groupErrors[i]);
+      });
+      answer.groupErrors.forEach((letter, i) => {
+        expect(letter).to.equal(scenario.answer.groupErrors[i]);
       });
     });
   });
-  describe("formatPathname", () => {
-    const formatPathnameTesting = [
-      { value: "email_notifications", result: "Email Notifications" },
-    ];
-    formatPathnameTesting.forEach((test) => {
-      it(`${test.value}`, () => {
-        const result = formatPathname(test.value);
-        expect(result).to.equal(test.result);
-      });
+});
+
+describe("formatPathname", () => {
+  const formatPathnameTesting = [
+    { value: "email_notifications", result: "Email Notifications" },
+  ];
+  formatPathnameTesting.forEach((test) => {
+    it(`${test.value}`, () => {
+      const result = formatPathname(test.value);
+      expect(result).to.equal(test.result);
     });
   });
-  describe("cap1stLetter", () => {
-    const cap1stLetterTesting = [
-      { value: "rank", result: "Rank" },
-      { value: "name", result: "Name" },
-      { value: "total", result: "Total" },
-      { value: "max_Pts", result: "Max Pts" },
-      { value: "pool_picks", result: "Pool Picks" },
-    ];
-    cap1stLetterTesting.forEach((test) => {
-      it(`${test.value}`, () => {
-        const result = cap1stLetter(test.value);
-        expect(result).to.equal(test.result);
-      });
+});
+
+describe("cap1stLetter", () => {
+  const cap1stLetterTesting = [
+    { value: "rank", result: "Rank" },
+    { value: "name", result: "Name" },
+    { value: "total", result: "Total" },
+    { value: "max_Pts", result: "Max Pts" },
+    { value: "pool_picks", result: "Pool Picks" },
+  ];
+  cap1stLetterTesting.forEach((test) => {
+    it(`${test.value}`, () => {
+      const result = cap1stLetter(test.value);
+      expect(result).to.equal(test.result);
     });
   });
-  describe("formatURL", () => {
-    const formatURLTesting = [
-      { value: "My Picks v. Your Picks", result: "my_picks_v_your_picks" },
-      { value: "Golfer v. Golfer", result: "golfer_v_golfer" },
-      { value: "Who Picked This Golfer", result: "who_picked_this_golfer" },
-    ];
-    formatURLTesting.forEach((test) => {
-      it(`${test.value}`, () => {
-        const result = formatURL(test.value);
-        expect(result).to.equal(test.result);
-      });
+});
+
+describe("formatURL", () => {
+  const formatURLTesting = [
+    { value: "My Picks v. Your Picks", result: "my_picks_v_your_picks" },
+    { value: "Golfer v. Golfer", result: "golfer_v_golfer" },
+    { value: "Who Picked This Golfer", result: "who_picked_this_golfer" },
+  ];
+  formatURLTesting.forEach((test) => {
+    it(`${test.value}`, () => {
+      const result = formatURL(test.value);
+      expect(result).to.equal(test.result);
+    });
+  });
+});
+
+describe("shouldPayoutShow", () => {
+  const testsToRun = [
+    {
+      scenario: "tourney hasnt started yet & user is not logged in",
+      joe: { tourneyStage: 1 },
+      user: { id: null, tiebreaker: null },
+      result: false,
+    },
+    {
+      scenario: "tourney hasnt started yet, user is logged in w/ no picks",
+      joe: { tourneyStage: 1 },
+      user: { id: true, tiebreaker: null },
+      result: true,
+    },
+    {
+      scenario: "tourney hasnt started yet, user is logged in w/ picks",
+      joe: { tourneyStage: 1 },
+      user: { id: true, tiebreaker: true },
+      result: true,
+    },
+    {
+      scenario: "tourney has started & user is not logged in",
+      joe: { tourneyStage: 2 },
+      user: { id: null, tiebreaker: null },
+      result: false,
+    },
+    {
+      scenario: "tourney has started, user is logged in w/ no picks",
+      joe: { tourneyStage: 2 },
+      user: { id: true, tiebreaker: null },
+      result: false,
+    },
+    {
+      scenario: "tourney has started, user is logged in w/ picks",
+      joe: { tourneyStage: 3 },
+      user: { id: true, tiebreaker: true },
+      result: true,
+    },
+  ];
+
+  testsToRun.forEach((test) => {
+    it(`${test.scenario}`, () => {
+      const result = shouldPayoutShow(test.joe, test.user);
+
+      expect(result).to.equal(test.result);
+    });
+  });
+});
+
+describe("calcPayout", () => {
+  const testsToRun = [
+    {
+      scenario: 1,
+      users: [1],
+      result: { firstPlace: 15, secondPlace: 5, thirdPlace: 0, numOfPicks: 1 },
+    },
+    {
+      scenario: 2,
+      users: [1, 2],
+      result: { firstPlace: 30, secondPlace: 10, thirdPlace: 0, numOfPicks: 2 },
+    },
+    {
+      scenario: 3,
+      users: [1, 2, 3],
+      result: { firstPlace: 45, secondPlace: 15, thirdPlace: 0, numOfPicks: 3 },
+    },
+    {
+      scenario: 4,
+      users: [1, 2, 3, 4],
+      result: { firstPlace: 60, secondPlace: 20, thirdPlace: 0, numOfPicks: 4 },
+    },
+    {
+      scenario: 5,
+      users: [1, 2, 3, 4, 5],
+      result: {
+        firstPlace: 60,
+        secondPlace: 20,
+        thirdPlace: 20,
+        numOfPicks: 5,
+      },
+    },
+    {
+      scenario: 9,
+      users: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      result: {
+        firstPlace: 120,
+        secondPlace: 40,
+        thirdPlace: 20,
+        numOfPicks: 9,
+      },
+    },
+    {
+      scenario: 15,
+      users: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      result: {
+        firstPlace: 210,
+        secondPlace: 70,
+        thirdPlace: 20,
+        numOfPicks: 15,
+      },
+    },
+  ];
+
+  testsToRun.forEach((test) => {
+    it(`submitted picks count = ${test.scenario}`, () => {
+      const result = calcPayout(test.users);
+
+      expect(result.firstPlace).to.equal(test.result.firstPlace);
+      expect(result.secondPlace).to.equal(test.result.secondPlace);
+      expect(result.thirdPlace).to.equal(test.result.thirdPlace);
+      expect(result.numOfPicks).to.equal(test.result.numOfPicks);
     });
   });
 });

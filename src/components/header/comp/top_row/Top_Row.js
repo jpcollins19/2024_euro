@@ -1,20 +1,19 @@
+import { useSelector } from "react-redux";
 import Link_MUI from "@mui/material/Link";
 import { Link } from "react-router-dom";
 import User_Profile_Dropdown from "../../../UserAccount/User_Profile_Dropdown";
-import LastUpdated from "../../LastUpdated";
+import Misc_Header_Data from "../../Misc_Header_Data";
 
-const Top_Row = ({ user, tourneyStarted, userSubmittedPicks }) => {
+const Top_Row = () => {
+  const user = useSelector((state) => state.auth);
+
   return (
     <div className="top-row-navbar">
       <Link to="/leaderboard">
         <h1>2024 Euros</h1>
       </Link>
 
-      <LastUpdated
-        user={user}
-        tourneyStarted={tourneyStarted}
-        userSubmittedPicks={userSubmittedPicks}
-      />
+      <Misc_Header_Data user={user} />
 
       <div className="login-cont">
         {user?.id ? (

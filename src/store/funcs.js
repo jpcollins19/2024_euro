@@ -9,6 +9,7 @@ const {
   semiMatchups,
   validKoResults,
   regoinToAuditMapper,
+  tourneyStartDate,
 } = require("./variables");
 
 const findJoe = (arr) => {
@@ -1492,6 +1493,63 @@ const isUserMissingOtherRegoinPicks = (user, regoinToAudit) => {
   return result;
 };
 
+const createPreTourneyDataNotAvailableYetMessage = (str) => {
+  return `${str} will not be viewable until the tournament commences on ${tourneyStartDate}`;
+};
+
+const shouldPayoutShow = (joe, user) => {
+  const tourneyStarted = joe?.tourneyStage !== 1;
+  const userSubmittedPicks = user?.tiebreaker ?? false;
+
+  return (
+    (!tourneyStarted && user?.id) || (tourneyStarted && userSubmittedPicks)
+  );
+};
+
+const getActiveUsers = (users) => {
+  return users.filter((user) => user?.tiebreaker);
+};
+
+const calcPayout = (users) => {
+  const pot = users?.length * 20;
+
+  const result = {
+    firstPlace: 0,
+    secondPlace: 0,
+    thirdPlace: 0,
+    numOfPicks: users?.length,
+  };
+
+  switch (users?.length) {
+    case 1:
+      result.firstPlace = 15;
+      result.secondPlace = 5;
+      result.thirdPlace = 0;
+      break;
+    case 2:
+      result.firstPlace = 30;
+      result.secondPlace = 10;
+      result.thirdPlace = 0;
+      break;
+    case 3:
+      result.firstPlace = 45;
+      result.secondPlace = 15;
+      result.thirdPlace = 0;
+      break;
+    case 4:
+      result.firstPlace = 60;
+      result.secondPlace = 20;
+      result.thirdPlace = 0;
+      break;
+    default:
+      result.thirdPlace = 20;
+      result.firstPlace = (pot - result.thirdPlace) * 0.75;
+      result.secondPlace = (pot - result.thirdPlace) * 0.25;
+  }
+
+  return result;
+};
+
 module.exports = {
   findJoe,
   validateEmail,
@@ -1535,4 +1593,8 @@ module.exports = {
   findPreviousGameWinner_FF,
   findPreviousGameWinner_Finals,
   isUserMissingOtherRegoinPicks,
+  createPreTourneyDataNotAvailableYetMessage,
+  shouldPayoutShow,
+  getActiveUsers,
+  calcPayout,
 };

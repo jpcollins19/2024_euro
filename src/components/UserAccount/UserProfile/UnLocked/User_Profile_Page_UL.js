@@ -101,6 +101,7 @@ const User_Profile_Page = () => {
       }
 
       userObj.emailNotifications = emailNotifications;
+      userObj.websiteUpdatedEmailSent = true;
 
       dispatch(updateUser(userObj, history, "my_profile"));
     } catch (err) {

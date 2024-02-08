@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loadUsers, findJoe, getCurrentScores } from "../../store";
+import {
+  loadUsers,
+  findJoe,
+  getCurrentScores,
+  createPreTourneyDataNotAvailableYetMessage,
+  shouldPayoutShow,
+  getScreenWidth,
+} from "../../store";
 import Leaderboard_Cont from "./Leaderboard_Cont";
 import Loading from "../Misc/Loading";
 import Payout from "./Payout";
@@ -31,25 +38,19 @@ const Leaderboard_Page = () => {
   const rankInfo =
     joe?.tourneyStage > 1 ? getCurrentScores(users, teams, joe) : null;
 
-  const tourneyStarted = joe?.tourneyStage !== 1;
-  const userSubmittedPicks = user?.tiebreaker ?? false;
+  const showPayout = shouldPayoutShow(joe, user);
 
-  const shouldPayoutShow = () => {
-    return (
-      (!tourneyStarted && user?.id) || (tourneyStarted && userSubmittedPicks)
-    );
-  };
+  const isMobile = getScreenWidth("max", 65);
 
   return loading ? (
     <Loading />
   ) : (
     <div className="leaderboard-page">
-      {shouldPayoutShow() && <Payout />}
+      {!isMobile && showPayout && <Payout />}
 
       {joe?.tourneyStage === 1 ? (
         <h1 className="pre-tourney-header">
-          Leaderboard will not be viewable until the tournament commences on
-          11/20/22
+          {createPreTourneyDataNotAvailableYetMessage("Leaderboard")}
         </h1>
       ) : user?.tiebreaker ? (
         <Leaderboard_Cont joe={joe} rankInfo={rankInfo} />

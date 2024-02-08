@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import Navbar_Link from "./Navbar_Link";
 
-const Bottom_Row = ({ user }) => {
+const Bottom_Row = () => {
+  const user = useSelector((state) => state.auth);
+
   const adminOptions = ["users", "groups", "KO"];
   const navOptions = ["leaderboard", "my picks", "pool picks", "group details"];
 

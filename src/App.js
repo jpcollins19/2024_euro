@@ -15,8 +15,6 @@ const App = () => {
     dispatch(loadUpdated());
   }, []);
 
-  const users = useSelector((state) => state.users);
-
   return (
     <Router>
       <Header />

@@ -1,3 +1,5 @@
+const tourneyStartDate = "6/14/2024";
+
 const groupLetters = ["A", "B", "C", "D", "E", "F"];
 
 const koLetters = ["Q", "S", "F", "Champ"];
@@ -103,4 +105,5 @@ module.exports = {
   setTeamMapper_ko_edit,
   regoinToAuditMapper,
   koGameMapper_userPicks,
+  tourneyStartDate,
 };

@@ -8,6 +8,7 @@ import {
   findJoe,
   me,
   groupLetters,
+  createPreTourneyDataNotAvailableYetMessage,
 } from "../../store";
 import Loading from "../Misc/Loading";
 import Dropdown from "../Misc/Dropdown";
@@ -94,8 +95,7 @@ const Pool_Picks_Page = () => {
     <div className="pool-picks-page">
       {joe?.tourneyStage === 1 ? (
         <h1 className="white-text">
-          Pool Picks will not be viewable until the tournament commences on
-          11/20/22
+          {createPreTourneyDataNotAvailableYetMessage("Pool Picks")}
         </h1>
       ) : zoomedOut ? (
         user?.tiebreaker && (
