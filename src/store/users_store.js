@@ -131,7 +131,8 @@ export const updateUser = (user, history, route = "dont update") => {
 
 const sendWebsiteUpdatedEmail = (user) => {
   return async (dispatch) => {
-    const data = await axios.post("/api/send-website-updated-email", user);
+    // const data = await axios.post("/api/send-website-updated-email", user);
+    await axios.post("/api/send-website-updated-email", user);
   };
 };
 
@@ -146,7 +147,7 @@ export const loadUsersWhoNeedWebsiteUpdatedEmails = () => {
     });
 
     const usersWhoNeedAnEmail = users.filter(
-      (user) => user?.emailNotifications && !user?.websiteUpdatedEmailSent
+      (user) => user?.emailNotifications
     );
 
     usersWhoNeedAnEmail.forEach((user) => {
@@ -158,11 +159,11 @@ export const loadUsersWhoNeedWebsiteUpdatedEmails = () => {
 
       console.log("email needed for:", user.email);
 
-      const websiteUpdatedEmailSubject = emailDateData[0];
-      const websiteUpdatedEmailBody = emailDateData[1];
+      const emailSubject = emailDateData[0];
+      const emailBody = emailDateData[1];
 
-      user.websiteUpdatedEmailSubject = websiteUpdatedEmailSubject;
-      user.websiteUpdatedEmailBody = websiteUpdatedEmailBody;
+      user.websiteUpdatedEmailSubject = emailSubject;
+      user.websiteUpdatedEmailBody = emailBody;
 
       dispatch(sendWebsiteUpdatedEmail(user));
     });

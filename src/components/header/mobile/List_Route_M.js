@@ -1,11 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import {
-  formatURL,
-  logout,
-  resetUserWantsToViewProfileKeys,
-  cap1stLetter,
-} from "../../../store";
+import { formatURL, logout, cap1stLetter } from "../../../store";
 
 const List_Route_M = ({ route, closeMobileMenu, user, subRoute }) => {
   const dispatch = useDispatch();
@@ -34,7 +29,6 @@ const List_Route_M = ({ route, closeMobileMenu, user, subRoute }) => {
           route === "Sign Out" ? dispatch(logout(history)) : closeMobileMenu();
 
           closeMobileMenu();
-          // resetUserWantsToViewProfileKeys(user?.id);
         }}
       >
         {verbiage}

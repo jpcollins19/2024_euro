@@ -1,6 +1,4 @@
-///adjust payout data for mobile view to mimic how you did it for the masters: shouldPayoutShow func
-
-///add feature for updating email preferences - email is sent when this preference is adjusted.
+///add feature for updating email preferences - email is sent when this preference is adjusted - see masters app
 
 //group details = adjust the group containers to be a little darker than the background
 //group details = adjust the "3rd place team advanced from group" container at the top to be a little darker than the background
