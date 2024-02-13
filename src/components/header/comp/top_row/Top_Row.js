@@ -1,34 +1,34 @@
-import { useSelector } from "react-redux";
-import Link_MUI from "@mui/material/Link";
-import { Link } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import {routes, getIsUserSignedIn} from '../../../../store'
 import User_Profile_Dropdown from "../../../UserAccount/User_Profile_Dropdown";
 import Misc_Header_Data from "../../Misc_Header_Data";
 
 const Top_Row = () => {
-  const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-  return (
-    <div className="top-row-navbar">
-      <Link to="/leaderboard">
-        <h1>2024 Euros</h1>
-      </Link>
+    const isUserSignedIn = getIsUserSignedIn(user)
 
-      <Misc_Header_Data user={user} />
+    return (
+        <div className="top-row-navbar">
+            <Link to={routes.leaderboard}>
+                <h1>2024 Euros</h1>
+            </Link>
 
-      <div className="login-cont">
-        {user?.id ? (
-          <User_Profile_Dropdown />
-        ) : (
-          <Link_MUI
-            href="#/sign_in"
-            style={{ textDecoration: "none", color: "blue" }}
-          >
-            Sign In
-          </Link_MUI>
-        )}
-      </div>
-    </div>
-  );
+            <Misc_Header_Data user={user}/>
+
+            <div className="login-cont">
+                {isUserSignedIn ? (
+                    <User_Profile_Dropdown/>
+                ) : (
+
+                    <Link to={routes.signIn}>
+                        <h1>Sign In</h1>
+                    </Link>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default Top_Row;

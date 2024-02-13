@@ -11,8 +11,8 @@ const {
     tourneyStartDate,
 } = require("./variables");
 
-const findJoe = (arr) => {
-    return arr.find((user) => user?.admin);
+const findJoe = ( arr ) => {
+    return arr.find(( user ) => user?.admin);
 };
 
 const G = {
@@ -22,39 +22,29 @@ const G = {
     R4: 0,
 };
 
-const createCountObj = (arr, key) => {
-    return arr.reduce((a, obj) => {
+const createCountObj = ( arr, key ) => {
+    return arr.reduce(( a, obj ) => {
         a[obj[key]] ? a[obj[key]]++ : (a[obj[key]] = 1);
         return a;
     }, {});
 };
 
-const dupeValInArr = (arr) => {
+const dupeValInArr = ( arr ) => {
     arr?.length === 5 && arr.pop();
 
     return arr.length === new Set(arr).size;
 };
 
-const urlWord = (str) => {
-    return str.split("").reduce((a, letter) => {
-        if (letter === " ") {
-            letter = "_";
-        }
-        a += letter;
-        return a;
-    }, "");
-};
-
-const formatSelectedUser = (obj) => {
+const formatSelectedUser = ( obj ) => {
     return {value: obj, label: obj.name};
 };
 
-const cap1stLetter = (str) => {
+const cap1stLetter = ( str ) => {
     let capLetterNeeded = false;
 
     return str
     .split("")
-    .map((letter, idx) => {
+    .map(( letter, idx ) => {
         if (idx === 0) {
             letter = letter.toUpperCase();
         }
@@ -74,22 +64,22 @@ const cap1stLetter = (str) => {
     .join("");
 };
 
-const findEntry = (str) => {
+const findEntry = ( str ) => {
     return str.split("advanceTo")[1];
 };
 
-const validateEmail = (inputText) => {
+const validateEmail = ( inputText ) => {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     return inputText.match(mailformat) ? true : false;
 };
 
-const formatEmail = (email) => {
+const formatEmail = ( email ) => {
     const regex = /[a-zA-Z]/g;
 
     email = email
     .split("")
-    .map((letter) => {
+    .map(( letter ) => {
         if (letter.match(regex)) {
             letter = letter.toLowerCase();
         }
@@ -99,17 +89,17 @@ const formatEmail = (email) => {
     return email;
 };
 
-const getUserNames = (arr) => {
-    return arr.map((user) => {
+const getUserNames = ( arr ) => {
+    return arr.map(( user ) => {
         const name = user.name
         .split("")
-        .map((letter) => letter.toLowerCase())
+        .map(( letter ) => letter.toLowerCase())
         .join("");
         return name;
     });
 };
 
-const addFakeUser = (obj, name) => {
+const addFakeUser = ( obj, name ) => {
     // const keys = Object.keys(obj);
     // const fakeUser = {};
     // keys.forEach((key) => {
@@ -118,20 +108,20 @@ const addFakeUser = (obj, name) => {
     // return fakeUser;
 };
 
-const findR16Teams = (teams, koPositions) => {
-    return koPositions.map((koPos) =>
-        teams.find((team) => team.knockoutPosition === koPos)
+const findR16Teams = ( teams, koPositions ) => {
+    return koPositions.map(( koPos ) =>
+        teams.find(( team ) => team.knockoutPosition === koPos)
     );
 };
 
-const groupCalc = (user, group) => {
+const groupCalc = ( user, group ) => {
     let userGroupPredictions = [];
 
     for (let i = 1; i <= 4; i++) {
         userGroupPredictions.push(user[`group${group}${i}`]);
     }
 
-    return userGroupPredictions.map((team, idx) => {
+    return userGroupPredictions.map(( team, idx ) => {
         const teamTrueFinishingPosition = team.groupFinishingPosition;
         const userPickPosition = idx + 1;
 
@@ -230,17 +220,17 @@ const groupCalc = (user, group) => {
     });
 };
 
-const groupTotalCalc = (user) => {
+const groupTotalCalc = ( user ) => {
     return groupLetters
-    .reduce((a, letter) => {
+    .reduce(( a, letter ) => {
         user[`group${letter}1`].groupIsFinished && a.push(letter);
 
         return a;
     }, [])
-    .reduce((a, letter) => {
+    .reduce(( a, letter ) => {
         groupCalc(user, letter)
-        .map((obj) => obj.points)
-        .forEach((point) => {
+        .map(( obj ) => obj.points)
+        .forEach(( point ) => {
             a += point;
         });
 
@@ -248,8 +238,8 @@ const groupTotalCalc = (user) => {
     }, 0);
 };
 
-const areAllGroupsAreFinished = (teams) => {
-    const finishedGroupTeams = teams.reduce((a, team) => {
+const areAllGroupsAreFinished = ( teams ) => {
+    const finishedGroupTeams = teams.reduce(( a, team ) => {
         if (team.groupIsFinished) {
             a++;
         }
@@ -259,11 +249,11 @@ const areAllGroupsAreFinished = (teams) => {
     return finishedGroupTeams === 24 ? true : false;
 };
 
-const koGameCalc = (user, game, teams) => {
+const koGameCalc = ( user, game, teams ) => {
     const koTeamSeeding = determineR16Seeding(teams);
 
     const roundInfoObj = Object.entries(koTeamSeeding).reduce(
-        (a, entry) => {
+        ( a, entry ) => {
             let number = Number(entry[0][1]);
 
             if (entry[0][0] === "R") {
@@ -275,28 +265,28 @@ const koGameCalc = (user, game, teams) => {
             const positions = entry[1];
 
             if (number === 1 || number === 2) {
-                positions.forEach((pos) => {
+                positions.forEach(( pos ) => {
                     a.Q[1].push(pos);
                     a.S[1].push(pos);
                 });
             }
 
             if (number === 3 || number === 4) {
-                positions.forEach((pos) => {
+                positions.forEach(( pos ) => {
                     a.Q[2].push(pos);
                     a.S[1].push(pos);
                 });
             }
 
             if (number === 5 || number === 6) {
-                positions.forEach((pos) => {
+                positions.forEach(( pos ) => {
                     a.Q[3].push(pos);
                     a.S[2].push(pos);
                 });
             }
 
             if (number === 7 || number === 8) {
-                positions.forEach((pos) => {
+                positions.forEach(( pos ) => {
                     a.Q[4].push(pos);
                     a.S[2].push(pos);
                 });
@@ -372,7 +362,7 @@ const koGameCalc = (user, game, teams) => {
 
     if (allGroupsAreFinished) {
         if (game === "Champ") {
-            teamThatAdvanced = teams.find((team) => team[`advanceTo${game}`])
+            teamThatAdvanced = teams.find(( team ) => team[`advanceTo${game}`])
                 ?? null;
         } else {
             // console.log("roundInfoObj", roundInfoObj);
@@ -388,7 +378,7 @@ const koGameCalc = (user, game, teams) => {
 
             teamThatAdvanced =
                 teams.find(
-                    (team) =>
+                    ( team ) =>
                         roundInfoObj[roundOG][number].includes(
                             team.knockoutPosition) &&
                         team[`advanceTo${round}`]
@@ -428,7 +418,7 @@ const koGameCalc = (user, game, teams) => {
     };
 };
 
-const koRoundCalc = (user, round, teams) => {
+const koRoundCalc = ( user, round, teams ) => {
     // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
 
     // if (!allGroupsAreFinished) return 0;
@@ -456,7 +446,7 @@ const koRoundCalc = (user, round, teams) => {
         champion: ["Champ"],
     };
 
-    return koRoundGames[round].reduce((a, game) => {
+    return koRoundGames[round].reduce(( a, game ) => {
         const result = koGameCalc(user, game, teams);
 
         // console.log("round", round);
@@ -466,7 +456,7 @@ const koRoundCalc = (user, round, teams) => {
     }, 0);
 };
 
-const userTotalPoints = (user, teams) => {
+const userTotalPoints = ( user, teams ) => {
     const groupTotal = groupTotalCalc(user);
 
     //console.log("groupTotal", groupTotal);
@@ -477,7 +467,7 @@ const userTotalPoints = (user, teams) => {
 
     // console.log("userHasKOPicks", userHasKOPicks);
 
-    const koTotals = koRounds.reduce((a, round) => {
+    const koTotals = koRounds.reduce(( a, round ) => {
         if (userHasKOPicks) {
             // console.log("userTotalPoints - round", round);
 
@@ -493,19 +483,19 @@ const userTotalPoints = (user, teams) => {
     // return groupTotal;
 };
 
-const sortNames = (arr) => {
-    return arr.sort((a, b) => {
+const sortNames = ( arr ) => {
+    return arr.sort(( a, b ) => {
         let fa = a.name,
             fb = b.name;
         return fa < fb ? -1 : fa > fb ? 1 : 0;
     });
 };
 
-const tieBreakerAudit = (arr, actualGoalsScored) => {
+const tieBreakerAudit = ( arr, actualGoalsScored ) => {
     const tiebreakerObj = createCountObj(arr, "tiebreaker");
 
     const audit = arr
-    .map((user) => {
+    .map(( user ) => {
         user.numOfTimes = tiebreakerObj[user.tiebreaker];
         user.tiebreakerStatus =
             user.tiebreaker === actualGoalsScored
@@ -515,13 +505,13 @@ const tieBreakerAudit = (arr, actualGoalsScored) => {
                     : "over";
         return user;
     })
-    .map((user) => {
+    .map(( user ) => {
         if (user.numOfTimes > 1) {
             user.tieExists = true;
         }
         return user;
     })
-    .sort((a, b) => {
+    .sort(( a, b ) => {
         let fa = a.tiebreakerStatus,
             fb = b.tiebreakerStatus;
         return fa < fb ? -1 : fa > fb ? 1 : 0;
@@ -533,26 +523,26 @@ const tieBreakerAudit = (arr, actualGoalsScored) => {
         over: [],
     };
 
-    audit.forEach((user) => auditObj[user.tiebreakerStatus].push(user));
+    audit.forEach(( user ) => auditObj[user.tiebreakerStatus].push(user));
 
     return auditObj;
 };
 
-const dupeScoreAudit = (arr, actualGoalsScored) => {
+const dupeScoreAudit = ( arr, actualGoalsScored ) => {
     let rank = arr[0].rank;
 
     const tiebreakerAuditObj = tieBreakerAudit(arr, actualGoalsScored);
 
     let answer = [];
 
-    Object.keys(tiebreakerAuditObj).forEach((key) => {
-        let userOrder_OG = tiebreakerAuditObj[key].sort((a, b) =>
+    Object.keys(tiebreakerAuditObj).forEach(( key ) => {
+        let userOrder_OG = tiebreakerAuditObj[key].sort(( a, b ) =>
             key === "over" ? a.tiebreaker - b.tiebreaker : b.tiebreaker
                 - a.tiebreaker
         );
 
         let newUserOrder = Object.entries(
-            userOrder_OG.reduce((a, user) => {
+            userOrder_OG.reduce(( a, user ) => {
                 if (a[user.tiebreaker]) {
                     a[user.tiebreaker].push(user.name);
                 } else {
@@ -563,25 +553,25 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
         );
 
         if (key === "notOver") {
-            newUserOrder = newUserOrder.sort((a, b) => b[0] - a[0]);
+            newUserOrder = newUserOrder.sort(( a, b ) => b[0] - a[0]);
         }
 
         newUserOrder = newUserOrder
-        .map((entry) => {
+        .map(( entry ) => {
             if (entry[1].length > 1) {
-                entry[1] = entry[1].sort((a, b) => {
+                entry[1] = entry[1].sort(( a, b ) => {
                     return a < b ? -1 : a > b ? 1 : 0;
                 });
             }
             return entry;
         })
-        .reduce((a, entry) => {
-            entry[1].forEach((name) => a.push(name));
+        .reduce(( a, entry ) => {
+            entry[1].forEach(( name ) => a.push(name));
             return a;
         }, []);
 
-        newUserOrder = newUserOrder.map((user) => {
-            userOrder_OG.forEach((user_OG) => {
+        newUserOrder = newUserOrder.map(( user ) => {
+            userOrder_OG.forEach(( user_OG ) => {
                 if (user === user_OG.name) {
                     user = user_OG;
                 }
@@ -592,30 +582,30 @@ const dupeScoreAudit = (arr, actualGoalsScored) => {
         answer = [...answer, ...newUserOrder];
     });
 
-    return answer.map((user) => {
+    return answer.map(( user ) => {
         user.rank = rank;
         rank++;
         return user;
     });
 };
 
-const sortRank = (arr) => {
+const sortRank = ( arr ) => {
     let rank = 1;
 
-    return arr.map((user) => {
+    return arr.map(( user ) => {
         user.rank = rank;
         rank++;
         return user;
     });
 };
 
-const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
+const getCurrentScores = ( users, teams, joe, actualGoalsScored = null ) => {
     let rank = 1;
 
     // const allGroupsAreFinished = areAllGroupsAreFinished(teams);
 
     const firstAudit = users
-    .reduce((a, user) => {
+    .reduce(( a, user ) => {
         const total = userTotalPoints(user, teams);
 
         let max_Pts = 0;
@@ -644,8 +634,8 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
 
         return a;
     }, [])
-    .sort((a, b) => b.total - a.total)
-    .map((user) => {
+    .sort(( a, b ) => b.total - a.total)
+    .map(( user ) => {
         user.rank = rank;
         rank++;
 
@@ -658,7 +648,7 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
 
     let readyToRun = false;
 
-    firstAudit.forEach((user) => {
+    firstAudit.forEach(( user ) => {
         if (user.total !== 0) {
             readyToRun = true;
         }
@@ -673,20 +663,20 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
 
         const scores = createCountObj(firstAudit, "total");
 
-        firstAudit.forEach((user) => {
+        firstAudit.forEach(( user ) => {
             scores[user.total] === 1
                 ? nonDupeScores.push(user)
                 : dupeScores.push(user);
         });
 
         if (dupeScores.length) {
-            const scoreObj = dupeScores.reduce((a, user) => {
+            const scoreObj = dupeScores.reduce(( a, user ) => {
                 a[user.total] ? a[user.total].push(user)
                     : (a[user.total] = [user]);
                 return a;
             }, {});
 
-            Object.keys(scoreObj).forEach((key) => {
+            Object.keys(scoreObj).forEach(( key ) => {
                 const newDupeScoreRank = dupeScoreAudit(
                     scoreObj[key],
                     actualGoalsScored
@@ -696,7 +686,7 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
 
             const newRank = [...newDupeScores, ...nonDupeScores];
 
-            return newRank.sort((a, b) => a.rank - b.rank);
+            return newRank.sort(( a, b ) => a.rank - b.rank);
         }
 
         return nonDupeScores;
@@ -711,17 +701,17 @@ const getCurrentScores = (users, teams, joe, actualGoalsScored = null) => {
     return result;
 };
 
-const allUsersPaid = (arr) => {
-    const paidAudit = arr.map((user) => user.paid);
+const allUsersPaid = ( arr ) => {
+    const paidAudit = arr.map(( user ) => user.paid);
     return !paidAudit.includes(false);
 };
 
-const usersAreTied = (arr) => {
-    const tieAudit = arr.map((user) => user.tieExists);
+const usersAreTied = ( arr ) => {
+    const tieAudit = arr.map(( user ) => user.tieExists);
     return tieAudit.includes(true);
 };
 
-const colorDescriptionTableNeeded = (arr) => {
+const colorDescriptionTableNeeded = ( arr ) => {
     //audit to see if the color table is needed.
     //returns false if all users are paid, and there are no ties
 
@@ -737,7 +727,7 @@ const colorDescriptionTableNeeded = (arr) => {
     return answer;
 };
 
-const userStatusClass = (user) => {
+const userStatusClass = ( user ) => {
     return !user.paid
         ? "not-paid"
         : user.tieExists
@@ -747,17 +737,17 @@ const userStatusClass = (user) => {
                 : "";
 };
 
-const isPoolPicksPage = (pathname) => {
+const isPoolPicksPage = ( pathname ) => {
     const path = pathname.split("/")[1];
 
     return path === "pool_picks";
 };
 
-const auditThirdPlaceToAdvancePicks = (obj) => {
+const auditThirdPlaceToAdvancePicks = ( obj ) => {
     let answer = {outcome: "=", groupErrors: []};
     let count = -4;
 
-    Object.values(obj).forEach((boolean) => boolean && count++);
+    Object.values(obj).forEach(( boolean ) => boolean && count++);
 
     if (count === 0) {
         return answer;
@@ -766,7 +756,7 @@ const auditThirdPlaceToAdvancePicks = (obj) => {
     if (count < 0) {
         answer.outcome = `${count}`;
 
-        Object.entries(obj).forEach((entry) => {
+        Object.entries(obj).forEach(( entry ) => {
             if (!entry[1]) {
                 answer.groupErrors.push(entry[0]);
             }
@@ -776,7 +766,7 @@ const auditThirdPlaceToAdvancePicks = (obj) => {
     if (count > 0) {
         answer.outcome = `+${count}`;
 
-        Object.entries(obj).forEach((entry) => {
+        Object.entries(obj).forEach(( entry ) => {
             if (entry[1]) {
                 answer.groupErrors.push(entry[0]);
             }
@@ -786,7 +776,7 @@ const auditThirdPlaceToAdvancePicks = (obj) => {
     return answer;
 };
 
-const determineR16Seeding = (teams) => {
+const determineR16Seeding = ( teams ) => {
     const staticGames = {
         R16_2: ["A1", "C2"],
         R16_4: ["D2", "E2"],
@@ -795,7 +785,7 @@ const determineR16Seeding = (teams) => {
     };
 
     const groupsThatHaveTeamsAdvancingFrom3rd = teams
-    .reduce((a, team) => {
+    .reduce(( a, team ) => {
         if (team.thirdPlaceAndAdvancedToKO) {
             const teamGroup = team.knockoutPosition.split("")[0];
             a.push(teamGroup);
@@ -804,7 +794,7 @@ const determineR16Seeding = (teams) => {
         return a;
     }, [])
     .sort()
-    .reduce((a, letter) => {
+    .reduce(( a, letter ) => {
         a += letter;
 
         return a;
@@ -909,11 +899,11 @@ const determineR16Seeding = (teams) => {
     return {...staticGames, ...remainingMatchups};
 };
 
-const findSemisTeam = (results, game) => {
+const findSemisTeam = ( results, game ) => {
     let targetTeam = undefined;
 
-    semiMatchups[game].forEach((game) => {
-        results[game].forEach((team) => {
+    semiMatchups[game].forEach(( game ) => {
+        results[game].forEach(( team ) => {
             if (team.advanceToS) {
                 targetTeam = team;
             }
@@ -923,11 +913,11 @@ const findSemisTeam = (results, game) => {
     return targetTeam;
 };
 
-const findFinalsTeam = (results, game) => {
+const findFinalsTeam = ( results, game ) => {
     let targetTeam = undefined;
 
-    finalMatchups[game].forEach((game) => {
-        results[game].forEach((team) => {
+    finalMatchups[game].forEach(( game ) => {
+        results[game].forEach(( team ) => {
             if (team.advanceToF) {
                 targetTeam = team;
             }
@@ -937,11 +927,11 @@ const findFinalsTeam = (results, game) => {
     return targetTeam;
 };
 
-const findChamp = (results) => {
+const findChamp = ( results ) => {
     let targetTeam = undefined;
 
-    Object.values(results).forEach((teamArr) => {
-        teamArr.forEach((team) => {
+    Object.values(results).forEach(( teamArr ) => {
+        teamArr.forEach(( team ) => {
             if (team.advanceToChamp) {
                 targetTeam = team;
             }
@@ -951,21 +941,21 @@ const findChamp = (results) => {
     return targetTeam;
 };
 
-const calcMaxPts = (user, teams) => {
+const calcMaxPts = ( user, teams ) => {
     const userCurrentTotal = userTotalPoints(user, teams);
 
     const KOSeeding = determineR16Seeding(teams);
 
-    const allKOGames = koLetters_maxPts.reduce((a, letter) => {
+    const allKOGames = koLetters_maxPts.reduce(( a, letter ) => {
         switch (letter) {
             case "R16_":
-                Qs.forEach((num) => a.push(`${letter}${num}`));
+                Qs.forEach(( num ) => a.push(`${letter}${num}`));
                 break;
             case "Q":
-                Ss.forEach((num) => a.push(`${letter}${num}`));
+                Ss.forEach(( num ) => a.push(`${letter}${num}`));
                 break;
             case "S":
-                Fs.forEach((num) => a.push(`${letter}${num}`));
+                Fs.forEach(( num ) => a.push(`${letter}${num}`));
                 break;
             default:
                 a.push("Champ");
@@ -974,17 +964,17 @@ const calcMaxPts = (user, teams) => {
         return a;
     }, []);
 
-    const findRound = (str) => {
+    const findRound = ( str ) => {
         return str === "Champ" ? str : str.split("")[0];
     };
 
-    const gamesToAudit = allKOGames.reduce((a, game) => {
+    const gamesToAudit = allKOGames.reduce(( a, game ) => {
         const round = findRound(game);
 
         let isGameComplete, gamesToLookAt, didATeamAdvance;
 
-        const determineIfAnyTeamsAdvanced = (games, round_OG) => {
-            return games.reduce((a, game) => {
+        const determineIfAnyTeamsAdvanced = ( games, round_OG ) => {
+            return games.reduce(( a, game ) => {
                 let roundToUse;
 
                 switch (round_OG) {
@@ -1004,9 +994,9 @@ const calcMaxPts = (user, teams) => {
 
                 const finishingPositions = KOSeeding[game];
 
-                finishingPositions.forEach((finishingPosition) => {
+                finishingPositions.forEach(( finishingPosition ) => {
                     const team = teams.find(
-                        (team) => team.knockoutPosition === finishingPosition
+                        ( team ) => team.knockoutPosition === finishingPosition
                     );
 
                     a.push(team[`advanceTo${roundToUse}`]);
@@ -1039,7 +1029,7 @@ const calcMaxPts = (user, teams) => {
         return a;
     }, []);
 
-    const userFuturePoints = gamesToAudit.reduce((a, game) => {
+    const userFuturePoints = gamesToAudit.reduce(( a, game ) => {
         const startOfStr = game.slice(0, game.length - 1);
         const lastIdx = game.slice(game.length - 1);
 
@@ -1073,7 +1063,7 @@ const calcMaxPts = (user, teams) => {
         return a;
     }, 0);
 
-    const isTourneyComplete = teams.find((team) => team.advanceToChamp);
+    const isTourneyComplete = teams.find(( team ) => team.advanceToChamp);
 
     return isTourneyComplete
         ? userCurrentTotal
@@ -1083,7 +1073,7 @@ const calcMaxPts = (user, teams) => {
 const getWebsiteUpdatedEmailDateVerbiage = () => {
     const date = new Date();
 
-    Date.prototype.customFormat = function (formatString) {
+    Date.prototype.customFormat = function ( formatString ) {
         let YYYY,
             // MM,
             M,
@@ -1145,13 +1135,13 @@ const getWebsiteUpdatedEmailDateVerbiage = () => {
     return [subjectLine, emailBody];
 };
 
-const formatPathname = (str) => {
+const formatPathname = ( str ) => {
     const split = str.split("_");
 
-    return split.reduce((a, word, idx) => {
+    return split.reduce(( a, word, idx ) => {
         word = word
         .split("")
-        .map((letter, idx) => {
+        .map(( letter, idx ) => {
             if (idx === 0) {
                 letter = letter.toUpperCase();
             }
@@ -1166,15 +1156,15 @@ const formatPathname = (str) => {
     }, "");
 };
 
-const formatURL = (route) => {
+const formatURL = ( route ) => {
     const space = /\s/g;
     const period = /\./g;
 
     return route.toLowerCase().replaceAll(space, "_").replaceAll(period, "");
 };
 
-const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
-    return usersPicksForGame.map((team) => {
+const formatTeamClass_KO = ( usersPicksForGame, boxType, gameInfo, round ) => {
+    return usersPicksForGame.map(( team ) => {
         if (!team) {
             team = {};
         } else {
@@ -1234,8 +1224,8 @@ const formatTeamClass_KO = (usersPicksForGame, boxType, gameInfo, round) => {
     });
 };
 
-const formatTeamClass_KO_Z_In_FF = (usersPicksForGame, boxType) => {
-    return usersPicksForGame.map((team) => {
+const formatTeamClass_KO_Z_In_FF = ( usersPicksForGame, boxType ) => {
+    return usersPicksForGame.map(( team ) => {
         const gameInfo = team?.gameInfo;
 
         if (!team) {
@@ -1284,146 +1274,142 @@ const formatTeamClass_KO_Z_In_FF = (usersPicksForGame, boxType) => {
     });
 };
 
-const adjustPicks_KO = (a) => {
-    if (a.round === "R16") {
-        switch (a.teamPos) {
-            case 1:
-                results[a.game][0].advanceToQ = true;
-                results[a.game][0].outOfTourney = false;
+// const adjustPicks_KO = (a) => {
+//     if (a.round === "R16") {
+//         switch (a.teamPos) {
+//             case 1:
+//                 results[a.game][0].advanceToQ = true;
+//                 results[a.game][0].outOfTourney = false;
+//
+//                 results[a.game][1].advanceToQ = false;
+//                 results[a.game][1].advanceToS = false;
+//                 results[a.game][1].advanceToF = false;
+//                 results[a.game][1].advanceToChamp = false;
+//                 results[a.game][1].outOfTourney = true;
+//                 break;
+//             case 2:
+//                 results[a.game][1].advanceToQ = true;
+//                 results[a.game][1].outOfTourney = false;
+//
+//                 results[a.game][0].advanceToQ = false;
+//                 results[a.game][0].advanceToS = false;
+//                 results[a.game][0].advanceToF = false;
+//                 results[a.game][0].advanceToChamp = false;
+//                 results[a.game][0].outOfTourney = true;
+//                 break;
+//         }
+//     }
+//
+//     if (a.round === "Q") {
+//         const teamThatAdvanced = results[a.game].find(
+//             (team) => team.advanceToQ);
+//
+//         const otherTeamGame =
+//             a.gameNum % 2 === 0 ? `R16_${a.gameNum - 1}` : `R16_${a.gameNum
+//             + 1}`;
+//
+//         const teamThatGotKnockedOut = results[otherTeamGame].find(
+//             (team) => team.advanceToQ
+//         );
+//
+//         teamThatAdvanced.advanceToS = true;
+//         teamThatAdvanced.outOfTourney = false;
+//
+//         teamThatGotKnockedOut.advanceToS = false;
+//         teamThatGotKnockedOut.advanceToF = false;
+//         teamThatGotKnockedOut.advanceToChamp = false;
+//         teamThatGotKnockedOut.outOfTourney = true;
+//     }
+//
+//     if (a.round === "S") {
+//         let teamThatAdvanced, teamThatGotKnockedOut;
+//
+//         semiMatchups[a.game].forEach((game) => {
+//             const targetTeam = results[game].find((team) => team.advanceToS);
+//
+//             if (targetTeam) {
+//                 teamThatAdvanced = targetTeam;
+//             }
+//         });
+//
+//         const otherTeamGame =
+//             a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
+//
+//         semiMatchups[otherTeamGame].forEach((game) => {
+//             const targetTeam = results[game].find((team) => team.advanceToS);
+//
+//             if (targetTeam) {
+//                 teamThatGotKnockedOut = targetTeam;
+//             }
+//         });
+//
+//         if (teamThatAdvanced) {
+//             teamThatAdvanced.advanceToF = true;
+//             teamThatAdvanced.outOfTourney = false;
+//         }
+//
+//         if (teamThatGotKnockedOut) {
+//             teamThatGotKnockedOut.advanceToF = false;
+//             teamThatGotKnockedOut.advanceToChamp = false;
+//             teamThatGotKnockedOut.outOfTourney = true;
+//         }
+//     }
+//
+//     if (a.round === "F") {
+//         let teamThatAdvanced, teamThatGotKnockedOut;
+//
+//         finalMatchups[a.game].forEach((game) => {
+//             const targetTeam = results[game].find((team) => team.advanceToF);
+//
+//             if (targetTeam) {
+//                 teamThatAdvanced = targetTeam;
+//             }
+//         });
+//
+//         const otherTeamGame = a.game === "S1" ? "S2" : "S1";
+//
+//         finalMatchups[otherTeamGame].forEach((game) => {
+//             const targetTeam = results[game].find((team) => team.advanceToF);
+//
+//             if (targetTeam) {
+//                 teamThatGotKnockedOut = targetTeam;
+//             }
+//         });
+//
+//         if (teamThatAdvanced) {
+//             teamThatAdvanced.advanceToChamp = true;
+//             teamThatAdvanced.outOfTourney = false;
+//         }
+//
+//         if (teamThatGotKnockedOut) {
+//             teamThatGotKnockedOut.advanceToChamp = false;
+//             teamThatGotKnockedOut.outOfTourney = true;
+//         }
+//     }
+//
+//     setTeamAdjusted(!teamAdjusted);
+// };
 
-                results[a.game][1].advanceToQ = false;
-                results[a.game][1].advanceToS = false;
-                results[a.game][1].advanceToF = false;
-                results[a.game][1].advanceToChamp = false;
-                results[a.game][1].outOfTourney = true;
-                break;
-            case 2:
-                results[a.game][1].advanceToQ = true;
-                results[a.game][1].outOfTourney = false;
-
-                results[a.game][0].advanceToQ = false;
-                results[a.game][0].advanceToS = false;
-                results[a.game][0].advanceToF = false;
-                results[a.game][0].advanceToChamp = false;
-                results[a.game][0].outOfTourney = true;
-                break;
-        }
-    }
-
-    if (a.round === "Q") {
-        const teamThatAdvanced = results[a.game].find(
-            (team) => team.advanceToQ);
-
-        const otherTeamGame =
-            a.gameNum % 2 === 0 ? `R16_${a.gameNum - 1}` : `R16_${a.gameNum
-            + 1}`;
-
-        const teamThatGotKnockedOut = results[otherTeamGame].find(
-            (team) => team.advanceToQ
-        );
-
-        teamThatAdvanced.advanceToS = true;
-        teamThatAdvanced.outOfTourney = false;
-
-        teamThatGotKnockedOut.advanceToS = false;
-        teamThatGotKnockedOut.advanceToF = false;
-        teamThatGotKnockedOut.advanceToChamp = false;
-        teamThatGotKnockedOut.outOfTourney = true;
-    }
-
-    if (a.round === "S") {
-        let teamThatAdvanced, teamThatGotKnockedOut;
-
-        semiMatchups[a.game].forEach((game) => {
-            const targetTeam = results[game].find((team) => team.advanceToS);
-
-            if (targetTeam) {
-                teamThatAdvanced = targetTeam;
-            }
-        });
-
-        const otherTeamGame =
-            a.gameNum % 2 === 0 ? `Q${a.gameNum - 1}` : `Q${a.gameNum + 1}`;
-
-        semiMatchups[otherTeamGame].forEach((game) => {
-            const targetTeam = results[game].find((team) => team.advanceToS);
-
-            if (targetTeam) {
-                teamThatGotKnockedOut = targetTeam;
-            }
-        });
-
-        if (teamThatAdvanced) {
-            teamThatAdvanced.advanceToF = true;
-            teamThatAdvanced.outOfTourney = false;
-        }
-
-        if (teamThatGotKnockedOut) {
-            teamThatGotKnockedOut.advanceToF = false;
-            teamThatGotKnockedOut.advanceToChamp = false;
-            teamThatGotKnockedOut.outOfTourney = true;
-        }
-    }
-
-    if (a.round === "F") {
-        let teamThatAdvanced, teamThatGotKnockedOut;
-
-        finalMatchups[a.game].forEach((game) => {
-            const targetTeam = results[game].find((team) => team.advanceToF);
-
-            if (targetTeam) {
-                teamThatAdvanced = targetTeam;
-            }
-        });
-
-        const otherTeamGame = a.game === "S1" ? "S2" : "S1";
-
-        finalMatchups[otherTeamGame].forEach((game) => {
-            const targetTeam = results[game].find((team) => team.advanceToF);
-
-            if (targetTeam) {
-                teamThatGotKnockedOut = targetTeam;
-            }
-        });
-
-        if (teamThatAdvanced) {
-            teamThatAdvanced.advanceToChamp = true;
-            teamThatAdvanced.outOfTourney = false;
-        }
-
-        if (teamThatGotKnockedOut) {
-            teamThatGotKnockedOut.advanceToChamp = false;
-            teamThatGotKnockedOut.outOfTourney = true;
-        }
-    }
-
-    setTeamAdjusted(!teamAdjusted);
-};
-
-const getKOResults = (teams) => {
+const getKOResults = ( teams ) => {
     const seedMatchups = determineR16Seeding(teams);
 
-    return Object.entries(seedMatchups).reduce((a, entry) => {
+    return Object.entries(seedMatchups).reduce(( a, entry ) => {
         const game = entry[0];
 
-        const teamData = entry[1].map((knockoutPosition) => {
-            const team = teams.find(
-                (team) => team?.knockoutPosition === knockoutPosition
+        a[game] = entry[1].map(( knockoutPosition ) => {
+            return teams.find(
+                ( team ) => team?.knockoutPosition === knockoutPosition
             );
-
-            return team;
         });
-
-        a[game] = teamData;
 
         return a;
     }, {});
 };
 
-const getUserKoResult = (userPicks) => {
+const getUserKoResult = ( userPicks ) => {
     let result = "";
 
-    userPicks.forEach((team) => {
+    userPicks.forEach(( team ) => {
         if (
             team?.usersPickForThisGame &&
             validKoResults.includes(team?.userClass)
@@ -1435,8 +1421,8 @@ const getUserKoResult = (userPicks) => {
     return result;
 };
 
-const checkForOpacity_Z_In = (usersPicks, round) => {
-    return usersPicks.map((team) => {
+const checkForOpacity_Z_In = ( usersPicks, round ) => {
+    return usersPicks.map(( team ) => {
         if (team.outOfTourney) {
             switch (round) {
                 case "R16":
@@ -1461,18 +1447,19 @@ const checkForOpacity_Z_In = (usersPicks, round) => {
     });
 };
 
-const findPreviousGameWinners_R16 = (user, teams, usersPicks, gamesToAudit) => {
+const findPreviousGameWinners_R16 = ( user, teams, usersPicks,
+    gamesToAudit ) => {
     if (!user?.knockChamp) {
         return usersPicks;
     }
 
-    const regionPreviousGameWinners = gamesToAudit.map((game) => {
+    const regionPreviousGameWinners = gamesToAudit.map(( game ) => {
         const previousGameInfo = koGameCalc(user, game, teams);
 
         return previousGameInfo?.teamThatAdvanced?.name;
     });
 
-    return usersPicks.map((team, idx) => {
+    return usersPicks.map(( team, idx ) => {
         team.showPreviousWinnerTop = null;
         team.showPreviousWinnerBottom = null;
 
@@ -1488,17 +1475,17 @@ const findPreviousGameWinners_R16 = (user, teams, usersPicks, gamesToAudit) => {
     });
 };
 
-const findPreviousGameWinner_FF = (teams, usersPick, gamesToAudit, side) => {
+const findPreviousGameWinner_FF = ( teams, usersPick, gamesToAudit, side ) => {
     const seedMatchups = determineR16Seeding(teams);
 
     let regionWinner = null;
 
-    gamesToAudit.forEach((game) => {
+    gamesToAudit.forEach(( game ) => {
         const groupFinishingPositions = seedMatchups[game];
 
-        groupFinishingPositions.forEach((finishingPosition) => {
+        groupFinishingPositions.forEach(( finishingPosition ) => {
             const team = teams.find(
-                (team) => team.knockoutPosition === finishingPosition
+                ( team ) => team.knockoutPosition === finishingPosition
             );
 
             if (team.advanceToS) {
@@ -1533,12 +1520,12 @@ const findPreviousGameWinner_Finals = (
 
     let winningTeam = null;
 
-    gamesToAudit.forEach((game) => {
+    gamesToAudit.forEach(( game ) => {
         const groupFinishingPositions = seedMatchups[game];
 
-        groupFinishingPositions.forEach((finishingPosition) => {
+        groupFinishingPositions.forEach(( finishingPosition ) => {
             const team = teams.find(
-                (team) => team.knockoutPosition === finishingPosition
+                ( team ) => team.knockoutPosition === finishingPosition
             );
 
             if (team[`advanceTo${gameToAudit}`]) {
@@ -1554,20 +1541,20 @@ const findPreviousGameWinner_Finals = (
     return usersPick;
 };
 
-const isUserMissingOtherRegionPicks = (user, regionToAudit) => {
+const isUserMissingOtherRegionPicks = ( user, regionToAudit ) => {
     const userPicksInRegionToAAudit = regionToAuditMapper[regionToAudit].map(
-        (game) => user[game]
+        ( game ) => user[game]
     );
 
     return userPicksInRegionToAAudit.includes(null) ? "missing" : "igo";
 
 };
 
-const createPreTourneyDataNotAvailableYetMessage = (str) => {
+const createPreTourneyDataNotAvailableYetMessage = ( str ) => {
     return `${str} will not be viewable until the tournament commences on ${tourneyStartDate}`;
 };
 
-const shouldPayoutShow = (joe, user) => {
+const shouldPayoutShow = ( joe, user ) => {
     const tourneyStarted = joe?.tourneyStage !== 1;
     const userSubmittedPicks = user?.tiebreaker ?? false;
 
@@ -1576,11 +1563,11 @@ const shouldPayoutShow = (joe, user) => {
     );
 };
 
-const getActiveUsers = (users) => {
-    return users.filter((user) => user?.tiebreaker);
+const getActiveUsers = ( users ) => {
+    return users.filter(( user ) => user?.tiebreaker);
 };
 
-const calcPayout = (users) => {
+const calcPayout = ( users ) => {
     const pot = users?.length * 20;
 
     const result = {
@@ -1620,34 +1607,80 @@ const calcPayout = (users) => {
     return result;
 };
 
+const isLastIdx = ( arr, idx ) => {
+    return idx !== arr.length - 1;
+};
+
+const addSpace = ( arr, idx ) => {
+    return isLastIdx(arr, idx) ? " " : "";
+};
+
 const getNavBarVerbiageFromPath = (
     route,
-    userIsLoggedIn = userIsLoggedIn ?? false
+    userIsLoggedIn = false
 ) => {
-    const string = route.split("/").pop();
+    const arrayOfPaths = route.split("/")
 
-    const words = string.split("-");
+    arrayOfPaths.shift();
 
-    return words.reduce((a, word, idx) => {
-        if (word === "in" && userIsLoggedIn) {
-            a += "Out";
+    let result = ''
 
-            return a;
-        }
+    arrayOfPaths.forEach(( path, idx ) => {
 
-        a += cap1stLetter(word);
+        const words = path.split("-");
 
-        if (word === "rules") {
-            a += "/General Info";
+        return words.forEach(( word, idx ) => {
+            if (word === "in" && userIsLoggedIn) {
+                result += "Out";
 
-            return a;
-        }
+                return result;
+            }
 
-        a += addSpace(words, idx);
+            result += cap1stLetter(word);
 
-        return a;
-    }, "");
+            if (word === "rules") {
+                result += "/General Info";
+
+                return result;
+            }
+
+            result += addSpace(words, idx);
+
+            if (word === 'admin') {
+                result += ' - '
+            }
+
+        });
+
+    });
+
+    return result
 };
+
+const getIsUserSignedIn = ( user ) => {
+    return !!user?.id
+}
+
+const getIsUserAdmin = ( user ) => {
+    return !!user?.admin
+}
+
+const handleMobileClick = ( ref, closeMobileMenu ) => {
+    const handler = ( event ) => {
+        !ref.current.contains(event.target) &&
+        event.target.className !== "dropdown-route-row" &&
+        closeMobileMenu();
+
+    };
+
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
+
+    return () => {
+        document.removeEventListener("mousedown", handler);
+        document.removeEventListener("touchstart", handler);
+    };
+}
 
 module.exports = {
     findJoe,
@@ -1659,7 +1692,6 @@ module.exports = {
     userTotalPoints,
     getCurrentScores,
     dupeValInArr,
-    urlWord,
     formatSelectedUser,
     cap1stLetter,
     findEntry,
@@ -1683,7 +1715,7 @@ module.exports = {
     formatURL,
     areAllGroupsAreFinished,
     formatTeamClass_KO,
-    adjustPicks_KO,
+    // adjustPicks_KO,
     getKOResults,
     getUserKoResult,
     checkForOpacity_Z_In,
@@ -1696,5 +1728,8 @@ module.exports = {
     shouldPayoutShow,
     getActiveUsers,
     calcPayout,
-    getNavBarVerbiageFromPath
+    getNavBarVerbiageFromPath,
+    getIsUserSignedIn,
+    getIsUserAdmin,
+    handleMobileClick
 };

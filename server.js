@@ -1,15 +1,9 @@
 //adjust all URLS to have dashes instead of underscores ---START
 
-///header ----START
-///replace regoin with region
-// -- do a control find in the app
-// --push up to git
-// -- do a control find in github
+///admin  ----START
 
-//consolidate the useEffect event handler in the Manu-Chevron & Payout_Cont files
+///admin  ----END
 
-///header ----END
-///admin
 ///group_details
 ///leaderboard
 ///misc
@@ -33,10 +27,8 @@
 //group details = adjust the "3rd place team advanced from group" container at the top to be a little darker than the background
 
 /////adjust the date info on the following pages:
-//create a local variable and apply it to these pages - see masters App
+//create a local variable and apply it to these pages
 //rules
-//leaderboard
-//pool picks
 
 ////////once the site is live on byah-masters-byah ----START
 
@@ -148,7 +140,7 @@ app.use("/", require("./server/api/updated"));
 app.use("/", require("./server/api/users"));
 app.use("/", require("./server/api/auth"));
 app.use("/", require("./server/api/teams"));
-app.use("/", (req, res, next) =>
+app.use("/", ( req, res, next ) =>
     res.sendFile(path.join(__dirname, "html/main.html"))
 );
 

@@ -1,25 +1,37 @@
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import Navbar_Link from "./Navbar_Link";
+import {
+    userIsSignedInRoutes,
+    adminRoutes,
+    routes,
+    getIsUserSignedIn,
+    getIsUserAdmin,
+} from '../../../../store'
 
 const Bottom_Row = () => {
-  const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-  const adminOptions = ["users", "groups", "KO"];
-  const navOptions = ["leaderboard", "my picks", "pool picks", "group details"];
+    const userIsSignedIn = getIsUserSignedIn(user)
+    const userIsAdmin = getIsUserAdmin(user)
 
-  return (
-    <div className="bottom-row-navbar">
-      {user?.admin &&
-        adminOptions.map((page, idx) => (
-          <Navbar_Link key={idx} page={page} adminPage={true} />
-        ))}
-      {user?.id &&
-        navOptions.map((page, idx) => (
-          <Navbar_Link key={idx} page={page} adminPage={false} user={user} />
-        ))}
-      <Navbar_Link page={"rules"} adminPage={false} />
-    </div>
-  );
+    return (
+        <div className="bottom-row-navbar">
+            {userIsAdmin &&
+                adminRoutes.map(( route, idx ) => (
+                    <Navbar_Link key={idx} route={route}/>
+                ))}
+
+            {userIsSignedIn &&
+                userIsSignedInRoutes.map(( route, idx ) => (
+                    <Navbar_Link
+                        key={idx}
+                        route={route}
+                    />
+                ))}
+
+            <Navbar_Link route={routes.rules}/>
+        </div>
+    );
 };
 
 export default Bottom_Row;

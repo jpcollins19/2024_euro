@@ -1,6 +1,13 @@
 import {useState, useEffect, useRef} from "react";
 import {useSelector} from "react-redux";
-import {routes} from "../../../store";
+import {
+    routes,
+    userIsSignedInRoutes,
+    adminRoutes,
+    getIsUserSignedIn,
+    getIsUserAdmin,
+    handleMobileClick
+} from "../../../store";
 import MenuItemIcon from "@mui/icons-material/List";
 import List_Route_M from "./List_Route_M";
 
@@ -13,43 +20,25 @@ const Menu_Chevron = () => {
     let ref = useRef();
 
     useEffect(() => {
-        const handler = (event) => {
-            !ref.current.contains(event.target) &&
-            event.target.className !== "dropdown-route-row" &&
-            closeMobileMenu();
-
-        };
-
-        document.addEventListener("mousedown", handler);
-        document.addEventListener("touchstart", handler);
-
-        return () => {
-            document.removeEventListener("mousedown", handler);
-            document.removeEventListener("touchstart", handler);
-        };
+        return handleMobileClick(ref, closeMobileMenu)
     }, [click]);
 
-    const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-    // const routes = ["Leaderboard", "My Picks", "Pool Picks", "Group Details"];
-
-    const adminRoutes = [routes.adminUsers, routes.adminGroups,
-        routes.adminKo];
+    const userIsSignedIn = getIsUserSignedIn(user)
+    const userIsAdmin = getIsUserAdmin(user)
 
     return (
         <div>
             <div className="menu-icon" onClick={handleClick} ref={ref}>
-                {/* <MenuItemIcon sx={{ fontSize: isTablet ? 40 : 90 }} /> */}
                 <MenuItemIcon sx={{fontSize: 90}}/>
             </div>
-            {click && (
-                // <ul className={click ? "dropdown-menu active"
-                //     : "dropdown-menu"}>
 
+            {click && (
                 <ul className={`dropdown-menu ${click ? 'active' : ''}`}>
 
-                    {user?.admin &&
-                        adminRoutes.map((route, idx) => (
+                    {userIsAdmin &&
+                        adminRoutes.map(( route, idx ) => (
                             <List_Route_M
                                 key={idx}
                                 route={route}
@@ -57,35 +46,32 @@ const Menu_Chevron = () => {
                             />
                         ))}
 
-                    {/*{user?.id &&*/}
-                    {/*    routes.map((route, idx) => (*/}
-                    {/*        <List_Route_M*/}
-                    {/*            key={idx}*/}
-                    {/*            route={route}*/}
-                    {/*            closeMobileMenu={closeMobileMenu}*/}
-                    {/*            user={user}*/}
-                    {/*        />*/}
-                    {/*    ))}*/}
+                    {userIsSignedIn &&
+                        userIsSignedInRoutes.map(( route, idx ) => (
+                            <List_Route_M
+                                key={idx}
+                                route={route}
+                                closeMobileMenu={closeMobileMenu}
+                            />
+                        ))}
 
-                    {/*<List_Route_M*/}
-                    {/*    route={"Rules/General Info"}*/}
-                    {/*    closeMobileMenu={closeMobileMenu}*/}
-                    {/*    user={user}*/}
-                    {/*/>*/}
+                    <List_Route_M
+                        route={routes.rules}
+                        closeMobileMenu={closeMobileMenu}
+                    />
 
-                    {/*{user?.id && (*/}
-                    {/*    <List_Route_M*/}
-                    {/*        route={"My Profile"}*/}
-                    {/*        closeMobileMenu={closeMobileMenu}*/}
-                    {/*        user={user}*/}
-                    {/*    />*/}
-                    {/*)}*/}
+                    {userIsSignedIn && (
+                        <List_Route_M
+                            route={routes.myProfile}
+                            closeMobileMenu={closeMobileMenu}
+                        />
+                    )}
 
-                    {/*<List_Route_M*/}
-                    {/*    route={user?.id ? "Sign Out" : "Sign In"}*/}
-                    {/*    closeMobileMenu={closeMobileMenu}*/}
-                    {/*    user={user}*/}
-                    {/*/>*/}
+                    <List_Route_M
+                        route={routes.signIn}
+                        closeMobileMenu={closeMobileMenu}
+                        userIsSignedIn={userIsSignedIn}
+                    />
                 </ul>
             )}
         </div>

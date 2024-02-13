@@ -1,40 +1,22 @@
-import { useLocation, Link } from "react-router-dom";
-import { urlWord, cap1stLetter } from "../../../../store";
+import {useLocation, Link} from "react-router-dom";
+import {getNavBarVerbiageFromPath} from "../../../../store";
 
-const Navbar_Link = ({ page, adminPage, user }) => {
-  const { pathname } = useLocation();
+const Navbar_Link = ( {route} ) => {
+    const {pathname} = useLocation();
 
-  const pathname1 = pathname.split("/")[1];
-  const pathname2 = pathname.split("/")[2];
+    const verbiage = getNavBarVerbiageFromPath(route)
 
-  const urlToUse = adminPage
-    ? `/admin/${urlWord(page)}`
-    : page === "pool picks"
-    ? `/${urlWord(page)}/${user?.id}`
-    : `/${urlWord(page)}`;
+    const linkClassName = pathname === route ? "selected-url"
+        : "not-selected-url"
 
-  let verbiageToDisplay;
-
-  if (page === "rules") {
-    verbiageToDisplay = "Rules / General Information";
-  } else if (adminPage) {
-    verbiageToDisplay = `Admin - ${cap1stLetter(page)}`;
-  } else {
-    verbiageToDisplay = cap1stLetter(page);
-  }
-
-  return (
-    <Link
-      to={urlToUse}
-      className={
-        pathname1 === urlWord(page) || pathname2 === urlWord(page)
-          ? "selected-url"
-          : "not-selected-url"
-      }
-    >
-      {verbiageToDisplay}
-    </Link>
-  );
+    return (
+        <Link
+            to={route}
+            className={linkClassName}
+        >
+            {verbiage}
+        </Link>
+    );
 };
 
 export default Navbar_Link;

@@ -1,37 +1,20 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
-import {formatURL, logout, cap1stLetter} from "../../../store";
+import {logout, getNavBarVerbiageFromPath} from "../../../store";
 
-const List_Route_M = ({route, closeMobileMenu}) => {
+const List_Route_M = ({route, closeMobileMenu, userIsSignedIn}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const user = useSelector((state) => state.auth);
-
-    const path =
-        route === "Rules/General Info"
-            ? "rules"
-            : route === "Sign Out"
-                ? "sign_in"
-                : route === "Pool Picks"
-                    ? `pool_picks/${user?.id}`
-                    : route === "Admin"
-                        ? `admin/${subRoute}`
-                        : formatURL(route);
-
-    // const verbiage =
-    //     route === "Admin" ? `Admin - ${cap1stLetter(subRoute)}` : route;
-
-    const verbiage = getNavBarVerbiageFromPath(route, userIsLoggedIn ?? false);
+    const verbiage = getNavBarVerbiageFromPath(route, userIsSignedIn ?? false);
 
     return (
         <li>
             <Link
-                to={`/${path}`}
+                to={route}
                 className="dropdown-route-row"
                 onClick={() => {
-                    route === "Sign Out" ? dispatch(logout(history))
-                        : closeMobileMenu();
+                    userIsSignedIn && dispatch(logout(history));
 
                     closeMobileMenu();
                 }}
