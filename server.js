@@ -1,6 +1,14 @@
 //adjust all URLS to have dashes instead of underscores ---START
 
-///header
+///header ----START
+///replace regoin with region
+// -- do a control find in the app
+// --push up to git
+// -- do a control find in github
+
+//consolidate the useEffect event handler in the Manu-Chevron & Payout_Cont files
+
+///header ----END
 ///admin
 ///group_details
 ///leaderboard
@@ -128,7 +136,7 @@ const express = require("express");
 const app = express();
 const syncAndSeed = require("./server/script/seed");
 const path = require("path");
-const { BugReportSharp } = require("@mui/icons-material");
+const {BugReportSharp} = require("@mui/icons-material");
 
 app.use(express.json());
 
@@ -141,19 +149,19 @@ app.use("/", require("./server/api/users"));
 app.use("/", require("./server/api/auth"));
 app.use("/", require("./server/api/teams"));
 app.use("/", (req, res, next) =>
-  res.sendFile(path.join(__dirname, "html/main.html"))
+    res.sendFile(path.join(__dirname, "html/main.html"))
 );
 
 const init = async () => {
-  try {
-    await syncAndSeed();
-    const port = process.env.PORT || 1919;
-    app.listen(port, () => {
-      console.log(`listening to port ${port}`);
-    });
-  } catch (err) {
-    console.log(err);
-  }
+    try {
+        await syncAndSeed();
+        const port = process.env.PORT || 1919;
+        app.listen(port, () => {
+            console.log(`listening to port ${port}`);
+        });
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 init();

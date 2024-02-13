@@ -1,21 +1,21 @@
-import Regoin_Left_C from "./regoin/Regoin_Left_C";
-import Regoin_Right_C from "./regoin/Regoin_Right_C";
+import Region_Left_C from "./region/Region_Left_C";
+import Region_Right_C from "./region/Region_Right_C";
 import Finalist_Cont from "./finalist/Finalist_Cont";
 
-const KO_Locked_Comp = ({ user }) => {
-  return (
-    <div className="knockout-cont">
-      <div>
-        <Regoin_Left_C regoin={1} user={user} />
-        <Regoin_Left_C regoin={2} user={user} />
-      </div>
-      <Finalist_Cont user={user} />
-      <div>
-        <Regoin_Right_C regoin={3} user={user} />
-        <Regoin_Right_C regoin={4} user={user} />
-      </div>
-    </div>
-  );
+const KO_Locked_Comp = ({user}) => {
+    return (
+        <div className="knockout-cont">
+            <div>
+                <Region_Left_C region={1} user={user}/>
+                <Region_Left_C region={2} user={user}/>
+            </div>
+            <Finalist_Cont user={user}/>
+            <div>
+                <Region_Right_C region={3} user={user}/>
+                <Region_Right_C region={4} user={user}/>
+            </div>
+        </div>
+    );
 };
 
 export default KO_Locked_Comp;

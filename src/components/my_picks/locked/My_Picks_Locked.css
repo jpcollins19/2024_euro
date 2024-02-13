@@ -1,490 +1,490 @@
 .my-picks-page {
-  background-image: url("/public/pics/zlatan.jpeg");
-  background-size: cover;
-  overflow: auto;
-  height: 84vh;
-  display: flex;
-  align-items: start;
-  flex-direction: column;
+    background-image: url("/public/pics/zlatan.jpeg");
+    background-size: cover;
+    overflow: auto;
+    height: 84vh;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
 }
 
 .top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 99vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99vw;
 }
 
 .name-cont {
-  display: flex;
-  align-items: center;
-  margin-top: 3%;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
 }
 
 .name-cont > h1 {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 .white-text {
-  margin: 0;
-  text-align: center;
-  text-shadow: 2px 2px black;
-  color: white;
+    margin: 0;
+    text-align: center;
+    text-shadow: 2px 2px black;
+    color: white;
 }
 
 .point-system-table-cont {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
-  color: white;
-  border-radius: 1rem;
-  border: solid 3px white;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+    color: white;
+    border-radius: 1rem;
+    border: solid 3px white;
 }
 
 .pstc-2 {
-  width: 25rem;
+    width: 25rem;
 }
 
 .pstc-3 {
-  width: 43rem;
+    width: 43rem;
 }
 
 .point-system-table-cont > div {
-  display: flex;
-  align-items: center;
-  padding-right: 8px;
-  padding-left: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    padding-left: 8px;
 }
 
 .ps-top {
-  padding-top: 10px;
+    padding-top: 10px;
 }
 
 .ps-bottom {
-  padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .color-cont {
-  display: flex;
-  justify-content: center;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 1rem;
-  margin: 0 5px 0 5px;
+    display: flex;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    margin: 0 5px 0 5px;
 }
 
 .total-points-cont {
-  position: fixed;
-  z-index: 10;
-  right: 30;
-  top: 400;
-  background: transparent;
+    position: fixed;
+    z-index: 10;
+    right: 30;
+    top: 400;
+    background: transparent;
 }
 
 .total-points-cont > div {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  list-style: none;
-  min-width: 1rem;
-  margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    min-width: 1rem;
+    margin-top: 0.5rem;
 }
 
 .total-points-cont > div > div > div {
-  border: solid 2px white;
-  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
-  margin: 0.5rem 0.3rem 0.5rem 0rem;
-  border-radius: 0.2rem;
-  color: white;
+    border: solid 2px white;
+    background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+    margin: 0.5rem 0.3rem 0.5rem 0rem;
+    border-radius: 0.2rem;
+    color: white;
 }
 
 .total-points-text-cont {
-  min-width: 7rem;
+    min-width: 7rem;
 }
 
 .bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .total-points-points-cont {
-  min-width: 4rem;
+    min-width: 4rem;
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  left: 0;
-  width: 85vw;
-  padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+    width: 85vw;
+    padding-bottom: 4rem;
 }
 
 .stage-4-group-cont-outside {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  left: 0;
-  width: 99vw;
-  padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+    width: 99vw;
+    padding-bottom: 4rem;
 }
 
 .group-predictions-cont {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .single-group-cont-picks-pre-ko {
-  width: 15rem;
-  margin: 0 4% 2% 4%;
+    width: 15rem;
+    margin: 0 4% 2% 4%;
 }
 
 .single-group-cont-picks {
-  width: 23.5rem;
-  margin: 1% 1% 2% 1%;
+    width: 23.5rem;
+    margin: 1% 1% 2% 1%;
 }
 
 .single-group-cont-picks-pre-ko > h4 {
-  text-shadow: 2px 2px black;
-  color: white;
-  text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
-  font-size: 1.5rem;
+    text-shadow: 2px 2px black;
+    color: white;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
 }
 
 .single-group-cont-picks > h4 {
-  text-shadow: 2px 2px black;
-  color: white;
-  text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
-  font-size: 1.5rem;
+    text-shadow: 2px 2px black;
+    color: white;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
 }
 
 .single-group-cont-picks-pre-ko > div {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 1rem;
-  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
-  padding: 0.4rem 0rem 0.4rem 0rem;
-  border: solid 3px white;
-  color: white;
-  min-height: 11.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+    padding: 0.4rem 0rem 0.4rem 0rem;
+    border: solid 3px white;
+    color: white;
+    min-height: 11.5rem;
 }
 
 .single-group-cont-picks > div {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 1rem;
-  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
-  padding: 0.4rem 0rem 0.4rem 0rem;
-  border: solid 3px white;
-  color: white;
-  min-height: 11.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+    padding: 0.4rem 0rem 0.4rem 0rem;
+    border: solid 3px white;
+    color: white;
+    min-height: 11.5rem;
 }
 
 .single-group-cont-picks-pre-ko > div > div {
-  padding: 8px 0 8px 0;
+    padding: 8px 0 8px 0;
 }
 
 .single-group-cont-picks > div > div {
-  padding: 8px 0 8px 0;
+    padding: 8px 0 8px 0;
 }
 
 .single-group-cont-picks-pre-ko > div > div > h5 {
-  margin: 0rem;
-  min-height: 1.5rem;
+    margin: 0rem;
+    min-height: 1.5rem;
 }
 
 .single-group-cont-picks > div > div > h5 {
-  margin: 0rem;
-  min-height: 1.5rem;
+    margin: 0rem;
+    min-height: 1.5rem;
 }
 
 .third-place-to-advance-cont > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.1rem;
-  min-height: 1.66rem;
-  width: 1rem;
-  font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.1rem;
+    min-height: 1.66rem;
+    width: 1rem;
+    font-size: 1.5rem;
 }
 
 .rank-locked-cont > div {
-  margin: 0.1rem;
-  border: solid black 1px;
-  min-height: 1.66rem;
-  border-radius: 0.2rem;
+    margin: 0.1rem;
+    border: solid black 1px;
+    min-height: 1.66rem;
+    border-radius: 0.2rem;
 }
 
 .ko-predictions-cont {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .prediction-cont > div {
-  margin: 0.1rem;
-  border: solid black 1px;
-  min-height: 1.66rem;
-  border-radius: 0.2rem;
-  display: flex;
-  width: 9.5rem;
+    margin: 0.1rem;
+    border: solid black 1px;
+    min-height: 1.66rem;
+    border-radius: 0.2rem;
+    display: flex;
+    width: 9.5rem;
 }
 
 .pred-locked-flag {
-  display: flex;
-  align-items: center;
-  padding: 0 5px 0 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px 0 5px;
 }
 
 .pred-locked-flag > img {
-  min-width: 32px;
-  max-width: 32px;
-  max-height: 20px;
-  min-height: 20px;
-  color: rgb(225, 225, 211);
+    min-width: 32px;
+    max-width: 32px;
+    max-height: 20px;
+    min-height: 20px;
+    color: rgb(225, 225, 211);
 }
 
 .outcome-pos-cont > div {
-  display: flex;
-  justify-content: center;
-  width: 5rem;
-  margin: 0.1rem;
-  border: solid black 1px;
-  min-height: 1.66rem;
-  border-radius: 0.2rem;
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    margin: 0.1rem;
+    border: solid black 1px;
+    min-height: 1.66rem;
+    border-radius: 0.2rem;
 }
 
 .outcome-locked-flag {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .outcome-locked-flag > img {
-  height: 25px;
-  min-width: 32px;
-  max-width: 32px;
-  max-height: 20px;
-  min-height: 20px;
-  color: rgb(225, 225, 211);
+    height: 25px;
+    min-width: 32px;
+    max-width: 32px;
+    max-height: 20px;
+    min-height: 20px;
+    color: rgb(225, 225, 211);
 }
 
 .my-picks-locked-points-cont > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.1rem;
-  border: solid black 1px;
-  min-height: 1.66rem;
-  border-radius: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.1rem;
+    border: solid black 1px;
+    min-height: 1.66rem;
+    border-radius: 0.2rem;
 }
 
 .my-picks-locked-points-cont > div > h2 {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .blue {
-  background-color: rgb(45, 75, 224);
+    background-color: rgb(45, 75, 224);
 }
 
 .purple {
-  background-color: rgb(121, 21, 103);
+    background-color: rgb(121, 21, 103);
 }
 
 .green {
-  background-color: rgb(28, 179, 28);
+    background-color: rgb(28, 179, 28);
 }
 
 .orange {
-  background-color: rgb(211, 150, 36);
+    background-color: rgb(211, 150, 36);
 }
 
 .pink {
-  background-color: rgb(238, 80, 146);
+    background-color: rgb(238, 80, 146);
 }
 
 @media (max-width: 65em) {
-  .my-picks-page {
-    background-image: url("/public/pics/zlatan-mobile.jpeg");
-  }
+    .my-picks-page {
+        background-image: url("/public/pics/zlatan-mobile.jpeg");
+    }
 
-  .name-cont > h1 {
-    font-size: 300%;
-  }
+    .name-cont > h1 {
+        font-size: 300%;
+    }
 
-  .point-system-table-cont {
-    margin: 20px 0 20px 0;
-    width: 90%;
-  }
+    .point-system-table-cont {
+        margin: 20px 0 20px 0;
+        width: 90%;
+    }
 
-  .pstc-2 {
-    width: 52%;
-    font-size: 200%;
-  }
+    .pstc-2 {
+        width: 52%;
+        font-size: 200%;
+    }
 
-  .pstc-3 {
-    width: 90%;
-    font-size: 200%;
-  }
+    .pstc-3 {
+        width: 90%;
+        font-size: 200%;
+    }
 
-  .astrix {
-    margin: 0 5px 15px 5px;
-  }
+    .astrix {
+        margin: 0 5px 15px 5px;
+    }
 
-  .pts-system-description-cont {
-    font-size: 66%;
-  }
+    .pts-system-description-cont {
+        font-size: 66%;
+    }
 
-  .tpc-mobile {
-    top: 520;
-  }
+    .tpc-mobile {
+        top: 520;
+    }
 
-  .tpc-mobile-3 {
-    top: 600;
-  }
+    .tpc-mobile-3 {
+        top: 600;
+    }
 
-  .total-points-cont > div {
-    justify-content: space-around;
-  }
+    .total-points-cont > div {
+        justify-content: space-around;
+    }
 
-  .total-points-cont h4 {
-    font-size: 250%;
-  }
+    .total-points-cont h4 {
+        font-size: 250%;
+    }
 
-  .total-points-cont > div > div > div {
-    font-size: 200%;
-  }
+    .total-points-cont > div > div > div {
+        font-size: 200%;
+    }
 
-  .total-points-text-cont {
-    width: 70%;
-  }
+    .total-points-text-cont {
+        width: 70%;
+    }
 
-  .total-points-cont h3 {
-    font-size: 175%;
-  }
+    .total-points-cont h3 {
+        font-size: 175%;
+    }
 
-  .total-points-points-cont > div {
-    width: 120%;
-  }
+    .total-points-points-cont > div {
+        width: 120%;
+    }
 
-  .box {
-    width: 65%;
-  }
+    .box {
+        width: 65%;
+    }
 
-  .group-predictions-cont {
-    padding-left: 20px;
-    justify-content: start;
-  }
+    .group-predictions-cont {
+        padding-left: 20px;
+        justify-content: start;
+    }
 
-  .gpc-2 {
-    justify-content: center;
-  }
+    .gpc-2 {
+        justify-content: center;
+    }
 
-  .single-group-cont-picks-pre-ko {
-    width: 70%;
-  }
+    .single-group-cont-picks-pre-ko {
+        width: 70%;
+    }
 
-  .single-group-cont-picks {
-    width: 40rem;
-  }
+    .single-group-cont-picks {
+        width: 40rem;
+    }
 
-  .single-group-cont-picks-pre-ko h4 {
-    font-size: 250%;
-  }
+    .single-group-cont-picks-pre-ko h4 {
+        font-size: 250%;
+    }
 
-  .single-group-cont-picks h4 {
-    font-size: 250%;
-  }
+    .single-group-cont-picks h4 {
+        font-size: 250%;
+    }
 
-  .single-group-cont-picks-pre-ko > div {
-    justify-content: space-around;
-  }
+    .single-group-cont-picks-pre-ko > div {
+        justify-content: space-around;
+    }
 
-  .single-group-cont-picks-pre-ko > div > div > h5 {
-    font-size: 150%;
-    margin: 0rem;
-    min-height: 45px;
-  }
+    .single-group-cont-picks-pre-ko > div > div > h5 {
+        font-size: 150%;
+        margin: 0rem;
+        min-height: 45px;
+    }
 
-  .single-group-cont-picks > div > div > h5 {
-    font-size: 150%;
-    margin: 0rem;
-    min-height: 45px;
-  }
+    .single-group-cont-picks > div > div > h5 {
+        font-size: 150%;
+        margin: 0rem;
+        min-height: 45px;
+    }
 
-  .third-place-to-advance-cont > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 4rem;
-    font-size: 2rem;
-    margin: 2px 0 2px 0;
-    padding-top: 15px;
-  }
+    .third-place-to-advance-cont > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 4rem;
+        font-size: 2rem;
+        margin: 2px 0 2px 0;
+        padding-top: 15px;
+    }
 
-  .rank-locked-cont > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 4rem;
-    font-size: 2rem;
-    margin: 2px 0 2px 0;
-  }
+    .rank-locked-cont > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 4rem;
+        font-size: 2rem;
+        margin: 2px 0 2px 0;
+    }
 
-  .prediction-cont {
-    width: 280px;
-  }
+    .prediction-cont {
+        width: 280px;
+    }
 
-  .prediction-cont > div {
-    display: flex;
-    min-height: 4rem;
-    font-size: 2rem;
-    margin: 2px 0 2px 0;
-    width: 280px;
-  }
+    .prediction-cont > div {
+        display: flex;
+        min-height: 4rem;
+        font-size: 2rem;
+        margin: 2px 0 2px 0;
+        width: 280px;
+    }
 
-  .pred-locked-flag {
-    padding-right: 10px;
-  }
+    .pred-locked-flag {
+        padding-right: 10px;
+    }
 
-  .pred-locked-flag > img {
-    min-width: 40px;
-    max-width: 40px;
-    max-height: 28px;
-    min-height: 28px;
-  }
+    .pred-locked-flag > img {
+        min-width: 40px;
+        max-width: 40px;
+        max-height: 28px;
+        min-height: 28px;
+    }
 
-  .pred-locked-name {
-    display: flex;
-    align-items: center;
-  }
+    .pred-locked-name {
+        display: flex;
+        align-items: center;
+    }
 
-  .outcome-pos-cont > div {
-    width: 8rem;
-    min-height: 4rem;
-  }
+    .outcome-pos-cont > div {
+        width: 8rem;
+        min-height: 4rem;
+    }
 
-  .outcome-locked-flag > img {
-    align-items: center;
-    min-width: 60px;
-    max-width: 60px;
-    max-height: 38px;
-    min-height: 38px;
-  }
+    .outcome-locked-flag > img {
+        align-items: center;
+        min-width: 60px;
+        max-width: 60px;
+        max-height: 38px;
+        min-height: 38px;
+    }
 
-  .my-picks-locked-points-cont > div {
-    width: 6rem;
-    min-height: 4rem;
-    font-size: 2rem;
-  }
+    .my-picks-locked-points-cont > div {
+        width: 6rem;
+        min-height: 4rem;
+        font-size: 2rem;
+    }
 }
 
 /*/////////////////////////////*/
@@ -492,537 +492,537 @@
 /*/////////////////////////////*/
 
 .knockout-cont {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0 5rem 2rem;
-}
-
-.regoin-cont-c {
-  display: flex;
-  justify-content: space-around;
-}
-
-.regoin-cont-c > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.regoin-cont-c > div > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 10px 0 10px 0;
-  height: 150px;
-}
-
-.ko-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    to bottom right,
-    rgb(159, 159, 147) 0%,
-    rgb(11, 11, 11) 50%,
-    rgb(159, 159, 147) 100%
-  );
-
-  border-radius: 0.5rem;
-  border: solid 2px white;
-}
-
-.ko-box-small {
-  font-size: 17px;
-  height: 50px;
-  width: 8vw;
-}
-
-.ko-box-large {
-  font-size: 17px;
-  height: 5.5rem;
-  width: 9vw;
-}
-
-.ko-box-left {
-  margin-right: 1vw;
-}
-
-.ko-box-right {
-  margin-left: 1vw;
-}
-
-.ko-finalist-cont {
-  display: flex;
-  align-items: center;
-}
-
-.ko-finalist-cont > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.team-ko-img-cont {
-  position: relative;
-}
-
-.team-flag-ko {
-  min-width: 45px;
-  max-width: 45px;
-  max-height: 27px;
-  min-height: 27px;
-}
-
-.team-name-ko {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -2;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  visibility: hidden;
-  font-size: 90%;
-}
-
-.wrong-box {
-  border: solid 4px red;
-  /* width: 7.5vw; */
-  border-radius: 0.7rem;
-}
-
-.not-submitted-box {
-  border: solid 2px red;
-  border-radius: 0.7rem;
-}
-
-.correct-box {
-  border: solid 4px rgb(11, 238, 11);
-  border-radius: 0.7rem;
-}
-
-.correct-team-cont {
-  position: absolute;
-  top: -130;
-  bottom: 0;
-  left: -1.4vw;
-  right: 0;
-  opacity: 0;
-  width: 7.5vw;
-}
-
-.team-ko-img-cont:hover .team-name-ko {
-  visibility: visible;
-  opacity: 1;
-}
-
-.team-ko-img-cont:hover .correct-team-cont {
-  visibility: visible;
-  opacity: 1;
-}
-
-.team-ko-img-cont:hover .team-flag-ko {
-  opacity: 0.5;
-}
-
-.team-flag-ko-champ {
-  min-width: 5vw;
-  max-width: 5vw;
-  max-height: 5vh;
-  min-height: 5vh;
-}
-
-.team-name-ko-champ {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: -13;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  visibility: hidden;
-  font-size: 120%;
-}
-
-.team-ko-img-cont:hover .team-name-ko-champ {
-  visibility: visible;
-  opacity: 1;
-}
-
-.team-ko-img-cont:hover .team-flag-ko-champ {
-  opacity: 0.5;
-}
-
-.opacity-60 {
-  opacity: 0.6;
-}
-
-.wrong-text {
-  color: red;
-  text-decoration: line-through;
-}
-
-.correct-text {
-  color: rgb(11, 238, 11);
-}
-
-.trophy {
-  background-size: cover;
-  background-image: url("/public/pics/trophy.jpg");
-  height: 13rem;
-  border-radius: 1rem;
-  width: 9vw;
-  background-position: center;
-  margin: 35% 0% 0% 0%;
-}
-
-@media (max-width: 65em) {
-  .knockout-cont-mobile {
     display: flex;
-    flex-direction: column;
-    width: 95%;
-    background: linear-gradient(
-      to bottom right,
-      rgb(57, 54, 54) 0%,
-      rgb(79, 75, 75) 25%,
-      rgb(93, 89, 89) 50%,
-      rgb(79, 75, 75) 75%,
-      rgb(57, 54, 54) 100%
-    );
-    margin-top: 40px;
-    border-radius: 1rem;
-    padding-bottom: 40px;
-  }
+    justify-content: space-between;
+    padding: 0 0 5rem 2rem;
+}
 
-  .ko-cont-not-submitted {
-    border: solid 4px red;
-  }
-
-  .ko-cont-submitted {
-    border: solid 4px rgb(5, 248, 5);
-  }
-
-  .user-not-submitted {
-    text-align: center;
-    color: red;
-    margin: 0;
-  }
-
-  .user-submitted {
-    text-align: center;
-    color: rgb(5, 248, 5);
-    margin: 0;
-  }
-
-  .knockout-cont-mobile > h1 {
-    padding-top: 3%;
-    font-size: 250%;
-  }
-
-  .knockout-cont-mobile > div {
+.region-cont-c {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .ko-cont-half {
-    display: flex;
-  }
-
-  .regoin-cont {
-    display: flex;
-    flex: 0.5;
     justify-content: space-around;
-    width: 200px;
-  }
+}
 
-  .regoin-cont-left {
-    padding-right: 120px;
-  }
-
-  .regoin-cont-right {
-    padding-left: 120px;
-  }
-
-  .regoin-cont > div {
+.region-cont-c > div {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+.region-cont-c > div > div {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 10px 0 10px 0;
     height: 150px;
-  }
+}
 
-  .ko-box {
-    flex-direction: column;
-  }
-
-  .ko-box-small {
+.ko-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background: linear-gradient(
+            to bottom right,
+            rgb(159, 159, 147) 0%,
+            rgb(11, 11, 11) 50%,
+            rgb(159, 159, 147) 100%
+    );
+
+    border-radius: 0.5rem;
+    border: solid 2px white;
+}
+
+.ko-box-small {
+    font-size: 17px;
     height: 50px;
-    width: 50px;
-  }
+    width: 8vw;
+}
 
-  .ko-box-medium-small {
+.ko-box-large {
+    font-size: 17px;
+    height: 5.5rem;
+    width: 9vw;
+}
+
+.ko-box-left {
+    margin-right: 1vw;
+}
+
+.ko-box-right {
+    margin-left: 1vw;
+}
+
+.ko-finalist-cont {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 55px;
-    width: 55px;
-  }
+}
 
-  .ko-box-medium {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 55px;
-    width: 75px;
-  }
-
-  .ko-box-large {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    height: 80px;
-    width: 120px;
-  }
-
-  .final-four-cont {
-    display: flex;
-    justify-content: center;
-    margin: 80px 0 80px 0;
-  }
-
-  .final-four-mobile-z-out {
-    display: flex;
-    flex-direction: column;
-    margin: 50px 30px 50px 30px;
-  }
-
-  .finals-mobile-z-out {
-    display: flex;
-    align-items: center;
-  }
-
-  .champ-mobile-z-out {
-    display: flex;
-    align-items: center;
-    margin: 0 20px 0 20px;
-  }
-
-  .ko-cont-zoomed-in {
+.ko-finalist-cont > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 89vh;
-    width: 100vw;
-    background: linear-gradient(
-      to bottom right,
-      black 0%,
-      rgb(79, 75, 75) 25%,
-      rgb(93, 89, 89) 50%,
-      rgb(79, 75, 75) 75%,
-      black 100%
-    );
-  }
+}
 
-  .ko-cont-zoomed-in > h1 {
-    margin: 30px 0 30px 0;
-    padding-top: 10px;
-  }
+.team-ko-img-cont {
+    position: relative;
+}
 
-  .ko-data-cont-outside-z-in {
-    display: flex;
-    flex-direction: column;
-    margin: 30px 0 50px 0;
-    width: 90vw;
-    height: 90%;
-  }
+.team-flag-ko {
+    min-width: 45px;
+    max-width: 45px;
+    max-height: 27px;
+    min-height: 27px;
+}
 
-  .arrow-up-down-cont {
-    display: flex;
-    align-items: center;
-    flex: 0.03;
-    justify-content: space-between;
-  }
-
-  .audc-normal {
-    justify-content: center;
-  }
-
-  .ko-data-cont-middle-z-in {
-    display: flex;
-    flex: 0.94;
-  }
-
-  .arrow-left-right-cont {
+.team-name-ko {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 0.03;
-  }
-
-  .arrow-cont-placeholder {
-    display: flex;
-    flex: 0.03;
-    min-width: 3vw;
-    min-height: 3vh;
-  }
-
-  .ko-data-cont-inside-z-in {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0.94;
-  }
-
-  .ko-data-cont-outside-z-in svg {
-    color: white;
-  }
-
-  .svg-icons-normal {
-    transform: scale(3);
-  }
-
-  .svg-icons-rotate-45 {
-    transform: scale(3) rotate(45deg);
-  }
-
-  .svg-icons-rotate-315 {
-    transform: scale(3) rotate(315deg);
-  }
-
-  .regoin-cont-c {
-    width: 70%;
-    height: 80%;
-  }
-
-  .regoin-cont-c > div {
-    min-width: 45%;
-  }
-
-  .regoin-cont-c > div > div {
-    margin: 10px 0 10px 0;
-    height: 250px;
-  }
-
-  .ko-box-left {
-    margin-right: 4vw;
-  }
-
-  .ko-box-right {
-    margin-left: 4vw;
-  }
-
-  .ko-box-small-z-in {
-    font-size: 100%;
-    height: 40%;
-  }
-
-  .previous-round-winner {
-    display: flex;
-    align-items: center;
-    font-size: 200%;
-    height: 40%;
-    color: white;
-  }
-
-  .ko-box-large-z-in {
-    height: 180%;
-    font-size: 2vw;
-    min-width: 150%;
-  }
-
-  .ko-final-four-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 95%;
-  }
-
-  .ko-final-four-cont-z-in {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 20%;
-  }
-
-  .koffczi-bottom {
-    align-items: end;
-  }
-
-  .ko-final-four-cont > div > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 27%;
-    height: 46%;
-  }
-
-  .ko-finals-cont-z-in {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 20%;
-  }
-
-  .team-name-ko-z-in {
+    position: absolute;
+    top: -2;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: #fff;
-    font-size: 200%;
-  }
+    visibility: hidden;
+    font-size: 90%;
+}
 
-  .team-name-ko-champ-z-in {
+.wrong-box {
+    border: solid 4px red;
+    /* width: 7.5vw; */
+    border-radius: 0.7rem;
+}
+
+.not-submitted-box {
+    border: solid 2px red;
+    border-radius: 0.7rem;
+}
+
+.correct-box {
+    border: solid 4px rgb(11, 238, 11);
+    border-radius: 0.7rem;
+}
+
+.correct-team-cont {
+    position: absolute;
+    top: -130;
+    bottom: 0;
+    left: -1.4vw;
+    right: 0;
+    opacity: 0;
+    width: 7.5vw;
+}
+
+.team-ko-img-cont:hover .team-name-ko {
+    visibility: visible;
+    opacity: 1;
+}
+
+.team-ko-img-cont:hover .correct-team-cont {
+    visibility: visible;
+    opacity: 1;
+}
+
+.team-ko-img-cont:hover .team-flag-ko {
+    opacity: 0.5;
+}
+
+.team-flag-ko-champ {
+    min-width: 5vw;
+    max-width: 5vw;
+    max-height: 5vh;
+    min-height: 5vh;
+}
+
+.team-name-ko-champ {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -13;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: #fff;
-    font-size: 250%;
-    width: 180%;
-    margin: 0 20px 0 20px;
-    text-align: center;
-  }
+    visibility: hidden;
+    font-size: 120%;
+}
 
-  .correct-text {
-    color: rgb(11, 238, 11);
-  }
+.team-ko-img-cont:hover .team-name-ko-champ {
+    visibility: visible;
+    opacity: 1;
+}
 
-  .correct-box {
-    background: linear-gradient(
-      to bottom right,
-      rgb(24, 94, 8) 0%,
-      rgb(11, 49, 2) 50%,
-      rgb(24, 94, 8) 100%
-    );
-    border: none;
-  }
+.team-ko-img-cont:hover .team-flag-ko-champ {
+    opacity: 0.5;
+}
 
-  .wrong-box {
-    background: linear-gradient(
-      to bottom right,
-      rgb(96, 18, 5) 0%,
-      rgb(86, 14, 3) 50%,
-      rgb(96, 18, 5) 100%
-    );
-    border: none;
-  }
+.opacity-60 {
+    opacity: 0.6;
+}
 
-  .wrong-text {
+.wrong-text {
     color: red;
-  }
+    text-decoration: line-through;
+}
 
-  .hide-text-ko {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+.correct-text {
+    color: rgb(11, 238, 11);
+}
+
+.trophy {
+    background-size: cover;
+    background-image: url("/public/pics/trophy.jpg");
+    height: 13rem;
+    border-radius: 1rem;
+    width: 9vw;
+    background-position: center;
+    margin: 35% 0% 0% 0%;
+}
+
+@media (max-width: 65em) {
+    .knockout-cont-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        background: linear-gradient(
+                to bottom right,
+                rgb(57, 54, 54) 0%,
+                rgb(79, 75, 75) 25%,
+                rgb(93, 89, 89) 50%,
+                rgb(79, 75, 75) 75%,
+                rgb(57, 54, 54) 100%
+        );
+        margin-top: 40px;
+        border-radius: 1rem;
+        padding-bottom: 40px;
+    }
+
+    .ko-cont-not-submitted {
+        border: solid 4px red;
+    }
+
+    .ko-cont-submitted {
+        border: solid 4px rgb(5, 248, 5);
+    }
+
+    .user-not-submitted {
+        text-align: center;
+        color: red;
+        margin: 0;
+    }
+
+    .user-submitted {
+        text-align: center;
+        color: rgb(5, 248, 5);
+        margin: 0;
+    }
+
+    .knockout-cont-mobile > h1 {
+        padding-top: 3%;
+        font-size: 250%;
+    }
+
+    .knockout-cont-mobile > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .ko-cont-half {
+        display: flex;
+    }
+
+    .region-cont {
+        display: flex;
+        flex: 0.5;
+        justify-content: space-around;
+        width: 200px;
+    }
+
+    .region-cont-left {
+        padding-right: 120px;
+    }
+
+    .region-cont-right {
+        padding-left: 120px;
+    }
+
+    .region-cont > div {
+        display: flex;
+
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 10px 0 10px 0;
+        height: 150px;
+    }
+
+    .ko-box {
+        flex-direction: column;
+    }
+
+    .ko-box-small {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        height: 50px;
+        width: 50px;
+    }
+
+    .ko-box-medium-small {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        height: 55px;
+        width: 55px;
+    }
+
+    .ko-box-medium {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        height: 55px;
+        width: 75px;
+    }
+
+    .ko-box-large {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        height: 80px;
+        width: 120px;
+    }
+
+    .final-four-cont {
+        display: flex;
+        justify-content: center;
+        margin: 80px 0 80px 0;
+    }
+
+    .final-four-mobile-z-out {
+        display: flex;
+        flex-direction: column;
+        margin: 50px 30px 50px 30px;
+    }
+
+    .finals-mobile-z-out {
+        display: flex;
+        align-items: center;
+    }
+
+    .champ-mobile-z-out {
+        display: flex;
+        align-items: center;
+        margin: 0 20px 0 20px;
+    }
+
+    .ko-cont-zoomed-in {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 89vh;
+        width: 100vw;
+        background: linear-gradient(
+                to bottom right,
+                black 0%,
+                rgb(79, 75, 75) 25%,
+                rgb(93, 89, 89) 50%,
+                rgb(79, 75, 75) 75%,
+                black 100%
+        );
+    }
+
+    .ko-cont-zoomed-in > h1 {
+        margin: 30px 0 30px 0;
+        padding-top: 10px;
+    }
+
+    .ko-data-cont-outside-z-in {
+        display: flex;
+        flex-direction: column;
+        margin: 30px 0 50px 0;
+        width: 90vw;
+        height: 90%;
+    }
+
+    .arrow-up-down-cont {
+        display: flex;
+        align-items: center;
+        flex: 0.03;
+        justify-content: space-between;
+    }
+
+    .audc-normal {
+        justify-content: center;
+    }
+
+    .ko-data-cont-middle-z-in {
+        display: flex;
+        flex: 0.94;
+    }
+
+    .arrow-left-right-cont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0.03;
+    }
+
+    .arrow-cont-placeholder {
+        display: flex;
+        flex: 0.03;
+        min-width: 3vw;
+        min-height: 3vh;
+    }
+
+    .ko-data-cont-inside-z-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0.94;
+    }
+
+    .ko-data-cont-outside-z-in svg {
+        color: white;
+    }
+
+    .svg-icons-normal {
+        transform: scale(3);
+    }
+
+    .svg-icons-rotate-45 {
+        transform: scale(3) rotate(45deg);
+    }
+
+    .svg-icons-rotate-315 {
+        transform: scale(3) rotate(315deg);
+    }
+
+    .region-cont-c {
+        width: 70%;
+        height: 80%;
+    }
+
+    .region-cont-c > div {
+        min-width: 45%;
+    }
+
+    .region-cont-c > div > div {
+        margin: 10px 0 10px 0;
+        height: 250px;
+    }
+
+    .ko-box-left {
+        margin-right: 4vw;
+    }
+
+    .ko-box-right {
+        margin-left: 4vw;
+    }
+
+    .ko-box-small-z-in {
+        font-size: 100%;
+        height: 40%;
+    }
+
+    .previous-round-winner {
+        display: flex;
+        align-items: center;
+        font-size: 200%;
+        height: 40%;
+        color: white;
+    }
+
+    .ko-box-large-z-in {
+        height: 180%;
+        font-size: 2vw;
+        min-width: 150%;
+    }
+
+    .ko-final-four-cont {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 95%;
+    }
+
+    .ko-final-four-cont-z-in {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 20%;
+    }
+
+    .koffczi-bottom {
+        align-items: end;
+    }
+
+    .ko-final-four-cont > div > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 27%;
+        height: 46%;
+    }
+
+    .ko-finals-cont-z-in {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 20%;
+    }
+
+    .team-name-ko-z-in {
+        color: #fff;
+        font-size: 200%;
+    }
+
+    .team-name-ko-champ-z-in {
+        color: #fff;
+        font-size: 250%;
+        width: 180%;
+        margin: 0 20px 0 20px;
+        text-align: center;
+    }
+
+    .correct-text {
+        color: rgb(11, 238, 11);
+    }
+
+    .correct-box {
+        background: linear-gradient(
+                to bottom right,
+                rgb(24, 94, 8) 0%,
+                rgb(11, 49, 2) 50%,
+                rgb(24, 94, 8) 100%
+        );
+        border: none;
+    }
+
+    .wrong-box {
+        background: linear-gradient(
+                to bottom right,
+                rgb(96, 18, 5) 0%,
+                rgb(86, 14, 3) 50%,
+                rgb(96, 18, 5) 100%
+        );
+        border: none;
+    }
+
+    .wrong-text {
+        color: red;
+    }
+
+    .hide-text-ko {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+    }
 }

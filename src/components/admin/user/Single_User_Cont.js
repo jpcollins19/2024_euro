@@ -1,519 +1,523 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {useHistory, useLocation} from "react-router-dom";
 import {
-  updateUser,
-  deleteUser,
-  dupeValInArr,
-  loadUsers,
-  cap1stLetter,
-  findJoe,
-  groupLetters,
-  auditThirdPlaceToAdvancePicks,
-  games_Q,
-  games_S,
-  games_F,
-  getKOResults,
-  routes
+    updateUser,
+    deleteUser,
+    dupeValInArr,
+    loadUsers,
+    cap1stLetter,
+    findJoe,
+    groupLetters,
+    auditThirdPlaceToAdvancePicks,
+    games_Q,
+    games_S,
+    games_F,
+    getKOResults,
+    routes
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
 import Input_Cont from "./Input_Cont";
 import Checkbox_Cont from "./Checkbox_Cont";
-import Group_Cont_Unlocked from "../../my_picks/unlocked/group/Group_Cont_Unlocked";
+import Group_Cont_Unlocked
+    from "../../my_picks/unlocked/group/Group_Cont_Unlocked";
 import KO_Cont_UP_Edit from "../../my_picks/unlocked/ko/KO_Cont_UP_Edit";
 
 const Single_User_Cont = () => {
-  const dispatch = useDispatch();
-  let history = useHistory();
-  const { pathname } = useLocation();
+    const dispatch = useDispatch();
+    let history = useHistory();
+    const {pathname} = useLocation();
 
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, []);
+    useEffect(() => {
+        dispatch(loadUsers());
+    }, []);
 
-  const userId = pathname.split("/admin/users/")[1];
+    const userId = pathname.split("/admin/users/")[1];
 
-  const user = useSelector((state) => state.users).find(
-    (user) => user.id === userId
-  );
-
-  const teams = useSelector((state) => state.teams);
-  const joe = findJoe(useSelector((state) => state.users));
-
-  const [zoomedOut, setZoomedOut] = useState(true);
-  const [zoomedInRegoin, setZoomedInRegoin] = useState(1);
-
-  const zoomData = {
-    zoomedOut: zoomedOut,
-    setZoomedOut: setZoomedOut,
-    zoomedInRegoin: zoomedInRegoin,
-    setZoomedInRegoin: setZoomedInRegoin,
-  };
-
-  const [name, setName] = useState(user?.name);
-  const [password, setPassword] = useState(user?.password);
-  const [paid, setPaid] = useState(user?.paid);
-  const [onlyUpdateTopSection, setOnlyUpdateTopSection] = useState(false);
-  const [tourneyStage, setTourneyStage] = useState(user?.tourneyStage);
-  const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
-  const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
-
-  const [groupSelections, setGroupSelections] = useState({
-    A: {
-      1: user?.groupA1?.name ?? null,
-      2: user?.groupA2?.name ?? null,
-      3: user?.groupA3?.name ?? null,
-      4: user?.groupA4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_A ?? false,
-    },
-    B: {
-      1: user?.groupB1?.name ?? null,
-      2: user?.groupB2?.name ?? null,
-      3: user?.groupB3?.name ?? null,
-      4: user?.groupB4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_B ?? false,
-    },
-    C: {
-      1: user?.groupC1?.name ?? null,
-      2: user?.groupC2?.name ?? null,
-      3: user?.groupC3?.name ?? null,
-      4: user?.groupC4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_C ?? false,
-    },
-    D: {
-      1: user?.groupD1?.name ?? null,
-      2: user?.groupD2?.name ?? null,
-      3: user?.groupD3?.name ?? null,
-      4: user?.groupD4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_D ?? false,
-    },
-    E: {
-      1: user?.groupE1?.name ?? null,
-      2: user?.groupE2?.name ?? null,
-      3: user?.groupE3?.name ?? null,
-      4: user?.groupE4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_E ?? false,
-    },
-    F: {
-      1: user?.groupF1?.name ?? null,
-      2: user?.groupF2?.name ?? null,
-      3: user?.groupF3?.name ?? null,
-      4: user?.groupF4?.name ?? null,
-      thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_F ?? false,
-    },
-  });
-
-  const [tiebreaker, setTiebreaker] = useState(
-    user?.tiebreaker ? user?.tiebreaker.toString() : null
-  );
-  const [masterError, setMasterError] = useState(false);
-  const [masterErrorText, setMasterErrorText] = useState(null);
-  const [groupAError, setGroupAError] = useState(false);
-  const [groupBError, setGroupBError] = useState(false);
-  const [groupCError, setGroupCError] = useState(false);
-  const [groupDError, setGroupDError] = useState(false);
-  const [groupEError, setGroupEError] = useState(false);
-  const [groupFError, setGroupFError] = useState(false);
-  const [groupGError, setGroupGError] = useState(false);
-  const [groupHError, setGroupHError] = useState(false);
-
-  const [Q1, setQ1] = useState(user?.knockQ1 ?? null);
-  const [Q2, setQ2] = useState(user?.knockQ2 ?? null);
-  const [Q3, setQ3] = useState(user?.knockQ3 ?? null);
-  const [Q4, setQ4] = useState(user?.knockQ4 ?? null);
-  const [Q5, setQ5] = useState(user?.knockQ5 ?? null);
-  const [Q6, setQ6] = useState(user?.knockQ6 ?? null);
-  const [Q7, setQ7] = useState(user?.knockQ7 ?? null);
-  const [Q8, setQ8] = useState(user?.knockQ8 ?? null);
-  const [S1, setS1] = useState(user?.knockS1 ?? null);
-  const [S2, setS2] = useState(user?.knockS2 ?? null);
-  const [S3, setS3] = useState(user?.knockS3 ?? null);
-  const [S4, setS4] = useState(user?.knockS4 ?? null);
-  const [F1, setF1] = useState(user?.knockF1 ?? null);
-  const [F2, setF2] = useState(user?.knockF2 ?? null);
-  const [champ, setChamp] = useState(user?.knockChamp ?? null);
-
-
-
-  const groupErrorObj = {
-    groupAError: groupAError,
-    groupBError: groupBError,
-    groupCError: groupCError,
-    groupDError: groupDError,
-    groupEError: groupEError,
-    groupFError: groupFError,
-    groupGError: groupGError,
-    groupHError: groupHError,
-    setGroupAError: setGroupAError,
-    setGroupBError: setGroupBError,
-    setGroupCError: setGroupCError,
-    setGroupDError: setGroupDError,
-    setGroupEError: setGroupEError,
-    setGroupFError: setGroupFError,
-    setGroupGError: setGroupGError,
-    setGroupHError: setGroupHError,
-  };
-
-  const userPicks = getKOResults(teams);
-
-  const addToUserPicks = (game) => {
-    const value = eval(game);
-
-    const key_set = `set${game}`;
-    const value_set = eval(key_set);
-
-    userPicks[game] = value;
-    userPicks[key_set] = value_set;
-  };
-
-  games_Q.forEach((game) => {
-    addToUserPicks(game);
-  });
-
-  games_S.forEach((game) => {
-    addToUserPicks(game);
-  });
-
-  games_F.forEach((game) => {
-    addToUserPicks(game);
-  });
-
-  userPicks.champ = champ;
-  userPicks.setChamp = setChamp;
-
-  const findTeam = (game) => {
-    const team = eval(game);
-    return team?.name ?? null;
-  };
-
-  const togglePaid = () => setPaid((value) => !value);
-
-  const toggleOnlyUpdateTopSection = () => {
-    setOnlyUpdateTopSection((value) => !value);
-  };
-
-  const onChangeGroupSelections = (group, key, answer) => {
-    if (key === "thirdPlaceAdvanceToKO") {
-      groupSelections[group][key] = !groupSelections[group][key];
-    } else {
-      groupSelections[group][key] = answer;
-    }
-  };
-
-  const errorAudit = [];
-
-  const clearArr = (arr) => {
-    while (arr.length) {
-      arr.pop();
-      return clearArr(arr);
-    }
-  };
-
-  useEffect(() => {
-    const teams_R16 = Object.values(getKOResults(teams)).reduce(
-      (a, matchup) => {
-        matchup.forEach((team) => {
-          a.push(team?.name);
-        });
-
-        return a;
-      },
-      []
+    const user = useSelector((state) => state.users).find(
+        (user) => user.id === userId
     );
 
-    const teams_quarters = games_Q.map((game) => {
-      return findTeam(game);
+    const teams = useSelector((state) => state.teams);
+    const joe = findJoe(useSelector((state) => state.users));
+
+    const [zoomedOut, setZoomedOut] = useState(true);
+    const [zoomedInRegion, setZoomedInRegion] = useState(1);
+
+    const zoomData = {
+        zoomedOut: zoomedOut,
+        setZoomedOut: setZoomedOut,
+        zoomedInRegion: zoomedInRegion,
+        setZoomedInRegion: setZoomedInRegion,
+    };
+
+    const [name, setName] = useState(user?.name);
+    const [password, setPassword] = useState(user?.password);
+    const [paid, setPaid] = useState(user?.paid);
+    const [onlyUpdateTopSection, setOnlyUpdateTopSection] = useState(false);
+    const [tourneyStage, setTourneyStage] = useState(user?.tourneyStage);
+    const [deleteUserNeeded, setDeleteUserNeeded] = useState(false);
+    const [deleteUserConfirmed, setDeleteUserConfirmed] = useState(false);
+
+    const [groupSelections, setGroupSelections] = useState({
+        A: {
+            1: user?.groupA1?.name ?? null,
+            2: user?.groupA2?.name ?? null,
+            3: user?.groupA3?.name ?? null,
+            4: user?.groupA4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_A ?? false,
+        },
+        B: {
+            1: user?.groupB1?.name ?? null,
+            2: user?.groupB2?.name ?? null,
+            3: user?.groupB3?.name ?? null,
+            4: user?.groupB4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_B ?? false,
+        },
+        C: {
+            1: user?.groupC1?.name ?? null,
+            2: user?.groupC2?.name ?? null,
+            3: user?.groupC3?.name ?? null,
+            4: user?.groupC4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_C ?? false,
+        },
+        D: {
+            1: user?.groupD1?.name ?? null,
+            2: user?.groupD2?.name ?? null,
+            3: user?.groupD3?.name ?? null,
+            4: user?.groupD4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_D ?? false,
+        },
+        E: {
+            1: user?.groupE1?.name ?? null,
+            2: user?.groupE2?.name ?? null,
+            3: user?.groupE3?.name ?? null,
+            4: user?.groupE4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_E ?? false,
+        },
+        F: {
+            1: user?.groupF1?.name ?? null,
+            2: user?.groupF2?.name ?? null,
+            3: user?.groupF3?.name ?? null,
+            4: user?.groupF4?.name ?? null,
+            thirdPlaceAdvanceToKO: user?.thirdPlaceAdvanceToKO_Pick_F ?? false,
+        },
     });
 
-    const teams_semis = games_S.map((game) => {
-      return findTeam(game);
+    const [tiebreaker, setTiebreaker] = useState(
+        user?.tiebreaker ? user?.tiebreaker.toString() : null
+    );
+    const [masterError, setMasterError] = useState(false);
+    const [masterErrorText, setMasterErrorText] = useState(null);
+    const [groupAError, setGroupAError] = useState(false);
+    const [groupBError, setGroupBError] = useState(false);
+    const [groupCError, setGroupCError] = useState(false);
+    const [groupDError, setGroupDError] = useState(false);
+    const [groupEError, setGroupEError] = useState(false);
+    const [groupFError, setGroupFError] = useState(false);
+    const [groupGError, setGroupGError] = useState(false);
+    const [groupHError, setGroupHError] = useState(false);
+
+    const [Q1, setQ1] = useState(user?.knockQ1 ?? null);
+    const [Q2, setQ2] = useState(user?.knockQ2 ?? null);
+    const [Q3, setQ3] = useState(user?.knockQ3 ?? null);
+    const [Q4, setQ4] = useState(user?.knockQ4 ?? null);
+    const [Q5, setQ5] = useState(user?.knockQ5 ?? null);
+    const [Q6, setQ6] = useState(user?.knockQ6 ?? null);
+    const [Q7, setQ7] = useState(user?.knockQ7 ?? null);
+    const [Q8, setQ8] = useState(user?.knockQ8 ?? null);
+    const [S1, setS1] = useState(user?.knockS1 ?? null);
+    const [S2, setS2] = useState(user?.knockS2 ?? null);
+    const [S3, setS3] = useState(user?.knockS3 ?? null);
+    const [S4, setS4] = useState(user?.knockS4 ?? null);
+    const [F1, setF1] = useState(user?.knockF1 ?? null);
+    const [F2, setF2] = useState(user?.knockF2 ?? null);
+    const [champ, setChamp] = useState(user?.knockChamp ?? null);
+
+    const groupErrorObj = {
+        groupAError: groupAError,
+        groupBError: groupBError,
+        groupCError: groupCError,
+        groupDError: groupDError,
+        groupEError: groupEError,
+        groupFError: groupFError,
+        groupGError: groupGError,
+        groupHError: groupHError,
+        setGroupAError: setGroupAError,
+        setGroupBError: setGroupBError,
+        setGroupCError: setGroupCError,
+        setGroupDError: setGroupDError,
+        setGroupEError: setGroupEError,
+        setGroupFError: setGroupFError,
+        setGroupGError: setGroupGError,
+        setGroupHError: setGroupHError,
+    };
+
+    const userPicks = getKOResults(teams);
+
+    const addToUserPicks = (game) => {
+        const value = eval(game);
+
+        const key_set = `set${game}`;
+        const value_set = eval(key_set);
+
+        userPicks[game] = value;
+        userPicks[key_set] = value_set;
+    };
+
+    games_Q.forEach((game) => {
+        addToUserPicks(game);
     });
 
-    const finals = games_F.map((game) => {
-      return findTeam(game);
+    games_S.forEach((game) => {
+        addToUserPicks(game);
     });
 
-    const champion = champ?.name;
-
-    teams_quarters.forEach((team, idx) => {
-      if (!teams_R16.includes(team)) {
-        const set = eval(`setQ${idx + 1}`);
-        set(null);
-      }
+    games_F.forEach((game) => {
+        addToUserPicks(game);
     });
 
-    teams_semis.forEach((team, idx) => {
-      if (!teams_quarters.includes(team)) {
-        const set = eval(`setS${idx + 1}`);
-        set(null);
-      }
-    });
+    userPicks.champ = champ;
+    userPicks.setChamp = setChamp;
 
-    finals.forEach((team, idx) => {
-      if (!teams_semis.includes(team)) {
-        const set = eval(`setF${idx + 1}`);
-        set(null);
-      }
-    });
+    const findTeam = (game) => {
+        const team = eval(game);
+        return team?.name ?? null;
+    };
 
-    if (!finals.includes(champion)) {
-      setChamp(null);
-    }
-  }, [userPicks]);
+    const togglePaid = () => setPaid((value) => !value);
 
-  const resetMasterError = () => {
-    setMasterError(false);
-    setMasterErrorText(null);
-  };
+    const toggleOnlyUpdateTopSection = () => {
+        setOnlyUpdateTopSection((value) => !value);
+    };
 
-  const onSubmit = async (evt) => {
-    evt.preventDefault();
-
-    try {
-      const userObj = {
-        id: user?.id,
-        name,
-        password,
-        paid,
-        tourneyStage,
-      };
-
-      if (deleteUserConfirmed) {
-        return dispatch(deleteUser(userObj, history, joe?.id));
-      }
-
-      if (onlyUpdateTopSection) {
-        return dispatch(updateUser(userObj, history, routes.poolPicks));
-      }
-
-      groupLetters.forEach((letter) => {
-        const setError = eval(`setGroup${letter}Error`);
-
-        setError(false);
-      });
-
-      const validTiebreaker = Number(tiebreaker) % 1 === 0;
-      const tiebreakerAsArray = tiebreaker?.split("");
-
-      if (
-        !validTiebreaker ||
-        tiebreaker === "" ||
-        tiebreakerAsArray?.includes(" ") ||
-        tiebreaker === "0" ||
-        tiebreaker === null
-      ) {
-        setMasterError(true);
-        setMasterErrorText("Invalid Tiebreaker Below");
-
-        return;
-      }
-
-      userObj.tiebreaker = tiebreaker;
-
-      clearArr(errorAudit);
-
-      groupLetters.forEach((letter) => {
-        const groupObj = groupSelections[letter];
-        const answers = Object.values(groupObj);
-        const setError = eval(`setGroup${letter}Error`);
-
-        if (
-          answers.includes(null) ||
-          answers.includes("not-valid") ||
-          !dupeValInArr(answers)
-        ) {
-          setError(true);
-          errorAudit.push(1);
+    const onChangeGroupSelections = (group, key, answer) => {
+        if (key === "thirdPlaceAdvanceToKO") {
+            groupSelections[group][key] = !groupSelections[group][key];
+        } else {
+            groupSelections[group][key] = answer;
         }
-      });
+    };
 
-      if (errorAudit.length) {
-        setMasterError(true);
-        setMasterErrorText("Invalid Dropdown Picks in the Group(s) below:");
+    const errorAudit = [];
 
-        return;
-      }
+    const clearArr = (arr) => {
+        while (arr.length) {
+            arr.pop();
+            return clearArr(arr);
+        }
+    };
 
-      const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
-        a[letter] = groupSelections[letter].thirdPlaceAdvanceToKO ?? null;
+    useEffect(() => {
+        const teams_R16 = Object.values(getKOResults(teams)).reduce(
+            (a, matchup) => {
+                matchup.forEach((team) => {
+                    a.push(team?.name);
+                });
 
-        return a;
-      }, {});
+                return a;
+            },
+            []
+        );
 
-      const thirdPlaceToAdvanceAudit = auditThirdPlaceToAdvancePicks(
-        thirdPlaceToAdvanceObj
-      );
-
-      thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
-        const setError = eval(`setGroup${letter}Error`);
-
-        errorAudit.push(1);
-        setError(true);
-      });
-
-      if (errorAudit.length) {
-        setMasterError(true);
-
-        const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
-        const number = thirdPlaceToAdvanceAudit?.outcome[1];
-        const selectText = outcome === "-" ? "select" : "un-select";
-        const more = outcome === "-" ? "more" : "";
-        const team = number === "1" ? "team" : "teams";
-        const advancing = outcome === "-" ? "to advance" : "from advancing";
-        const outFrom = outcome === "-" ? "out" : `from ${number}`;
-
-        let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
-
-        setMasterErrorText(errorText);
-
-        return;
-      }
-
-      groupLetters.forEach((letter) => {
-        const nums = [1, 2, 3, 4];
-
-        nums.forEach((num) => {
-          userObj[`group${letter}${num}`] = groupSelections[letter][num];
-
-          if (num === 3) {
-            const key = `thirdPlaceAdvanceToKO_Pick_${letter}`;
-            const value = groupSelections[letter].thirdPlaceAdvanceToKO
-              ? groupSelections[letter][num]
-              : null;
-
-            userObj[key] = value;
-          }
-        });
-      });
-
-      if (joe?.tourneyStage >= 4) {
-        clearArr(errorAudit);
-
-        const koAudit = (team, game) => {
-          if (!team) {
-            setMasterError(true);
-            setMasterErrorText("Incomplete Picks Below");
-            errorAudit.push(1);
-          } else {
-            userObj[`knock${game}`] = team;
-          }
-        };
-
-        games_Q.forEach((game) => {
-          const team = eval(game);
-
-          koAudit(team?.name, game);
+        const teams_quarters = games_Q.map((game) => {
+            return findTeam(game);
         });
 
-        games_S.forEach((game) => {
-          const team = eval(game);
-
-          koAudit(team?.name, game);
+        const teams_semis = games_S.map((game) => {
+            return findTeam(game);
         });
 
-        games_F.forEach((game) => {
-          const team = eval(game);
-
-          koAudit(team?.name, game);
+        const finals = games_F.map((game) => {
+            return findTeam(game);
         });
 
-        koAudit(champ?.name, "Champ");
-      }
+        const champion = champ?.name;
 
-      !masterError &&
-        !errorAudit.length &&
-        dispatch(updateUser(userObj, history, routes.poolPicks));
-    } catch (err) {
-      console.log("reeeed error", err);
-    }
-  };
+        teams_quarters.forEach((team, idx) => {
+            if (!teams_R16.includes(team)) {
+                const set = eval(`setQ${idx + 1}`);
+                set(null);
+            }
+        });
 
-  const inputs = ["name", "password", "tourneyStage"];
+        teams_semis.forEach((team, idx) => {
+            if (!teams_quarters.includes(team)) {
+                const set = eval(`setS${idx + 1}`);
+                set(null);
+            }
+        });
 
-  const checkboxes = [
-    { title: "Paid?", defaultValue: paid, onChange: togglePaid },
-    {
-      title: "Only Update This Section's Info",
-      defaultValue: onlyUpdateTopSection,
-      onChange: toggleOnlyUpdateTopSection,
-    },
-  ];
+        finals.forEach((team, idx) => {
+            if (!teams_semis.includes(team)) {
+                const set = eval(`setF${idx + 1}`);
+                set(null);
+            }
+        });
 
-  return (
-    <form id="admin-update-user" onSubmit={onSubmit}>
-      <div className="admin-user-top">
-        <div className="admin-user-submit-button">
-          <Button text="Submit" form="admin-update-user" />
-        </div>
+        if (!finals.includes(champion)) {
+            setChamp(null);
+        }
+    }, [userPicks]);
 
-        {user?.name && (
-          <div className="user-details-cont">
-            {inputs.map((input) => (
-              <Input_Cont
-                key={input}
-                selectedUser={user}
-                name={input}
-                set={eval(`set${cap1stLetter(input)}`)}
-              />
-            ))}
+    const resetMasterError = () => {
+        setMasterError(false);
+        setMasterErrorText(null);
+    };
 
-            <div className="paid-cont">
-              {checkboxes.map((checkbox, idx) => (
-                <Checkbox_Cont key={idx} checkboxInfo={checkbox} />
-              ))}
+    const onSubmit = async (evt) => {
+        evt.preventDefault();
+
+        try {
+            const userObj = {
+                id: user?.id,
+                name,
+                password,
+                paid,
+                tourneyStage,
+            };
+
+            if (deleteUserConfirmed) {
+                return dispatch(deleteUser(userObj, history, joe?.id));
+            }
+
+            if (onlyUpdateTopSection) {
+                return dispatch(updateUser(userObj, history, routes.poolPicks));
+            }
+
+            groupLetters.forEach((letter) => {
+                const setError = eval(`setGroup${letter}Error`);
+
+                setError(false);
+            });
+
+            const validTiebreaker = Number(tiebreaker) % 1 === 0;
+            const tiebreakerAsArray = tiebreaker?.split("");
+
+            if (
+                !validTiebreaker ||
+                tiebreaker === "" ||
+                tiebreakerAsArray?.includes(" ") ||
+                tiebreaker === "0" ||
+                tiebreaker === null
+            ) {
+                setMasterError(true);
+                setMasterErrorText("Invalid Tiebreaker Below");
+
+                return;
+            }
+
+            userObj.tiebreaker = tiebreaker;
+
+            clearArr(errorAudit);
+
+            groupLetters.forEach((letter) => {
+                const groupObj = groupSelections[letter];
+                const answers = Object.values(groupObj);
+                const setError = eval(`setGroup${letter}Error`);
+
+                if (
+                    answers.includes(null) ||
+                    answers.includes("not-valid") ||
+                    !dupeValInArr(answers)
+                ) {
+                    setError(true);
+                    errorAudit.push(1);
+                }
+            });
+
+            if (errorAudit.length) {
+                setMasterError(true);
+                setMasterErrorText(
+                    "Invalid Dropdown Picks in the Group(s) below:");
+
+                return;
+            }
+
+            const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
+                a[letter] = groupSelections[letter].thirdPlaceAdvanceToKO
+                    ?? null;
+
+                return a;
+            }, {});
+
+            const thirdPlaceToAdvanceAudit = auditThirdPlaceToAdvancePicks(
+                thirdPlaceToAdvanceObj
+            );
+
+            thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
+                const setError = eval(`setGroup${letter}Error`);
+
+                errorAudit.push(1);
+                setError(true);
+            });
+
+            if (errorAudit.length) {
+                setMasterError(true);
+
+                const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
+                const number = thirdPlaceToAdvanceAudit?.outcome[1];
+                const selectText = outcome === "-" ? "select" : "un-select";
+                const more = outcome === "-" ? "more" : "";
+                const team = number === "1" ? "team" : "teams";
+                const advancing = outcome === "-" ? "to advance"
+                    : "from advancing";
+                const outFrom = outcome === "-" ? "out" : `from ${number}`;
+
+                let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
+
+                setMasterErrorText(errorText);
+
+                return;
+            }
+
+            groupLetters.forEach((letter) => {
+                const nums = [1, 2, 3, 4];
+
+                nums.forEach((num) => {
+                    userObj[`group${letter}${num}`] = groupSelections[letter][num];
+
+                    if (num === 3) {
+                        const key = `thirdPlaceAdvanceToKO_Pick_${letter}`;
+                        const value = groupSelections[letter].thirdPlaceAdvanceToKO
+                            ? groupSelections[letter][num]
+                            : null;
+
+                        userObj[key] = value;
+                    }
+                });
+            });
+
+            if (joe?.tourneyStage >= 4) {
+                clearArr(errorAudit);
+
+                const koAudit = (team, game) => {
+                    if (!team) {
+                        setMasterError(true);
+                        setMasterErrorText("Incomplete Picks Below");
+                        errorAudit.push(1);
+                    } else {
+                        userObj[`knock${game}`] = team;
+                    }
+                };
+
+                games_Q.forEach((game) => {
+                    const team = eval(game);
+
+                    koAudit(team?.name, game);
+                });
+
+                games_S.forEach((game) => {
+                    const team = eval(game);
+
+                    koAudit(team?.name, game);
+                });
+
+                games_F.forEach((game) => {
+                    const team = eval(game);
+
+                    koAudit(team?.name, game);
+                });
+
+                koAudit(champ?.name, "Champ");
+            }
+
+            !masterError &&
+            !errorAudit.length &&
+            dispatch(updateUser(userObj, history, routes.poolPicks));
+        } catch (err) {
+            console.log("reeeed error", err);
+        }
+    };
+
+    const inputs = ["name", "password", "tourneyStage"];
+
+    const checkboxes = [
+        {title: "Paid?", defaultValue: paid, onChange: togglePaid},
+        {
+            title: "Only Update This Section's Info",
+            defaultValue: onlyUpdateTopSection,
+            onChange: toggleOnlyUpdateTopSection,
+        },
+    ];
+
+    return (
+        <form id="admin-update-user" onSubmit={onSubmit}>
+            <div className="admin-user-top">
+                <div className="admin-user-submit-button">
+                    <Button text="Submit" form="admin-update-user"/>
+                </div>
+
+                {user?.name && (
+                    <div className="user-details-cont">
+                        {inputs.map((input) => (
+                            <Input_Cont
+                                key={input}
+                                selectedUser={user}
+                                name={input}
+                                set={eval(`set${cap1stLetter(input)}`)}
+                            />
+                        ))}
+
+                        <div className="paid-cont">
+                            {checkboxes.map((checkbox, idx) => (
+                                <Checkbox_Cont key={idx}
+                                               checkboxInfo={checkbox}/>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
-          </div>
-        )}
-      </div>
 
-      {user?.id && (
-        <div className="admin-user-bottom">
-          <div className="master-error-cont-edit-picks">
-            {masterError && <Error error={masterErrorText} />}
-          </div>
-          {joe?.tourneyStage >= 4 && (
-            <KO_Cont_UP_Edit
-              userPicks={userPicks}
-              resetMasterError={resetMasterError}
-              zoomData={zoomData}
-            />
-          )}
-          <div className="tiebreaker-cont-edit-picks">
-            <h3>Tiebreaker - total number of goals scored:</h3>
+            {user?.id && (
+                <div className="admin-user-bottom">
+                    <div className="master-error-cont-edit-picks">
+                        {masterError && <Error error={masterErrorText}/>}
+                    </div>
+                    {joe?.tourneyStage >= 4 && (
+                        <KO_Cont_UP_Edit
+                            userPicks={userPicks}
+                            resetMasterError={resetMasterError}
+                            zoomData={zoomData}
+                        />
+                    )}
+                    <div className="tiebreaker-cont-edit-picks">
+                        <h3>Tiebreaker - total number of goals scored:</h3>
 
-            <input
-              defaultValue={tiebreaker}
-              onChange={(ev) => {
-                setTiebreaker(ev.target.value);
-                resetMasterError();
-              }}
-            ></input>
-          </div>
-          <div className="edit-group-picks">
-            <Group_Cont_Unlocked
-              onChangeSelectionObj={onChangeGroupSelections}
-              groupErrorObj={groupErrorObj}
-              selectionObj={groupSelections}
-              resetMasterError={resetMasterError}
-            />
-          </div>
-        </div>
-      )}
+                        <input
+                            defaultValue={tiebreaker}
+                            onChange={(ev) => {
+                                setTiebreaker(ev.target.value);
+                                resetMasterError();
+                            }}
+                        ></input>
+                    </div>
+                    <div className="edit-group-picks">
+                        <Group_Cont_Unlocked
+                            onChangeSelectionObj={onChangeGroupSelections}
+                            groupErrorObj={groupErrorObj}
+                            selectionObj={groupSelections}
+                            resetMasterError={resetMasterError}
+                        />
+                    </div>
+                </div>
+            )}
 
-      {user?.id && !deleteUserNeeded && (
-        <Button text="Delete User" onClick={() => setDeleteUserNeeded(true)} />
-      )}
+            {user?.id && !deleteUserNeeded && (
+                <Button text="Delete User"
+                        onClick={() => setDeleteUserNeeded(true)}/>
+            )}
 
-      {user?.id && deleteUserNeeded && (
-        <Button
-          text="Confirm & Delete User"
-          form="admin-update-user"
-          onClick={() => setDeleteUserConfirmed(true)}
-        />
-      )}
-    </form>
-  );
+            {user?.id && deleteUserNeeded && (
+                <Button
+                    text="Confirm & Delete User"
+                    form="admin-update-user"
+                    onClick={() => setDeleteUserConfirmed(true)}
+                />
+            )}
+        </form>
+    );
 };
 
 export default Single_User_Cont;

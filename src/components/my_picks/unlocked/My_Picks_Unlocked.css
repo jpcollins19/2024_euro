@@ -1,130 +1,130 @@
 .my-picks-unlocked-page {
-  width: 100vw;
-  height: 84vh;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    width: 100vw;
+    height: 84vh;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .my-picks-ul-top {
-  padding-top: 2rem;
+    padding-top: 2rem;
 }
 
 .black-text {
-  margin: 0;
-  text-align: center;
-  text-shadow: 2px 2px white;
-  color: #29323c;
-  white-space: pre-wrap;
+    margin: 0;
+    text-align: center;
+    text-shadow: 2px 2px white;
+    color: #29323c;
+    white-space: pre-wrap;
 }
 
 .error-cont-placeholder {
-  min-height: 5.2rem;
+    min-height: 5.2rem;
 }
 
 .master-error-cont-edit-picks {
-  min-height: 5.2rem;
+    min-height: 5.2rem;
 }
 
 .tiebreaker-cont-edit-picks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tiebreaker-cont-edit-picks > h3 {
-  margin: 0;
+    margin: 0;
 }
 
 .tiebreaker-cont-edit-picks > input {
-  background: transparent;
-  border: solid 2px #29323c;
-  width: 4rem;
-  height: 2rem;
-  font-size: 1.5rem;
-  text-align: center;
-  color: #29323c;
-  margin-left: 10px;
+    background: transparent;
+    border: solid 2px #29323c;
+    width: 4rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #29323c;
+    margin-left: 10px;
 }
 
 .edit-group-picks {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .group-predictions-cont-edit {
-  display: flex;
-  width: 90%;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 10rem;
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 10rem;
 }
 
 .single-group-cont-edit-picks-outside {
-  width: 20rem;
-  margin: 0% 1% 0% 1%;
-  padding-bottom: 1%;
+    width: 20rem;
+    margin: 0% 1% 0% 1%;
+    padding-bottom: 1%;
 }
 
 .single-group-cont-edit-picks-outside > h4 {
-  margin: -1rem 0rem 0.3rem 0rem;
-  font-size: 1.5rem;
+    margin: -1rem 0rem 0.3rem 0rem;
+    font-size: 1.5rem;
 }
 
 .single-group-cont-edit-picks-inside {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 1rem;
-  background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
-  padding: 0.9rem 0rem 0.9rem 0rem;
-  min-height: 12rem;
-  color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, #485563 0%, #29323c 100%);
+    padding: 0.9rem 0rem 0.9rem 0rem;
+    min-height: 12rem;
+    color: white;
 }
 
 .single-group-cont-edit-picks-inside > div > h5 {
-  margin: 0 0 5px 0;
-  min-height: 1.5rem;
+    margin: 0 0 5px 0;
+    min-height: 1.5rem;
 }
 
 .prediction-verbiage-unlocked {
-  padding-right: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .single-group-cont-edit-picks-inside > div > div {
-  margin: 0rem 0.17rem 0.5rem 0rem;
-  height: 2.5rem;
+    margin: 0rem 0.17rem 0.5rem 0rem;
+    height: 2.5rem;
 }
 
 .rank-cont-edit > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid white 2px;
-  width: 2.2rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid white 2px;
+    width: 2.2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
 }
 
 .my-picks-unlocked-dropdown-cont {
-  display: flex;
-  align-items: center;
-  height: 2.3rem;
+    display: flex;
+    align-items: center;
+    height: 2.3rem;
 }
 
 .team-name-in-dropdown {
-  color: white;
+    color: white;
 }
 
 .third-place-to-advance-cont-edit {
-  height: 2.5rem;
+    height: 2.5rem;
 }
 
 .third-place-to-advance-cont-edit > div {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 /*/////////////////////////////*/
@@ -132,232 +132,231 @@
 /*/////////////////////////////*/
 
 .ko-box-missing {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    to bottom right,
-    rgb(159, 159, 147) 0%,
-    rgb(11, 11, 11) 50%,
-    rgb(159, 159, 147) 100%
-  );
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+            to bottom right,
+            rgb(159, 159, 147) 0%,
+            rgb(11, 11, 11) 50%,
+            rgb(159, 159, 147) 100%
+    );
 
-  border-radius: 0.5rem;
-  border: solid 3px red;
+    border-radius: 0.5rem;
+    border: solid 3px red;
 }
 
 @media (max-width: 65em) {
-  .my-picks-ul-top > .black-text {
-    padding-bottom: 15px;
-  }
+    .my-picks-ul-top > .black-text {
+        padding-bottom: 15px;
+    }
 
-  .black-text {
-    font-size: 125%;
-  }
+    .black-text {
+        font-size: 125%;
+    }
 
-  .tiebreaker-cont-edit-picks {
-    margin-top: 4%;
-    font-size: 180%;
-  }
+    .tiebreaker-cont-edit-picks {
+        margin-top: 4%;
+        font-size: 180%;
+    }
 
-  .tiebreaker-cont-edit-picks > input {
-    width: 10%;
-    height: 20%;
-    font-size: 150%;
-  }
+    .tiebreaker-cont-edit-picks > input {
+        width: 10%;
+        height: 20%;
+        font-size: 150%;
+    }
 
-  .group-predictions-cont-edit {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+    .group-predictions-cont-edit {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 
-  .single-group-cont-edit-picks-outside {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 90vw;
-    height: 35vh;
-  }
+    .single-group-cont-edit-picks-outside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 90vw;
+        height: 35vh;
+    }
 
-  .single-group-cont-edit-picks-outside > h4 {
-    margin: 0;
-    font-size: 200%;
-  }
+    .single-group-cont-edit-picks-outside > h4 {
+        margin: 0;
+        font-size: 200%;
+    }
 
-  .single-group-cont-edit-picks-inside {
-    width: 50vw;
-  }
+    .single-group-cont-edit-picks-inside {
+        width: 50vw;
+    }
 
-  .single-group-cont-edit-picks-inside > div > h5 {
-    font-size: 150%;
-    min-height: 40px;
-  }
+    .single-group-cont-edit-picks-inside > div > h5 {
+        font-size: 150%;
+        min-height: 40px;
+    }
 
-  .single-group-cont-edit-picks-inside > div > div {
-    min-height: 4rem;
-  }
+    .single-group-cont-edit-picks-inside > div > div {
+        min-height: 4rem;
+    }
 
-  .rank-cont-edit > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 2rem;
-    margin: 2px 0 2px 0;
-    width: 7vw;
-  }
+    .rank-cont-edit > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 2px 0 2px 0;
+        width: 7vw;
+    }
 
-  .prediction-cont-edit {
-    margin: 0 20px 0 20px;
-  }
+    .prediction-cont-edit {
+        margin: 0 20px 0 20px;
+    }
 
-  .prediction-cont-edit > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    .prediction-cont-edit > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-  .third-place-to-advance-cont-edit {
-    height: 100%;
-  }
+    .third-place-to-advance-cont-edit {
+        height: 100%;
+    }
 
-  .third-place-to-advance-cont-edit > div > input {
-    transform: scale(2);
-  }
+    .third-place-to-advance-cont-edit > div > input {
+        transform: scale(2);
+    }
 
-  /*/ ////////////////////////////*/
-  /*/ ///knockout mobile stuff below////*/
-  /*/ ////////////////////////////*/
+    /*/ ////////////////////////////*/
+    /*/ ///knockout mobile stuff below////*/
+    /*/ ////////////////////////////*/
+    .ko-cont-unlocked-main-m {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 65vh;
+        width: 90vw;
+    }
 
-  .ko-cont-unlocked-main-m {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 65vh;
-    width: 90vw;
-  }
+    .ko-cont-half-unlocked-m {
+        display: flex;
+    }
 
-  .ko-cont-half-unlocked-m {
-    display: flex;
-  }
+    .final-four-cont-unlocked-m {
+        display: flex;
+        height: 30vh;
+        justify-content: center;
+        border-top: solid 2px black;
+        border-bottom: solid 2px black;
+    }
 
-  .final-four-cont-unlocked-m {
-    display: flex;
-    height: 30vh;
-    justify-content: center;
-    border-top: solid 2px black;
-    border-bottom: solid 2px black;
-  }
+    .final-four-cont-unlocked-m > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
 
-  .final-four-cont-unlocked-m > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+    .ko-box-mobile-unlocked {
+        border-radius: 10px;
+        background: linear-gradient(
+                to bottom right,
+                rgb(20, 19, 19) 0%,
+                rgb(54, 51, 51) 25%,
+                rgb(67, 64, 64) 50%,
+                rgb(54, 51, 51) 75%,
+                rgb(20, 19, 19) 100%
+        );
+    }
 
-  .ko-box-mobile-unlocked {
-    border-radius: 10px;
-    background: linear-gradient(
-      to bottom right,
-      rgb(20, 19, 19) 0%,
-      rgb(54, 51, 51) 25%,
-      rgb(67, 64, 64) 50%,
-      rgb(54, 51, 51) 75%,
-      rgb(20, 19, 19) 100%
-    );
-  }
+    .ko-b-small-m {
+        width: 100px;
+        height: 50px;
+    }
 
-  .ko-b-small-m {
-    width: 100px;
-    height: 50px;
-  }
+    .ko-b-medium-small-m {
+        width: 130px;
+        height: 70px;
+    }
 
-  .ko-b-medium-small-m {
-    width: 130px;
-    height: 70px;
-  }
+    .ko-b-medium-m {
+        width: 170px;
+        height: 70px;
+    }
 
-  .ko-b-medium-m {
-    width: 170px;
-    height: 70px;
-  }
+    .ko-b-large-m {
+        width: 200px;
+        height: 100px;
+    }
 
-  .ko-b-large-m {
-    width: 200px;
-    height: 100px;
-  }
+    .ko-pick-missing {
+        border: solid 3px red;
+    }
 
-  .ko-pick-missing {
-    border: solid 3px red;
-  }
+    .ko-pick-igo {
+        border: solid 3px rgb(11, 238, 11);
+    }
 
-  .ko-pick-igo {
-    border: solid 3px rgb(11, 238, 11);
-  }
+    .ko-cont-zoomed-in-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 70vh;
+        width: 100vw;
+    }
 
-  .ko-cont-zommed-in-edit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    width: 100vw;
-  }
+    .ko-data-cont-outside-z-in-edit {
+        display: flex;
+        flex-direction: column;
+        margin: 30px 0 50px 0;
+        width: 90vw;
+        height: 90%;
+    }
 
-  .ko-data-cont-outside-z-in-edit {
-    display: flex;
-    flex-direction: column;
-    margin: 30px 0 50px 0;
-    width: 90vw;
-    height: 90%;
-  }
+    .ko-cont-zoomed-in-edit > h1 {
+        font-size: 200%;
+    }
 
-  .ko-cont-zommed-in-edit > h1 {
-    font-size: 200%;
-  }
+    .ko-edit-team-name {
+        font-size: 200%;
+        color: white;
+    }
 
-  .ko-edit-team-name {
-    font-size: 200%;
-    color: white;
-  }
+    .ko-final-four-cont-edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 95%;
+    }
 
-  .ko-final-four-cont-edit {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 95%;
-  }
+    .ko-box-small-edit {
+        height: 40%;
+        min-width: 45%;
+        margin: 0 10px 0 10px;
+    }
 
-  .ko-box-small-edit {
-    height: 40%;
-    min-width: 45%;
-    margin: 0 10px 0 10px;
-  }
+    .ko-box-small-medium-edit {
+        height: 60%;
+        min-width: 25%;
+    }
 
-  .ko-box-small-medium-edit {
-    height: 60%;
-    min-width: 25%;
-  }
+    .ko-box-medium-edit {
+        height: 65%;
+        min-width: 30%;
+    }
 
-  .ko-box-medium-edit {
-    height: 65%;
-    min-width: 30%;
-  }
+    .ko-box-large-edit {
+        height: 100%;
+        min-width: 30vw;
+    }
 
-  .ko-box-large-edit {
-    height: 100%;
-    min-width: 30vw;
-  }
+    .svg-arrow-picks-missing {
+        color: red;
+    }
 
-  .svg-arrow-picks-missing {
-    color: red;
-  }
-
-  .svg-arrow-picks-igo {
-    color: rgb(3, 193, 3);
-  }
+    .svg-arrow-picks-igo {
+        color: rgb(3, 193, 3);
+    }
 }
