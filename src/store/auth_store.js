@@ -1,5 +1,6 @@
 import axios from "axios";
 import { formatUserData } from "./users_store";
+import { routes } from "./index";
 
 const TOKEN = "token";
 
@@ -45,12 +46,12 @@ export const sendForgotPW = (message, history) => {
 
     console.log("data in thunk", data);
 
-    history.push("/forgot_pw_confirmation");
+    history.push(routes.forgotPwConfirmation);
   };
 };
 
 export const logout = (history) => {
-  history.push("/sign_in");
+  history.push(routes.signIn);
   window.localStorage.removeItem(TOKEN);
   return {
     type: SET_AUTH,

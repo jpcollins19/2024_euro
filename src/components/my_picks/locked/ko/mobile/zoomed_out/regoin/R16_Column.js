@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import {
   determineR16Seeding,
-  regoinMapper,
+  regionMapper,
   findR16Teams,
   koGameCalc,
   formatTeamClass_KO,
@@ -15,7 +15,7 @@ const R16_Column = ({ user, regoin }) => {
   const seedMatchups = determineR16Seeding(teams);
 
   const gameResults = [1, 2].map((gameNum) => {
-    const game = regoinMapper[regoin][gameNum];
+    const game = regionMapper[regoin][gameNum];
 
     let usersPicksForGame = findR16Teams(teams, seedMatchups[game]);
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Email_Updates = ({ isMobile }) => {
   return (
     <Link
-      to="/edit_profile_email_notifications"
+      to={routes.editProfileEmailNotifications}
       className="email-notifications-cont"
     >
       Edit Notification Settings

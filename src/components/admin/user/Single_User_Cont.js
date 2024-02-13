@@ -14,6 +14,7 @@ import {
   games_S,
   games_F,
   getKOResults,
+  routes
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
@@ -132,6 +133,8 @@ const Single_User_Cont = () => {
   const [F1, setF1] = useState(user?.knockF1 ?? null);
   const [F2, setF2] = useState(user?.knockF2 ?? null);
   const [champ, setChamp] = useState(user?.knockChamp ?? null);
+
+
 
   const groupErrorObj = {
     groupAError: groupAError,
@@ -281,7 +284,7 @@ const Single_User_Cont = () => {
       }
 
       if (onlyUpdateTopSection) {
-        return dispatch(updateUser(userObj, history, "admin"));
+        return dispatch(updateUser(userObj, history, routes.poolPicks));
       }
 
       groupLetters.forEach((letter) => {
@@ -420,7 +423,7 @@ const Single_User_Cont = () => {
 
       !masterError &&
         !errorAudit.length &&
-        dispatch(updateUser(userObj, history, "admin"));
+        dispatch(updateUser(userObj, history, routes.poolPicks));
     } catch (err) {
       console.log("reeeed error", err);
     }

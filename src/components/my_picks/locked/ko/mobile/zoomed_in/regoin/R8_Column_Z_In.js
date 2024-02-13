@@ -3,7 +3,7 @@ import {
   koGameCalc,
   formatTeamClass_KO,
   checkForOpacity_Z_In,
-  regoinMapper,
+  regionMapper,
   findPreviousGameWinners_R16,
 } from "../../../../../../../store";
 import KO_Box_Z_In from "../KO_Box_Z_In";
@@ -35,7 +35,7 @@ const R8_Column_Z_In = ({ side, regoin, user }) => {
 
   usersPicksForGame = checkForOpacity_Z_In(usersPicksForGame, "Q");
 
-  const previousGames = Object.values(regoinMapper[regoin]);
+  const previousGames = Object.values(regionMapper[regoin]);
 
   usersPicksForGame = findPreviousGameWinners_R16(
     user,

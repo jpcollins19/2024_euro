@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import {
   determineR16Seeding,
   findR16Teams,
-  regoinMapper,
+  regionMapper,
   koGameCalc,
   formatTeamClass_KO,
   checkForOpacity_Z_In,
@@ -14,7 +14,7 @@ const Game_Cont_Z_In = ({ side, regoin, gameNum, user }) => {
 
   const seedMatchups = determineR16Seeding(teams);
 
-  const game = regoinMapper[regoin][gameNum];
+  const game = regionMapper[regoin][gameNum];
 
   let usersPicksForGame = findR16Teams(teams, seedMatchups[game]);
 

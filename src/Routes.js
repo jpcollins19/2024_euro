@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { me, findJoe } from "./store";
+import { me, findJoe, routes } from "./store";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "./components/Misc/Loading";
 import Pre_Sign_In_Page from "./components/PreSignIn/Pre_Sign_In_Page";
@@ -20,13 +20,15 @@ import User_Profile_Page_UL from "./components/UserAccount/UserProfile/UnLocked/
 import User_Admin_Page from "./components/admin/user/User_Admin_Page";
 import Group_Admin_Page from "./components/admin/group/Group_Admin_Page";
 import KO_Admin_Page from "./components/admin/ko/KO_Admin_Page";
-import Team_Admin_Page_D from "./components/admin/team-depricated/Team_Admin_Page_D";
+import Team_Admin_Page_D from "./components/admin/team-deprecated/Team_Admin_Page_D";
 import NoMatch from "./components/Misc/No_Match";
 
 const Routes = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth);
+
+  const userIsLoggedIn = user?.id ?? false;
 
   const joe = findJoe(useSelector((state) => state.users));
 
@@ -40,134 +42,128 @@ const Routes = () => {
     setLoading(false);
   }, 1000);
 
-  const nonUserRoutes = [
-    { path: "/", component: Pre_Sign_In_Page },
-    { path: "/sign_in", component: Sign_In_Page },
-    { path: "/create_account", component: Create_Account_Page },
+  let nonUserRoutes = [
+    { path: routes.home, component: Pre_Sign_In_Page },
+    { path: routes.signIn, component: Sign_In_Page },
+    { path: routes.createAccount, component: Create_Account_Page },
     {
-      path: "/account_created",
+      path: routes.accountCreated,
       component: Action_Confirmation,
     },
     {
-      path: "/pw_reset_confirmation",
+      path: routes.pwResetConfirmation,
       component: Action_Confirmation,
     },
     {
-      path: "/forgot_pw_confirmation",
+      path: routes.forgotPwConfirmation,
       component: Action_Confirmation,
     },
-    { path: "/rules", component: Rules_Page },
-    { path: "/forgot_pw", component: Forgot_PW_Page },
-    { path: "/reset_pw/:id", component: Reset_PW_Page },
+    { path: routes.rules, component: Rules_Page },
+    { path: routes.forgotPw, component: Forgot_PW_Page },
+    { path: routes.resetPw, component: Reset_PW_Page },
   ];
+
+  if (joe?.tourneyStage > 1) {
+    nonUserRoutes = nonUserRoutes.filter(
+      (route) =>
+        route.path !== routes.createAccount &&
+        route.path !== routes.accountCreated
+    );
+  }
+
+  const redirectHome = <Redirect to={routes.home} />;
 
   return loading ? (
     <Loading />
   ) : (
     <Switch>
-      {!user?.id && joe && joe.tourneyStage > 1
-        ? nonUserRoutes
-            .filter(
-              (route) =>
-                route.path !== "/create_account" &&
-                route.path !== "/account_created"
-            )
-            .map((route, idx) => (
-              <Route
-                key={idx}
-                path={route.path}
-                exact
-                component={route.component}
-              />
-            ))
-        : !user?.id && joe && joe.tourneyStage === 1
-        ? nonUserRoutes.map((route, idx) => (
-            <Route
-              key={idx}
-              path={route.path}
-              exact
-              component={route.component}
-            />
-          ))
-        : ""}
+      {!userIsLoggedIn &&
+        nonUserRoutes.map((route, idx) => (
+          <Route
+            key={idx}
+            path={route.path}
+            exact
+            component={route.component}
+          />
+        ))}
 
-      <Route path="/rules" exact component={Rules_Page} />
+      <Route path={routes.rules} exact component={Rules_Page} />
 
-      {user?.id && (
-        <Route exact path="/">
-          <Redirect to="/leaderboard" />
+      {userIsLoggedIn && (
+        <Route exact path={routes.home}>
+          <Redirect to={routes.leaderboard} />
         </Route>
       )}
 
       {user?.admin && (
-        <Route path="/admin/users">
-          {!user?.id ? <Redirect to="/" /> : <User_Admin_Page />}
+        <Route path={routes.adminUsers}>
+          {!userIsLoggedIn ? redirectHome : <User_Admin_Page />}
         </Route>
       )}
 
       {user?.admin && (
-        <Route path="/admin/groups">
-          {!user?.id ? <Redirect to="/" /> : <Group_Admin_Page />}
+        <Route path={routes.adminGroups}>
+          {!userIsLoggedIn ? redirectHome : <Group_Admin_Page />}
         </Route>
       )}
 
       {user?.admin && (
-        <Route path="/admin/ko">
-          {!user?.id ? <Redirect to="/" /> : <KO_Admin_Page />}
+        <Route path={routes.adminKo}>
+          {!userIsLoggedIn ? redirectHome : <KO_Admin_Page />}
         </Route>
       )}
 
       {user?.admin && (
-        <Route path="/admin/ko-depricated">
-          {!user?.id ? <Redirect to="/" /> : <Team_Admin_Page_D />}
+        <Route path={routes.adminKoDeprecated}>
+          {!userIsLoggedIn ? redirectHome : <Team_Admin_Page_D />}
         </Route>
       )}
 
-      {joe?.tourneyStage === 1 && user?.id && (
-        <Route path="/my_picks_edit_group">
-          {!user?.id ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
+      {joe?.tourneyStage === 1 && userIsLoggedIn && (
+        <Route path={routes.myPicksEditGroup}>
+          {!userIsLoggedIn ? redirectHome : <My_Picks_Unlocked_Page />}
         </Route>
       )}
 
-      {joe?.tourneyStage === 4 && user?.id && (
-        <Route path="/my_picks_edit_ko">
-          {!user?.id ? <Redirect to="/" /> : <My_Picks_Unlocked_Page />}
+      {joe?.tourneyStage === 4 && userIsLoggedIn && (
+        <Route path={routes.myPicksEditKo}>
+          {!userIsLoggedIn ? redirectHome : <My_Picks_Unlocked_Page />}
         </Route>
       )}
 
-      <Route path="/leaderboard">
-        {!user?.id ? <Redirect to="/" /> : <Leaderboard_Page />}
+      <Route path={routes.leaderboard}>
+        {!userIsLoggedIn ? redirectHome : <Leaderboard_Page />}
       </Route>
 
-      <Route path="/my_picks">
-        {!user?.id ? <Redirect to="/" /> : <My_Picks_Locked_Page />}
+      <Route path={routes.myPicks}>
+        {!userIsLoggedIn ? redirectHome : <My_Picks_Locked_Page />}
       </Route>
 
-      <Route path="/pool_picks/:id">
-        {!user?.id ? <Redirect to="/" /> : <Pool_Picks_Page />}
+      <Route path={routes.poolPicksUserId}>
+        {!userIsLoggedIn ? redirectHome : <Pool_Picks_Page />}
       </Route>
 
-      <Route path="/group_details">
-        {!user?.id ? <Redirect to="/" /> : <Group_Details_Page />}
+      <Route path={routes.groupDetails}>
+        {!userIsLoggedIn ? redirectHome : <Group_Details_Page />}
       </Route>
 
-      <Route path="/my_profile">
-        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_L />}
+      <Route path={routes.myProfile}>
+        {!userIsLoggedIn ? redirectHome : <User_Profile_Page_L />}
       </Route>
 
-      <Route path="/edit_profile_name">
-        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      <Route path={routes.editProfileName}>
+        {!userIsLoggedIn ? redirectHome : <User_Profile_Page_UL />}
       </Route>
 
-      <Route path="/edit_profile_password">
-        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      <Route path={routes.editProfilePw}>
+        {!userIsLoggedIn ? redirectHome : <User_Profile_Page_UL />}
       </Route>
 
-      <Route path="/edit_profile_email_notifications">
-        {!user?.id ? <Redirect to="/" /> : <User_Profile_Page_UL />}
+      <Route path={routes.editProfileEmailNotifications}>
+        {!userIsLoggedIn ? redirectHome : <User_Profile_Page_UL />}
       </Route>
 
-      <Route path="*">
+      <Route path={routes.noMatch}>
         <NoMatch />
       </Route>
     </Switch>

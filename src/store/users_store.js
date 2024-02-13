@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
-import { groupLetters, koLetters } from "./variables";
-import { getWebsiteUpdatedEmailDateVerbiage } from "./index.js";
+import {
+  getWebsiteUpdatedEmailDateVerbiage,
+  routes,
+  groupLetters,
+  koLetters,
+} from "./index";
 
 const LOAD_USERS = "LOAD_USERS";
 const ADD_USER = "ADD_USER";
@@ -106,7 +110,7 @@ export const addUser = (user, history) => {
   return async (dispatch) => {
     user = (await axios.post("/api/add/user", user)).data;
     dispatch(_addUser(user));
-    history.push("/account_created");
+    history.push(routes.accountCreated);
   };
 };
 
@@ -114,18 +118,33 @@ export const deleteUser = (user, history, userId) => {
   return async (dispatch) => {
     await axios.delete(`/api/users/${user.id}`);
     dispatch(_deleteUser(user));
-    history.push(`/pool_picks/${userId}`);
+    history.push(`${routes.poolPicks}/${userId}`);
   };
 };
 
-export const updateUser = (user, history, route = "dont update") => {
+// export const updateUser = (user, history, route = "dont update") => {
+//   return async (dispatch) => {
+//     const userId = user?.id;
+
+//     user = (await axios.put(`/api/users/${user.id}`, user)).data;
+
+//     route !== "dont update" &&
+//       history.push(
+//         route === routes.admin ? `${routes.poolPicks}/${userId}` : route
+//       );
+//   };
+// };
+
+export const updateUser = (user, history, route = null) => {
   return async (dispatch) => {
     const userId = user?.id;
 
     user = (await axios.put(`/api/users/${user.id}`, user)).data;
 
-    route !== "dont update" &&
-      history.push(route === "admin" ? `/pool_picks/${userId}` : route);
+    route &&
+      history.push(
+        route === routes.poolPicks ? `${routes.poolPicks}/${userId}` : route
+      );
   };
 };
 

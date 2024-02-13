@@ -23,7 +23,7 @@ const finalMatchups = {
   S2: ["R16_5", "R16_6", "R16_7", "R16_8"],
 };
 
-const regoinMapper = {
+const regionMapper = {
   1: { 1: "R16_1", 2: "R16_2" },
   2: { 1: "R16_3", 2: "R16_4" },
   3: { 1: "R16_5", 2: "R16_6" },
@@ -70,7 +70,7 @@ const setTeamMapper_ko_edit = {
   right: { 3: { 1: "Q5", 2: "Q6" }, 4: { 1: "Q7", 2: "Q8" } },
 };
 
-const regoinToAuditMapper = {
+const regionToAuditMapper = {
   1: ["Q1", "Q2", "S1"],
   2: ["Q3", "Q4", "S2"],
   3: ["Q5", "Q6", "S3"],
@@ -83,6 +83,35 @@ const koGameMapper_userPicks = {
   right: { 3: ["Q5", "Q6"], 4: ["Q7", "Q8"] },
 };
 
+const routes = {
+  home: "/",
+  signIn: "/sign-in",
+  createAccount: "/create-account",
+  forgotPw: "/forgot-pw",
+  resetPw: "/reset-pw/:id",
+  forgotPwConfirmation: "/forgot-pw-confirmation",
+  pwResetConfirmation: "/pw-reset-confirmation",
+  accountCreated: "/account-created",
+  admin: "/admin",
+  adminUsers: "/admin/users",
+  adminGroups: "/admin/groups",
+  adminKo: "/admin/ko",
+  adminKoDeprecated: "/admin/ko-deprecated",
+  leaderboard: "/leaderboard",
+  myPicks: "/my-picks",
+  myPicksEditGroup: "/my-picks-edit-group",
+  myPicksEditKo: "/my-picks-edit-ko",
+  poolPicks: "/pool-picks",
+  poolPicksUserId: "/pool-picks/:id",
+  groupDetails: "/group-details",
+  rules: "/rules",
+  myProfile: "/my-profile",
+  editProfileName: "/edit-profile-name",
+  editProfilePw: "/edit-profile-password",
+  editProfileEmailNotifications: "/edit-profile-email-notifications",
+  noMatch: "*",
+};
+
 module.exports = {
   groupLetters,
   koLetters,
@@ -92,7 +121,7 @@ module.exports = {
   finalMatchups,
   koLetters_maxPts,
   semiMatchups,
-  regoinMapper,
+  regionMapper,
   koGameMapper,
   games_Q,
   games_S,
@@ -103,7 +132,8 @@ module.exports = {
   koGameMapper_EditUserPicks_R16,
   gameMapper_ko_edit,
   setTeamMapper_ko_edit,
-  regoinToAuditMapper,
+  regionToAuditMapper,
   koGameMapper_userPicks,
   tourneyStartDate,
+  routes,
 };

@@ -1,14 +1,13 @@
 const {
   groupLetters,
   finalMatchups,
-  koLetters,
   Qs,
   Ss,
   Fs,
   koLetters_maxPts,
   semiMatchups,
   validKoResults,
-  regoinToAuditMapper,
+  regionToAuditMapper,
   tourneyStartDate,
 } = require("./variables");
 
@@ -1483,14 +1482,13 @@ const findPreviousGameWinner_Finals = (
   return usersPick;
 };
 
-const isUserMissingOtherRegoinPicks = (user, regoinToAudit) => {
-  const userPicksInRegoinToAAudit = regoinToAuditMapper[regoinToAudit].map(
+const isUserMissingOtherRegoinPicks = (user, regionToAudit) => {
+  const userPicksInRegoinToAAudit = regionToAuditMapper[regionToAudit].map(
     (game) => user[game]
   );
 
-  const result = userPicksInRegoinToAAudit.includes(null) ? "missing" : "igo";
+  return userPicksInRegoinToAAudit.includes(null) ? "missing" : "igo";
 
-  return result;
 };
 
 const createPreTourneyDataNotAvailableYetMessage = (str) => {

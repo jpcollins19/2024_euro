@@ -23,12 +23,12 @@ export const loadTeams = () => {
 export const updateTeam = (team, history, route) => {
   return async (dispatch) => {
     team = (await axios.put(`/api/teams/${team.id}`, team)).data;
-    const whereToRoute =
-      route === "group_details" || route === "my_picks"
-        ? `/${route}`
-        : `pool_picks/${route}`;
+    // const whereToRoute =
+    //   route === routes.groupDetails || route === routes.myPicks
+    //     ? route
+    //     : `${routes.poolPicks}${route}`;
 
-    history.push(whereToRoute);
+    history.push(route);
   };
 };
 

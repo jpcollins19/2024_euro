@@ -1,9 +1,28 @@
+//adjust all URLS to have dashes instead of underscores ---START
+
+///header
+///admin
+///group_details
+///leaderboard
+///misc
+///my_picks
+///pool_picks
+///preSignIn
+///rules
+///userAccount
+
+////test all features for all stages ---START
+//find all usages of updateTeam in the teams_store and verify each dispatch updates and routes correctly
+//find all usages of updateUser in the users_store and verify each dispatch updates and routes correctly
+
+////test all features for all stages ---END
+
+//adjust all URLS to have dashes instead of underscores ---END
+
 ///add feature for updating email preferences - email is sent when this preference is adjusted - see masters app
 
 //group details = adjust the group containers to be a little darker than the background
 //group details = adjust the "3rd place team advanced from group" container at the top to be a little darker than the background
-
-//Once tourney is close to starting:
 
 /////adjust the date info on the following pages:
 //create a local variable and apply it to these pages - see masters App

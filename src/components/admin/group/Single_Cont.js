@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { cap1stLetter, updateTeam, loadTeams } from "../../../store";
+import { cap1stLetter, updateTeam, loadTeams, routes } from "../../../store";
 import Button from "../../Misc/Button";
 import CheckBox_Cont from "./CheckBox_Cont";
 import Box from "./Box";
@@ -142,7 +142,7 @@ const Single_Cont = ({ group }) => {
 
         obj.groupIsFinished = groupFinished;
 
-        dispatch(updateTeam(obj, history, "group_details"));
+        dispatch(updateTeam(obj, history, routes.groupDetails));
       });
     } catch (err) {
       console.log(err);

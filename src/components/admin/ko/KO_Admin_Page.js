@@ -6,6 +6,7 @@ import {
   updateTeam,
   areAllGroupsAreFinished,
   getKOResults,
+    routes
 } from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
@@ -170,7 +171,7 @@ const KO_Admin_Page = () => {
     try {
       Object.values(results).forEach((teams) => {
         teams.forEach((team) => {
-          dispatch(updateTeam(team, history, "my_picks"));
+          dispatch(updateTeam(team, history, routes.myPicks));
         });
       });
     } catch (err) {
