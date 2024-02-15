@@ -1,15 +1,15 @@
 import {useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {Link} from "react-router-dom";
-import {findJoe, isPoolPicksPage} from "../../../../../../store";
+import {findJoe, isPoolPicksPage, routes} from "../../../../../../store";
 import Button from "../../../../../Misc/Button";
 import Top_Arrow_Cont from "./arrows/top/Top_Arrow_Cont";
 import Bottom_Arrow_Cont from "./arrows/bottom/Bottom_Arrow_Cont";
 import KO_Data_Cont_Z_In from "./KO_Data_Cont_Z_In";
 
-const KO_Main_Cont_Z_In = ({user, zoomData}) => {
+const KO_Main_Cont_Z_In = ( {user, zoomData} ) => {
     const {pathname} = useLocation();
-    const joe = findJoe(useSelector((state) => state.users));
+    const joe = findJoe(useSelector(( state ) => state.users));
 
     const poolPicksPage = isPoolPicksPage(pathname);
 
@@ -30,7 +30,7 @@ const KO_Main_Cont_Z_In = ({user, zoomData}) => {
 
             {joe?.tourneyStage === 4 && user?.tiebreaker && (
                 <Link
-                    to="/my_picks_edit_ko"
+                    to={routes.myPicksEditKo}
                     style={{textDecoration: "none", color: "black"}}
                 >
                     <Button

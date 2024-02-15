@@ -9,6 +9,7 @@ const {
     validKoResults,
     regionToAuditMapper,
     tourneyStartDate,
+    routes
 } = require("./variables");
 
 const findJoe = ( arr ) => {
@@ -32,7 +33,7 @@ const createCountObj = ( arr, key ) => {
 const dupeValInArr = ( arr ) => {
     arr?.length === 5 && arr.pop();
 
-    return arr.length === new Set(arr).size;
+    return arr.length !== new Set(arr).size;
 };
 
 const formatSelectedUser = ( obj ) => {
@@ -738,43 +739,136 @@ const userStatusClass = ( user ) => {
 };
 
 const isPoolPicksPage = ( pathname ) => {
-    const path = pathname.split("/")[1];
-
-    return path === "pool_picks";
+    return pathname === routes.poolPicks
 };
 
-const auditThirdPlaceToAdvancePicks = ( obj ) => {
-    let answer = {outcome: "=", groupErrors: []};
-    let count = -4;
+const auditThirdPlaceToAdvancePicks = ( groupSelections ) => {
 
-    Object.values(obj).forEach(( boolean ) => boolean && count++);
+    const groupWasAnswered = groupLetters.reduce(
+        ( a, letter ) => {
 
-    if (count === 0) {
-        return answer;
+            a[letter] = !!groupSelections[letter].thirdPlaceAdvanceToKO
+
+            return a
+        }, {});
+
+    const groupAnswers = Object.values(groupWasAnswered)
+
+    const falseAudit = groupAnswers.filter(answer => !answer)
+
+    let error = false
+    let groupErrorList = []
+    let errorMessage = null
+
+    //early exit if IGO
+    if (falseAudit.length === 2) {
+        return {error, groupErrorList, errorMessage}
     }
 
-    if (count < 0) {
-        answer.outcome = `${count}`;
+    error = true
 
-        Object.entries(obj).forEach(( entry ) => {
-            if (!entry[1]) {
-                answer.groupErrors.push(entry[0]);
-            }
-        });
+    const answeredAudit = groupAnswers.reduce(( a, answer ) => {
+        answer ? a.answered++ : a.notAnswered++
+
+        return a
+    }, {answered: 0, notAnswered: 0})
+
+    const addToGroupErrorList = ( entryBoolean ) => {
+        Object.entries(groupWasAnswered)
+        .filter(entry => entry[1] === entryBoolean)
+        .forEach(entry => groupErrorList.push(entry[0]))
     }
 
-    if (count > 0) {
-        answer.outcome = `+${count}`;
+    const tooManyPicks = answeredAudit.answered > 4
 
-        Object.entries(obj).forEach(( entry ) => {
-            if (entry[1]) {
-                answer.groupErrors.push(entry[0]);
-            }
-        });
+    const errorMessageBase = '3rd Place To Advance Error:'
+
+    let numOfPicksNeeded, teams
+
+    if (tooManyPicks) {
+        addToGroupErrorList(true)
+
+        numOfPicksNeeded = answeredAudit.answered + -4
+        teams = answeredAudit.answered === 5 ? 'team' : 'teams'
+
+        errorMessage = `${errorMessageBase} need to un-select ${numOfPicksNeeded} ${teams} from advancing from ${numOfPicksNeeded} of the groups below:`
+
+    } else {
+        addToGroupErrorList(false)
+
+        numOfPicksNeeded = 4 - answeredAudit.answered
+        teams = answeredAudit.answered === 3 ? 'team' : 'teams'
+
+        errorMessage = `${errorMessageBase} need to select ${numOfPicksNeeded} more ${teams} to advance out of the groups below:`
     }
 
-    return answer;
+    return {error, groupErrorList, errorMessage}
+
 };
+
+// const auditThirdPlaceToAdvancePicks = ( groupSelections ) => {
+//
+//     const groupWasAnswered = groupLetters.reduce(
+//         ( a, letter ) => {
+//
+//             a[letter] = !!groupSelections[letter].thirdPlaceAdvanceToKO
+//
+//             return a
+//         }, {});
+//
+//     const groupAnswers = Object.values(groupWasAnswered)
+//
+//     const falseAudit = groupAnswers.filter(answer => !answer)
+//
+//     let error = false
+//     let groupErrorList = []
+//     let errorMessage = null
+//
+//     //early exit if IGO
+//     if (falseAudit.length === 2) {
+//         return {error, groupErrorList, errorMessage}
+//     }
+//
+//     error = true
+//
+//     const answeredAudit = groupAnswers.reduce(( a, answer ) => {
+//         answer ? a.answered++ : a.notAnswered++
+//
+//         return a
+//     }, {answered: 0, notAnswered: 0})
+//
+//     const addToGroupErrorList = ( entryBoolean ) => {
+//         Object.entries(groupWasAnswered)
+//         .filter(entry => entry[1] === entryBoolean)
+//         .forEach(entry => groupErrorList.push(entry[0]))
+//     }
+//
+//     const tooManyPicks = answeredAudit.answered > 4
+//
+//     const errorMessageBase = '3rd Place To Advance Error:'
+//
+//     let numOfPicksNeeded, teams
+//
+//     if (tooManyPicks) {
+//         addToGroupErrorList(true)
+//
+//         numOfPicksNeeded = answeredAudit.answered + -4
+//         teams = answeredAudit.answered === 5 ? 'team' : 'teams'
+//
+//         errorMessage = `${errorMessageBase} need to un-select ${numOfPicksNeeded} ${teams} from advancing from ${numOfPicksNeeded} of the groups below:`
+//
+//     } else {
+//         addToGroupErrorList(false)
+//
+//         numOfPicksNeeded = 4 - answeredAudit.answered
+//         teams = answeredAudit.answered === 3 ? 'team' : 'teams'
+//
+//         errorMessage = `${errorMessageBase} need to select ${numOfPicksNeeded} more ${teams} to advance out of the groups below:`
+//     }
+//
+//     return {error, groupErrorList, errorMessage}
+//
+// };
 
 const determineR16Seeding = ( teams ) => {
     const staticGames = {
@@ -1625,23 +1719,30 @@ const getNavBarVerbiageFromPath = (
 
     let result = ''
 
+    let keepRunning = true
+
     arrayOfPaths.forEach(( path, idx ) => {
 
         const words = path.split("-");
 
-        return words.forEach(( word, idx ) => {
+        return keepRunning && words.forEach(( word, idx ) => {
+
             if (word === "in" && userIsLoggedIn) {
                 result += "Out";
 
-                return result;
+                keepRunning = false
+
+                return result
             }
 
             result += cap1stLetter(word);
 
+            if (word === 'users' && result.includes('Admin')) {
+                keepRunning = false
+            }
+
             if (word === "rules") {
                 result += "/General Info";
-
-                return result;
             }
 
             result += addSpace(words, idx);
@@ -1649,7 +1750,6 @@ const getNavBarVerbiageFromPath = (
             if (word === 'admin') {
                 result += ' - '
             }
-
         });
 
     });
@@ -1681,6 +1781,13 @@ const handleMobileClick = ( ref, closeMobileMenu ) => {
         document.removeEventListener("touchstart", handler);
     };
 }
+
+const clearArr = ( arr ) => {
+    while (arr.length) {
+        arr.pop();
+        return clearArr(arr);
+    }
+};
 
 module.exports = {
     findJoe,
@@ -1731,5 +1838,6 @@ module.exports = {
     getNavBarVerbiageFromPath,
     getIsUserSignedIn,
     getIsUserAdmin,
-    handleMobileClick
+    handleMobileClick,
+    clearArr
 };

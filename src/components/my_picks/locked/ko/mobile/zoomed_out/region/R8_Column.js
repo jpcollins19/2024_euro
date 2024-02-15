@@ -6,8 +6,8 @@ import {
 } from "../../../../../../../store";
 import KO_Box from "../KO_Box";
 
-const R8_Column = ({user, region, side}) => {
-    const teams = useSelector((state) => state.teams);
+const R8_Column = ( {user, region, side} ) => {
+    const teams = useSelector(( state ) => state.teams);
 
     const userPickMapper = {
         left: {1: ["Q1", "Q2"], 2: ["Q3", "Q4"]},
@@ -16,9 +16,9 @@ const R8_Column = ({user, region, side}) => {
 
     const games = userPickMapper[side][region];
 
-    let usersPicksForGame = games.map((game) => user[`knock${game}`]);
+    let usersPicksForGame = games.map(( game ) => user[`knock${game}`]);
 
-    const userHasKOPicks = user?.knockChamp ? true : false;
+    const userHasKOPicks = !!user?.knockChamp;
 
     const game = `Q${region}`;
 

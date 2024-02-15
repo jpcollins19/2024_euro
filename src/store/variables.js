@@ -92,7 +92,6 @@ const routes = {
     forgotPwConfirmation: "/forgot-pw-confirmation",
     pwResetConfirmation: "/pw-reset-confirmation",
     accountCreated: "/account-created",
-    // admin: "/admin",
     adminUsers: "/admin/users",
     adminGroups: "/admin/groups",
     adminKo: "/admin/ko",

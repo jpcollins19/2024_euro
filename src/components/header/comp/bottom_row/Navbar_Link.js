@@ -1,12 +1,12 @@
 import {useLocation, Link} from "react-router-dom";
-import {getNavBarVerbiageFromPath} from "../../../../store";
+import {getNavBarVerbiageFromPath, routes} from "../../../../store";
 
 const Navbar_Link = ( {route} ) => {
     const {pathname} = useLocation();
 
     const verbiage = getNavBarVerbiageFromPath(route)
 
-    const linkClassName = pathname === route ? "selected-url"
+    let linkClassName = pathname.includes(route) ? "selected-url"
         : "not-selected-url"
 
     return (

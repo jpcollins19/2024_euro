@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
-import {me, loadUsers, findJoe, loadTeams} from "../../../store";
+import {findJoe, loadTeams, loadUsers, me, routes} from "../../../store";
 import Loading from "../../Misc/Loading";
 import Button from "../../Misc/Button";
 import Point_System_Cont from "./Point_System_Cont";
@@ -34,9 +34,9 @@ const My_Picks_Locked_Page = () => {
         setLoading(false);
     }, 500);
 
-    const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-    const joe = findJoe(useSelector((state) => state.users));
+    const joe = findJoe(useSelector(( state ) => state.users));
 
     const letters = ["A", "B", "C", "D", "E", "F"];
 
@@ -51,7 +51,7 @@ const My_Picks_Locked_Page = () => {
 
                 {joe?.tourneyStage === 1 && (
                     <Link
-                        to="/my_picks_edit_group"
+                        to={routes.myPicksEditGroup}
                         style={{textDecoration: "none", color: "black"}}
                     >
                         <Button
@@ -63,7 +63,7 @@ const My_Picks_Locked_Page = () => {
 
                 {joe?.tourneyStage === 4 && user?.tiebreaker && (
                     <Link
-                        to="/my_picks_edit_ko"
+                        to={routes.myPicksEditKo}
                         style={{textDecoration: "none", color: "black"}}
                     >
                         <Button
@@ -104,7 +104,7 @@ const My_Picks_Locked_Page = () => {
                             joe?.tourneyStage <= 2 ? "gpc-2" : ""
                         }`}
                     >
-                        {letters.map((letter) => (
+                        {letters.map(( letter ) => (
                             <Single_Group_Cont_Locked key={letter}
                                                       group={letter}/>
                         ))}

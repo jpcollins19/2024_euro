@@ -1,13 +1,13 @@
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {findJoe} from "../../../../../../store";
+import {findJoe, routes} from "../../../../../../store";
 import Button from "../../../../../Misc/Button";
 import Top_Arrow_Cont from "./arrows/top/Top_Arrow_Cont";
 import Bottom_Arrow_Cont from "./arrows/bottom/Bottom_Arrow_Cont";
 import KO_Data_Cont_Z_In from "./KO_Data_Cont_Z_In";
 
-const KO_Main_Cont_In = ({user, zoomData}) => {
-    const joe = findJoe(useSelector((state) => state.users));
+const KO_Main_Cont_In = ( {user, zoomData} ) => {
+    const joe = findJoe(useSelector(( state ) => state.users));
 
     return (
         <div className="ko-cont-zoomed-in">
@@ -23,7 +23,7 @@ const KO_Main_Cont_In = ({user, zoomData}) => {
 
             {joe?.tourneyStage === 4 && user?.tiebreaker && (
                 <Link
-                    to="/my_picks_edit_ko"
+                    to={routes.myPicksEditKo}
                     style={{textDecoration: "none", color: "black"}}
                 >
                     <Button

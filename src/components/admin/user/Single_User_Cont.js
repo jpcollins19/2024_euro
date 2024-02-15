@@ -2,19 +2,19 @@ import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {useHistory, useLocation} from "react-router-dom";
 import {
-    updateUser,
     deleteUser,
-    dupeValInArr,
+    updateUser,
     loadUsers,
-    cap1stLetter,
-    findJoe,
-    groupLetters,
-    auditThirdPlaceToAdvancePicks,
-    games_Q,
-    games_S,
     games_F,
+    games_S,
+    games_Q,
+    groupLetters,
+    routes,
+    auditThirdPlaceToAdvancePicks,
+    cap1stLetter,
+    dupeValInArr,
+    findJoe,
     getKOResults,
-    routes
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
@@ -33,14 +33,14 @@ const Single_User_Cont = () => {
         dispatch(loadUsers());
     }, []);
 
-    const userId = pathname.split("/admin/users/")[1];
+    const userId = pathname.split(`${routes.adminUsers}/`)[1];
 
-    const user = useSelector((state) => state.users).find(
-        (user) => user.id === userId
+    const user = useSelector(( state ) => state.users).find(
+        ( user ) => user.id === userId
     );
 
-    const teams = useSelector((state) => state.teams);
-    const joe = findJoe(useSelector((state) => state.users));
+    const teams = useSelector(( state ) => state.teams);
+    const joe = findJoe(useSelector(( state ) => state.users));
 
     const [zoomedOut, setZoomedOut] = useState(true);
     const [zoomedInRegion, setZoomedInRegion] = useState(1);
@@ -156,7 +156,7 @@ const Single_User_Cont = () => {
 
     const userPicks = getKOResults(teams);
 
-    const addToUserPicks = (game) => {
+    const addToUserPicks = ( game ) => {
         const value = eval(game);
 
         const key_set = `set${game}`;
@@ -166,33 +166,33 @@ const Single_User_Cont = () => {
         userPicks[key_set] = value_set;
     };
 
-    games_Q.forEach((game) => {
+    games_Q.forEach(( game ) => {
         addToUserPicks(game);
     });
 
-    games_S.forEach((game) => {
+    games_S.forEach(( game ) => {
         addToUserPicks(game);
     });
 
-    games_F.forEach((game) => {
+    games_F.forEach(( game ) => {
         addToUserPicks(game);
     });
 
     userPicks.champ = champ;
     userPicks.setChamp = setChamp;
 
-    const findTeam = (game) => {
+    const findTeam = ( game ) => {
         const team = eval(game);
         return team?.name ?? null;
     };
 
-    const togglePaid = () => setPaid((value) => !value);
+    const togglePaid = () => setPaid(( value ) => !value);
 
     const toggleOnlyUpdateTopSection = () => {
-        setOnlyUpdateTopSection((value) => !value);
+        setOnlyUpdateTopSection(( value ) => !value);
     };
 
-    const onChangeGroupSelections = (group, key, answer) => {
+    const onChangeGroupSelections = ( group, key, answer ) => {
         if (key === "thirdPlaceAdvanceToKO") {
             groupSelections[group][key] = !groupSelections[group][key];
         } else {
@@ -202,7 +202,7 @@ const Single_User_Cont = () => {
 
     const errorAudit = [];
 
-    const clearArr = (arr) => {
+    const clearArr = ( arr ) => {
         while (arr.length) {
             arr.pop();
             return clearArr(arr);
@@ -211,8 +211,8 @@ const Single_User_Cont = () => {
 
     useEffect(() => {
         const teams_R16 = Object.values(getKOResults(teams)).reduce(
-            (a, matchup) => {
-                matchup.forEach((team) => {
+            ( a, matchup ) => {
+                matchup.forEach(( team ) => {
                     a.push(team?.name);
                 });
 
@@ -221,35 +221,35 @@ const Single_User_Cont = () => {
             []
         );
 
-        const teams_quarters = games_Q.map((game) => {
+        const teams_quarters = games_Q.map(( game ) => {
             return findTeam(game);
         });
 
-        const teams_semis = games_S.map((game) => {
+        const teams_semis = games_S.map(( game ) => {
             return findTeam(game);
         });
 
-        const finals = games_F.map((game) => {
+        const finals = games_F.map(( game ) => {
             return findTeam(game);
         });
 
         const champion = champ?.name;
 
-        teams_quarters.forEach((team, idx) => {
+        teams_quarters.forEach(( team, idx ) => {
             if (!teams_R16.includes(team)) {
                 const set = eval(`setQ${idx + 1}`);
                 set(null);
             }
         });
 
-        teams_semis.forEach((team, idx) => {
+        teams_semis.forEach(( team, idx ) => {
             if (!teams_quarters.includes(team)) {
                 const set = eval(`setS${idx + 1}`);
                 set(null);
             }
         });
 
-        finals.forEach((team, idx) => {
+        finals.forEach(( team, idx ) => {
             if (!teams_semis.includes(team)) {
                 const set = eval(`setF${idx + 1}`);
                 set(null);
@@ -266,7 +266,7 @@ const Single_User_Cont = () => {
         setMasterErrorText(null);
     };
 
-    const onSubmit = async (evt) => {
+    const onSubmit = async ( evt ) => {
         evt.preventDefault();
 
         try {
@@ -286,12 +286,14 @@ const Single_User_Cont = () => {
                 return dispatch(updateUser(userObj, history, routes.poolPicks));
             }
 
-            groupLetters.forEach((letter) => {
+            // reset all groupErrors to false
+            groupLetters.forEach(( letter ) => {
                 const setError = eval(`setGroup${letter}Error`);
 
                 setError(false);
             });
 
+            //audit for invalid tiebreakers
             const validTiebreaker = Number(tiebreaker) % 1 === 0;
             const tiebreakerAsArray = tiebreaker?.split("");
 
@@ -312,7 +314,8 @@ const Single_User_Cont = () => {
 
             clearArr(errorAudit);
 
-            groupLetters.forEach((letter) => {
+            // audit for invalid group picks
+            groupLetters.forEach(( letter ) => {
                 const groupObj = groupSelections[letter];
                 const answers = Object.values(groupObj);
                 const setError = eval(`setGroup${letter}Error`);
@@ -320,7 +323,7 @@ const Single_User_Cont = () => {
                 if (
                     answers.includes(null) ||
                     answers.includes("not-valid") ||
-                    !dupeValInArr(answers)
+                    dupeValInArr(answers)
                 ) {
                     setError(true);
                     errorAudit.push(1);
@@ -335,47 +338,27 @@ const Single_User_Cont = () => {
                 return;
             }
 
-            const thirdPlaceToAdvanceObj = groupLetters.reduce((a, letter) => {
-                a[letter] = groupSelections[letter].thirdPlaceAdvanceToKO
-                    ?? null;
-
-                return a;
-            }, {});
-
+            // audit for invalid thirdTeamToAdvance
             const thirdPlaceToAdvanceAudit = auditThirdPlaceToAdvancePicks(
-                thirdPlaceToAdvanceObj
-            );
+                groupSelections)
 
-            thirdPlaceToAdvanceAudit.groupErrors.forEach((letter) => {
-                const setError = eval(`setGroup${letter}Error`);
+            if (thirdPlaceToAdvanceAudit.error) {
+                thirdPlaceToAdvanceAudit.groupErrorList.forEach(( letter ) => {
+                    const setError = eval(`setGroup${letter}Error`);
 
-                errorAudit.push(1);
-                setError(true);
-            });
+                    errorAudit.push(1);
+                    setError(true);
+                })
 
-            if (errorAudit.length) {
-                setMasterError(true);
+                setMasterErrorText(thirdPlaceToAdvanceAudit.errorMessage)
 
-                const outcome = thirdPlaceToAdvanceAudit?.outcome[0];
-                const number = thirdPlaceToAdvanceAudit?.outcome[1];
-                const selectText = outcome === "-" ? "select" : "un-select";
-                const more = outcome === "-" ? "more" : "";
-                const team = number === "1" ? "team" : "teams";
-                const advancing = outcome === "-" ? "to advance"
-                    : "from advancing";
-                const outFrom = outcome === "-" ? "out" : `from ${number}`;
-
-                let errorText = `3rd Place To Advance Error: need to ${selectText} ${number} ${more} ${team} ${advancing} ${outFrom} of the groups below:`;
-
-                setMasterErrorText(errorText);
-
-                return;
+                setMasterError(true)
             }
 
-            groupLetters.forEach((letter) => {
+            groupLetters.forEach(( letter ) => {
                 const nums = [1, 2, 3, 4];
 
-                nums.forEach((num) => {
+                nums.forEach(( num ) => {
                     userObj[`group${letter}${num}`] = groupSelections[letter][num];
 
                     if (num === 3) {
@@ -392,7 +375,7 @@ const Single_User_Cont = () => {
             if (joe?.tourneyStage >= 4) {
                 clearArr(errorAudit);
 
-                const koAudit = (team, game) => {
+                const koAudit = ( team, game ) => {
                     if (!team) {
                         setMasterError(true);
                         setMasterErrorText("Incomplete Picks Below");
@@ -402,19 +385,19 @@ const Single_User_Cont = () => {
                     }
                 };
 
-                games_Q.forEach((game) => {
+                games_Q.forEach(( game ) => {
                     const team = eval(game);
 
                     koAudit(team?.name, game);
                 });
 
-                games_S.forEach((game) => {
+                games_S.forEach(( game ) => {
                     const team = eval(game);
 
                     koAudit(team?.name, game);
                 });
 
-                games_F.forEach((game) => {
+                games_F.forEach(( game ) => {
                     const team = eval(game);
 
                     koAudit(team?.name, game);
@@ -451,7 +434,7 @@ const Single_User_Cont = () => {
 
                 {user?.name && (
                     <div className="user-details-cont">
-                        {inputs.map((input) => (
+                        {inputs.map(( input ) => (
                             <Input_Cont
                                 key={input}
                                 selectedUser={user}
@@ -461,7 +444,7 @@ const Single_User_Cont = () => {
                         ))}
 
                         <div className="paid-cont">
-                            {checkboxes.map((checkbox, idx) => (
+                            {checkboxes.map(( checkbox, idx ) => (
                                 <Checkbox_Cont key={idx}
                                                checkboxInfo={checkbox}/>
                             ))}
@@ -487,7 +470,7 @@ const Single_User_Cont = () => {
 
                         <input
                             defaultValue={tiebreaker}
-                            onChange={(ev) => {
+                            onChange={( ev ) => {
                                 setTiebreaker(ev.target.value);
                                 resetMasterError();
                             }}

@@ -72,7 +72,7 @@ let teamInfo = [
 
 const entries = ["W", "D", "L", "GF", "GA", "groupFinishingPosition"];
 
-teamInfo.forEach((team) => {
+teamInfo.forEach(( team ) => {
     team.flag = `https://www.sciencekids.co.nz/images/pictures/flags680/${
         team.name === "Saudi Arabia"
             ? "Saudi_Arabia"
@@ -333,6 +333,12 @@ const users = [
 
         tiebreaker: 42,
     },
+    {
+        email: "jack@gmail.com",
+        password: "jack",
+        name: "Jack",
+        paid: true,
+    },
 ];
 
 const joeUser = [
@@ -423,7 +429,7 @@ const syncAndSeed = async () => {
         Morocco,
         Croatia,
     ] = await Promise.all(
-        teamInfo.map((obj) =>
+        teamInfo.map(( obj ) =>
             Team.create({
                 name: obj.name,
                 group: obj.group,
@@ -438,7 +444,7 @@ const syncAndSeed = async () => {
         )
     );
     const [updatedAnswer] = await Promise.all(
-        updated.map((obj) =>
+        updated.map(( obj ) =>
             Updated.create({
                 idd: obj.idd,
                 answer: obj.answer,
@@ -492,7 +498,7 @@ const syncAndSeed = async () => {
     // );
     // //////////////////////////////////////////////////
     const [Joe, Stan, Frank, Anthony, Kevin, Pat, Sarah] = await Promise.all(
-        users.map((obj) =>
+        users.map(( obj ) =>
             User.create({
                 email: obj.email,
                 emailNotifications: obj.emailNotifications,

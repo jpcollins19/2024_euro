@@ -1,13 +1,5 @@
 //adjust all URLS to have dashes instead of underscores ---START
 
-///admin  ----START
-
-///admin  ----END
-
-///group_details
-///leaderboard
-///misc
-///my_picks
 ///pool_picks
 ///preSignIn
 ///rules

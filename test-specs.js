@@ -16,7 +16,10 @@ const {
     calcPayout,
     getNavBarVerbiageFromPath,
     getIsUserSignedIn,
-    getIsUserAdmin
+    getIsUserAdmin,
+    dupeValInArr,
+    isPoolPicksPage,
+    clearArr
 } = require("./src/store/funcs");
 
 const {
@@ -1767,113 +1770,6 @@ describe("colorDescriptionTableNeeded func", () => {
     });
 });
 
-describe("auditThirdPlaceToAdvancePicks", () => {
-    const auditThirdPlaceToAdvancePicksTesting = [
-        {
-            scenario: "no",
-            obj: {
-                A: false,
-                B: false,
-                C: false,
-                D: false,
-                E: false,
-                F: false,
-            },
-            answer: {
-                outcome: "-4",
-                groupErrors: ["A", "B", "C", "D", "E", "F"]
-            },
-        },
-        {
-            scenario: 1,
-            obj: {
-                A: false,
-                B: true,
-                C: false,
-                D: false,
-                E: false,
-                F: false,
-            },
-            answer: {outcome: "-3", groupErrors: ["A", "C", "D", "E", "F"]},
-        },
-        {
-            scenario: 2,
-            obj: {
-                A: false,
-                B: true,
-                C: false,
-                D: false,
-                E: true,
-                F: false,
-            },
-            answer: {outcome: "-2", groupErrors: ["A", "C", "D", "F"]},
-        },
-        {
-            scenario: 3,
-            obj: {
-                A: true,
-                B: false,
-                C: false,
-                D: true,
-                E: false,
-                F: true,
-            },
-            answer: {outcome: "-1", groupErrors: ["B", "C", "E"]},
-        },
-        {
-            scenario: 4,
-            obj: {
-                A: true,
-                B: true,
-                C: false,
-                D: true,
-                E: true,
-                F: false,
-            },
-            answer: {outcome: "=", groupErrors: []},
-        },
-        {
-            scenario: 5,
-            obj: {
-                A: true,
-                B: true,
-                C: true,
-                D: true,
-                E: false,
-                F: true,
-            },
-            answer: {outcome: "+1", groupErrors: ["A", "B", "C", "D", "F"]},
-        },
-        {
-            scenario: 6,
-            obj: {
-                A: true,
-                B: true,
-                C: true,
-                D: true,
-                E: true,
-                F: true,
-            },
-            answer: {
-                outcome: "+2",
-                groupErrors: ["A", "B", "C", "D", "E", "F"]
-            },
-        },
-    ];
-    auditThirdPlaceToAdvancePicksTesting.forEach(( scenario ) => {
-        it(`with ${scenario.scenario} picks`, () => {
-            const answer = auditThirdPlaceToAdvancePicks(scenario.obj);
-            expect(scenario.answer.outcome).to.equal(answer.outcome);
-            scenario.answer.groupErrors.forEach(( letter, i ) => {
-                expect(letter).to.equal(answer.groupErrors[i]);
-            });
-            answer.groupErrors.forEach(( letter, i ) => {
-                expect(letter).to.equal(scenario.answer.groupErrors[i]);
-            });
-        });
-    });
-});
-
 describe("formatPathname", () => {
     const formatPathnameTesting = [
         {value: "email_notifications", result: "Email Notifications"},
@@ -2070,6 +1966,11 @@ describe("getNavBarVerbiageFromPath", () => {
             userIsLoggedIn: null
         },
         {
+            route: `${routes.adminUsers}/422fc0a0-d7ff-42b8-889b-f705d0d2a245`,
+            result: "Admin - Users",
+            userIsLoggedIn: null
+        },
+        {
             route: routes.adminGroups,
             result: "Admin - Groups",
             userIsLoggedIn: null
@@ -2140,6 +2041,195 @@ describe("getIsUserAdmin", () => {
             const result = getIsUserAdmin(test.user);
 
             expect(result).to.equal(test.result);
+        });
+    });
+});
+
+describe("dupeValInArr", () => {
+    const testsToRun = [
+        {test: ['joe', 'kelly', 'anna', false], result: false},
+        {test: ['joe', 'joe', 'anna', false], result: true},
+        {test: [null, null, 'anna', false], result: true},
+        {test: [null, null, null, false], result: true},
+    ];
+
+    testsToRun.forEach(( test ) => {
+        it(`array: [${test.test}]`, () => {
+            const result = dupeValInArr(test.test);
+
+            expect(result).to.equal(test.result);
+        });
+    });
+});
+
+describe("isPoolPicksPage", () => {
+    const testsToRun = [
+        {path: routes.poolPicks, result: true},
+        {path: routes.leaderboard, result: false},
+        {path: routes.groupDetails, result: false},
+        {path: routes.adminUsers, result: false},
+    ];
+
+    testsToRun.forEach(( test ) => {
+        it(`${test.path}`, () => {
+            const result = isPoolPicksPage(test.path);
+
+            expect(result).to.equal(test.result);
+        });
+    });
+});
+
+describe("clearArr", () => {
+    const testsToRun = [
+        ['joe', 1, null, undefined], ['hello', 1, 'anna', true]
+    ];
+
+    testsToRun.forEach(( test ) => {
+        it(`array values: [${test}]`, () => {
+
+            const array = test
+
+            clearArr(array);
+
+            expect(array.length).to.equal(0);
+        });
+    });
+});
+
+describe("auditThirdPlaceToAdvancePicks", () => {
+    const thirdPlaceTeam = 'Wales'
+    const [A, B, C, D, E, F] = ['A', 'B', 'C', 'D', 'E', 'F']
+
+    const testsToRun = [
+        {
+            scenario: 0,
+            test: {
+                A: {thirdPlaceAdvanceToKO: false},
+                B: {thirdPlaceAdvanceToKO: false},
+                C: {thirdPlaceAdvanceToKO: false},
+                D: {thirdPlaceAdvanceToKO: false},
+                E: {thirdPlaceAdvanceToKO: false},
+                F: {thirdPlaceAdvanceToKO: false},
+            },
+            result: {
+                error: true,
+                groupErrorList: [A, B, C, D, E, F],
+                errorMessage: '3rd Place To Advance Error: need to select 4 more teams to advance out of the groups below:'
+            }
+
+        },
+        {
+            scenario: 1,
+            test: {
+                A: {thirdPlaceAdvanceToKO: false},
+                B: {thirdPlaceAdvanceToKO: false},
+                C: {thirdPlaceAdvanceToKO: false},
+                D: {thirdPlaceAdvanceToKO: false},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: false},
+            },
+            result: {
+                error: true,
+                groupErrorList: [A, B, C, D, F],
+                errorMessage: '3rd Place To Advance Error: need to select 3 more teams to advance out of the groups below:'
+            }
+
+        },
+        {
+            scenario: 2,
+            test: {
+                A: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                B: {thirdPlaceAdvanceToKO: false},
+                C: {thirdPlaceAdvanceToKO: false},
+                D: {thirdPlaceAdvanceToKO: false},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: false},
+            },
+            result: {
+                error: true,
+                groupErrorList: [B, C, D, F],
+                errorMessage: '3rd Place To Advance Error: need to select 2 more teams to advance out of the groups below:'
+            }
+
+        },
+        {
+            scenario: 3,
+            test: {
+                A: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                B: {thirdPlaceAdvanceToKO: false},
+                C: {thirdPlaceAdvanceToKO: false},
+                D: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: false},
+            },
+            result: {
+                error: true,
+                groupErrorList: [B, C, F],
+                errorMessage: '3rd Place To Advance Error: need to select 1 more team to advance out of the groups below:'
+            }
+
+        },
+        {
+            scenario: 4,
+            test: {
+                A: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                B: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                C: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                D: {thirdPlaceAdvanceToKO: false},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: false},
+            },
+            result: {
+                error: false,
+                groupErrorList: [],
+                errorMessage: null
+            }
+
+        },
+        {
+            scenario: 5,
+            test: {
+                A: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                B: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                C: {thirdPlaceAdvanceToKO: false},
+                D: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+            },
+            result: {
+                error: true,
+                groupErrorList: [A, B, D, E, F],
+                errorMessage: '3rd Place To Advance Error: need to un-select 1 team from advancing from 1 of the groups below:'
+            }
+
+        },
+        {
+            scenario: 6,
+            test: {
+                A: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                B: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                C: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                D: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                E: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+                F: {thirdPlaceAdvanceToKO: thirdPlaceTeam},
+            },
+            result: {
+                error: true,
+                groupErrorList: [A, B, C, D, E, F],
+                errorMessage: '3rd Place To Advance Error: need to un-select 2 teams from advancing from 2 of the groups below:'
+            }
+
+        }
+    ]
+
+    testsToRun.forEach(( test ) => {
+        it(`number of 3rd place teams picked: ${test.scenario}`, () => {
+            const result = auditThirdPlaceToAdvancePicks(test.test);
+
+            expect(result.error).to.equal(test.result.error);
+            expect(result.groupErrorList).to.deep.equal(
+                test.result.groupErrorList);
+            expect(result.errorMessage).to.equal(test.result.errorMessage);
         });
     });
 });
