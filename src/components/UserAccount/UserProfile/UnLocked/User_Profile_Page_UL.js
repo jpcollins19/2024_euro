@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {useHistory, useLocation} from "react-router-dom";
 import {
-  getUserNames,
-  formatEmail,
-  updateUser,
-  loadUsers,
-  formatPathname,
+    loadUsers,
+    updateUser,
+    cap1stLetter,
+    formatEmail,
+    getUserNames,
+    routes
 } from "../../../../store";
 import Loading from "../../../Misc/Loading";
 import Error from "../../../Misc/Error";
@@ -15,147 +16,156 @@ import Cancel from "../../../Misc/Cancel";
 import Input_Cont from "./Input_Cont";
 
 const User_Profile_Page = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { pathname } = useLocation();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const {pathname} = useLocation();
 
-  const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, []);
+    useEffect(() => {
+        dispatch(loadUsers());
+    }, []);
 
-  const page = formatPathname(pathname.split("/edit_profile_")[1]);
+    const page = pathname.split("/edit-profile-")[1];
 
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState(null);
-  const [inputChanged, setInputChanged] = useState(false);
-  const [nameChanged, setNameChanged] = useState(false);
-  const [password, setPassword] = useState(null);
-  const [password1, setPassword1] = useState(null);
-  const [passwordChanged, setPasswordChanged] = useState(false);
-  const [emailNotifications, setEmailNotifications] = useState(null);
-  const [error, setError] = useState(null);
-  const [showPW, setShowPW] = useState(false);
+    const pageHeader =
+        pathname === routes.editProfileEmailNotifications
+            ? "Email Notifications"
+            : cap1stLetter(page);
 
-  const showPwClick = () => {
-    setShowPW(!showPW);
-  };
+    const [loading, setLoading] = useState(true);
+    const [name, setName] = useState(null);
+    const [inputChanged, setInputChanged] = useState(false);
+    const [nameChanged, setNameChanged] = useState(false);
+    const [password, setPassword] = useState(null);
+    const [password1, setPassword1] = useState(null);
+    const [passwordChanged, setPasswordChanged] = useState(false);
+    const [emailNotifications, setEmailNotifications] = useState(null);
+    const [error, setError] = useState(null);
+    const [showPW, setShowPW] = useState(false);
 
-  setTimeout(() => {
-    name === null && setName(user.name);
-    password === null && setPassword(user.password);
-    password1 === null && setPassword1(user.password);
-    emailNotifications === null &&
-      setEmailNotifications(user?.emailNotifications);
-    setLoading(false);
-  }, 1000);
+    const showPwClick = () => {
+        setShowPW(!showPW);
+    };
 
-  const userNames = getUserNames(useSelector((state) => state.users));
+    setTimeout(() => {
+        name === null && setName(user.name);
+        password === null && setPassword(user.password);
+        password1 === null && setPassword1(user.password);
+        emailNotifications === null &&
+        setEmailNotifications(user?.emailNotifications);
+        setLoading(false);
+    }, 1000);
 
-  const onChange = (ev) => {
-    setError(null);
-    setInputChanged(true);
+    const userNames = getUserNames(useSelector(( state ) => state.users));
 
-    if (ev.target.name === "Name") {
-      setName(ev.target.value);
-      setNameChanged(true);
-    } else if (ev.target.name === "Email Notifications") {
-      setEmailNotifications(!emailNotifications);
-    } else {
-      setPasswordChanged(true);
-      ev.target.name === "Password"
-        ? setPassword(ev.target.value)
-        : setPassword1(ev.target.value);
-    }
-  };
+    const onChange = ( ev ) => {
+        setError(null);
+        setInputChanged(true);
 
-  const classInfo = page === "Password" ? "pw" : "name";
+        if (ev.target.name === "Name") {
+            setName(ev.target.value);
+            setNameChanged(true);
+        } else if (ev.target.name === "Email Notifications") {
+            setEmailNotifications(!emailNotifications);
+        } else {
+            setPasswordChanged(true);
+            ev.target.name === "Password"
+                ? setPassword(ev.target.value)
+                : setPassword1(ev.target.value);
+        }
+    };
 
-  const onSubmit = async (ev) => {
-    ev.preventDefault();
+    const classInfo = page === "Password" ? "pw" : "name";
 
-    try {
-      const userObj = {
-        id: user.id,
-      };
+    const onSubmit = async ( ev ) => {
+        ev.preventDefault();
 
-      if (nameChanged) {
-        if (userNames.includes(formatEmail(name)))
-          return setError("Name is already in use");
+        try {
+            const userObj = {
+                id: user.id,
+            };
 
-        userObj.name = name;
-      }
+            if (nameChanged) {
+                if (userNames.includes(formatEmail(name))) {
+                    return setError("Name is already in use");
+                }
 
-      if (passwordChanged) {
-        if (password !== password1) return setError("Passwords do not match");
+                userObj.name = name;
+            }
 
-        const month = new Date().getMonth() + 1;
-        const date = new Date().getDate();
-        const time = new Date().getTime();
+            if (passwordChanged) {
+                if (password !== password1) {
+                    return setError(
+                        "Passwords do not match");
+                }
 
-        const dateInfo = `${month} ${date} ${time}`;
+                const month = new Date().getMonth() + 1;
+                const date = new Date().getDate();
+                const time = new Date().getTime();
 
-        userObj.passwordUpdated = dateInfo;
-        userObj.password = password;
-      }
+                const dateInfo = `${month} ${date} ${time}`;
 
-      userObj.emailNotifications = emailNotifications;
-      userObj.websiteUpdatedEmailSent = true;
+                userObj.passwordUpdated = dateInfo;
+                userObj.password = password;
+            }
 
-      dispatch(updateUser(userObj, history, "my_profile"));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+            userObj.emailNotifications = emailNotifications;
+            userObj.websiteUpdatedEmailSent = true;
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <div className="user-profile-page">
-      <div className={`user-profile-outside upo-${classInfo}`}>
-        <div className={`user-profile-inside upi-${classInfo}`}>
-          <h1>Edit {page}</h1>
-          <div className="user-profile-edit-error-cont">
-            {error ? (
-              <Error error={error} />
-            ) : (
-              <div className="edit-profile-button">
-                <Button
-                  text={"Submit"}
-                  form={"update-profile"}
-                  disabled={!inputChanged}
-                />
-              </div>
-            )}
-          </div>
+            dispatch(updateUser(userObj, history, routes.myProfile));
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-          <form onSubmit={onSubmit} id="update-profile">
-            <Input_Cont
-              user={user}
-              onChange={onChange}
-              showPW={showPW}
-              emailNotifications={emailNotifications}
-            />
-          </form>
+    return loading ? (
+        <Loading/>
+    ) : (
+        <div className="user-profile-page">
+            <div className={`user-profile-outside upo-${page}`}>
+                <div className={`user-profile-inside upi-${page}`}>
+                    <h1>Edit {pageHeader}</h1>
+                    <div className="user-profile-edit-error-cont">
+                        {error ? (
+                            <Error error={error}/>
+                        ) : (
+                            <div className="edit-profile-button">
+                                <Button
+                                    text="Submit"
+                                    form="update-profile"
+                                    disabled={!inputChanged}
+                                />
+                            </div>
+                        )}
+                    </div>
 
-          {page && page === "Password" && (
-            <div
-              className="view-pw-user-profile white-text"
-              onClick={() => showPwClick()}
-            >
-              View Password
+                    <form onSubmit={onSubmit} id="update-profile">
+                        <Input_Cont
+                            user={user}
+                            onChange={onChange}
+                            showPW={showPW}
+                            emailNotifications={emailNotifications}
+                        />
+                    </form>
+
+                    {page && page === "Password" && (
+                        <div
+                            className="view-pw-user-profile white-text"
+                            onClick={() => showPwClick()}
+                        >
+                            View Password
+                        </div>
+                    )}
+                    <div
+                        className={`user-profile-edit-cancel-cont upecc-${page} white-text`}
+                    >
+                        <Cancel link={routes.myProfile}/>
+                    </div>
+                </div>
             </div>
-          )}
-          <div
-            className={`user-profile-edit-cancel-cont upecc-${page} white-text`}
-          >
-            <Cancel link="/my_profile" />
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default User_Profile_Page;

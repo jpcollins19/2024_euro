@@ -19,7 +19,8 @@ const {
     getIsUserAdmin,
     dupeValInArr,
     isPoolPicksPage,
-    clearArr
+    clearArr,
+    getActionConfirmationText
 } = require("./src/store/funcs");
 
 const {
@@ -2230,6 +2231,29 @@ describe("auditThirdPlaceToAdvancePicks", () => {
             expect(result.groupErrorList).to.deep.equal(
                 test.result.groupErrorList);
             expect(result.errorMessage).to.equal(test.result.errorMessage);
+        });
+    });
+});
+
+describe("getActionConfirmationText", () => {
+    const testsToRun = [
+        {path: routes.accountCreated, result: "Account Successfully Created!"},
+        {
+            path: routes.pwResetConfirmation,
+            result: "Password Successfully Reset!"
+        },
+        {
+            path: routes.forgotPwConfirmation,
+            result: "We have successfully sent instructions for resetting your password to the email address you provided. Please follow the email instructions to reset your password. It may take a few minutes to receive the email."
+        }
+    ];
+
+    testsToRun.forEach(( test ) => {
+        it(test.path, () => {
+
+            const result = getActionConfirmationText(test.path);
+
+            expect(result).to.equal(test.result);
         });
     });
 });

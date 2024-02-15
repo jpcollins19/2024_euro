@@ -2,13 +2,14 @@ import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {
-    formatSelectedUser,
-    loadUsers,
     loadTeams,
-    findJoe,
+    loadUsers,
     me,
-    groupLetters,
     createPreTourneyDataNotAvailableYetMessage,
+    findJoe,
+    formatSelectedUser,
+    groupLetters,
+    routes
 } from "../../store";
 import Loading from "../Misc/Loading";
 import Dropdown from "../Misc/Dropdown";
@@ -39,9 +40,9 @@ const Pool_Picks_Page = () => {
         setLoading(false);
     }, 500);
 
-    const users = useSelector((state) => state.users)
-    .filter((user) => user.tiebreaker)
-    .sort((a, b) => {
+    const users = useSelector(( state ) => state.users)
+    .filter(( user ) => user.tiebreaker)
+    .sort(( a, b ) => {
         const fa = a.name.toLowerCase();
         const fb = b.name.toLowerCase();
 
@@ -54,7 +55,7 @@ const Pool_Picks_Page = () => {
 
         return 0;
     })
-    .map((user) => {
+    .map(( user ) => {
         return formatSelectedUser(user);
     });
 
@@ -63,10 +64,10 @@ const Pool_Picks_Page = () => {
         dispatch(loadTeams());
         dispatch(me());
 
-        const userId = pathname.split("/pool_picks/")[1];
+        const userId = pathname.split(`${routes.poolPicks}/`)[1];
 
         const currentUserProfileNeeded = users.find(
-            (user) => user?.value?.id === userId
+            ( user ) => user?.value?.id === userId
         );
 
         setSelectedUser(currentUserProfileNeeded);
@@ -80,14 +81,14 @@ const Pool_Picks_Page = () => {
         loadPage();
     }, [pathname]);
 
-    const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
-    const joe = findJoe(useSelector((state) => state.users));
+    const joe = findJoe(useSelector(( state ) => state.users));
 
-    const onChange = (userId) => {
+    const onChange = ( userId ) => {
         setLoading(true);
 
-        window.location = `#/pool_picks/${userId}`;
+        window.location = `${routes.poolPicks}/${userId}`;
 
         setTimeout(() => {
             setLoading(false);
@@ -111,7 +112,7 @@ const Pool_Picks_Page = () => {
                                 options={users}
                                 width="15"
                                 defaultValue={selectedUser}
-                                set={(value) => onChange(value.value.id)}
+                                set={( value ) => onChange(value.value.id)}
                             />
                         </div>
 
@@ -139,7 +140,7 @@ const Pool_Picks_Page = () => {
                                     joe?.tourneyStage <= 2 ? "gpc-2" : ""
                                 }`}
                             >
-                                {groupLetters.map((letter) => (
+                                {groupLetters.map(( letter ) => (
                                     <Single_Group_Cont
                                         key={letter}
                                         group={letter}

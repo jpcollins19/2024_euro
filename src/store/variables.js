@@ -1,4 +1,7 @@
 const tourneyStartDate = "6/14/2024";
+const stage1DueDate = '2/15/24'
+const lastDayOfGroupStage = '2/16/24'
+const firstDayOfKoStage = '2/17/24'
 
 const groupLetters = ["A", "B", "C", "D", "E", "F"];
 
@@ -120,6 +123,10 @@ const userIsSignedInRoutes = [
 
 const adminRoutes = [routes.adminUsers, routes.adminGroups, routes.adminKo];
 
+const accountCreatedConfirmation = "Account Successfully Created!"
+const passwordResetConfirmation = "Password Successfully Reset!"
+const forgotPasswordConfirmation = "We have successfully sent instructions for resetting your password to the email address you provided. Please follow the email instructions to reset your password. It may take a few minutes to receive the email."
+
 module.exports = {
     groupLetters,
     koLetters,
@@ -145,5 +152,11 @@ module.exports = {
     tourneyStartDate,
     routes,
     userIsSignedInRoutes,
-    adminRoutes
+    adminRoutes,
+    accountCreatedConfirmation,
+    passwordResetConfirmation,
+    forgotPasswordConfirmation,
+    stage1DueDate,
+    lastDayOfGroupStage,
+    firstDayOfKoStage,
 };

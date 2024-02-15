@@ -9,7 +9,10 @@ const {
     validKoResults,
     regionToAuditMapper,
     tourneyStartDate,
-    routes
+    routes,
+    accountCreatedConfirmation,
+    passwordResetConfirmation,
+    forgotPasswordConfirmation,
 } = require("./variables");
 
 const findJoe = ( arr ) => {
@@ -739,71 +742,69 @@ const userStatusClass = ( user ) => {
 };
 
 const isPoolPicksPage = ( pathname ) => {
-    return pathname === routes.poolPicks
+    return pathname === routes.poolPicks;
 };
 
 const auditThirdPlaceToAdvancePicks = ( groupSelections ) => {
+    const groupWasAnswered = groupLetters.reduce(( a, letter ) => {
+        a[letter] = !!groupSelections[letter].thirdPlaceAdvanceToKO;
 
-    const groupWasAnswered = groupLetters.reduce(
-        ( a, letter ) => {
+        return a;
+    }, {});
 
-            a[letter] = !!groupSelections[letter].thirdPlaceAdvanceToKO
+    const groupAnswers = Object.values(groupWasAnswered);
 
-            return a
-        }, {});
+    const falseAudit = groupAnswers.filter(( answer ) => !answer);
 
-    const groupAnswers = Object.values(groupWasAnswered)
-
-    const falseAudit = groupAnswers.filter(answer => !answer)
-
-    let error = false
-    let groupErrorList = []
-    let errorMessage = null
+    let error = false;
+    let groupErrorList = [];
+    let errorMessage = null;
 
     //early exit if IGO
     if (falseAudit.length === 2) {
-        return {error, groupErrorList, errorMessage}
+        return {error, groupErrorList, errorMessage};
     }
 
-    error = true
+    error = true;
 
-    const answeredAudit = groupAnswers.reduce(( a, answer ) => {
-        answer ? a.answered++ : a.notAnswered++
+    const answeredAudit = groupAnswers.reduce(
+        ( a, answer ) => {
+            answer ? a.answered++ : a.notAnswered++;
 
-        return a
-    }, {answered: 0, notAnswered: 0})
+            return a;
+        },
+        {answered: 0, notAnswered: 0}
+    );
 
     const addToGroupErrorList = ( entryBoolean ) => {
         Object.entries(groupWasAnswered)
-        .filter(entry => entry[1] === entryBoolean)
-        .forEach(entry => groupErrorList.push(entry[0]))
-    }
+        .filter(( entry ) => entry[1] === entryBoolean)
+        .forEach(( entry ) => groupErrorList.push(entry[0]));
+    };
 
-    const tooManyPicks = answeredAudit.answered > 4
+    const tooManyPicks = answeredAudit.answered > 4;
 
-    const errorMessageBase = '3rd Place To Advance Error:'
+    const errorMessageBase = "3rd Place To Advance Error:";
 
-    let numOfPicksNeeded, teams
+    let numOfPicksNeeded, teams;
 
     if (tooManyPicks) {
-        addToGroupErrorList(true)
+        addToGroupErrorList(true);
 
-        numOfPicksNeeded = answeredAudit.answered + -4
-        teams = answeredAudit.answered === 5 ? 'team' : 'teams'
+        numOfPicksNeeded = answeredAudit.answered + -4;
+        teams = answeredAudit.answered === 5 ? "team" : "teams";
 
-        errorMessage = `${errorMessageBase} need to un-select ${numOfPicksNeeded} ${teams} from advancing from ${numOfPicksNeeded} of the groups below:`
-
+        errorMessage = `${errorMessageBase} need to un-select ${numOfPicksNeeded} ${teams} from advancing from ${numOfPicksNeeded} of the groups below:`;
     } else {
-        addToGroupErrorList(false)
+        addToGroupErrorList(false);
 
-        numOfPicksNeeded = 4 - answeredAudit.answered
-        teams = answeredAudit.answered === 3 ? 'team' : 'teams'
+        numOfPicksNeeded = 4 - answeredAudit.answered;
+        teams = answeredAudit.answered === 3 ? "team" : "teams";
 
-        errorMessage = `${errorMessageBase} need to select ${numOfPicksNeeded} more ${teams} to advance out of the groups below:`
+        errorMessage = `${errorMessageBase} need to select ${numOfPicksNeeded} more ${teams} to advance out of the groups below:`;
     }
 
-    return {error, groupErrorList, errorMessage}
-
+    return {error, groupErrorList, errorMessage};
 };
 
 // const auditThirdPlaceToAdvancePicks = ( groupSelections ) => {
@@ -1492,8 +1493,7 @@ const getKOResults = ( teams ) => {
 
         a[game] = entry[1].map(( knockoutPosition ) => {
             return teams.find(
-                ( team ) => team?.knockoutPosition === knockoutPosition
-            );
+                ( team ) => team?.knockoutPosition === knockoutPosition);
         });
 
         return a;
@@ -1641,7 +1641,6 @@ const isUserMissingOtherRegionPicks = ( user, regionToAudit ) => {
     );
 
     return userPicksInRegionToAAudit.includes(null) ? "missing" : "igo";
-
 };
 
 const createPreTourneyDataNotAvailableYetMessage = ( str ) => {
@@ -1709,68 +1708,64 @@ const addSpace = ( arr, idx ) => {
     return isLastIdx(arr, idx) ? " " : "";
 };
 
-const getNavBarVerbiageFromPath = (
-    route,
-    userIsLoggedIn = false
-) => {
-    const arrayOfPaths = route.split("/")
+const getNavBarVerbiageFromPath = ( route, userIsLoggedIn = false ) => {
+    const arrayOfPaths = route.split("/");
 
     arrayOfPaths.shift();
 
-    let result = ''
+    let result = "";
 
-    let keepRunning = true
+    let keepRunning = true;
 
     arrayOfPaths.forEach(( path, idx ) => {
-
         const words = path.split("-");
 
-        return keepRunning && words.forEach(( word, idx ) => {
+        return (
+            keepRunning &&
+            words.forEach(( word, idx ) => {
+                if (word === "in" && userIsLoggedIn) {
+                    result += "Out";
 
-            if (word === "in" && userIsLoggedIn) {
-                result += "Out";
+                    keepRunning = false;
 
-                keepRunning = false
+                    return result;
+                }
 
-                return result
-            }
+                result += cap1stLetter(word);
 
-            result += cap1stLetter(word);
+                if (word === "users" && result.includes("Admin")) {
+                    keepRunning = false;
+                }
 
-            if (word === 'users' && result.includes('Admin')) {
-                keepRunning = false
-            }
+                if (word === "rules") {
+                    result += "/General Info";
+                }
 
-            if (word === "rules") {
-                result += "/General Info";
-            }
+                result += addSpace(words, idx);
 
-            result += addSpace(words, idx);
-
-            if (word === 'admin') {
-                result += ' - '
-            }
-        });
-
+                if (word === "admin") {
+                    result += " - ";
+                }
+            })
+        );
     });
 
-    return result
+    return result;
 };
 
 const getIsUserSignedIn = ( user ) => {
-    return !!user?.id
-}
+    return !!user?.id;
+};
 
 const getIsUserAdmin = ( user ) => {
-    return !!user?.admin
-}
+    return !!user?.admin;
+};
 
 const handleMobileClick = ( ref, closeMobileMenu ) => {
     const handler = ( event ) => {
         !ref.current.contains(event.target) &&
         event.target.className !== "dropdown-route-row" &&
         closeMobileMenu();
-
     };
 
     document.addEventListener("mousedown", handler);
@@ -1780,13 +1775,31 @@ const handleMobileClick = ( ref, closeMobileMenu ) => {
         document.removeEventListener("mousedown", handler);
         document.removeEventListener("touchstart", handler);
     };
-}
+};
 
 const clearArr = ( arr ) => {
     while (arr.length) {
         arr.pop();
         return clearArr(arr);
     }
+};
+
+const getActionConfirmationText = ( path ) => {
+    let result = 'unknown path'
+
+    switch (path) {
+        case routes.accountCreated:
+            result = accountCreatedConfirmation
+            break;
+        case routes.pwResetConfirmation:
+            result = passwordResetConfirmation
+            break;
+        case routes.forgotPwConfirmation:
+            result = forgotPasswordConfirmation
+            break;
+    }
+
+    return result
 };
 
 module.exports = {
@@ -1839,5 +1852,6 @@ module.exports = {
     getIsUserSignedIn,
     getIsUserAdmin,
     handleMobileClick,
-    clearArr
+    clearArr,
+    getActionConfirmationText,
 };
