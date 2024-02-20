@@ -14,6 +14,7 @@ const {
     passwordResetConfirmation,
     forgotPasswordConfirmation,
 } = require("./variables");
+const {useSelector} = require("react-redux");
 
 const findJoe = ( arr ) => {
     return arr.find(( user ) => user?.admin);
@@ -1802,6 +1803,11 @@ const getActionConfirmationText = ( path ) => {
     return result
 };
 
+const getGroupTeams = ( group, teams ) => {
+    return teams.filter(( team ) => team.group === group)
+    .sort(( a, b ) => a.groupFinishingPosition - b.groupFinishingPosition);
+}
+
 module.exports = {
     findJoe,
     validateEmail,
@@ -1854,4 +1860,5 @@ module.exports = {
     handleMobileClick,
     clearArr,
     getActionConfirmationText,
+    getGroupTeams
 };

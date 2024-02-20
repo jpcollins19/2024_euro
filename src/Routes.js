@@ -32,11 +32,11 @@ import NoMatch from "./components/Misc/No_Match";
 const Routes = () => {
     const dispatch = useDispatch();
 
-    const user = useSelector((state) => state.auth);
+    const user = useSelector(( state ) => state.auth);
 
     const userIsLoggedIn = user?.id ?? false;
 
-    const joe = findJoe(useSelector((state) => state.users));
+    const joe = findJoe(useSelector(( state ) => state.users));
 
     const [loading, setLoading] = useState(true);
 
@@ -66,12 +66,12 @@ const Routes = () => {
         },
         {path: routes.rules, component: Rules_Page},
         {path: routes.forgotPassword, component: Forgot_PW_Page},
-        {path: routes.resetPw, component: Reset_PW_Page},
+        {path: routes.resetPwId, component: Reset_PW_Page},
     ];
 
     if (joe?.tourneyStage > 1) {
         nonUserRoutes = nonUserRoutes.filter(
-            (route) =>
+            ( route ) =>
                 route.path !== routes.createAccount &&
                 route.path !== routes.accountCreated
         );
@@ -83,8 +83,10 @@ const Routes = () => {
         <Loading/>
     ) : (
         <Switch>
+
+
             {!userIsLoggedIn &&
-                nonUserRoutes.map((route, idx) => (
+                nonUserRoutes.map(( route, idx ) => (
                     <Route
                         key={idx}
                         path={route.path}

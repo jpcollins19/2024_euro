@@ -1,8 +1,11 @@
 //adjust all URLS to have dashes instead of underscores ---START
 
 ////test all features for all stages ---START
-//find all usages of updateTeam in the teams_store and verify each dispatch updates and routes correctly
-//find all usages of updateUser in the users_store and verify each dispatch updates and routes correctly
+
+//on stage 3
+
+///audit updateTeam
+//stage 3 & 5
 
 ////test all features for all stages ---END
 

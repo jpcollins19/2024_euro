@@ -1,15 +1,15 @@
 const Sequelize = require("sequelize");
 
 const config = {
-  logging: false,
+    logging: false,
 };
 
 if (process.env.LOGGING) {
-  delete config.logging;
+    delete config.logging;
 }
 
 const db = new Sequelize(
-  process.env.DATABASE_URL || "postgres://localhost/world_cup"
+    process.env.DATABASE_URL || "postgres://localhost/euro"
 );
 
 module.exports = db;

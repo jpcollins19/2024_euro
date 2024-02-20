@@ -25,7 +25,7 @@ const Prediction_Cont_Unlocked = ( {group, selectionObj, onChange} ) => {
 
     const user = useSelector(( state ) => state.auth);
 
-    const userHasPicks = selectionObj.A['1']
+    const userHasPicks = user?.groupA1 ?? false
 
     return (
         <div className="prediction-cont-edit">

@@ -88,7 +88,7 @@ const Pool_Picks_Page = () => {
     const onChange = ( userId ) => {
         setLoading(true);
 
-        window.location = `${routes.poolPicks}/${userId}`;
+        window.location = `#${routes.poolPicks}/${userId}`;
 
         setTimeout(() => {
             setLoading(false);

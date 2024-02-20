@@ -24,7 +24,10 @@ const Reset_PW_Page = () => {
     }, []);
 
     setTimeout(() => {
+        console.log('pathname', pathname)
         const pwResetURL = pathname.split(`${routes.resetPw}/`)[1];
+
+        console.log('pwResetURL', pwResetURL)
 
         setUser(users.find(( user ) => user.pwResetURL === pwResetURL));
     }, 100);
