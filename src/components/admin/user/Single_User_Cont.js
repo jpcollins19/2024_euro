@@ -10,11 +10,13 @@ import {
     games_Q,
     groupLetters,
     routes,
+    areAllGroupsAreFinished,
     auditThirdPlaceToAdvancePicks,
     cap1stLetter,
+    clearArr,
     dupeValInArr,
     findJoe,
-    getKOResults,
+    getKOResults
 } from "../../../store";
 import Button from "../../Misc/Button";
 import Error from "../../Misc/Error";
@@ -202,13 +204,6 @@ const Single_User_Cont = () => {
 
     const errorAudit = [];
 
-    const clearArr = ( arr ) => {
-        while (arr.length) {
-            arr.pop();
-            return clearArr(arr);
-        }
-    };
-
     useEffect(() => {
         const teams_R16 = Object.values(getKOResults(teams)).reduce(
             ( a, matchup ) => {
@@ -270,6 +265,12 @@ const Single_User_Cont = () => {
         evt.preventDefault();
 
         try {
+            if (tourneyStage > 3 && !areAllGroupsAreFinished(teams)) {
+                setMasterError(true);
+                setMasterErrorText('1+ groups have not finished');
+                return
+            }
+
             const userObj = {
                 id: user?.id,
                 name,

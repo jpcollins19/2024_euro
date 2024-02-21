@@ -3,97 +3,58 @@ const {
     models: {User, Team, Updated},
 } = require("../db/index.js");
 
-let teamInfo = [
-    {name: "Qatar", group: "A"},
-    {name: "Ecuador", group: "A"},
-    {name: "Senegal", group: "A"},
-    {name: "Netherlands", group: "A"},
+const teamFlagMapperData = [
+    {name: 'Saudi Arabia', mapTo: 'Saudi_Arabia'},
+    {name: 'USA', mapTo: 'United_States'},
+    {name: 'S. Korea', mapTo: 'South_Korea'},
+    {name: 'Costa Rica', mapTo: 'Costa_Rica'}
+    // {name: 'Brasil', mapTo: 'Brazil'},
+    // {name: 'Switz', mapTo: 'Switzerland'},
+]
 
-    {name: "England", group: "B"},
-    {name: "Iran", group: "B"},
-    {name: "USA", group: "B"},
-    {name: "Wales", group: "B"},
+const getFlagUrl = ( teamName ) => {
+    const oneOffTeams = teamFlagMapperData.map(( t ) => t.name);
 
-    {name: "Argentina", group: "C"},
-    {name: "Saudi Arabia", group: "C"},
-    {name: "Mexico", group: "C"},
-    {name: "Poland", group: "C"},
+    if (oneOffTeams.includes(teamName)) {
+        const teamData = teamFlagMapperData.find(( t ) => teamName === t.name);
 
-    {name: "France", group: "D"},
-    {name: "Australia", group: "D"},
-    {name: "Denmark", group: "D"},
-    {name: "Tunisia", group: "D"},
+        teamName = teamData.mapTo;
+    }
 
-    {name: "Spain", group: "E"},
-    {name: "Costa Rica", group: "E"},
-    {name: "Germany", group: "E"},
-    {name: "Japan", group: "E"},
+    return `https://www.sciencekids.co.nz/images/pictures/flags680/${teamName}.jpg`;
+};
 
-    {name: "Belgium", group: "F"},
-    {name: "Canada", group: "F"},
-    {name: "Morocco", group: "F"},
-    {name: "Croatia", group: "F"},
-];
+const createTeamData = ( groupInfo ) => {
+    return Object.entries(groupInfo).reduce(( a, entry ) => {
+        const group = entry[0];
+        const teams = entry[1];
 
-// const teamEditObj = {
-//   Netherlands: {
-//     groupFinishingPosition: 1,
-//     W: 2,
-//     D: 1,
-//     L: 0,
-//     GF: 12,
-//     GA: 1,
-//   },
-//   Senegal: {
-//     groupFinishingPosition: 2,
-//     W: 2,
-//     D: 0,
-//     L: 1,
-//     GF: 1,
-//     GA: 4,
-//   },
-//   Ecuador: {
-//     groupFinishingPosition: 3,
-//     W: 1,
-//     D: 1,
-//     L: 1,
-//     GF: 14,
-//     GA: 12,
-//   },
-//   Qatar: {
-//     groupFinishingPosition: 4,
-//     W: 0,
-//     D: 0,
-//     L: 3,
-//     GF: 3,
-//     GA: 15,
-//   },
-// };
+        teams.forEach(( teamName ) => {
+            const teamData = {
+                name: teamName,
+                group,
+                flag: getFlagUrl(teamName)
+            };
 
-const entries = ["W", "D", "L", "GF", "GA", "groupFinishingPosition"];
+            a.push(teamData);
+        });
 
-teamInfo.forEach(( team ) => {
-    team.flag = `https://www.sciencekids.co.nz/images/pictures/flags680/${
-        team.name === "Saudi Arabia"
-            ? "Saudi_Arabia"
-            : team.name === "Brasil"
-                ? "Brazil"
-                : team.name === "Switz"
-                    ? "Switzerland"
-                    : team.name === "USA"
-                        ? "United_States"
-                        : team.name === "S. Korea"
-                            ? "South_Korea"
-                            : team.name === "Costa Rica"
-                                ? "Costa_Rica"
-                                : team.name
-    }.jpg`;
+        return a;
+    }, []);
+};
 
-    // team.group === "A" &&
-    //   entries.forEach((entry) => {
-    //     team[entry] = teamEditObj[team?.name][entry];
-    //   });
-});
+//team listing for each group
+const groupInfo = {
+    A: ['Qatar', "Ecuador", "Senegal", "Netherlands"],
+    B: ["England", "Iran", "USA", "Wales"],
+    C: ["Argentina", "Saudi Arabia", "Mexico", "Poland"],
+    D: ["France", "Australia", "Denmark", "Tunisia"],
+    E: ["Spain", "Costa Rica", "Germany", "Japan"],
+    F: ["Belgium", "Canada", "Morocco", "Croatia"]
+}
+
+//creating each teams teamData obj
+const teams = createTeamData(groupInfo)
 
 const users = [
     {
@@ -134,7 +95,7 @@ const users = [
         thirdPlaceAdvanceToKO_Pick_F: "Morocco",
 
         tiebreaker: 98,
-        tourneyStage: 2,
+        tourneyStage: 4,
     },
     //stan
     {
@@ -429,7 +390,7 @@ const syncAndSeed = async () => {
         Morocco,
         Croatia,
     ] = await Promise.all(
-        teamInfo.map(( obj ) =>
+        teams.map(( obj ) =>
             Team.create({
                 name: obj.name,
                 group: obj.group,
@@ -542,65 +503,65 @@ const syncAndSeed = async () => {
         )
     );
     // //////////////////////////////////////////////////
-    // Netherlands.groupFinishingPosition = 1;
-    // Ecuador.groupFinishingPosition = 2;
-    // Senegal.groupFinishingPosition = 3;
-    // Qatar.groupFinishingPosition = 4;
-    //
-    // England.groupFinishingPosition = 1;
-    // USA.groupFinishingPosition = 2;
-    // Wales.groupFinishingPosition = 3;
-    // Iran.groupFinishingPosition = 4;
-    //
-    // Argentina.groupFinishingPosition = 1;
-    // Mexico.groupFinishingPosition = 2;
-    // Poland.groupFinishingPosition = 3;
-    // Saudi_Arabia.groupFinishingPosition = 4;
-    //
-    // France.groupFinishingPosition = 1;
-    // Denmark.groupFinishingPosition = 2;
-    // Australia.groupFinishingPosition = 3;
-    // Tunisia.groupFinishingPosition = 4;
+    Netherlands.groupFinishingPosition = 1;
+    Ecuador.groupFinishingPosition = 2;
+    Senegal.groupFinishingPosition = 3;
+    Qatar.groupFinishingPosition = 4;
+
+    England.groupFinishingPosition = 1;
+    USA.groupFinishingPosition = 2;
+    Wales.groupFinishingPosition = 3;
+    Iran.groupFinishingPosition = 4;
+
+    Argentina.groupFinishingPosition = 1;
+    Mexico.groupFinishingPosition = 2;
+    Poland.groupFinishingPosition = 3;
+    Saudi_Arabia.groupFinishingPosition = 4;
+
+    France.groupFinishingPosition = 1;
+    Denmark.groupFinishingPosition = 2;
+    Australia.groupFinishingPosition = 3;
+    Tunisia.groupFinishingPosition = 4;
     // //
-    // Germany.groupFinishingPosition = 1;
-    // Spain.groupFinishingPosition = 2;
-    // Japan.groupFinishingPosition = 3;
-    // Costa_Rica.groupFinishingPosition = 4;
-    // // //
-    // Belgium.groupFinishingPosition = 1;
-    // Croatia.groupFinishingPosition = 2;
-    // Morocco.groupFinishingPosition = 3;
-    // Canada.groupFinishingPosition = 4;
+    Germany.groupFinishingPosition = 1;
+    Spain.groupFinishingPosition = 2;
+    Japan.groupFinishingPosition = 3;
+    Costa_Rica.groupFinishingPosition = 4;
+    // //
+    Belgium.groupFinishingPosition = 1;
+    Croatia.groupFinishingPosition = 2;
+    Morocco.groupFinishingPosition = 3;
+    Canada.groupFinishingPosition = 4;
     //
-    // Ecuador.groupIsFinished = true;
-    // Netherlands.groupIsFinished = true;
-    // Qatar.groupIsFinished = true;
-    // Senegal.groupIsFinished = true;
-    // England.groupIsFinished = true;
-    // Iran.groupIsFinished = true;
-    // USA.groupIsFinished = true;
-    // Wales.groupIsFinished = true;
-    // Argentina.groupIsFinished = true;
-    // Mexico.groupIsFinished = true;
-    // Poland.groupIsFinished = true;
-    // Saudi_Arabia.groupIsFinished = true;
-    // Denmark.groupIsFinished = true;
-    // France.groupIsFinished = true;
-    // Australia.groupIsFinished = true;
-    // Tunisia.groupIsFinished = true;
-    // Costa_Rica.groupIsFinished = true;
-    // Germany.groupIsFinished = true;
-    // Japan.groupIsFinished = true;
-    // Spain.groupIsFinished = true;
-    // Belgium.groupIsFinished = true;
-    // Canada.groupIsFinished = true;
-    // Croatia.groupIsFinished = true;
-    // Morocco.groupIsFinished = true;
-    //
-    // Senegal.thirdPlaceAndAdvancedToKO = true;
-    // Wales.thirdPlaceAndAdvancedToKO = true;
-    // Australia.thirdPlaceAndAdvancedToKO = true;
-    // Morocco.thirdPlaceAndAdvancedToKO = true;
+    Ecuador.groupIsFinished = true;
+    Netherlands.groupIsFinished = true;
+    Qatar.groupIsFinished = true;
+    Senegal.groupIsFinished = true;
+    England.groupIsFinished = true;
+    Iran.groupIsFinished = true;
+    USA.groupIsFinished = true;
+    Wales.groupIsFinished = true;
+    Argentina.groupIsFinished = true;
+    Mexico.groupIsFinished = true;
+    Poland.groupIsFinished = true;
+    Saudi_Arabia.groupIsFinished = true;
+    Denmark.groupIsFinished = true;
+    France.groupIsFinished = true;
+    Australia.groupIsFinished = true;
+    Tunisia.groupIsFinished = true;
+    Costa_Rica.groupIsFinished = true;
+    Germany.groupIsFinished = true;
+    Japan.groupIsFinished = true;
+    Spain.groupIsFinished = true;
+    Belgium.groupIsFinished = true;
+    Canada.groupIsFinished = true;
+    Croatia.groupIsFinished = true;
+    Morocco.groupIsFinished = true;
+
+    Senegal.thirdPlaceAndAdvancedToKO = true;
+    Wales.thirdPlaceAndAdvancedToKO = true;
+    Australia.thirdPlaceAndAdvancedToKO = true;
+    Morocco.thirdPlaceAndAdvancedToKO = true;
 
     // //////////////////////////////////////////////////
     // Joe.knockQ1 = England.name;
